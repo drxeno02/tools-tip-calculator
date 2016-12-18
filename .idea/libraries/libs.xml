@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="libs">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/TIPCALCULATOR-android/app/libs/crouton-1.8.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/TIPCALCULATOR-android/app/libs/google-play-services.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
