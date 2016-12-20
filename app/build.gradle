@@ -1,0 +1,79 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion '24.0.1'
+
+    // construct version name
+    def versionMajor = 1
+    def versionMinor = 0
+    def versionPatch = 5
+    def code = 6;
+
+    defaultConfig {
+        applicationId "com.blog.ljtatum.tipcalculator"
+        versionName "${versionMajor}.${versionMinor}.${versionPatch}"
+        minSdkVersion 9
+        targetSdkVersion 25
+        versionCode code
+
+        //noinspection GroovyAssignabilityCheck
+        signingConfig signingConfigs.debug
+    }
+
+    buildTypes {
+        debug {
+            buildConfigField "String", "ENVIRONMENT", "\"test\""
+            buildConfigField "boolean", "DEBUG_MODE", "true"
+            manifestPlaceholders = [build_version : "${versionMajor}.${versionMinor}.${versionPatch}"]
+
+            // debuggable
+            debuggable true
+
+            // enable crashlytics
+            ext.enableCrashlytics = true
+
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        release {
+            buildConfigField "String", "ENVIRONMENT", "\"production\""
+            buildConfigField "boolean", "DEBUG_MODE", "false"
+            manifestPlaceholders = [build_version : "${versionMajor}.${versionMinor}.${versionPatch}"]
+
+            // debuggable
+            debuggable false
+
+            // enable crashlytics
+            ext.enableCrashlytics = true
+
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    // flavor implementation propelled by request for multiple environments on Crashlytics
+    productFlavors {
+        standard {
+            applicationId 'com.blog.ljtatum.tipcalculator'
+            manifestPlaceholders = [package_name: "com.flickinfun.tapdat", primary_lang: "en"]
+        }
+        crashlyticsTest {
+            applicationId 'com.blog.ljtatum.tipcalculator.debug'
+            manifestPlaceholders = [package_name: "com.flickinfun.tapdat.debug", primary_lang: "en"]
+        }
+        crashlyticsProd {
+            applicationId 'com.blog.ljtatum.tipcalculator.prod'
+            manifestPlaceholders = [package_name: "ccom.flickinfun.tapdat.prod", primary_lang: "en"]
+        }
+    }
+    lintOptions {
+        // if true, stop the gradle build if errors are found
+        abortOnError false
+    }
+}
+
+dependencies {
+    compile 'com.android.support:support-v4:25.1.0'
+    compile 'com.google.android.gms:play-services:10.0.1'
+    compile files('libs/crouton-1.8.5.jar')
+}
