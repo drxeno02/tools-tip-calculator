@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<instant-run
+    abi="arm64-v8a,armeabi-v7a,armeabi"
+    api-level="23"
+    density="560dpi"
+    format="8"
+    plugin-version="2.2.3"
+    timestamp="452473254430194"
+    token="-5333452425666469952"
+    verifier="FULL_BUILD_REQUESTED" >
+
+    <task
+        name="javac"
+        duration="5262" />
+    <task
+        name="instant-run-dex"
+        duration="0" />
+    <task
+        name="instant-run-transform"
+        duration="789" />
+    <task
+        name="verifier"
+        duration="161" />
+
+    <artifact
+        location="C:\AndroidStudio\Publish Workspace\TipCalculator\app\build\outputs\apk\app-crashlyticsTest-debug.apk"
+        type="MAIN" />
+
+    <build
+        timestamp="452473254430194"
+        verifier="FULL_BUILD_REQUESTED" >
+        <artifact
+            location="C:\AndroidStudio\Publish Workspace\TipCalculator\app\build\outputs\apk\app-crashlyticsTest-debug.apk"
+            type="MAIN" />
+    </build>
+
+</instant-run>
