@@ -18,7 +18,6 @@ import android.os.Vibrator;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -43,6 +42,7 @@ import com.blog.ljtatum.tipcalculator.constants.Constants;
 import com.blog.ljtatum.tipcalculator.utils.AppRaterUtil;
 import com.blog.ljtatum.tipcalculator.R;
 import com.blog.ljtatum.tipcalculator.listeners.ShakeEventListener;
+import com.blog.ljtatum.tipcalculator.utils.Utils;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
@@ -59,7 +59,10 @@ public class MainActivity extends Activity {
 
     private static final String AD_ID_TEST = "950036DB8197D296BE390357BD9A964E";
     private static final long AD_LOAD_DELAY = 500;
-    private int sharedNum = 1; // default value (1)
+
+    private Context mContext;
+    private Activity mActivity;
+    private int sharedNum = 1; // default value
     private int intSelected;
     private int integerPlaces; // track number of integers in editText
     private int decimalPlaces; // track number of decimals in editText
@@ -90,7 +93,7 @@ public class MainActivity extends Activity {
     private TextView tvPerson; // container for person pay amount
     private TextView tvTotal; // container for total bill amount
 
-    private EditText etBill;
+    private EditText edtBill;
 
     private String strValue;
     private String strFormatted;
@@ -115,29 +118,29 @@ public class MainActivity extends Activity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mContext = MainActivity.this;
 
         // rate this app
-        AppRaterUtil.app_launched(this);
+//        new AppRaterUtil(mContext);
 
         // tip textView
-        tvTip = (TextView) findViewById(R.id.metatip);
+        tvTip = (TextView) findViewById(R.id.tv_meta_tip);
 
         // shared by textView
-        tvPerson = (TextView) findViewById(R.id.metaperson);
+        tvPerson = (TextView) findViewById(R.id.tv_meta_person);
 
         // total bill amount textView
-        tvTotal = (TextView) findViewById(R.id.metatotal);
+        tvTotal = (TextView) findViewById(R.id.tv_meta_total);
 
         // toggle button
-        tglbtn = (ToggleButton) findViewById(R.id.btntoggle);
+        tglbtn = (ToggleButton) findViewById(R.id.btn_toggle);
 
         // instantiate vibrator
         v = (Vibrator) MainActivity.this.getSystemService(Context.VIBRATOR_SERVICE);
 
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         mSensorListener = new ShakeEventListener();
-        mSensorListener
-                .setOnShakeListener(new ShakeEventListener.OnShakeListener() {
+        mSensorListener.setOnShakeListener(new ShakeEventListener.OnShakeListener() {
                     @Override
                     public void onShake() {
                         // TODO Auto-generated method stub
@@ -148,26 +151,25 @@ public class MainActivity extends Activity {
                 });
 
         // bill editText
-        etBill = (EditText) findViewById(R.id.edittxtbill);
+        edtBill = (EditText) findViewById(R.id.edt_bill);
 
         // OnEditorActionListener
-        etBill.setOnEditorActionListener(new OnEditorActionListener() {
+        edtBill.setOnEditorActionListener(new OnEditorActionListener() {
 
             @Override
-            public boolean onEditorAction(TextView v, int actionId,
-                                          KeyEvent event) {
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 // TODO Auto-generated method stub
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
                     // hide virtual keyboard
                     InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                    imm.hideSoftInputFromWindow(etBill.getWindowToken(), 0);
+                    imm.hideSoftInputFromWindow(edtBill.getWindowToken(), 0);
                 }
                 return false;
             }
         });
 
         // TextChangedListener
-        etBill.addTextChangedListener(new TextWatcher() {
+        edtBill.addTextChangedListener(new TextWatcher() {
 
             @Override
             public void afterTextChanged(Editable arg0) {
@@ -176,48 +178,46 @@ public class MainActivity extends Activity {
             }
 
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count,
-                                          int after) {
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
                 // TODO Auto-generated method stub
                 // do nothing
             }
 
             @Override
-            public void onTextChanged(CharSequence s, int start, int before,
-                                      int count) {
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
                 // TODO Auto-generated method stub
-                if (etBill.getText().toString().contentEquals(".")) {
+                if (edtBill.getText().toString().contentEquals(".")) {
                     // handle special case
-                    etBill.setText("0.00");
-                } else if (etBill.getText().toString() != null
-                        && etBill.getText().toString().length() > 0) {
+                    edtBill.setText("0.00");
+                } else if (edtBill.getText().toString() != null
+                        && edtBill.getText().toString().length() > 0) {
                     editTextUpdate();
                 }
             }
         });
 
         // rating bar
-        rb = (RatingBar) findViewById(R.id.servicebar);
+        rb = (RatingBar) findViewById(R.id.rating_bar);
         rb.setRating(3.0f); // default value: 15% (Good!)
         ratingBar();
 
         // spinner
-        tvService = (TextView) findViewById(R.id.metarating);
-        tvPercent = (TextView) findViewById(R.id.metapercent);
+        tvService = (TextView) findViewById(R.id.tv_meta_rating);
+        tvPercent = (TextView) findViewById(R.id.tv_meta_percent);
         spinner = (Spinner) findViewById(R.id.spinner);
         spinner();
 
         // increment, decrement buttons
-        btnInc = (Button) findViewById(R.id.btninc);
-        btnDec = (Button) findViewById(R.id.btndec);
-        tvValue = (TextView) findViewById(R.id.metanum);
+        btnInc = (Button) findViewById(R.id.btn_inc);
+        btnDec = (Button) findViewById(R.id.btn_dec);
+        tvValue = (TextView) findViewById(R.id.tv_meta_num);
 
         btnInc.setOnClickListener(new OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
-                hideKeyboard();
+                Utils.hideKeyboard(mContext, MainActivity.this.getWindow().getDecorView().getWindowToken());
                 if (sharedNum < 99) {
                     sharedNum++; // increment # of shared values
                     strValue = Integer.toString(sharedNum);
@@ -232,7 +232,7 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
-                hideKeyboard();
+                Utils.hideKeyboard(mContext, MainActivity.this.getWindow().getDecorView().getWindowToken());
                 if (sharedNum > 1) {
                     sharedNum--; // decrement # of shared values
                     strValue = Integer.toString(sharedNum);
@@ -243,7 +243,7 @@ public class MainActivity extends Activity {
         });
 
         // tip guide button
-        btnGuide = (Button) findViewById(R.id.btnguide);
+        btnGuide = (Button) findViewById(R.id.btn_guide);
         btnGuide.setOnClickListener(new OnClickListener() {
 
             @Override
@@ -274,7 +274,7 @@ public class MainActivity extends Activity {
         });
 
         // clear button
-        btnClear = (Button) findViewById(R.id.btnclear);
+        btnClear = (Button) findViewById(R.id.btn_clear);
         btnClear.setOnClickListener(new OnClickListener() {
 
             @Override
@@ -290,7 +290,7 @@ public class MainActivity extends Activity {
                 .getSystemService(Context.CONNECTIVITY_SERVICE);
 
         // ad banner
-        adView = (AdView) this.findViewById(R.id.adView);
+        adView = (AdView) this.findViewById(R.id.ad_view);
 
         try {
             if (conMgr.getActiveNetworkInfo().isConnected()
@@ -320,16 +320,6 @@ public class MainActivity extends Activity {
 
     }
 
-
-    /**
-     * Method is used to hide the keyboard
-     */
-    private void hideKeyboard() {
-        // hide virtual keyboard
-        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.hideSoftInputFromWindow(etBill.getWindowToken(), 0);
-    }
-
     /**
      * Method is used to update bill amount
      */
@@ -337,11 +327,11 @@ public class MainActivity extends Activity {
         DecimalFormat format = new DecimalFormat("0.00");
 
         // parse, convert and update appropriate values
-        doubleBill = Double.parseDouble(etBill.getText().toString());
+        doubleBill = Double.parseDouble(edtBill.getText().toString());
 
         String strParse = String.valueOf(doubleBill);
         integerPlaces = strParse.indexOf('.');
-        if (etBill.getText().toString().contains(".") == true
+        if (edtBill.getText().toString().contains(".") == true
                 && decimalPlaces >= 1) {
 
             // handle special case
@@ -362,21 +352,21 @@ public class MainActivity extends Activity {
             Crouton.showText(MainActivity.this,
                     "Please maintain proper dollar format ex- 'xxx.xx')",
                     Style.ALERT);
-            etBill.setText(strFormatted);
+            edtBill.setText(strFormatted);
         }
 
         // handle special case
         if (integerPlaces == 7
-                && etBill.getText().toString().contains(".") == false) {
-            etBill.setText(strFormatted);
+                && edtBill.getText().toString().contains(".") == false) {
+            edtBill.setText(strFormatted);
         }
 
         // handle special case
         if (integerPlaces == 7 && decimalPlaces <= 1
-                && etBill.getText().toString().contains(".") == true) {
+                && edtBill.getText().toString().contains(".") == true) {
             specialCase = true;
             decimalPlaces = 2; // prevents loop
-            etBill.setText(strFormatted);
+            edtBill.setText(strFormatted);
         }
     } // end editTextUpdate()
 
@@ -389,7 +379,7 @@ public class MainActivity extends Activity {
             public void onRatingChanged(RatingBar ratingBar, float rating,
                                         boolean fromUser) {
                 // TODO Auto-generated method stub
-                hideKeyboard();
+                Utils.hideKeyboard(mContext, MainActivity.this.getWindow().getDecorView().getWindowToken());
 
                 floatRating = rb.getRating();
                 if (spinnerChange == false) {
@@ -445,7 +435,7 @@ public class MainActivity extends Activity {
 
     private void spinner() {
         // TODO Auto-generated method stub
-        hideKeyboard();
+        Utils.hideKeyboard(mContext, MainActivity.this.getWindow().getDecorView().getWindowToken());
 
         // setup spinner configurations
         spinner.setAdapter(null); // make sure spinner is empty
@@ -582,7 +572,7 @@ public class MainActivity extends Activity {
 
     // toggle onClick method handler
     public void toggleOnClickHandler(View view) {
-        hideKeyboard();
+        Utils.hideKeyboard(mContext, MainActivity.this.getWindow().getDecorView().getWindowToken());
         bToggle = ((ToggleButton) view).isChecked();
         if (bToggle) {
             // round ON; update calculations
@@ -629,7 +619,7 @@ public class MainActivity extends Activity {
 
             sharedNum = 1;
             tvValue.setText(String.valueOf("1"));
-            etBill.setText("");
+            edtBill.setText("");
         } else {
             /*
 			 * Legend: temp1-amount of the bill temp2-tip w/o round temp3-tip
@@ -637,7 +627,7 @@ public class MainActivity extends Activity {
 			 * pays
 			 */
 
-            if (etBill.getText().toString().length() == 0) {
+            if (edtBill.getText().toString().length() == 0) {
                 tvTip.setText(String.valueOf("$0.00")); // static
 
             } else {

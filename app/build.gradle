@@ -1,13 +1,28 @@
+buildscript {
+    repositories {
+        maven { url 'https://maven.fabric.io/public' }
+    }
+
+    dependencies {
+        classpath 'io.fabric.tools:gradle:1.+'
+    }
+}
 apply plugin: 'com.android.application'
+apply plugin: 'io.fabric'
+
+repositories {
+    maven { url 'https://maven.fabric.io/public' }
+}
+
 
 android {
     compileSdkVersion 25
-    buildToolsVersion '24.0.1'
+    buildToolsVersion '25.0.1'
 
     // construct version name
-    def versionMajor = 1
+    def versionMajor = 2
     def versionMinor = 0
-    def versionPatch = 5
+    def versionPatch = 0
     def code = 6;
 
     defaultConfig {
@@ -25,7 +40,7 @@ android {
         debug {
             buildConfigField "String", "ENVIRONMENT", "\"test\""
             buildConfigField "boolean", "DEBUG_MODE", "true"
-            manifestPlaceholders = [build_version : "${versionMajor}.${versionMinor}.${versionPatch}"]
+            manifestPlaceholders = [build_version: "${versionMajor}.${versionMinor}.${versionPatch}"]
 
             // debuggable
             debuggable true
@@ -39,7 +54,7 @@ android {
         release {
             buildConfigField "String", "ENVIRONMENT", "\"production\""
             buildConfigField "boolean", "DEBUG_MODE", "false"
-            manifestPlaceholders = [build_version : "${versionMajor}.${versionMinor}.${versionPatch}"]
+            manifestPlaceholders = [build_version: "${versionMajor}.${versionMinor}.${versionPatch}"]
 
             // debuggable
             debuggable false
@@ -73,7 +88,13 @@ android {
 }
 
 dependencies {
+    compile files('libs/crouton-1.8.5.jar')
     compile 'com.android.support:support-v4:25.1.0'
     compile 'com.google.android.gms:play-services:10.0.1'
-    compile files('libs/crouton-1.8.5.jar')
+    compile 'com.google.firebase:firebase-core:10.0.1'
+    compile('com.crashlytics.sdk.android:crashlytics:2.6.6@aar') {
+        transitive = true;
+    }
 }
+
+apply plugin: 'com.google.gms.google-services'

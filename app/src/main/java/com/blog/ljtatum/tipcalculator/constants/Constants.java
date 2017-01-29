@@ -10,4 +10,10 @@ public class Constants {
 
     // debuggable mode; true to see debug logs otherwise false
     public static final boolean DEBUG = BuildConfig.DEBUG_MODE;
+
+    // shared prefs
+    public static final String PREF_FILE_NAME = "prefFileName";
+    public static final String KEY_APP_LAUNCH = "appLaunch";
+    public static final String KEY_APP_LAUNCH_COUNT = "appLaunchCount";
+    public static final String KEY_APP_LAUNCH_DATE = "appLaunchDate";
 }

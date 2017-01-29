@@ -1,17 +1,17 @@
 <resources>
 
     <!-- Custom Service Bar -->
-    <style name="CustomServiceBar" parent="@android:style/Widget.RatingBar">
+    <style name="CustomRatingBar" parent="Theme.AppCompat">
         <item name="android:progressDrawable">@drawable/custom_servicebar</item>
-        <item name="android:minHeight">20dip</item>
-        <item name="android:maxHeight">20dip</item>
+          <item name="colorControlNormal">@color/orange_dark</item>
+        <item name="colorControlActivated">@color/orange_light</item>
     </style>
 
     <!--
         Base application theme, dependent on API level. This theme is replaced
         by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
     -->
-    <style name="AppBaseTheme" parent="android:Theme.Light">
+    <style name="AppBaseTheme" parent="Theme.AppCompat.Light">
         <!--
             Theme customizations available in newer API levels can go in
             res/values-vXX/styles.xml, while customizations related to

@@ -3,7 +3,6 @@ package com.blog.ljtatum.tipcalculator.utils;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.net.Uri;
 import android.view.View;
@@ -13,55 +12,63 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.blog.ljtatum.tipcalculator.R;
+import com.blog.ljtatum.tipcalculator.constants.Constants;
+import com.blog.ljtatum.tipcalculator.sharedpref.SharedPref;
 
 public class AppRaterUtil {
 
-    private final static String APP_TITLE = "Tip Calculator";
-    private final static String APP_PNAME = "com.blog.ljtatum.tipcalculator";
+    private static final int DAYS_UNTIL_PROMPT = 3;
+    private static final int LAUNCHES_UNTIL_PROMPT = 7;
+    private Context mContext;
 
-    private final static int DAYS_UNTIL_PROMPT = 3;
-    private final static int LAUNCHES_UNTIL_PROMPT = 7;
+//    public static void AppRaterUtil(Context context) {
+//        mContext = context;
+//        // record app launch date
+//        recordAppLaunchDate();
+//    }
 
-    public static void app_launched(Context mContext) {
-        SharedPreferences prefs = mContext.getSharedPreferences("apprater", 0);
-        if (prefs.getBoolean("dontshowagain", false)) {
+
+    public AppRaterUtil(Context context) {
+        mContext = context;
+        recordAppLaunchDate();
+    }
+
+    private void recordAppLaunchDate() {
+        SharedPref prefs = new SharedPref(mContext, Constants.PREF_FILE_NAME);
+        if (prefs.getBooleanPref(Constants.KEY_APP_LAUNCH, false)) {
             return;
         }
 
-        SharedPreferences.Editor editor = prefs.edit();
-
         // Increment launch counter
-        long launch_count = prefs.getLong("launch_count", 0) + 1;
-        editor.putLong("launch_count", launch_count);
+        long launchCount = prefs.getLongPref(Constants.KEY_APP_LAUNCH_COUNT, 0) + 1;
+        prefs.setPref(Constants.KEY_APP_LAUNCH_COUNT, launchCount);
 
         // Get date of first launch
-        Long date_firstLaunch = prefs.getLong("date_firstlaunch", 0);
-        if (date_firstLaunch == 0) {
-            date_firstLaunch = System.currentTimeMillis();
-            editor.putLong("date_firstlaunch", date_firstLaunch);
+        Long dateFirstLaunch = prefs.getLongPref(Constants.KEY_APP_LAUNCH_DATE, 0);
+        if (dateFirstLaunch == 0) {
+            dateFirstLaunch = System.currentTimeMillis();
+            prefs.setPref(Constants.KEY_APP_LAUNCH_DATE, dateFirstLaunch);
         }
 
         // Wait at least n days before opening
-        if (launch_count >= LAUNCHES_UNTIL_PROMPT) {
-            if (System.currentTimeMillis() >= date_firstLaunch
+        if (launchCount >= LAUNCHES_UNTIL_PROMPT) {
+            if (System.currentTimeMillis() >= dateFirstLaunch
                     + (DAYS_UNTIL_PROMPT * 24 * 60 * 60 * 1000)) {
-                showRateDialog(mContext, editor);
+                showRateDialog();
             }
         }
-        editor.commit();
-    } // end app_launched()
+    }
 
-    public static void showRateDialog(final Context mContext,
-                                      final SharedPreferences.Editor editor) {
+    private void showRateDialog() {
         final Dialog dialog = new Dialog(mContext);
-        dialog.setTitle("Rate " + APP_TITLE);
+        dialog.setTitle("Rate ".concat(mContext.getResources().getString(R.string.app_name)));
 
         LinearLayout ll = new LinearLayout(mContext);
         ll.setOrientation(LinearLayout.VERTICAL);
 
         TextView tv = new TextView(mContext);
-        tv.setText("If you enjoy using " + APP_TITLE + ", "
-                + "please take a moment to rate it. Thanks for your support!\n\n");
+        tv.setText("If you enjoy using ".concat(mContext.getResources().getString(R.string.app_name)).concat(
+                ", please take a moment to rate it. Thanks for your support!\n\n"));
         Color.parseColor("#FFFFFF");
         tv.setBackgroundColor(Color.parseColor("#FFFFFF"));
         tv.setWidth(340);
@@ -69,12 +76,12 @@ public class AppRaterUtil {
         ll.addView(tv);
 
         Button b1 = new Button(mContext);
-        b1.setText("Rate " + APP_TITLE);
+        b1.setText("Rate ".concat(mContext.getResources().getString(R.string.app_name)));
         b1.setBackgroundResource(R.drawable.custom_button);
         b1.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
                 mContext.startActivity(new Intent(Intent.ACTION_VIEW, Uri
-                        .parse("market://details?id=" + APP_PNAME)));
+                        .parse("market://details?id=".concat(mContext.getPackageName()))));
                 dialog.dismiss();
             }
         });
@@ -93,16 +100,11 @@ public class AppRaterUtil {
         b3.setText("No, thanks");
         b3.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
-                if (editor != null) {
-                    editor.putBoolean("dontshowagain", true);
-                    editor.commit();
-                }
                 dialog.dismiss();
             }
         });
         ll.addView(b3);
-
         dialog.setContentView(ll);
         dialog.show();
-    } // end showRateDialog()
+    }
 }
