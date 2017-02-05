@@ -27,7 +27,11 @@
           "client_type": 3
         }
       ],
-      "api_key": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCq4lgS2oibxAe3QUT3v5qz_G8LIIucGDg"
+        }
+      ],
       "services": {
         "analytics_service": {
           "status": 1
@@ -67,7 +71,11 @@
           "client_type": 3
         }
       ],
-      "api_key": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCq4lgS2oibxAe3QUT3v5qz_G8LIIucGDg"
+        }
+      ],
       "services": {
         "analytics_service": {
           "status": 1
@@ -107,7 +115,11 @@
           "client_type": 3
         }
       ],
-      "api_key": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCq4lgS2oibxAe3QUT3v5qz_G8LIIucGDg"
+        }
+      ],
       "services": {
         "analytics_service": {
           "status": 1

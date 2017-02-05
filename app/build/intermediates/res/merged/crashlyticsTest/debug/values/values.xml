@@ -56,6 +56,7 @@
     <color name="blue_light">#00BFFF</color>
     <color name="blue_normal">#0000FF</color>
     <color name="blue_shade">#CAE1FF</color>
+    <color name="blue_teal">#87CE</color>
     <color name="bright_foreground_disabled_material_dark">#80ffffff</color>
     <color name="bright_foreground_disabled_material_light">#80000000</color>
     <color name="bright_foreground_inverse_material_dark">@color/bright_foreground_material_light</color>
@@ -560,10 +561,6 @@
     <dimen name="abc_text_size_subtitle_material_toolbar">16dp</dimen>
     <dimen name="abc_text_size_title_material">20sp</dimen>
     <dimen name="abc_text_size_title_material_toolbar">20dp</dimen>
-    <dimen name="activity_margin_large">20dp</dimen>
-    <dimen name="activity_margin_medium">16dp</dimen>
-    <dimen name="activity_margin_small">10dp</dimen>
-    <dimen name="activity_margin_xsmall">5dp</dimen>
     <dimen name="cast_expanded_controller_ad_background_layout_height">350dp</dimen>
     <dimen name="cast_expanded_controller_ad_background_layout_width">-1px</dimen>
     <dimen name="cast_expanded_controller_ad_layout_height">350dp</dimen>
@@ -595,13 +592,33 @@
     <dimen name="cast_tracks_chooser_dialog_row_text_size">18sp</dimen>
     <item format="float" name="disabled_alpha_material_dark" type="dimen">0.30</item>
     <item format="float" name="disabled_alpha_material_light" type="dimen">0.26</item>
-    <dimen name="font_large">20dp</dimen>
-    <dimen name="font_medium">16dp</dimen>
-    <dimen name="font_mediumlarge">18dp</dimen>
-    <dimen name="font_small">10dp</dimen>
-    <dimen name="font_smallmedium">12dp</dimen>
-    <dimen name="font_xlarge">26dp</dimen>
-    <dimen name="font_xxlarge">30dp</dimen>
+    <dimen name="font_size_10">10sp</dimen>
+    <dimen name="font_size_11">11sp</dimen>
+    <dimen name="font_size_12">12sp</dimen>
+    <dimen name="font_size_13">13sp</dimen>
+    <dimen name="font_size_14">14sp</dimen>
+    <dimen name="font_size_15">15sp</dimen>
+    <dimen name="font_size_16">16sp</dimen>
+    <dimen name="font_size_17">17sp</dimen>
+    <dimen name="font_size_18">18sp</dimen>
+    <dimen name="font_size_19">19sp</dimen>
+    <dimen name="font_size_20">20sp</dimen>
+    <dimen name="font_size_21">21sp</dimen>
+    <dimen name="font_size_22">22sp</dimen>
+    <dimen name="font_size_24">24sp</dimen>
+    <dimen name="font_size_26">26sp</dimen>
+    <dimen name="font_size_28">28sp</dimen>
+    <dimen name="font_size_30">30sp</dimen>
+    <dimen name="font_size_32">32sp</dimen>
+    <dimen name="font_size_34">34sp</dimen>
+    <dimen name="font_size_36">36sp</dimen>
+    <dimen name="font_size_38">38sp</dimen>
+    <dimen name="font_size_40">40sp</dimen>
+    <dimen name="font_size_42">42sp</dimen>
+    <dimen name="font_size_6">6sp</dimen>
+    <dimen name="font_size_7">7sp</dimen>
+    <dimen name="font_size_8">8sp</dimen>
+    <dimen name="font_size_9">9sp</dimen>
     <item format="float" name="highlight_alpha_material_colored" type="dimen">0.26</item>
     <item format="float" name="highlight_alpha_material_dark" type="dimen">0.20</item>
     <item format="float" name="highlight_alpha_material_light" type="dimen">0.12</item>
@@ -760,6 +777,13 @@
     <string name="debug_menu_title">Select a Debug Mode</string>
     <string name="debug_menu_troubleshooting">Troubleshooting</string>
     <string name="decline">Decline</string>
+    <string name="default_web_client_id" translatable="false">934940700266-6e2b3ea6d760ckdjtvedhru92moe4baa.apps.googleusercontent.com</string>
+    <string name="firebase_database_url" translatable="false">https://tip-calculator-17c8d.firebaseio.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">934940700266</string>
+    <string name="google_api_key" translatable="false">AIzaSyCq4lgS2oibxAe3QUT3v5qz_G8LIIucGDg</string>
+    <string name="google_app_id" translatable="false">1:934940700266:android:caffcdac59a64ad8</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyCq4lgS2oibxAe3QUT3v5qz_G8LIIucGDg</string>
+    <string name="google_storage_bucket" translatable="false">tip-calculator-17c8d.appspot.com</string>
     <string name="mr_button_content_description">Cast button</string>
     <string name="mr_chooser_searching">Finding devices</string>
     <string name="mr_chooser_title">Cast to</string>
@@ -858,7 +882,7 @@
     <style name="AlertDialog.AppCompat.Light" parent="Base.AlertDialog.AppCompat.Light"/>
     <style name="Animation.AppCompat.Dialog" parent="Base.Animation.AppCompat.Dialog"/>
     <style name="Animation.AppCompat.DropDownUp" parent="Base.Animation.AppCompat.DropDownUp"/>
-    <style name="AppBaseTheme" parent="android:Theme.Light">
+    <style name="AppBaseTheme" parent="Theme.AppCompat.Light">
         <!--
             Theme customizations available in newer API levels can go in
             res/values-vXX/styles.xml, while customizations related to
@@ -1913,10 +1937,10 @@
 <item name="castIntroOverlayStyle">@style/CastIntroOverlay</item>
 <item name="castMiniControllerStyle">@style/CastMiniController</item>
 </style>
-    <style name="CustomServiceBar" parent="@android:style/Widget.RatingBar">
+    <style name="CustomRatingBar" parent="Theme.AppCompat">
         <item name="android:progressDrawable">@drawable/custom_servicebar</item>
-        <item name="android:minHeight">20dip</item>
-        <item name="android:maxHeight">20dip</item>
+          <item name="colorControlNormal">@color/orange_dark</item>
+        <item name="colorControlActivated">@color/orange_light</item>
     </style>
     <style name="Platform.AppCompat" parent="android:Theme">
         <item name="android:windowNoTitle">true</item>
