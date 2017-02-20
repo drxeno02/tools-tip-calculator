@@ -15,6 +15,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Parcelable;
 import android.os.Vibrator;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -54,7 +56,7 @@ import java.util.Locale;
 import de.keyboardsurfer.android.widget.crouton.Crouton;
 import de.keyboardsurfer.android.widget.crouton.Style;
 
-public class MainActivity extends Activity {
+public class MainActivity extends AppCompatActivity {
     public static String TAG = MainActivity.class.getSimpleName();
 
     private static final String AD_ID_TEST = "950036DB8197D296BE390357BD9A964E";
@@ -68,16 +70,8 @@ public class MainActivity extends Activity {
     private int decimalPlaces; // track number of decimals in editText
 
     private float floatRating;
-    private double doubleBill;
-    private double temp1;
-    private double temp2;
-    private double temp3;
-    private double temp4;
-    private double temp5;
-    private boolean bToggle = false;
-    private boolean clear = false;
-    private boolean specialCase = false;
-    private boolean spinnerChange = false;
+    private double doubleBill, temp1, temp2, temp3, temp4, temp5;
+    private boolean bToggle, clear, specialCase, spinnerChange;
 
     private Button btnInc; // increase # of shared values
     private Button btnDec; // decrease # of shared values
@@ -109,6 +103,7 @@ public class MainActivity extends Activity {
     private SensorManager mSensorManager;
     private ShakeEventListener mSensorListener;
     private Vibrator v;
+    private Toolbar mToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -121,7 +116,11 @@ public class MainActivity extends Activity {
         mContext = MainActivity.this;
 
         // rate this app
-//        new AppRaterUtil(mContext);
+        new AppRaterUtil(mContext);
+
+        // instantiate toolbar
+        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(mToolbar);
 
         // tip textView
         tvTip = (TextView) findViewById(R.id.tv_meta_tip);
@@ -137,7 +136,6 @@ public class MainActivity extends Activity {
 
         // instantiate vibrator
         v = (Vibrator) MainActivity.this.getSystemService(Context.VIBRATOR_SERVICE);
-
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         mSensorListener = new ShakeEventListener();
         mSensorListener.setOnShakeListener(new ShakeEventListener.OnShakeListener() {

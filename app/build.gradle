@@ -8,7 +8,7 @@ buildscript {
     }
 }
 apply plugin: 'com.android.application'
-//apply plugin: 'io.fabric'
+apply plugin: 'io.fabric'
 
 repositories {
     maven { url 'https://maven.fabric.io/public' }
@@ -45,7 +45,7 @@ android {
             debuggable true
 
             // enable crashlytics
-            ext.enableCrashlytics = true
+            ext.enableCrashlytics = false
 
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
@@ -59,7 +59,7 @@ android {
             debuggable false
 
             // enable crashlytics
-            ext.enableCrashlytics = true
+            ext.enableCrashlytics = false
 
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
@@ -88,10 +88,11 @@ android {
 
 dependencies {
     compile files('libs/crouton-1.8.5.jar')
-    compile 'com.android.support:support-v4:25.1.0'
+    compile 'com.android.support:support-v4:25.1.1'
+    compile 'com.android.support:appcompat-v7:25.1.1'
     compile 'com.google.android.gms:play-services:10.0.1'
     compile 'com.google.firebase:firebase-core:10.0.1'
-    compile('com.crashlytics.sdk.android:crashlytics:2.5.5@aar') {
+    compile('com.crashlytics.sdk.android:crashlytics:2.6.6@aar') {
         transitive = true;
     }
 }
