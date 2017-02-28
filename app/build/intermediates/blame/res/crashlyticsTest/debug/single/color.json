@@ -8,12 +8,12 @@
         "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\color\\abc_primary_text_material_dark.xml"
     },
     {
-        "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\color\\abc_secondary_text_material_light.xml",
-        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\color\\abc_secondary_text_material_light.xml"
-    },
-    {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\color\\abc_btn_colored_borderless_text_material.xml",
         "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\color\\abc_btn_colored_borderless_text_material.xml"
+    },
+    {
+        "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\color\\abc_secondary_text_material_light.xml",
+        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\color\\abc_secondary_text_material_light.xml"
     },
     {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\color\\abc_tint_default.xml",

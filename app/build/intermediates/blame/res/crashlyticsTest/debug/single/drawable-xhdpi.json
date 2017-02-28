@@ -24,12 +24,12 @@
         "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\src\\main\\res\\drawable-xhdpi\\food_08.png"
     },
     {
-        "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable-xhdpi\\food_03.png",
-        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\src\\main\\res\\drawable-xhdpi\\food_03.png"
-    },
-    {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable-xhdpi\\food_05.png",
         "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\src\\main\\res\\drawable-xhdpi\\food_05.png"
+    },
+    {
+        "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable-xhdpi\\food_03.png",
+        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\src\\main\\res\\drawable-xhdpi\\food_03.png"
     },
     {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable-xhdpi\\food_13.png",
