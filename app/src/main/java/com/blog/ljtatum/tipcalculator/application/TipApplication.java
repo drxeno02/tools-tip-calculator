@@ -12,7 +12,6 @@ import io.fabric.sdk.android.Fabric;
 /**
  * Created by LJTat on 1/28/2017.
  */
-
 public class TipApplication extends Application {
 
     @Override

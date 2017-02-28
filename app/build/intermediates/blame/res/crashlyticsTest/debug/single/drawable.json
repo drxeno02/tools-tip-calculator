@@ -1,7 +1,7 @@
 [
     {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable\\cast_ic_expanded_controller_skip_previous.xml",
-        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-cast-framework\\10.0.1\\res\\drawable\\cast_ic_expanded_controller_skip_previous.xml"
+        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-cast-framework\\10.2.0\\res\\drawable\\cast_ic_expanded_controller_skip_previous.xml"
     },
     {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable\\custom_button.xml",
@@ -9,7 +9,11 @@
     },
     {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable\\cast_skip_ad_label_border.xml",
-        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-cast-framework\\10.0.1\\res\\drawable\\cast_skip_ad_label_border.xml"
+        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-cast-framework\\10.2.0\\res\\drawable\\cast_skip_ad_label_border.xml"
+    },
+    {
+        "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable\\design_password_eye.xml",
+        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.android.support\\design\\25.1.1\\res\\drawable\\design_password_eye.xml"
     },
     {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable\\abc_seekbar_tick_mark_material.xml",
@@ -17,7 +21,7 @@
     },
     {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable\\cast_ic_expanded_controller_rewind30.xml",
-        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-cast-framework\\10.0.1\\res\\drawable\\cast_ic_expanded_controller_rewind30.xml"
+        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-cast-framework\\10.2.0\\res\\drawable\\cast_ic_expanded_controller_rewind30.xml"
     },
     {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable\\abc_btn_check_material.xml",
@@ -33,11 +37,11 @@
     },
     {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable\\cast_ic_notification_forward30.xml",
-        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-cast-framework\\10.0.1\\res\\drawable\\cast_ic_notification_forward30.xml"
+        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-cast-framework\\10.2.0\\res\\drawable\\cast_ic_notification_forward30.xml"
     },
     {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable\\cast_ic_notification_connecting.xml",
-        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-cast\\10.0.1\\res\\drawable\\cast_ic_notification_connecting.xml"
+        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-cast\\10.2.0\\res\\drawable\\cast_ic_notification_connecting.xml"
     },
     {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable\\notification_bg.xml",
@@ -65,7 +69,7 @@
     },
     {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable\\common_google_signin_btn_text_dark_focused.xml",
-        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\10.0.1\\res\\drawable\\common_google_signin_btn_text_dark_focused.xml"
+        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\10.2.0\\res\\drawable\\common_google_signin_btn_text_dark_focused.xml"
     },
     {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable\\abc_cab_background_top_material.xml",
@@ -73,7 +77,7 @@
     },
     {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable\\common_google_signin_btn_icon_light_focused.xml",
-        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\10.0.1\\res\\drawable\\common_google_signin_btn_icon_light_focused.xml"
+        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\10.2.0\\res\\drawable\\common_google_signin_btn_icon_light_focused.xml"
     },
     {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable\\mr_ic_pause_light.xml",
@@ -93,11 +97,15 @@
     },
     {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable\\common_google_signin_btn_text_dark.xml",
-        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\10.0.1\\res\\drawable\\common_google_signin_btn_text_dark.xml"
+        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\10.2.0\\res\\drawable\\common_google_signin_btn_text_dark.xml"
+    },
+    {
+        "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable\\side_nav_bar.xml",
+        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\src\\main\\res\\drawable\\side_nav_bar.xml"
     },
     {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable\\cast_expanded_controller_seekbar_thumb.xml",
-        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-cast-framework\\10.0.1\\res\\drawable\\cast_expanded_controller_seekbar_thumb.xml"
+        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-cast-framework\\10.2.0\\res\\drawable\\cast_expanded_controller_seekbar_thumb.xml"
     },
     {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable\\abc_dialog_material_background.xml",
@@ -109,11 +117,11 @@
     },
     {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable\\cast_ic_notification_small_icon.xml",
-        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-cast-framework\\10.0.1\\res\\drawable\\cast_ic_notification_small_icon.xml"
+        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-cast-framework\\10.2.0\\res\\drawable\\cast_ic_notification_small_icon.xml"
     },
     {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable\\cast_ic_notification_play.xml",
-        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-cast-framework\\10.0.1\\res\\drawable\\cast_ic_notification_play.xml"
+        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-cast-framework\\10.2.0\\res\\drawable\\cast_ic_notification_play.xml"
     },
     {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable\\mr_ic_pause_dark.xml",
@@ -133,7 +141,7 @@
     },
     {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable\\cast_ic_notification_skip_next.xml",
-        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-cast-framework\\10.0.1\\res\\drawable\\cast_ic_notification_skip_next.xml"
+        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-cast-framework\\10.2.0\\res\\drawable\\cast_ic_notification_skip_next.xml"
     },
     {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable\\abc_text_cursor_material.xml",
@@ -141,19 +149,15 @@
     },
     {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable\\cast_ic_notification_pause.xml",
-        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-cast-framework\\10.0.1\\res\\drawable\\cast_ic_notification_pause.xml"
+        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-cast-framework\\10.2.0\\res\\drawable\\cast_ic_notification_pause.xml"
     },
     {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable\\cast_ic_notification_skip_prev.xml",
-        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-cast-framework\\10.0.1\\res\\drawable\\cast_ic_notification_skip_prev.xml"
-    },
-    {
-        "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable\\star_off.png",
-        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\src\\main\\res\\drawable\\star_off.png"
+        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-cast-framework\\10.2.0\\res\\drawable\\cast_ic_notification_skip_prev.xml"
     },
     {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable\\cast_expanded_controller_bg_gradient_light.xml",
-        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-cast-framework\\10.0.1\\res\\drawable\\cast_expanded_controller_bg_gradient_light.xml"
+        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-cast-framework\\10.2.0\\res\\drawable\\cast_expanded_controller_bg_gradient_light.xml"
     },
     {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable\\mr_ic_media_route_connecting_dark.xml",
@@ -161,11 +165,11 @@
     },
     {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable\\cast_ic_mini_controller_closed_caption.xml",
-        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-cast-framework\\10.0.1\\res\\drawable\\cast_ic_mini_controller_closed_caption.xml"
+        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-cast-framework\\10.2.0\\res\\drawable\\cast_ic_mini_controller_closed_caption.xml"
     },
     {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable\\cast_ic_expanded_controller_pause.xml",
-        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-cast-framework\\10.0.1\\res\\drawable\\cast_ic_expanded_controller_pause.xml"
+        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-cast-framework\\10.2.0\\res\\drawable\\cast_ic_expanded_controller_pause.xml"
     },
     {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable\\abc_textfield_search_material.xml",
@@ -176,8 +180,8 @@
         "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.android.support\\mediarouter-v7\\24.0.0\\res\\drawable\\mr_dialog_material_background_dark.xml"
     },
     {
-        "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable\\star_on.png",
-        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\src\\main\\res\\drawable\\star_on.png"
+        "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable\\design_snackbar_background.xml",
+        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.android.support\\design\\25.1.1\\res\\drawable\\design_snackbar_background.xml"
     },
     {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable\\mr_ic_play_light.xml",
@@ -185,11 +189,11 @@
     },
     {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable\\cast_ic_expanded_controller_mute.xml",
-        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-cast-framework\\10.0.1\\res\\drawable\\cast_ic_expanded_controller_mute.xml"
+        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-cast-framework\\10.2.0\\res\\drawable\\cast_ic_expanded_controller_mute.xml"
     },
     {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable\\cast_ic_notification_rewind.xml",
-        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-cast-framework\\10.0.1\\res\\drawable\\cast_ic_notification_rewind.xml"
+        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-cast-framework\\10.2.0\\res\\drawable\\cast_ic_notification_rewind.xml"
     },
     {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable\\abc_list_selector_holo_light.xml",
@@ -197,7 +201,7 @@
     },
     {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable\\cast_ic_notification_disconnect.xml",
-        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-cast-framework\\10.0.1\\res\\drawable\\cast_ic_notification_disconnect.xml"
+        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-cast-framework\\10.2.0\\res\\drawable\\cast_ic_notification_disconnect.xml"
     },
     {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable\\abc_ic_search_api_material.xml",
@@ -208,12 +212,20 @@
         "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\drawable\\notification_bg_low.xml"
     },
     {
+        "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable\\star_filled.png",
+        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\src\\main\\res\\drawable\\star_filled.png"
+    },
+    {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable\\mr_ic_media_route_on_light.xml",
         "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.android.support\\mediarouter-v7\\24.0.0\\res\\drawable\\mr_ic_media_route_on_light.xml"
     },
     {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable\\mr_ic_media_route_mono_light.xml",
         "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.android.support\\mediarouter-v7\\24.0.0\\res\\drawable\\mr_ic_media_route_mono_light.xml"
+    },
+    {
+        "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable\\navigation_empty_icon.xml",
+        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.android.support\\design\\25.1.1\\res\\drawable\\navigation_empty_icon.xml"
     },
     {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable\\abc_seekbar_track_material.xml",
@@ -228,24 +240,28 @@
         "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\drawable\\abc_ic_menu_overflow_material.xml"
     },
     {
+        "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable\\common_google_signin_btn_icon_disabled.xml",
+        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\10.2.0\\res\\drawable\\common_google_signin_btn_icon_disabled.xml"
+    },
+    {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable\\cast_expanded_controller_actionbar_bg_gradient_light.xml",
-        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-cast-framework\\10.0.1\\res\\drawable\\cast_expanded_controller_actionbar_bg_gradient_light.xml"
+        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-cast-framework\\10.2.0\\res\\drawable\\cast_expanded_controller_actionbar_bg_gradient_light.xml"
     },
     {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable\\cast_ic_notification_forward.xml",
-        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-cast-framework\\10.0.1\\res\\drawable\\cast_ic_notification_forward.xml"
+        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-cast-framework\\10.2.0\\res\\drawable\\cast_ic_notification_forward.xml"
     },
     {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable\\cast_ic_notification_stop_live_stream.xml",
-        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-cast-framework\\10.0.1\\res\\drawable\\cast_ic_notification_stop_live_stream.xml"
+        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-cast-framework\\10.2.0\\res\\drawable\\cast_ic_notification_stop_live_stream.xml"
     },
     {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable\\cast_ic_expanded_controller_skip_next.xml",
-        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-cast-framework\\10.0.1\\res\\drawable\\cast_ic_expanded_controller_skip_next.xml"
+        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-cast-framework\\10.2.0\\res\\drawable\\cast_ic_expanded_controller_skip_next.xml"
     },
     {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable\\common_google_signin_btn_icon_light.xml",
-        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\10.0.1\\res\\drawable\\common_google_signin_btn_icon_light.xml"
+        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\10.2.0\\res\\drawable\\common_google_signin_btn_icon_light.xml"
     },
     {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable\\abc_ratingbar_small_material.xml",
@@ -256,12 +272,16 @@
         "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\drawable\\abc_btn_borderless_material.xml"
     },
     {
+        "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable\\common_google_signin_btn_icon_light_normal.xml",
+        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\10.2.0\\res\\drawable\\common_google_signin_btn_icon_light_normal.xml"
+    },
+    {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable\\common_google_signin_btn_icon_dark_focused.xml",
-        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\10.0.1\\res\\drawable\\common_google_signin_btn_icon_dark_focused.xml"
+        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\10.2.0\\res\\drawable\\common_google_signin_btn_icon_dark_focused.xml"
     },
     {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable\\cast_ic_mini_controller_play.xml",
-        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-cast-framework\\10.0.1\\res\\drawable\\cast_ic_mini_controller_play.xml"
+        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-cast-framework\\10.2.0\\res\\drawable\\cast_ic_mini_controller_play.xml"
     },
     {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable\\abc_ratingbar_material.xml",
@@ -269,7 +289,11 @@
     },
     {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable\\cast_ic_mini_controller_pause_large.xml",
-        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-cast-framework\\10.0.1\\res\\drawable\\cast_ic_mini_controller_pause_large.xml"
+        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-cast-framework\\10.2.0\\res\\drawable\\cast_ic_mini_controller_pause_large.xml"
+    },
+    {
+        "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable\\design_bottom_navigation_item_background.xml",
+        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.android.support\\design\\25.1.1\\res\\drawable\\design_bottom_navigation_item_background.xml"
     },
     {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable\\abc_cab_background_internal_bg.xml",
@@ -277,11 +301,11 @@
     },
     {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable\\common_google_signin_btn_icon_dark.xml",
-        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\10.0.1\\res\\drawable\\common_google_signin_btn_icon_dark.xml"
+        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\10.2.0\\res\\drawable\\common_google_signin_btn_icon_dark.xml"
     },
     {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable\\cast_ic_mini_controller_rewind30.xml",
-        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-cast-framework\\10.0.1\\res\\drawable\\cast_ic_mini_controller_rewind30.xml"
+        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-cast-framework\\10.2.0\\res\\drawable\\cast_ic_mini_controller_rewind30.xml"
     },
     {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable\\abc_btn_radio_material.xml",
@@ -289,15 +313,15 @@
     },
     {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable\\common_google_signin_btn_text_light_focused.xml",
-        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\10.0.1\\res\\drawable\\common_google_signin_btn_text_light_focused.xml"
+        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\10.2.0\\res\\drawable\\common_google_signin_btn_text_light_focused.xml"
     },
     {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable\\cast_ic_mini_controller_play_large.xml",
-        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-cast-framework\\10.0.1\\res\\drawable\\cast_ic_mini_controller_play_large.xml"
+        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-cast-framework\\10.2.0\\res\\drawable\\cast_ic_mini_controller_play_large.xml"
     },
     {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable\\cast_expanded_controller_seekbar_track.xml",
-        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-cast-framework\\10.0.1\\res\\drawable\\cast_expanded_controller_seekbar_track.xml"
+        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-cast-framework\\10.2.0\\res\\drawable\\cast_expanded_controller_seekbar_track.xml"
     },
     {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable\\abc_list_selector_background_transition_holo_light.xml",
@@ -305,19 +329,15 @@
     },
     {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable\\cast_ic_expanded_controller_play.xml",
-        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-cast-framework\\10.0.1\\res\\drawable\\cast_ic_expanded_controller_play.xml"
+        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-cast-framework\\10.2.0\\res\\drawable\\cast_ic_expanded_controller_play.xml"
     },
     {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable\\cast_ic_expanded_controller_stop.xml",
-        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-cast-framework\\10.0.1\\res\\drawable\\cast_ic_expanded_controller_stop.xml"
+        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-cast-framework\\10.2.0\\res\\drawable\\cast_ic_expanded_controller_stop.xml"
     },
     {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable\\ic_collapse.xml",
         "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.android.support\\mediarouter-v7\\24.0.0\\res\\drawable\\ic_collapse.xml"
-    },
-    {
-        "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable\\banner.png",
-        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\src\\main\\res\\drawable\\banner.png"
     },
     {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable\\abc_ic_voice_search_api_material.xml",
@@ -333,7 +353,7 @@
     },
     {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable\\cast_ic_mini_controller_stop.xml",
-        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-cast-framework\\10.0.1\\res\\drawable\\cast_ic_mini_controller_stop.xml"
+        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-cast-framework\\10.2.0\\res\\drawable\\cast_ic_mini_controller_stop.xml"
     },
     {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable\\abc_switch_thumb_material.xml",
@@ -341,7 +361,7 @@
     },
     {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable\\cast_ic_mini_controller_skip_next.xml",
-        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-cast-framework\\10.0.1\\res\\drawable\\cast_ic_mini_controller_skip_next.xml"
+        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-cast-framework\\10.2.0\\res\\drawable\\cast_ic_mini_controller_skip_next.xml"
     },
     {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable\\abc_ratingbar_indicator_material.xml",
@@ -349,23 +369,27 @@
     },
     {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable\\cast_ic_expanded_controller_forward30.xml",
-        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-cast-framework\\10.0.1\\res\\drawable\\cast_ic_expanded_controller_forward30.xml"
+        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-cast-framework\\10.2.0\\res\\drawable\\cast_ic_expanded_controller_forward30.xml"
+    },
+    {
+        "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable\\common_google_signin_btn_text_light_normal.xml",
+        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\10.2.0\\res\\drawable\\common_google_signin_btn_text_light_normal.xml"
+    },
+    {
+        "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable\\cast_ic_notification_rewind10.xml",
+        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-cast-framework\\10.2.0\\res\\drawable\\cast_ic_notification_rewind10.xml"
     },
     {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable\\abc_list_selector_holo_dark.xml",
         "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\drawable\\abc_list_selector_holo_dark.xml"
     },
     {
-        "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable\\cast_ic_notification_rewind10.xml",
-        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-cast-framework\\10.0.1\\res\\drawable\\cast_ic_notification_rewind10.xml"
-    },
-    {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable\\cast_ic_expanded_controller_closed_caption.xml",
-        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-cast-framework\\10.0.1\\res\\drawable\\cast_ic_expanded_controller_closed_caption.xml"
+        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-cast-framework\\10.2.0\\res\\drawable\\cast_ic_expanded_controller_closed_caption.xml"
     },
     {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable\\common_google_signin_btn_text_light.xml",
-        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\10.0.1\\res\\drawable\\common_google_signin_btn_text_light.xml"
+        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\10.2.0\\res\\drawable\\common_google_signin_btn_text_light.xml"
     },
     {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable\\custom_servicebar_empty.xml",
@@ -384,6 +408,10 @@
         "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.android.support\\mediarouter-v7\\24.0.0\\res\\drawable\\mr_ic_media_route_mono_dark.xml"
     },
     {
+        "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable\\common_google_signin_btn_icon_dark_normal.xml",
+        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\10.2.0\\res\\drawable\\common_google_signin_btn_icon_dark_normal.xml"
+    },
+    {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable\\mr_ic_cast_light.xml",
         "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.android.support\\mediarouter-v7\\24.0.0\\res\\drawable\\mr_ic_cast_light.xml"
     },
@@ -400,20 +428,32 @@
         "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.android.support\\mediarouter-v7\\24.0.0\\res\\drawable\\mr_dialog_material_background_light.xml"
     },
     {
+        "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable\\toolbar_shadow.xml",
+        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\src\\main\\res\\drawable\\toolbar_shadow.xml"
+    },
+    {
+        "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable\\common_google_signin_btn_text_dark_normal.xml",
+        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\10.2.0\\res\\drawable\\common_google_signin_btn_text_dark_normal.xml"
+    },
+    {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable\\cast_ic_mini_controller_pause.xml",
-        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-cast-framework\\10.0.1\\res\\drawable\\cast_ic_mini_controller_pause.xml"
+        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-cast-framework\\10.2.0\\res\\drawable\\cast_ic_mini_controller_pause.xml"
     },
     {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable\\cast_ic_mini_controller_skip_prev.xml",
-        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-cast-framework\\10.0.1\\res\\drawable\\cast_ic_mini_controller_skip_prev.xml"
+        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-cast-framework\\10.2.0\\res\\drawable\\cast_ic_mini_controller_skip_prev.xml"
+    },
+    {
+        "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable\\common_google_signin_btn_text_disabled.xml",
+        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\10.2.0\\res\\drawable\\common_google_signin_btn_text_disabled.xml"
     },
     {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable\\cast_mini_controller_gradient_light.xml",
-        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-cast-framework\\10.0.1\\res\\drawable\\cast_mini_controller_gradient_light.xml"
+        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-cast-framework\\10.2.0\\res\\drawable\\cast_mini_controller_gradient_light.xml"
     },
     {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable\\cast_ic_notification_forward10.xml",
-        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-cast-framework\\10.0.1\\res\\drawable\\cast_ic_notification_forward10.xml"
+        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-cast-framework\\10.2.0\\res\\drawable\\cast_ic_notification_forward10.xml"
     },
     {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable\\notification_icon_background.xml",
@@ -421,19 +461,27 @@
     },
     {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable\\cast_mini_controller_progress_drawable.xml",
-        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-cast-framework\\10.0.1\\res\\drawable\\cast_mini_controller_progress_drawable.xml"
+        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-cast-framework\\10.2.0\\res\\drawable\\cast_mini_controller_progress_drawable.xml"
     },
     {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable\\abc_vector_test.xml",
         "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\drawable\\abc_vector_test.xml"
     },
     {
+        "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable\\design_fab_background.xml",
+        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.android.support\\design\\25.1.1\\res\\drawable\\design_fab_background.xml"
+    },
+    {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable\\cast_ic_notification_rewind30.xml",
-        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-cast-framework\\10.0.1\\res\\drawable\\cast_ic_notification_rewind30.xml"
+        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-cast-framework\\10.2.0\\res\\drawable\\cast_ic_notification_rewind30.xml"
+    },
+    {
+        "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable\\star_empty.png",
+        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\src\\main\\res\\drawable\\star_empty.png"
     },
     {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable\\cast_ic_mini_controller_forward30.xml",
-        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-cast-framework\\10.0.1\\res\\drawable\\cast_ic_mini_controller_forward30.xml"
+        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-cast-framework\\10.2.0\\res\\drawable\\cast_ic_mini_controller_forward30.xml"
     },
     {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable\\abc_ic_go_search_api_material.xml",
@@ -453,10 +501,10 @@
     },
     {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable\\cast_ic_mini_controller_mute.xml",
-        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-cast-framework\\10.0.1\\res\\drawable\\cast_ic_mini_controller_mute.xml"
+        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-cast-framework\\10.2.0\\res\\drawable\\cast_ic_mini_controller_mute.xml"
     },
     {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable\\cast_ic_mini_controller_stop_large.xml",
-        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-cast-framework\\10.0.1\\res\\drawable\\cast_ic_mini_controller_stop_large.xml"
+        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-cast-framework\\10.2.0\\res\\drawable\\cast_ic_mini_controller_stop_large.xml"
     }
 ]

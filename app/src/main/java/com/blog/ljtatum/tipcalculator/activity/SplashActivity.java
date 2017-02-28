@@ -8,6 +8,9 @@ import android.view.Window;
 import android.view.WindowManager;
 import com.blog.ljtatum.tipcalculator.R;
 
+/**
+ * Created by LJTat on 2/23/2017.
+ */
 public class SplashActivity extends Activity {
     private final int SPLASH_TIMER = 2000;
 
@@ -27,8 +30,6 @@ public class SplashActivity extends Activity {
                 Intent intent = new Intent(SplashActivity.this,
                         MainActivity.class);
                 startActivity(intent);
-
-                // End SplashActivity
                 finish();
             }
         }, SPLASH_TIMER);

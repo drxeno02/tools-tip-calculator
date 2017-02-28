@@ -5,9 +5,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 /**
- * Created by LJTat on 12/18/2016.
+ * Created by LJTat on 2/23/2017.
  */
-
 public class SharedPref {
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor prefsEditor;

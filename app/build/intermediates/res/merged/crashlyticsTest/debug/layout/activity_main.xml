@@ -1,28 +1,31 @@
-<RelativeLayout xmlns:ads="http://schemas.android.com/apk/res-auto"
-                xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:tools="http://schemas.android.com/tools"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/blue_teal"
-                tools:context=".activity.MainActivity">
-
-    <include
-        android:id="@+id/toolbar"
-        layout="@layout/toolbar"/>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frag_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blue_teal"
+    tools:context=".activity.MainActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_margin="10dp">
+        android:layout_marginEnd="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="60dp"
+        android:orientation="vertical">
 
+        <!-- row 1; service percent -->
         <RelativeLayout
-            android:id="@+id/rl_row_a"
+            android:id="@+id/row_a"
             android:layout_width="match_parent"
-            android:layout_height="35dp"
+            android:layout_height="40dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
             android:orientation="vertical">
 
-            <!-- Row 1 -->
             <TextView
                 android:id="@+id/tv_meta_percent"
                 android:layout_width="wrap_content"
@@ -30,304 +33,300 @@
                 android:layout_centerVertical="true"
                 android:text="@string/txt_percent_default"
                 android:textColor="@color/black"
-                android:textSize="@dimen/font_size_20"
-                android:textStyle="bold"/>
+                android:textSize="@dimen/font_size_18"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/tv_service"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="3dp"
-                android:layout_toRightOf="@id/tv_meta_percent"
                 android:layout_centerVertical="true"
+                android:layout_marginLeft="3dp"
+                android:layout_marginStart="3dp"
+                android:layout_toEndOf="@+id/tv_meta_percent"
+                android:layout_toRightOf="@id/tv_meta_percent"
                 android:text="@string/txt_service"
                 android:textColor="@color/black"
-                android:textSize="@dimen/font_size_20"/>
+                android:textSize="@dimen/font_size_18" />
 
             <TextView
                 android:id="@+id/tv_meta_rating"
-                android:layout_width="90dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_toRightOf="@id/tv_service"
                 android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginStart="5dp"
+                android:layout_toEndOf="@+id/tv_service"
+                android:layout_toRightOf="@id/tv_service"
                 android:text="@string/txt_good"
                 android:textColor="@color/green_normal"
-                android:textSize="@dimen/font_size_26"
-                android:textStyle="bold|italic"/>
+                android:textSize="@dimen/font_size_22"
+                android:textStyle="bold|italic" />
 
         </RelativeLayout>
 
-        <RelativeLayout
-            android:id="@+id/rl_row_b"
+        <!-- row 2; rating stars -->
+        <include
+            android:id="@+id/row_b"
+            layout="@layout/rating_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/rl_row_a"
-            android:layout_marginTop="8dp"
-            android:orientation="vertical">
+            android:layout_below="@id/row_a"
+            android:layout_marginTop="7dp" />
 
-            <!-- Row 2 -->
-            <RatingBar
-                android:id="@+id/rating_bar"
-                style="@style/CustomRatingBar"
-                android:layout_width="wrap_content"
-                android:layout_height="35dp"
-                android:layout_marginTop="15dp"/>
+        <!-- row 3; bill amount -->
+        <LinearLayout
+            android:id="@+id/row_c"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_below="@+id/row_b"
+            android:layout_marginTop="7dp"
+            android:orientation="horizontal"
+            android:weightSum="1">
 
-            <Spinner
-                android:id="@+id/spinner"
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/tv_bill"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_toRightOf="@id/rating_bar"
-                android:drawSelectorOnTop="true"
-                android:paddingTop="10dp"
-                android:prompt="@string/spinner_default_txt"/>
+                android:layout_weight="0.5"
+                android:text="@string/txt_bill"
+                android:textColor="@color/black"
+                android:textSize="@dimen/font_size_18" />
+
+            <EditText
+                android:id="@+id/edt_bill"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:gravity="right|end"
+                android:hint="@string/txt_hint"
+                android:inputType="numberDecimal"
+                android:maxLength="10"
+                android:maxLines="1"
+                android:textColor="@color/black"
+                android:textColorHint="@color/grey_normal"
+                android:textSize="@dimen/font_size_18">
+
+                <requestFocus />
+            </EditText>
+
+        </LinearLayout>
+
+        <!-- row 4; tip amount -->
+        <RelativeLayout
+            android:id="@+id/row_d"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_below="@+id/row_c"
+            android:layout_marginTop="7dp">
+
+            <TextView
+                android:id="@+id/tv_tip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="@string/txt_tip"
+                android:textColor="@color/black"
+                android:textSize="@dimen/font_size_18" />
+
+            <TextView
+                android:id="@+id/tv_meta_tip"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginStart="5dp"
+                android:layout_toEndOf="@+id/tv_tip"
+                android:layout_toLeftOf="@+id/tv_round"
+                android:layout_toRightOf="@id/tv_tip"
+                android:layout_toStartOf="@+id/tv_round"
+                android:maxLines="1"
+                android:text="@string/txt_hint"
+                android:textColor="@color/black"
+                android:textSize="@dimen/font_size_18"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_round"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginStart="5dp"
+                android:layout_toLeftOf="@+id/btn_switch"
+                android:layout_toStartOf="@+id/btn_switch"
+                android:text="@string/txt_round_off"
+                android:textColor="@color/black"
+                android:textSize="@dimen/font_size_18" />
+
+            <Switch
+                android:id="@+id/btn_switch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginStart="5dp" />
 
         </RelativeLayout>
 
-        <!-- Row 3 -->
-        <TextView
-            android:id="@+id/tv_bill"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/rl_row_b"
-            android:layout_marginTop="20dp"
-            android:text="@string/txt_bill"
-            android:textColor="@color/black"
-            android:textSize="@dimen/font_size_20"/>
-
-        <EditText
-            android:id="@+id/edt_bill"
-            android:layout_width="fill_parent"
-            android:layout_height="38dp"
-            android:layout_alignParentRight="true"
-            android:layout_below="@id/rl_row_b"
-            android:layout_marginLeft="3dp"
-            android:layout_marginTop="22dp"
-            android:layout_toRightOf="@id/tv_bill"
-            android:gravity="right"
-            android:hint="@string/txt_hint"
-            android:inputType="numberDecimal"
-            android:maxLength="10"
-            android:maxLines="1"
-            android:singleLine="true"
-            android:textColor="@color/black"
-            android:textColorHint="@color/black"
-            android:textSize="@dimen/font_size_20">
-
-            <requestFocus/>
-        </EditText>
-
-        <!-- Row 4 -->
-        <TextView
-            android:id="@+id/tv_tip"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/tv_bill"
-            android:layout_marginTop="22dp"
-            android:text="@string/txt_tip"
-            android:textColor="@color/black"
-            android:textSize="@dimen/font_size_20"/>
-
-        <ToggleButton
-            android:visibility="gone"
-            android:id="@+id/btn_toggle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_below="@id/tv_bill"
-            android:layout_marginTop="16dp"
-            android:textOff="Round Off"
-            android:textOn="Round On  "/>
-
-        <Switch
-            android:id="@+id/btn_switch"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_below="@id/tv_bill"
-            android:layout_marginTop="16dp"
-            android:textOff="Round Off"
-            android:textOn="Round On  "
-            tools:targetApi="ice_cream_sandwich" />
-
-        <TextView
-            android:id="@+id/tv_meta_tip"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/tv_bill"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="22dp"
-            android:layout_toLeftOf="@id/btn_toggle"
-            android:layout_toRightOf="@id/tv_tip"
-            android:maxLines="1"
-            android:text="@string/txt_hint"
-            android:textColor="@color/black"
-            android:textSize="@dimen/font_size_20"
-            android:textStyle="bold"/>
-
-        <!-- Row 5 -->
-        <TextView
-            android:id="@+id/tv_shared"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/tv_tip"
-            android:layout_marginTop="27dp"
-            android:text="@string/txt_shared"
-            android:textColor="@color/black"
-            android:textSize="@dimen/font_size_20"/>
-
-        <TextView
-            android:id="@+id/tv_meta_num"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/tv_tip"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="27dp"
-            android:layout_toRightOf="@id/tv_shared"
-            android:maxLines="1"
-            android:minEms="2"
-            android:text="@string/txt_num"
-            android:textColor="@color/black"
-            android:textSize="@dimen/font_size_20"
-            android:textStyle="bold"/>
-
-        <Button
-            android:id="@+id/btn_dec"
-            android:layout_width="40dp"
+        <!-- row 5; shared by -->
+        <RelativeLayout
+            android:id="@+id/row_e"
+            android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:layout_alignParentRight="true"
-            android:layout_below="@id/tv_tip"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="22dp"
-            android:background="@drawable/custom_button"
-            android:text="@string/btn_dec"
-            android:textColor="@color/black"
-            android:textSize="@dimen/font_size_20"
-            android:textStyle="bold"/>
+            android:layout_below="@+id/row_d"
+            android:layout_marginTop="7dp">
 
-        <Button
-            android:id="@+id/btn_inc"
-            android:layout_width="40dp"
+            <TextView
+                android:id="@+id/tv_shared"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="@string/txt_shared"
+                android:textColor="@color/black"
+                android:textSize="@dimen/font_size_18" />
+
+            <TextView
+                android:id="@+id/tv_meta_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginStart="5dp"
+                android:layout_toEndOf="@+id/tv_shared"
+                android:layout_toRightOf="@id/tv_shared"
+                android:maxLines="1"
+                android:minEms="2"
+                android:text="@string/txt_num"
+                android:textColor="@color/black"
+                android:textSize="@dimen/font_size_18"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/btn_dec"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
+                android:background="@drawable/custom_button"
+                android:text="@string/btn_dec"
+                android:textColor="@color/black"
+                android:textSize="@dimen/font_size_18"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/btn_inc"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@id/btn_dec"
+                android:layout_toStartOf="@+id/btn_dec"
+                android:background="@drawable/custom_button"
+                android:text="@string/btn_inc"
+                android:textColor="@color/black"
+                android:textSize="@dimen/font_size_18"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+
+        <!-- row 6; each person pays -->
+        <LinearLayout
+            android:id="@+id/row_f"
+            android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:layout_alignParentRight="false"
-            android:layout_below="@id/tv_tip"
-            android:layout_marginTop="22dp"
-            android:layout_toLeftOf="@id/btn_dec"
-            android:background="@drawable/custom_button"
-            android:text="@string/btn_inc"
-            android:textColor="@color/black"
-            android:textSize="@dimen/font_size_20"
-            android:textStyle="bold"/>
+            android:layout_below="@+id/row_e"
+            android:layout_marginTop="7dp"
+            android:gravity="center_vertical"
+            android:weightSum="1">
 
-        <!-- Row 6 -->
-        <TextView
-            android:id="@+id/tv_person"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_below="@id/tv_shared"
-            android:layout_marginTop="22dp"
-            android:text="@string/txt_person"
-            android:textColor="@color/black"
-            android:textSize="@dimen/font_size_20"/>
+            <TextView
+                android:id="@+id/tv_person"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:text="@string/txt_person"
+                android:textColor="@color/black"
+                android:textSize="@dimen/font_size_18" />
 
-        <TextView
-            android:id="@+id/tv_meta_person"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_below="@id/tv_shared"
-            android:layout_marginTop="22dp"
-            android:maxLines="1"
-            android:text="@string/txt_hint"
-            android:textColor="@color/black"
-            android:textSize="@dimen/font_size_20"
-            android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/tv_meta_person"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:gravity="right|end"
+                android:maxLines="1"
+                android:text="@string/txt_hint"
+                android:textColor="@color/black"
+                android:textSize="@dimen/font_size_18"
+                android:textStyle="bold" />
 
-        <!-- Row 7 -->
-        <TextView
-            android:id="@+id/tv_total"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_below="@id/tv_person"
-            android:layout_marginTop="22dp"
-            android:text="@string/txt_total"
-            android:textColor="@color/black"
-            android:textSize="@dimen/font_size_20"/>
+        </LinearLayout>
 
-        <TextView
-            android:id="@+id/tv_meta_total"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_below="@id/tv_person"
-            android:layout_marginTop="22dp"
-            android:maxLines="1"
-            android:text="@string/txt_hint"
-            android:textColor="@color/green_normal"
-            android:textSize="@dimen/font_size_20"
-            android:textStyle="bold"/>
+        <!-- row 7; total bill amount -->
+        <LinearLayout
+            android:id="@+id/row_g"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_below="@+id/row_f"
+            android:layout_marginTop="7dp"
+            android:gravity="center_vertical"
+            android:weightSum="1">
 
-        <!-- Row 8 -->
+            <TextView
+                android:id="@+id/tv_total"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:text="@string/txt_total"
+                android:textColor="@color/black"
+                android:textSize="@dimen/font_size_18" />
+
+            <TextView
+                android:id="@+id/tv_meta_total"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:gravity="right|end"
+                android:maxLines="1"
+                android:text="@string/txt_hint"
+                android:textColor="@color/green_normal"
+                android:textSize="@dimen/font_size_18"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- row 8; clear -->
         <Button
             android:id="@+id/btn_clear"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_below="@id/tv_total"
-            android:layout_marginTop="20dp"
-            android:layout_toLeftOf="@+id/centerPoint"
+            android:layout_below="@id/row_g"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="14dp"
             android:background="@drawable/custom_button"
             android:clickable="true"
             android:gravity="center"
             android:text="@string/btn_clear"
             android:textColor="@color/black"
             android:textSize="@dimen/font_size_18"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/centerPoint"
-            android:layout_width="10dip"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/tv_total"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp"
-            android:maxLines="1"
-            android:text=""/>
-
-        <Button
-            android:id="@+id/btn_guide"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_below="@id/tv_total"
-            android:layout_marginTop="20dp"
-            android:layout_toRightOf="@id/centerPoint"
-            android:clickable="true"
-            android:gravity="center"
-            android:text="@string/btn_guide"
-            android:textColor="@color/black"
-            android:textSize="@dimen/font_size_18"
-            android:textStyle="bold"/>
     </RelativeLayout>
 
-    <LinearLayout
-        android:layout_width="fill_parent"
+    <!-- ad banner -->
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/ad_view"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_gravity="center_horizontal"
-        android:orientation="vertical">
-
-        <com.google.android.gms.ads.AdView
-            android:id="@+id/ad_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            ads:adSize="BANNER"
-            ads:adUnitId="ca-app-pub-8397256122648968/7826518012"/>
-    </LinearLayout>
+        android:orientation="vertical"
+        ads:adSize="BANNER"
+        ads:adUnitId="ca-app-pub-8397256122648968/7826518012" />
 
 </RelativeLayout>

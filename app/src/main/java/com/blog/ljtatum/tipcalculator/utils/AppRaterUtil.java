@@ -15,18 +15,14 @@ import com.blog.ljtatum.tipcalculator.R;
 import com.blog.ljtatum.tipcalculator.constants.Constants;
 import com.blog.ljtatum.tipcalculator.sharedpref.SharedPref;
 
+/**
+ * Created by LJTat on 2/23/2017.
+ */
 public class AppRaterUtil {
 
     private static final int DAYS_UNTIL_PROMPT = 3;
     private static final int LAUNCHES_UNTIL_PROMPT = 7;
     private Context mContext;
-
-//    public static void AppRaterUtil(Context context) {
-//        mContext = context;
-//        // record app launch date
-//        recordAppLaunchDate();
-//    }
-
 
     public AppRaterUtil(Context context) {
         mContext = context;

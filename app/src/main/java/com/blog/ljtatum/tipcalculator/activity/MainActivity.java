@@ -1,25 +1,28 @@
 package com.blog.ljtatum.tipcalculator.activity;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.hardware.Sensor;
 import android.hardware.SensorManager;
-import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Parcelable;
 import android.os.Vibrator;
+import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -32,10 +35,12 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RatingBar;
-import android.widget.RatingBar.OnRatingBarChangeListener;
 import android.widget.Spinner;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 import android.widget.ToggleButton;
@@ -44,6 +49,7 @@ import com.blog.ljtatum.tipcalculator.constants.Constants;
 import com.blog.ljtatum.tipcalculator.utils.AppRaterUtil;
 import com.blog.ljtatum.tipcalculator.R;
 import com.blog.ljtatum.tipcalculator.listeners.ShakeEventListener;
+import com.blog.ljtatum.tipcalculator.utils.NetworkUtils;
 import com.blog.ljtatum.tipcalculator.utils.Utils;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -56,26 +62,29 @@ import java.util.Locale;
 import de.keyboardsurfer.android.widget.crouton.Crouton;
 import de.keyboardsurfer.android.widget.crouton.Style;
 
-public class MainActivity extends AppCompatActivity {
+/**
+ * Created by LJTat on 2/23/2017.
+ */
+public class MainActivity extends AppCompatActivity implements OnClickListener,
+        NavigationView.OnNavigationItemSelectedListener{
     public static String TAG = MainActivity.class.getSimpleName();
 
     private static final String AD_ID_TEST = "950036DB8197D296BE390357BD9A964E";
     private static final long AD_LOAD_DELAY = 500;
 
     private Context mContext;
-    private Activity mActivity;
     private int sharedNum = 1; // default value
     private int intSelected;
     private int integerPlaces; // track number of integers in editText
     private int decimalPlaces; // track number of decimals in editText
 
-    private float floatRating;
     private double doubleBill, temp1, temp2, temp3, temp4, temp5;
-    private boolean bToggle, clear, specialCase, spinnerChange;
+    private boolean clear, specialCase;
+
+    private ImageView ivStar1, ivStar2, ivStar3, ivStar4, ivStar5;
 
     private Button btnInc; // increase # of shared values
     private Button btnDec; // decrease # of shared values
-    private Button btnGuide; // displays alert dialog with Tip Guide
     private Button btnClear; // clears all fields
 
     private AdView adView; // container for banner ads
@@ -96,14 +105,12 @@ public class MainActivity extends AppCompatActivity {
     private String strTotal; // used for format total bill textView
 
     private Spinner spinner;
-    private ToggleButton tglbtn;
+    private Switch mSwitch;
 
-    private RatingBar rb;
     private ArrayList<String> stringArray = new ArrayList<String>();
     private SensorManager mSensorManager;
     private ShakeEventListener mSensorListener;
     private Vibrator v;
-    private Toolbar mToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -112,193 +119,70 @@ public class MainActivity extends AppCompatActivity {
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.drawer);
+
+        // initialize views and listeners
+        initializeViews();
+        initializeHandlers();
+    }
+
+    /**
+     * Method is used to initialize views
+     */
+    private void initializeViews() {
         mContext = MainActivity.this;
 
         // rate this app
         new AppRaterUtil(mContext);
-
-        // instantiate toolbar
-        mToolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(mToolbar);
-
+        mSwitch = (Switch) findViewById(R.id.btn_switch);
+        ivStar1 = (ImageView) findViewById(R.id.iv_star_1);
+        ivStar2 = (ImageView) findViewById(R.id.iv_star_2);
+        ivStar3 = (ImageView) findViewById(R.id.iv_star_3);
+        ivStar4 = (ImageView) findViewById(R.id.iv_star_4);
+        ivStar5 = (ImageView) findViewById(R.id.iv_star_5);
         // tip textView
         tvTip = (TextView) findViewById(R.id.tv_meta_tip);
-
         // shared by textView
         tvPerson = (TextView) findViewById(R.id.tv_meta_person);
-
         // total bill amount textView
         tvTotal = (TextView) findViewById(R.id.tv_meta_total);
-
-        // toggle button
-        tglbtn = (ToggleButton) findViewById(R.id.btn_toggle);
+        // bill editText
+        edtBill = (EditText) findViewById(R.id.edt_bill);
+        // clear button
+        btnClear = (Button) findViewById(R.id.btn_clear);
+        // increment, decrement buttons
+        btnInc = (Button) findViewById(R.id.btn_inc);
+        btnDec = (Button) findViewById(R.id.btn_dec);
+        tvValue = (TextView) findViewById(R.id.tv_meta_num);
+        // spinner
+        tvService = (TextView) findViewById(R.id.tv_meta_rating);
+        tvPercent = (TextView) findViewById(R.id.tv_meta_percent);
+        spinner = (Spinner) findViewById(R.id.spinner);
+        populateSpinner();
+        // drawer
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
 
         // instantiate vibrator
         v = (Vibrator) MainActivity.this.getSystemService(Context.VIBRATOR_SERVICE);
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         mSensorListener = new ShakeEventListener();
-        mSensorListener.setOnShakeListener(new ShakeEventListener.OnShakeListener() {
-                    @Override
-                    public void onShake() {
-                        // TODO Auto-generated method stub
-                        v.vibrate(500); //vibrate for 500 milliseconds
-                        clear = true;
-                        calculate();
-                    }
-                });
-
-        // bill editText
-        edtBill = (EditText) findViewById(R.id.edt_bill);
-
-        // OnEditorActionListener
-        edtBill.setOnEditorActionListener(new OnEditorActionListener() {
-
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                // TODO Auto-generated method stub
-                if (actionId == EditorInfo.IME_ACTION_DONE) {
-                    // hide virtual keyboard
-                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                    imm.hideSoftInputFromWindow(edtBill.getWindowToken(), 0);
-                }
-                return false;
-            }
-        });
-
-        // TextChangedListener
-        edtBill.addTextChangedListener(new TextWatcher() {
-
-            @Override
-            public void afterTextChanged(Editable arg0) {
-                // TODO Auto-generated method stub
-                calculate();
-            }
-
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                // TODO Auto-generated method stub
-                // do nothing
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                // TODO Auto-generated method stub
-                if (edtBill.getText().toString().contentEquals(".")) {
-                    // handle special case
-                    edtBill.setText("0.00");
-                } else if (edtBill.getText().toString() != null
-                        && edtBill.getText().toString().length() > 0) {
-                    editTextUpdate();
-                }
-            }
-        });
-
-        // rating bar
-        rb = (RatingBar) findViewById(R.id.rating_bar);
-        rb.setRating(3.0f); // default value: 15% (Good!)
-        ratingBar();
-
-        // spinner
-        tvService = (TextView) findViewById(R.id.tv_meta_rating);
-        tvPercent = (TextView) findViewById(R.id.tv_meta_percent);
-        spinner = (Spinner) findViewById(R.id.spinner);
-        spinner();
-
-        // increment, decrement buttons
-        btnInc = (Button) findViewById(R.id.btn_inc);
-        btnDec = (Button) findViewById(R.id.btn_dec);
-        tvValue = (TextView) findViewById(R.id.tv_meta_num);
-
-        btnInc.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                // TODO Auto-generated method stub
-                Utils.hideKeyboard(mContext, MainActivity.this.getWindow().getDecorView().getWindowToken());
-                if (sharedNum < 99) {
-                    sharedNum++; // increment # of shared values
-                    strValue = Integer.toString(sharedNum);
-                    tvValue.setText(strValue);
-                    calculate();
-                }
-            }
-        });
-
-        btnDec.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                // TODO Auto-generated method stub
-                Utils.hideKeyboard(mContext, MainActivity.this.getWindow().getDecorView().getWindowToken());
-                if (sharedNum > 1) {
-                    sharedNum--; // decrement # of shared values
-                    strValue = Integer.toString(sharedNum);
-                    tvValue.setText(strValue);
-                    calculate();
-                }
-            }
-        });
-
-        // tip guide button
-        btnGuide = (Button) findViewById(R.id.btn_guide);
-        btnGuide.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                // TODO Auto-generated method stub
-                // set dialog title and icon
-                AlertDialog.Builder dialogGuide = new AlertDialog.Builder(
-                        MainActivity.this);
-                dialogGuide.setTitle("Tip Guide: 5 Things You Should Know");
-                dialogGuide.setIcon(R.drawable.ic_launcher);
-
-                // set dialog message
-                dialogGuide.setMessage(R.string.txt_guide);
-                dialogGuide.setPositiveButton("Close",
-                        new DialogInterface.OnClickListener() {
-
-                            @Override
-                            public void onClick(DialogInterface dialog,
-                                                int which) {
-                                // TODO Auto-generated method stub
-                                // do nothing
-                            }
-                        });
-
-                AlertDialog alertDialog = dialogGuide.create();
-                alertDialog.show();
-            }
-        });
-
-        // clear button
-        btnClear = (Button) findViewById(R.id.btn_clear);
-        btnClear.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                // TODO Auto-generated method stub
-                clear = true;
-                calculate();
-            }
-
-        });
-
-        ConnectivityManager conMgr = (ConnectivityManager) this
-                .getSystemService(Context.CONNECTIVITY_SERVICE);
 
         // ad banner
         adView = (AdView) this.findViewById(R.id.ad_view);
-
         try {
-            if (conMgr.getActiveNetworkInfo().isConnected()
-                    && conMgr.getActiveNetworkInfo().isAvailable()) {
+            if (NetworkUtils.isNetworkAvailable(mContext)
+                    && NetworkUtils.isConnected(mContext)) {
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         // request banner ads
-                        AdRequest adRequestBanner = new AdRequest.Builder().build();
+                        AdRequest adRequestBanner;
                         if (Constants.DEBUG) {
                             // load test ad
                             adRequestBanner = new AdRequest.Builder().addTestDevice(AD_ID_TEST).build();
@@ -315,7 +199,78 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
             adView.setBackgroundResource(R.drawable.banner);
         }
+    }
 
+    /**
+     * Method is used to set click listeners
+     */
+    private void initializeHandlers() {
+        btnInc.setOnClickListener(this);
+        btnDec.setOnClickListener(this);
+        btnClear.setOnClickListener(this);
+        ivStar1.setOnClickListener(this);
+        ivStar2.setOnClickListener(this);
+        ivStar3.setOnClickListener(this);
+        ivStar4.setOnClickListener(this);
+        ivStar5.setOnClickListener(this);
+
+        // set on shake listener
+        mSensorListener.setOnShakeListener(new ShakeEventListener.OnShakeListener() {
+            @Override
+            public void onShake() {
+                v.vibrate(500); //vibrate for 500 milliseconds
+                clear = true;
+                calculate();
+            }
+        });
+
+        // OnEditorActionListener
+        edtBill.setOnEditorActionListener(new OnEditorActionListener() {
+
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+                    // hide virtual keyboard
+                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(edtBill.getWindowToken(), 0);
+                }
+                return false;
+            }
+        });
+
+        // TextChangedListener
+        edtBill.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void afterTextChanged(Editable arg0) {
+                calculate();
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                // do nothing
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (edtBill.getText().toString().contentEquals(".")) {
+                    // handle special case
+                    edtBill.setText("0.00");
+                } else if (edtBill.getText().toString() != null
+                        && edtBill.getText().toString().length() > 0) {
+                    editTextUpdate();
+                }
+            }
+        });
+
+        // OnCheckedChangeListener
+        mSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                Utils.hideKeyboard(mContext, MainActivity.this.getWindow().getDecorView().getWindowToken());
+                calculate();
+            }
+        });
     }
 
     /**
@@ -366,73 +321,65 @@ public class MainActivity extends AppCompatActivity {
             decimalPlaces = 2; // prevents loop
             edtBill.setText(strFormatted);
         }
-    } // end editTextUpdate()
+    }
 
-    private void ratingBar() {
-        // TODO Auto-generated method stub
-
-        rb.setOnRatingBarChangeListener(new OnRatingBarChangeListener() {
-
-            @Override
-            public void onRatingChanged(RatingBar ratingBar, float rating,
-                                        boolean fromUser) {
-                // TODO Auto-generated method stub
-                Utils.hideKeyboard(mContext, MainActivity.this.getWindow().getDecorView().getWindowToken());
-
-                floatRating = rb.getRating();
-                if (spinnerChange == false) {
-                    if (floatRating == 0.0) {
-                        tvService.setText(String.valueOf("Poor"));
-                        tvPercent.setText(String.valueOf("0%"));
-                        spinner.setSelection(0);
-                    } else if (floatRating == 0.5) {
-                        tvService.setText(String.valueOf("Poor"));
-                        tvPercent.setText(String.valueOf("3%"));
-                        spinner.setSelection(3);
-                    } else if (floatRating == 1.0) {
-                        tvService.setText(String.valueOf("Poor"));
-                        tvPercent.setText(String.valueOf("5%"));
-                        spinner.setSelection(5);
-                    } else if (floatRating == 1.5) {
-                        tvService.setText(String.valueOf("Poor"));
-                        tvPercent.setText(String.valueOf("8%"));
-                        spinner.setSelection(8);
-                    } else if (floatRating == 2.0) {
-                        tvService.setText(String.valueOf("Fair"));
-                        tvPercent.setText(String.valueOf("10%"));
-                        spinner.setSelection(10);
-                    } else if (floatRating == 2.5) {
-                        tvService.setText(String.valueOf("Fair"));
-                        tvPercent.setText(String.valueOf("13%"));
-                        spinner.setSelection(13);
-                    } else if (floatRating == 3.0) {
-                        tvService.setText(String.valueOf("Good"));
-                        tvPercent.setText(String.valueOf("15%"));
-                        spinner.setSelection(15);
-                    } else if (floatRating == 3.5) {
-                        tvService.setText(String.valueOf("Good"));
-                        tvPercent.setText(String.valueOf("18%"));
-                        spinner.setSelection(18);
-                    } else if (floatRating == 4.0) {
-                        tvService.setText(String.valueOf("Great"));
-                        tvPercent.setText(String.valueOf("20%"));
-                        spinner.setSelection(20);
-                    } else if (floatRating == 4.5) {
-                        tvService.setText(String.valueOf("Great"));
-                        tvPercent.setText(String.valueOf("23%"));
-                        spinner.setSelection(23);
-                    } else if (floatRating >= 5.0) {
-                        tvService.setText(String.valueOf("Royal"));
-                        tvPercent.setText(String.valueOf("25%"));
-                        spinner.setSelection(25);
-                    }
-                }
+    /**
+     * Method is used to set rating from stars
+     * @param num
+     */
+    private void setRating(int num, boolean isSetFromSpinner) {
+        if (num == 1) {
+            ivStar1.setImageResource(R.drawable.star_filled);
+            ivStar2.setImageResource(R.drawable.star_empty);
+            ivStar3.setImageResource(R.drawable.star_empty);
+            ivStar4.setImageResource(R.drawable.star_empty);
+            ivStar5.setImageResource(R.drawable.star_empty);
+            if (!isSetFromSpinner) {
+                spinner.setSelection(5);
             }
-        });
-    } // end ratingBar()
+        } else if (num == 2) {
+            ivStar1.setImageResource(R.drawable.star_filled);
+            ivStar2.setImageResource(R.drawable.star_filled);
+            ivStar3.setImageResource(R.drawable.star_empty);
+            ivStar4.setImageResource(R.drawable.star_empty);
+            ivStar5.setImageResource(R.drawable.star_empty);
+            if (!isSetFromSpinner) {
+                spinner.setSelection(10);
+            }
+        } else if (num == 3) {
+            ivStar1.setImageResource(R.drawable.star_filled);
+            ivStar2.setImageResource(R.drawable.star_filled);
+            ivStar3.setImageResource(R.drawable.star_filled);
+            ivStar4.setImageResource(R.drawable.star_empty);
+            ivStar5.setImageResource(R.drawable.star_empty);
+            if (!isSetFromSpinner) {
+                spinner.setSelection(15);
+            }
+        } else if (num == 4) {
+            ivStar1.setImageResource(R.drawable.star_filled);
+            ivStar2.setImageResource(R.drawable.star_filled);
+            ivStar3.setImageResource(R.drawable.star_filled);
+            ivStar4.setImageResource(R.drawable.star_filled);
+            ivStar5.setImageResource(R.drawable.star_empty);
+            if (!isSetFromSpinner) {
+                spinner.setSelection(20);
+            }
+        } else if (num == 5) {
+            ivStar1.setImageResource(R.drawable.star_filled);
+            ivStar2.setImageResource(R.drawable.star_filled);
+            ivStar3.setImageResource(R.drawable.star_filled);
+            ivStar4.setImageResource(R.drawable.star_filled);
+            ivStar5.setImageResource(R.drawable.star_filled);
+            if (!isSetFromSpinner) {
+                spinner.setSelection(25);
+            }
+        }
+    }
 
-    private void spinner() {
-        // TODO Auto-generated method stub
+    /**
+     * Method is used to populate spinner
+     */
+    private void populateSpinner() {
         Utils.hideKeyboard(mContext, MainActivity.this.getWindow().getDecorView().getWindowToken());
 
         // setup spinner configurations
@@ -487,73 +434,71 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view,
                                        int pos, long id) {
-                // TODO Auto-generated method stub
-                spinnerChange = true;
                 intSelected = spinner.getSelectedItemPosition();
                 if (intSelected >= 0 && intSelected <= 2) {
-                    rb.setRating(0.0f);
+                    setRating(1, true);
                     tvService.setText("Poor");
-                    tvService.setTextColor(getResources().getColor(R.color.red_shade));
+                    tvService.setTextColor(ContextCompat.getColor(mContext, R.color.red_shade));
                     Crouton.showText(MainActivity.this, "Poor tip service percent", Style.ALERT);
                     calculate();
                 } else if (intSelected >= 3 && intSelected <= 4) {
-                    rb.setRating(0.5f);
+                    setRating(1, true);
                     tvService.setText("Poor");
-                    tvService.setTextColor(getResources().getColor(R.color.red_shade));
+                    tvService.setTextColor(ContextCompat.getColor(mContext, R.color.red_shade));
                     Crouton.showText(MainActivity.this, "Poor tip service percent", Style.ALERT);
                     calculate();
                 } else if (intSelected >= 5 && intSelected <= 7) {
-                    rb.setRating(1.0f);
+                    setRating(1, true);
                     tvService.setText("Poor");
-                    tvService.setTextColor(getResources().getColor(R.color.red_shade));
+                    tvService.setTextColor(ContextCompat.getColor(mContext, R.color.red_shade));
                     Crouton.showText(MainActivity.this, "Poor tip service percent", Style.ALERT);
                     calculate();
                 } else if (intSelected >= 8 && intSelected <= 9) {
-                    rb.setRating(1.5f);
+                    setRating(1, true);
                     tvService.setText("Poor");
-                    tvService.setTextColor(getResources().getColor(R.color.red_shade));
+                    tvService.setTextColor(ContextCompat.getColor(mContext, R.color.red_shade));
                     Crouton.showText(MainActivity.this, "Poor tip service percent", Style.ALERT);
                     calculate();
                 } else if (intSelected >= 10 && intSelected <= 12) {
-                    rb.setRating(2.0f);
+                    setRating(2, true);
                     tvService.setText("Fair");
-                    tvService.setTextColor(getResources().getColor(R.color.green_dark));
+                    tvService.setTextColor(ContextCompat.getColor(mContext, R.color.green_dark));
                     Crouton.showText(MainActivity.this, "Fair tip service percent", Style.CONFIRM);
                     calculate();
                 } else if (intSelected >= 13 && intSelected <= 14) {
-                    rb.setRating(2.5f);
+                    setRating(2, true);
                     tvService.setText("Fair");
-                    tvService.setTextColor(getResources().getColor(R.color.green_dark));
+                    tvService.setTextColor(ContextCompat.getColor(mContext, R.color.green_dark));
                     Crouton.showText(MainActivity.this, "Fair tip service percent", Style.CONFIRM);
                     calculate();
                 } else if (intSelected >= 15 && intSelected <= 17) {
-                    rb.setRating(3.0f);
+                    setRating(3, true);
                     tvService.setText("Good!");
-                    tvService.setTextColor(getResources().getColor(R.color.green_dark));
+                    tvService.setTextColor(ContextCompat.getColor(mContext, R.color.green_dark));
                     Crouton.showText(MainActivity.this, "Good tip service percent", Style.CONFIRM);
                     calculate();
                 } else if (intSelected >= 18 && intSelected <= 19) {
-                    rb.setRating(3.5f);
+                    setRating(3, true);
                     tvService.setText("Good!");
-                    tvService.setTextColor(getResources().getColor(R.color.green_dark));
+                    tvService.setTextColor(ContextCompat.getColor(mContext, R.color.green_dark));
                     Crouton.showText(MainActivity.this, "Good service percent", Style.CONFIRM);
                     calculate();
                 } else if (intSelected >= 20 && intSelected <= 22) {
-                    rb.setRating(4.0f);
+                    setRating(4, true);
                     tvService.setText("Great!");
-                    tvService.setTextColor(getResources().getColor(R.color.green_dark));
+                    tvService.setTextColor(ContextCompat.getColor(mContext, R.color.green_dark));
                     Crouton.showText(MainActivity.this, "Great tip service percent", Style.CONFIRM);
                     calculate();
                 } else if (intSelected >= 23 && intSelected <= 24) {
-                    rb.setRating(4.5f);
+                    setRating(4, true);
                     tvService.setText("Great!");
-                    tvService.setTextColor(getResources().getColor(R.color.green_dark));
+                    tvService.setTextColor(ContextCompat.getColor(mContext, R.color.green_dark));
                     Crouton.showText(MainActivity.this, "Great tip service percent", Style.CONFIRM);
                     calculate();
                 } else if (intSelected >= 25) {
-                    rb.setRating(5.0f);
+                    setRating(5, true);
                     tvService.setText("Royal!");
-                    tvService.setTextColor(getResources().getColor(R.color.purple_shade));
+                    tvService.setTextColor(ContextCompat.getColor(mContext, R.color.purple_shade));
                     Crouton.showText(MainActivity.this, "Royal tip service percent", Style.INFO);
                     calculate();
                 }
@@ -562,42 +507,18 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                // TODO Auto-generated method stub
                 // do nothing
             }
         });
-    } // end spinner()
-
-    // toggle onClick method handler
-    public void toggleOnClickHandler(View view) {
-        Utils.hideKeyboard(mContext, MainActivity.this.getWindow().getDecorView().getWindowToken());
-        bToggle = ((ToggleButton) view).isChecked();
-        if (bToggle) {
-            // round ON; update calculations
-            calculate();
-        } else {
-            // round OFF; update calculations
-            calculate();
-        }
     }
 
     /**
      * Method is used to calculate tip amount
      */
     private void calculate() {
-        if (spinnerChange == true) {
-            spinnerChange = false;
-        }
-
         if (clear == true) {
             Crouton.showText(MainActivity.this, "All fields reset", Style.CONFIRM);
             clear = false;
-
-            // toggle button reset
-            if (tglbtn.isChecked() == true && bToggle == true) {
-                tglbtn.setChecked(false);
-                bToggle = false;
-            }
 
             // spinner reset (resets rating as well)
             tvService.setText(String.valueOf("Good"));
@@ -620,9 +541,12 @@ public class MainActivity extends AppCompatActivity {
             edtBill.setText("");
         } else {
             /*
-			 * Legend: temp1-amount of the bill temp2-tip w/o round temp3-tip
-			 * w/round temp4-total amount of bill temp5-total amount each person
-			 * pays
+			 * Legend:
+			 * temp1-amount of the bill
+			 * temp2-tip w/o round
+			 * temp3-tip w/round
+			 * temp4-total amount of bill
+			 * temp5-total amount each person pays
 			 */
 
             if (edtBill.getText().toString().length() == 0) {
@@ -632,11 +556,10 @@ public class MainActivity extends AppCompatActivity {
                 // calculate tip amount
                 temp1 = Double.parseDouble(strFormatted);
                 temp2 = intSelected * temp1 / 100;
-
                 DecimalFormat formatTip = new DecimalFormat("0.00");
                 strTip = formatTip.format(temp2);
 
-                if (bToggle == true) {
+                if (mSwitch.isChecked()) {
                     // round ON; update calculations
                     temp3 = (int) Math.round(temp2);
                     tvTip.setText(String.valueOf("$" + temp3 + "0"));
@@ -810,8 +733,61 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        // TODO Auto-generated method stub
         super.onBackPressed();
     }
 
+    @Override
+    public void onClick(View view) {
+        if (!Utils.isViewClickable()) {
+            return;
+        }
+
+        switch (view.getId()) {
+            case R.id.btn_inc:
+                Utils.hideKeyboard(mContext, MainActivity.this.getWindow().getDecorView().getWindowToken());
+                if (sharedNum < 99) {
+                    sharedNum++; // increment # of shared values
+                    strValue = Integer.toString(sharedNum);
+                    tvValue.setText(strValue);
+                    calculate();
+                }
+                break;
+            case R.id.btn_dec:
+                Utils.hideKeyboard(mContext, MainActivity.this.getWindow().getDecorView().getWindowToken());
+                if (sharedNum > 1) {
+                    sharedNum--; // decrement # of shared values
+                    strValue = Integer.toString(sharedNum);
+                    tvValue.setText(strValue);
+                    calculate();
+                }
+                break;
+            case R.id.btn_clear:
+                clear = true;
+                calculate();
+                break;
+            case R.id.iv_star_1:
+                setRating(1,false);
+                break;
+            case R.id.iv_star_2:
+                setRating(2, false);
+                break;
+            case R.id.iv_star_3:
+                setRating(3, false);
+                break;
+            case R.id.iv_star_4:
+                setRating(4, false);
+                break;
+            case R.id.iv_star_5:
+                setRating(5, false);
+                break;
+            default:
+                break;
+        }
+
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        return false;
+    }
 }

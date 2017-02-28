@@ -1,12 +1,4 @@
 <resources>
-
-    <!-- Custom Service Bar -->
-    <style name="CustomRatingBar" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="android:progressDrawable">@drawable/custom_servicebar</item>
-          <item name="colorControlNormal">@color/orange_dark</item>
-        <item name="colorControlActivated">@color/orange_light</item>
-    </style>
-
     <!--
         Base application theme, dependent on API level. This theme is replaced
         by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
@@ -19,9 +11,8 @@
         -->
     </style>
 
-    <!-- Application theme. -->
-    <style name="AppTheme" parent="AppBaseTheme">
-        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
-    </style>
+    <style name="AppBaseTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppBaseTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 </resources>

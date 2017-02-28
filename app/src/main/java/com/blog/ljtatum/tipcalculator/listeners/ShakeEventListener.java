@@ -4,6 +4,9 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 
+/**
+ * Created by LJTat on 2/23/2017.
+ */
 public class ShakeEventListener implements SensorEventListener {
 
     /**

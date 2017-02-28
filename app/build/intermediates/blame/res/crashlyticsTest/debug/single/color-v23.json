@@ -8,6 +8,10 @@
         "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\color-v23\\abc_tint_switch_thumb.xml"
     },
     {
+        "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\color-v23\\design_tint_password_toggle.xml",
+        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.android.support\\design\\25.1.1\\res\\color-v23\\design_tint_password_toggle.xml"
+    },
+    {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\color-v23\\abc_btn_colored_borderless_text_material.xml",
         "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\color-v23\\abc_btn_colored_borderless_text_material.xml"
     },

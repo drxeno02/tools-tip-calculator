@@ -9,10 +9,10 @@
                 android:endColor="@color/yellow_shade"
                 android:startColor="@color/yellow_light"/>
             <stroke
-                android:width="3dp"
+                android:width="1dp"
                 android:color="@color/grey_shade"/>
             <corners
-                android:radius="3dp"/>
+                android:radius="1dp"/>
             <padding
                 android:bottom="10dp"
                 android:left="10dp"
@@ -28,10 +28,10 @@
                 android:endColor="@color/yellow_shade"
                 android:startColor="@color/yellow_light"/>
             <stroke
-                android:width="3dp"
+                android:width="1dp"
                 android:color="@color/grey_shade"/>
             <corners
-                android:radius="3dp"/>
+                android:radius="1dp"/>
             <padding
                 android:bottom="10dp"
                 android:left="10dp"
@@ -47,10 +47,10 @@
                 android:endColor="@color/orange_shade"
                 android:startColor="@color/orange_light"/>
             <stroke
-                android:width="3dp"
+                android:width="1dp"
                 android:color="@color/black"/>
             <corners
-                android:radius="3dp"/>
+                android:radius="1dp"/>
             <padding
                 android:bottom="10dp"
                 android:left="10dp"

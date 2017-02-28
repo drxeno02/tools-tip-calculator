@@ -24,10 +24,6 @@
         "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\color\\abc_hint_foreground_material_light.xml"
     },
     {
-        "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\color\\abc_background_cache_hint_selector_material_dark.xml",
-        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\color\\abc_background_cache_hint_selector_material_dark.xml"
-    },
-    {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\color\\abc_tint_edittext.xml",
         "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\color\\abc_tint_edittext.xml"
     },
@@ -48,12 +44,20 @@
         "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\color\\switch_thumb_material_light.xml"
     },
     {
+        "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\color\\design_tint_password_toggle.xml",
+        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.android.support\\design\\25.1.1\\res\\color\\design_tint_password_toggle.xml"
+    },
+    {
+        "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\color\\design_error.xml",
+        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.android.support\\design\\25.1.1\\res\\color\\design_error.xml"
+    },
+    {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\color\\common_google_signin_btn_text_dark.xml",
-        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\10.0.1\\res\\color\\common_google_signin_btn_text_dark.xml"
+        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\10.2.0\\res\\color\\common_google_signin_btn_text_dark.xml"
     },
     {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\color\\wallet_primary_text_holo_light.xml",
-        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-wallet\\10.0.1\\res\\color\\wallet_primary_text_holo_light.xml"
+        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-wallet\\10.2.0\\res\\color\\wallet_primary_text_holo_light.xml"
     },
     {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\color\\abc_primary_text_disable_only_material_dark.xml",
@@ -64,20 +68,20 @@
         "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\color\\abc_btn_colored_text_material.xml"
     },
     {
+        "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\color\\common_google_signin_btn_tint.xml",
+        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\10.2.0\\res\\color\\common_google_signin_btn_tint.xml"
+    },
+    {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\color\\abc_hint_foreground_material_dark.xml",
         "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\color\\abc_hint_foreground_material_dark.xml"
     },
     {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\color\\wallet_secondary_text_holo_dark.xml",
-        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-wallet\\10.0.1\\res\\color\\wallet_secondary_text_holo_dark.xml"
+        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-wallet\\10.2.0\\res\\color\\wallet_secondary_text_holo_dark.xml"
     },
     {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\color\\abc_search_url_text.xml",
         "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\color\\abc_search_url_text.xml"
-    },
-    {
-        "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\color\\abc_background_cache_hint_selector_material_light.xml",
-        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\color\\abc_background_cache_hint_selector_material_light.xml"
     },
     {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\color\\abc_tint_seek_thumb.xml",
@@ -97,7 +101,7 @@
     },
     {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\color\\common_google_signin_btn_text_light.xml",
-        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\10.0.1\\res\\color\\common_google_signin_btn_text_light.xml"
+        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\10.2.0\\res\\color\\common_google_signin_btn_text_light.xml"
     },
     {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\color\\abc_primary_text_disable_only_material_light.xml",
