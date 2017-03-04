@@ -1,22 +1,6 @@
 [
     {
-        "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\menu\\activity_main2_drawer.xml",
-        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\src\\main\\res\\menu\\activity_main2_drawer.xml"
-    },
-    {
-        "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\menu\\main.xml",
-        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\src\\main\\res\\menu\\main.xml"
-    },
-    {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\menu\\drawer_menu.xml",
         "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\src\\main\\res\\menu\\drawer_menu.xml"
-    },
-    {
-        "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\menu\\actionbar.xml",
-        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\src\\main\\res\\menu\\actionbar.xml"
-    },
-    {
-        "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\menu\\main2.xml",
-        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\src\\main\\res\\menu\\main2.xml"
     }
 ]

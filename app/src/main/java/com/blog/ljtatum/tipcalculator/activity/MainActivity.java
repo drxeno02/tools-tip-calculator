@@ -124,6 +124,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener,
         // initialize views and listeners
         initializeViews();
         initializeHandlers();
+        initializeListeners();
     }
 
     /**
@@ -154,11 +155,13 @@ public class MainActivity extends AppCompatActivity implements OnClickListener,
         btnInc = (Button) findViewById(R.id.btn_inc);
         btnDec = (Button) findViewById(R.id.btn_dec);
         tvValue = (TextView) findViewById(R.id.tv_meta_num);
+
         // spinner
         tvService = (TextView) findViewById(R.id.tv_meta_rating);
         tvPercent = (TextView) findViewById(R.id.tv_meta_percent);
         spinner = (Spinner) findViewById(R.id.spinner);
         populateSpinner();
+
         // drawer
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -213,7 +216,12 @@ public class MainActivity extends AppCompatActivity implements OnClickListener,
         ivStar3.setOnClickListener(this);
         ivStar4.setOnClickListener(this);
         ivStar5.setOnClickListener(this);
+    }
 
+    /**
+     * Method is used to initialize listeners and callbacks
+     */
+    private void initializeListeners() {
         // set on shake listener
         mSensorListener.setOnShakeListener(new ShakeEventListener.OnShakeListener() {
             @Override
@@ -587,156 +595,6 @@ public class MainActivity extends AppCompatActivity implements OnClickListener,
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-
-    /**
-     * Method is used to share via email, facebook and twitter
-     * @return
-     */
-    private Intent shareIntent() {
-        List<Intent> targetedShareIntents = new ArrayList<Intent>();
-        Intent shareIntent = new Intent(Intent.ACTION_SEND_MULTIPLE);
-        shareIntent.setType("text/plain");
-
-        String shareMsg = "Check out this great tip calculator app "
-                + "developed by Leonard Tatum and Kazuya Shibuta! "
-                + "http://play.google.com/store/apps/details?id=com.blog.ljtatum.tipcalculator";
-
-        String emailMsg = "Hello Leonard Tatum and Kazuya Shibuta, "
-                + "I have something to tell you about your application....\n\n";
-
-        PackageManager pm = getPackageManager();
-        List<ResolveInfo> activityList = pm.queryIntentActivities(shareIntent, 0);
-        for (final ResolveInfo app : activityList) {
-            String packageName = app.activityInfo.packageName;
-            Intent targetedShareIntent = new Intent(
-                    android.content.Intent.ACTION_SEND_MULTIPLE);
-            targetedShareIntent.setType("text/plain");
-            targetedShareIntent.putExtra(android.content.Intent.EXTRA_SUBJECT,
-                    "Tip Calculator");
-
-            if (TextUtils.equals(packageName, "com.google.android.gm")) {
-                targetedShareIntent.putExtra(
-                        android.content.Intent.EXTRA_EMAIL, new String[]{
-                                "ljtatum@hotmail.com",
-                                "kazuyashibuta@gmail.com"});
-                targetedShareIntent.putExtra(android.content.Intent.EXTRA_TEXT,
-                        emailMsg);
-            } else if (TextUtils.equals(packageName, "com.android.email")) {
-                targetedShareIntent.putExtra(
-                        android.content.Intent.EXTRA_EMAIL, new String[]{
-                                "ljtatum@hotmail.com",
-                                "kazuyashibuta@gmail.com"});
-                targetedShareIntent.putExtra(android.content.Intent.EXTRA_TEXT,
-                        emailMsg);
-            } else if (TextUtils.equals(packageName, "com.android.mms")) {
-                targetedShareIntent.putExtra(android.content.Intent.EXTRA_TEXT,
-                        shareMsg);
-            }
-
-            targetedShareIntent.setPackage(packageName);
-            targetedShareIntents.add(targetedShareIntent);
-        }
-
-        Intent facebookIntent = getShareIntent("facebook", "Tip Calculator",
-                shareMsg);
-        if (facebookIntent != null)
-            targetedShareIntents.add(facebookIntent);
-
-        Intent twitterIntent = getShareIntent("twitter", "Tip Calculator",
-                shareMsg);
-        if (twitterIntent != null)
-            targetedShareIntents.add(twitterIntent);
-
-        Intent chooserIntent = Intent.createChooser(
-                targetedShareIntents.remove(0), "Share via");
-        chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS,
-                targetedShareIntents.toArray(new Parcelable[targetedShareIntents.size()]));
-        startActivity(chooserIntent);
-        return shareIntent;
-    }
-
-    /**
-     * Method is used to retrieve share intent
-     * @param type
-     * @param subject
-     * @param text
-     * @return
-     */
-    private Intent getShareIntent(String type, String subject, String text) {
-        boolean found = false;
-        Intent share = new Intent(android.content.Intent.ACTION_SEND);
-        share.setType("text/plain");
-
-        // gets the list of intents that can be loaded.
-        List<ResolveInfo> resInfo = this.getPackageManager()
-                .queryIntentActivities(share, 0);
-        System.out.println("resinfo: " + resInfo);
-        if (!resInfo.isEmpty()) {
-            for (ResolveInfo info : resInfo) {
-                if (info.activityInfo.packageName.toLowerCase(Locale.US).contains(type)
-                        || info.activityInfo.name.toLowerCase(Locale.US).contains(type)) {
-                    share.putExtra(Intent.EXTRA_SUBJECT, subject);
-                    share.putExtra(Intent.EXTRA_TEXT, text);
-                    share.setPackage(info.activityInfo.packageName);
-                    found = true;
-                    break;
-                }
-            }
-            if (!found)
-                return null;
-            return share;
-        }
-        return null;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle item selection
-        switch (item.getItemId()) {
-            case R.id.share:
-                shareIntent();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
-
-    @Override
-    public void onPause() {
-        adView.pause();
-        mSensorManager.unregisterListener(mSensorListener);
-        super.onPause();
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        adView.resume();
-        mSensorManager.registerListener(mSensorListener,
-                mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
-                SensorManager.SENSOR_DELAY_UI);
-    }
-
-    @Override
-    public void onDestroy() {
-        if (adView != null) {
-            // destroy the adview
-            adView.destroy();
-        }
-        super.onDestroy();
-    }
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-    }
-
-    @Override
     public void onClick(View view) {
         if (!Utils.isViewClickable()) {
             return;
@@ -788,6 +646,45 @@ public class MainActivity extends AppCompatActivity implements OnClickListener,
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+
+
+
+
         return false;
+    }
+
+    @Override
+    public void onPause() {
+        adView.pause();
+        if (!Utils.checkIfNull(mSensorManager) && !Utils.checkIfNull(mSensorListener)) {
+            mSensorManager.unregisterListener(mSensorListener);
+        }
+        super.onPause();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        adView.resume();
+        if (!Utils.checkIfNull(mSensorManager) && !Utils.checkIfNull(mSensorListener)) {
+            mSensorManager.registerListener(mSensorListener,
+                    mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
+                    SensorManager.SENSOR_DELAY_UI);
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        if (!Utils.checkIfNull(adView)) {
+            // destroy the adview
+            adView.destroy();
+        }
+        super.onDestroy();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 }

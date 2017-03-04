@@ -2,59 +2,104 @@
 <instant-run
     abi="arm64-v8a,armeabi-v7a,armeabi"
     api-level="23"
+    build-mode="FULL"
     density="560dpi"
-    format="8"
-    plugin-version="2.2.3"
-    timestamp="430798497656939"
+    format="10"
+    plugin-version="2.3.0"
+    timestamp="1488540672701"
     token="-5333452425666469952"
-    verifier="COMPATIBLE" >
+    verifier="FULL_BUILD_REQUESTED" >
 
     <task
         name="javac"
-        duration="0" />
+        duration="60670" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="0" />
+        duration="1389" />
     <task
         name="verifier"
-        duration="0" />
+        duration="620" />
 
     <artifact
-        location="C:\AndroidStudio\Publish Workspace\TipCalculator\app\build\intermediates\instant-run-resources\resources-crashlyticsTest\debug.ir.ap_"
-        type="RESOURCES" />
+        location="C:\AndroidStudio\Publish Workspace\TipCalculator\app\build\intermediates\split-apk\crashlyticsTest\debug\dep\dependencies.apk"
+        type="SPLIT" />
+    <artifact
+        location="C:\AndroidStudio\Publish Workspace\TipCalculator\app\build\intermediates\split-apk\crashlyticsTest\debug\slices\slice_4.apk"
+        type="SPLIT" />
+    <artifact
+        location="C:\AndroidStudio\Publish Workspace\TipCalculator\app\build\intermediates\split-apk\crashlyticsTest\debug\slices\slice_7.apk"
+        type="SPLIT" />
+    <artifact
+        location="C:\AndroidStudio\Publish Workspace\TipCalculator\app\build\intermediates\split-apk\crashlyticsTest\debug\slices\slice_3.apk"
+        type="SPLIT" />
+    <artifact
+        location="C:\AndroidStudio\Publish Workspace\TipCalculator\app\build\intermediates\split-apk\crashlyticsTest\debug\slices\slice_6.apk"
+        type="SPLIT" />
+    <artifact
+        location="C:\AndroidStudio\Publish Workspace\TipCalculator\app\build\intermediates\split-apk\crashlyticsTest\debug\slices\slice_5.apk"
+        type="SPLIT" />
+    <artifact
+        location="C:\AndroidStudio\Publish Workspace\TipCalculator\app\build\intermediates\split-apk\crashlyticsTest\debug\slices\slice_1.apk"
+        type="SPLIT" />
+    <artifact
+        location="C:\AndroidStudio\Publish Workspace\TipCalculator\app\build\intermediates\split-apk\crashlyticsTest\debug\slices\slice_2.apk"
+        type="SPLIT" />
+    <artifact
+        location="C:\AndroidStudio\Publish Workspace\TipCalculator\app\build\intermediates\split-apk\crashlyticsTest\debug\slices\slice_0.apk"
+        type="SPLIT" />
+    <artifact
+        location="C:\AndroidStudio\Publish Workspace\TipCalculator\app\build\intermediates\split-apk\crashlyticsTest\debug\slices\slice_8.apk"
+        type="SPLIT" />
+    <artifact
+        location="C:\AndroidStudio\Publish Workspace\TipCalculator\app\build\intermediates\split-apk\crashlyticsTest\debug\slices\slice_9.apk"
+        type="SPLIT" />
+    <artifact
+        location="C:\AndroidStudio\Publish Workspace\TipCalculator\app\build\outputs\apk\app-crashlyticsTest-debug.apk"
+        type="SPLIT_MAIN" />
 
     <build
-        timestamp="429799349488571"
+        build-mode="FULL"
+        timestamp="1488540672701"
         verifier="FULL_BUILD_REQUESTED" >
         <artifact
+            location="C:\AndroidStudio\Publish Workspace\TipCalculator\app\build\intermediates\split-apk\crashlyticsTest\debug\dep\dependencies.apk"
+            type="SPLIT" />
+        <artifact
+            location="C:\AndroidStudio\Publish Workspace\TipCalculator\app\build\intermediates\split-apk\crashlyticsTest\debug\slices\slice_4.apk"
+            type="SPLIT" />
+        <artifact
+            location="C:\AndroidStudio\Publish Workspace\TipCalculator\app\build\intermediates\split-apk\crashlyticsTest\debug\slices\slice_7.apk"
+            type="SPLIT" />
+        <artifact
+            location="C:\AndroidStudio\Publish Workspace\TipCalculator\app\build\intermediates\split-apk\crashlyticsTest\debug\slices\slice_3.apk"
+            type="SPLIT" />
+        <artifact
+            location="C:\AndroidStudio\Publish Workspace\TipCalculator\app\build\intermediates\split-apk\crashlyticsTest\debug\slices\slice_6.apk"
+            type="SPLIT" />
+        <artifact
+            location="C:\AndroidStudio\Publish Workspace\TipCalculator\app\build\intermediates\split-apk\crashlyticsTest\debug\slices\slice_5.apk"
+            type="SPLIT" />
+        <artifact
+            location="C:\AndroidStudio\Publish Workspace\TipCalculator\app\build\intermediates\split-apk\crashlyticsTest\debug\slices\slice_1.apk"
+            type="SPLIT" />
+        <artifact
+            location="C:\AndroidStudio\Publish Workspace\TipCalculator\app\build\intermediates\split-apk\crashlyticsTest\debug\slices\slice_2.apk"
+            type="SPLIT" />
+        <artifact
+            location="C:\AndroidStudio\Publish Workspace\TipCalculator\app\build\intermediates\split-apk\crashlyticsTest\debug\slices\slice_0.apk"
+            type="SPLIT" />
+        <artifact
+            location="C:\AndroidStudio\Publish Workspace\TipCalculator\app\build\intermediates\split-apk\crashlyticsTest\debug\slices\slice_8.apk"
+            type="SPLIT" />
+        <artifact
+            location="C:\AndroidStudio\Publish Workspace\TipCalculator\app\build\intermediates\split-apk\crashlyticsTest\debug\slices\slice_9.apk"
+            type="SPLIT" />
+        <artifact
             location="C:\AndroidStudio\Publish Workspace\TipCalculator\app\build\outputs\apk\app-crashlyticsTest-debug.apk"
-            type="MAIN" />
-    </build>
-    <build
-        timestamp="430384685839418"
-        verifier="R_CLASS_CHANGE" >
-        <artifact
-            location="C:\AndroidStudio\Publish Workspace\TipCalculator\app\build\intermediates\transforms\dex\crashlyticsTest\debug\folders\1000\5\slice_4\classes.dex"
-            type="DEX" />
-        <artifact
-            location="C:\AndroidStudio\Publish Workspace\TipCalculator\app\build\intermediates\transforms\dex\crashlyticsTest\debug\folders\1000\5\slice_0\classes.dex"
-            type="DEX" />
-        <artifact
-            location="C:\AndroidStudio\Publish Workspace\TipCalculator\app\build\intermediates\transforms\dex\crashlyticsTest\debug\folders\1000\5\slice_9\classes.dex"
-            type="DEX" />
-        <artifact
-            location="C:\AndroidStudio\Publish Workspace\TipCalculator\app\build\intermediates\transforms\dex\crashlyticsTest\debug\folders\1000\5\slice_2\classes.dex"
-            type="DEX" />
-    </build>
-    <build
-        timestamp="430798497656939"
-        verifier="COMPATIBLE" >
-        <artifact
-            location="C:\AndroidStudio\Publish Workspace\TipCalculator\app\build\intermediates\instant-run-resources\resources-crashlyticsTest\debug.ir.ap_"
-            type="RESOURCES" />
+            type="SPLIT_MAIN" />
     </build>
 
 </instant-run>

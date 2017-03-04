@@ -1,22 +1,22 @@
 [
     {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\layout-v21\\notification_action_tombstone.xml",
-        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\layout-v21\\notification_action_tombstone.xml"
+        "source": "C:\\Users\\LJTat\\.android\\build-cache\\fda3b99faa7791c1fecfe2a445dc77d9f5dd5737\\output\\res\\layout-v21\\notification_action_tombstone.xml"
     },
     {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\layout-v21\\notification_template_icon_group.xml",
-        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\layout-v21\\notification_template_icon_group.xml"
+        "source": "C:\\Users\\LJTat\\.android\\build-cache\\fda3b99faa7791c1fecfe2a445dc77d9f5dd5737\\output\\res\\layout-v21\\notification_template_icon_group.xml"
     },
     {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\layout-v21\\notification_template_custom_big.xml",
-        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\layout-v21\\notification_template_custom_big.xml"
+        "source": "C:\\Users\\LJTat\\.android\\build-cache\\fda3b99faa7791c1fecfe2a445dc77d9f5dd5737\\output\\res\\layout-v21\\notification_template_custom_big.xml"
     },
     {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\layout-v21\\place_autocomplete_fragment.xml",
-        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-places\\10.2.0\\res\\layout-v21\\place_autocomplete_fragment.xml"
+        "source": "C:\\Users\\LJTat\\.android\\build-cache\\21f607b3718b08988665a376e0ceaa0732f86f16\\output\\res\\layout-v21\\place_autocomplete_fragment.xml"
     },
     {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\layout-v21\\notification_action.xml",
-        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\25.1.1\\res\\layout-v21\\notification_action.xml"
+        "source": "C:\\Users\\LJTat\\.android\\build-cache\\fda3b99faa7791c1fecfe2a445dc77d9f5dd5737\\output\\res\\layout-v21\\notification_action.xml"
     }
 ]
