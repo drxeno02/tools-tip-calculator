@@ -34,9 +34,18 @@
 		and use of the public. There will never be in-app purchases or alternative paid versions
 		of the app. To learn about other apps Leonard Tatum is working on, connect with him on social
 		media or send him an email with your questions or comments. Cheers!</string>
+	<string name="feedback_email">For feedback or support, contact\n Leonard Tatum at
+		<a href="mailto:ljtatum@hotmail.com">ljtatum@hotmail.com</a></string>
 
 	<!-- Privacy -->
-
+	<string name="privacy_desc">Leonard Tatum is committed to protecting your privacy and
+	providing the best user experience possible. This is why data collected will never be sold
+	or traded to others. \n\nInformation collected may be used to (i) remember information so
+	you will not have to re-enter it during your session or the next sessions you are using the
+	Service (ii) provide personalize content and information to you and others, which could
+	include online ads or other forms or marketing (iii) provide, improve, test and monitor the
+	effectiveness of our Service (iv) develop and test new products and features (v) diagnose or
+	fix bugs and issues</string>
 
 
     <!-- Guide Text -->

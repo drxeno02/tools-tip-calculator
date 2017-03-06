@@ -1,7 +1,6 @@
 package com.blog.ljtatum.tipcalculator.fragments;
 
 import android.content.Context;
-import android.media.Image;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -10,21 +9,22 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.blog.ljtatum.tipcalculator.BuildConfig;
 import com.blog.ljtatum.tipcalculator.R;
-import com.blog.ljtatum.tipcalculator.activity.MainActivity;
 import com.blog.ljtatum.tipcalculator.enums.Enum;
 import com.blog.ljtatum.tipcalculator.utils.ShareUtils;
 import com.blog.ljtatum.tipcalculator.utils.Utils;
+
+import java.util.Calendar;
 
 /**
  * Created by LJTat on 2/27/2017.
  */
 public class PrivacyFragment extends BaseFragment implements View.OnClickListener {
 
-    private Context mContext;
     private View mRootView;
-    private TextView tvAppVersion, tvCopyright;
-    private ImageView ivFb, ivTwitter, ivLinkedin;
+    private TextView tvFragmentHeader;
+    private ImageView ivBack;
 
     @Nullable
     @Override
@@ -42,20 +42,19 @@ public class PrivacyFragment extends BaseFragment implements View.OnClickListene
      * Method is used to instantiate views
      */
     private void initializeViews() {
-        mContext = getActivity();
-        tvAppVersion = (TextView) mRootView.findViewById(R.id.tv_app_version);
-        tvCopyright = (TextView) mRootView.findViewById(R.id.tv_copyright);
-        ivFb = (ImageView) mRootView.findViewById(R.id.iv_fb);
-        ivTwitter = (ImageView) mRootView.findViewById(R.id.iv_twitter);
-        ivLinkedin = (ImageView) mRootView.findViewById(R.id.iv_linkedin);
+        tvFragmentHeader = (TextView) mRootView.findViewById(R.id.tv_fragment_header);
+        ivBack = (ImageView) mRootView.findViewById(R.id.iv_back);
 
+        // set fragment header
+        tvFragmentHeader.setText("Privacy");
     }
 
     /**
      * Method is used to set click listeners
      */
     private void initializeHandlers() {
-
+        ivBack.setOnClickListener(this);
+        tvFragmentHeader.setOnClickListener(this);
     }
 
     @Override
@@ -65,14 +64,10 @@ public class PrivacyFragment extends BaseFragment implements View.OnClickListene
         }
 
         switch (view.getId()) {
-            case R.id.iv_fb:
-                ShareUtils.openSocialMediaViaIntent(mContext, Enum.SocialMedia.FB);
-                break;
-            case R.id.iv_twitter:
-                ShareUtils.openSocialMediaViaIntent(mContext, Enum.SocialMedia.TWITTER);
-                break;
-            case R.id.iv_linkedin:
-                ShareUtils.openSocialMediaViaIntent(mContext, Enum.SocialMedia.LINKEDIN);
+            case R.id.tv_fragment_header:
+            case R.id.iv_back:
+                remove();
+                popBackStack();
                 break;
             default:
                 break;

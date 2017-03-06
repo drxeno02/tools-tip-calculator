@@ -2,13 +2,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/blue_teal"
+    android:background="@color/grey_light"
+    android:clickable="true"
     android:orientation="vertical">
 
     <include
         layout="@layout/fragment_header"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp" />
 
     <!-- description text -->
     <LinearLayout
@@ -37,7 +39,7 @@
             android:id="@+id/tv_copyright"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="30dp"
             android:gravity="center"
             android:text="@string/copyright_year"
             android:textColor="@color/black"
@@ -46,7 +48,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             android:gravity="center"
             android:text="@string/about_desc"
             android:textColor="@color/black"
@@ -55,42 +57,53 @@
     </LinearLayout>
 
     <!-- social media -->
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="60dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:weightSum="1">
 
         <ImageView
             android:id="@+id/iv_fb"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:scaleType="fitXY"
+            android:layout_weight="0.25"
             android:src="@drawable/fb_02" />
 
         <ImageView
-            android:id="@+id/iv_twit"
+            android:id="@+id/iv_twitter"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginStart="10dp"
-            android:layout_toEndOf="@+id/iv_fb"
-            android:layout_toRightOf="@+id/iv_fb"
-            android:scaleType="fitXY"
+            android:layout_weight="0.25"
             android:src="@drawable/twitter_02" />
 
         <ImageView
             android:id="@+id/iv_linkedin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
-            android:layout_marginStart="10dp"
-            android:layout_toEndOf="@+id/iv_twit"
-            android:layout_toRightOf="@+id/iv_twit"
-            android:scaleType="fitCenter"
+            android:layout_weight="0.5"
             android:src="@drawable/linkedin_01" />
 
-    </RelativeLayout>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_feedback_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="@string/feedback_email"
+        android:textColor="@color/black"
+        android:textSize="@dimen/font_size_18" />
 
 </LinearLayout>

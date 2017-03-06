@@ -3,16 +3,18 @@
     android:layout_width="match_parent"
     android:layout_height="40dp"
     android:padding="5dp"
-    android:layout_marginTop="20dp"
     android:orientation="horizontal">
 
+    <!-- extra padding for clickability -->
     <ImageView
+        android:id="@+id/iv_back"
+        android:padding="4dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:layout_marginLeft="10dp"
         android:layout_marginStart="10dp"
-        android:src="@drawable/arrow_white" />
+        android:src="@drawable/arrow_black" />
 
     <TextView
         android:id="@+id/tv_fragment_header"
@@ -21,8 +23,7 @@
         android:layout_gravity="center_vertical"
         android:layout_marginLeft="10dp"
         android:layout_marginStart="10dp"
-        android:textColor="@color/white"
-        android:textSize="@dimen/font_size_18"
-        android:textStyle="bold" />
+        android:textColor="@color/black"
+        android:textSize="@dimen/font_size_20"/>
 
 </LinearLayout>

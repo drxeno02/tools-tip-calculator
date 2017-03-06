@@ -1,28 +1,22 @@
 package com.blog.ljtatum.tipcalculator.activity;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.content.pm.ActivityInfo;
-import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
 import android.hardware.Sensor;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Parcelable;
 import android.os.Vibrator;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
-import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -38,14 +32,18 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.RatingBar;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
-import android.widget.ToggleButton;
 
 import com.blog.ljtatum.tipcalculator.constants.Constants;
+import com.blog.ljtatum.tipcalculator.fragments.AboutFragment;
+import com.blog.ljtatum.tipcalculator.fragments.GuideFragment;
+import com.blog.ljtatum.tipcalculator.fragments.HistoryFragment;
+import com.blog.ljtatum.tipcalculator.fragments.PrivacyFragment;
+import com.blog.ljtatum.tipcalculator.fragments.SettingsFragment;
+import com.blog.ljtatum.tipcalculator.fragments.ShareFragment;
 import com.blog.ljtatum.tipcalculator.utils.AppRaterUtil;
 import com.blog.ljtatum.tipcalculator.R;
 import com.blog.ljtatum.tipcalculator.listeners.ShakeEventListener;
@@ -56,8 +54,7 @@ import com.google.android.gms.ads.AdView;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
+import java.util.Random;
 
 import de.keyboardsurfer.android.widget.crouton.Crouton;
 import de.keyboardsurfer.android.widget.crouton.Style;
@@ -65,7 +62,7 @@ import de.keyboardsurfer.android.widget.crouton.Style;
 /**
  * Created by LJTat on 2/23/2017.
  */
-public class MainActivity extends AppCompatActivity implements OnClickListener,
+public class MainActivity extends BaseFragmentActivity implements OnClickListener,
         NavigationView.OnNavigationItemSelectedListener{
     public static String TAG = MainActivity.class.getSimpleName();
 
@@ -77,6 +74,12 @@ public class MainActivity extends AppCompatActivity implements OnClickListener,
     private int intSelected;
     private int integerPlaces; // track number of integers in editText
     private int decimalPlaces; // track number of decimals in editText
+    private final int[] ARRY_DRAWER_ICONS = {R.drawable.food_01, R.drawable.food_02, R.drawable.food_03,
+            R.drawable.food_04, R.drawable.food_05, R.drawable.food_06, R.drawable.food_07,
+            R.drawable.food_08, R.drawable.food_09, R.drawable.food_10, R.drawable.food_11,
+            R.drawable.food_12, R.drawable.food_13, R.drawable.food_14, R.drawable.food_15,
+            R.drawable.food_16, R.drawable.food_17, R.drawable.food_18, R.drawable.food_19,
+            R.drawable.food_20, R.drawable.food_21, R.drawable.food_22, R.drawable.food_23};
 
     private double doubleBill, temp1, temp2, temp3, temp4, temp5;
     private boolean clear, specialCase;
@@ -106,6 +109,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener,
 
     private Spinner spinner;
     private Switch mSwitch;
+    private DrawerLayout mDrawer;
 
     private ArrayList<String> stringArray = new ArrayList<String>();
     private SensorManager mSensorManager;
@@ -163,11 +167,11 @@ public class MainActivity extends AppCompatActivity implements OnClickListener,
         populateSpinner();
 
         // drawer
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        mDrawer= (DrawerLayout) findViewById(R.id.drawer_layout);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
+                this, mDrawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        mDrawer.addDrawerListener(toggle);
         toggle.syncState();
 
         // instantiate vibrator
@@ -216,6 +220,11 @@ public class MainActivity extends AppCompatActivity implements OnClickListener,
         ivStar3.setOnClickListener(this);
         ivStar4.setOnClickListener(this);
         ivStar5.setOnClickListener(this);
+
+        // navigation drawer
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+        setupDrawerIcons(navigationView);
     }
 
     /**
@@ -279,6 +288,36 @@ public class MainActivity extends AppCompatActivity implements OnClickListener,
                 calculate();
             }
         });
+    }
+
+    /**
+     * Method is used to setup drawer icons
+     */
+    private void setupDrawerIcons(NavigationView navigationView) {
+        Menu menu = navigationView.getMenu();
+        Random rand = new Random();
+        int pos;
+        for (int i = 0; i < menu.size(); i++) {
+            if (i == 0) {
+                pos = rand.nextInt(5);
+                menu.findItem(R.id.nav_guide).setIcon(ARRY_DRAWER_ICONS[pos]);
+                // save icons to shared prefs
+            } else if (i == 1) {
+                pos = (rand.nextInt(11) + 6);
+                menu.findItem(R.id.nav_settings).setIcon(ARRY_DRAWER_ICONS[pos]);
+                // save icons to shared prefs
+            } else if (i== 2) {
+                pos = (rand.nextInt(17) + 12);
+                menu.findItem(R.id.nav_history).setIcon(ARRY_DRAWER_ICONS[pos]);
+                // save icons to shared prefs
+            } else if (i == 3) {
+                pos = (rand.nextInt(21) + 18);
+                menu.findItem(R.id.nav_share).setIcon(ARRY_DRAWER_ICONS[pos]);
+                // save icons to shared prefs
+            }
+        }
+
+
     }
 
     /**
@@ -641,16 +680,40 @@ public class MainActivity extends AppCompatActivity implements OnClickListener,
             default:
                 break;
         }
-
     }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        Fragment fragment = null;
+        switch (item.getItemId()) {
+            case R.id.nav_guide:
+                fragment = new GuideFragment();
+                break;
+            case R.id.nav_settings:
+                fragment = new SettingsFragment();
+                break;
+            case R.id.nav_history:
+                fragment = new HistoryFragment();
+                break;
+            case R.id.nav_share:
+                fragment = new ShareFragment();
+                break;
+            case R.id.nav_about:
+                fragment = new AboutFragment();
+                break;
+            case R.id.nav_privacy:
+                fragment = new PrivacyFragment();
+                break;
+            default:
+                break;
+        }
+        // add fragment
+        if (!Utils.checkIfNull(fragment)) {
+            addFragment(fragment);
+        }
 
-
-
-
-
+        // close drawer after selection
+        mDrawer.closeDrawer(GravityCompat.START);
         return false;
     }
 
