@@ -15,4 +15,8 @@ public class Constants {
     public static final String KEY_APP_LAUNCH = "appLaunch";
     public static final String KEY_APP_LAUNCH_COUNT = "appLaunchCount";
     public static final String KEY_APP_LAUNCH_DATE = "appLaunchDate";
+    public static final String KEY_DRAWER_ICON_A = "drawerIconA";
+    public static final String KEY_DRAWER_ICON_B = "drawerIconB";
+    public static final String KEY_DRAWER_ICON_C = "drawerIconC";
+    public static final String KEY_DRAWER_ICON_D = "drawerIconD";
 }

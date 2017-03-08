@@ -17,6 +17,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -44,6 +45,7 @@ import com.blog.ljtatum.tipcalculator.fragments.HistoryFragment;
 import com.blog.ljtatum.tipcalculator.fragments.PrivacyFragment;
 import com.blog.ljtatum.tipcalculator.fragments.SettingsFragment;
 import com.blog.ljtatum.tipcalculator.fragments.ShareFragment;
+import com.blog.ljtatum.tipcalculator.sharedpref.SharedPref;
 import com.blog.ljtatum.tipcalculator.utils.AppRaterUtil;
 import com.blog.ljtatum.tipcalculator.R;
 import com.blog.ljtatum.tipcalculator.listeners.ShakeEventListener;
@@ -111,10 +113,11 @@ public class MainActivity extends BaseFragmentActivity implements OnClickListene
     private Switch mSwitch;
     private DrawerLayout mDrawer;
 
-    private ArrayList<String> stringArray = new ArrayList<String>();
+    private ArrayList<String> alSpinnerItems;
     private SensorManager mSensorManager;
     private ShakeEventListener mSensorListener;
     private Vibrator v;
+    private SharedPref mSharedPref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -136,6 +139,8 @@ public class MainActivity extends BaseFragmentActivity implements OnClickListene
      */
     private void initializeViews() {
         mContext = MainActivity.this;
+        alSpinnerItems = new ArrayList<>();
+        mSharedPref = new SharedPref(mContext, Constants.PREF_FILE_NAME);
 
         // rate this app
         new AppRaterUtil(mContext);
@@ -224,6 +229,7 @@ public class MainActivity extends BaseFragmentActivity implements OnClickListene
         // navigation drawer
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        navigationView.setItemIconTintList(null);
         setupDrawerIcons(navigationView);
     }
 
@@ -295,29 +301,54 @@ public class MainActivity extends BaseFragmentActivity implements OnClickListene
      */
     private void setupDrawerIcons(NavigationView navigationView) {
         Menu menu = navigationView.getMenu();
-        Random rand = new Random();
-        int pos;
-        for (int i = 0; i < menu.size(); i++) {
-            if (i == 0) {
-                pos = rand.nextInt(5);
-                menu.findItem(R.id.nav_guide).setIcon(ARRY_DRAWER_ICONS[pos]);
-                // save icons to shared prefs
-            } else if (i == 1) {
-                pos = (rand.nextInt(11) + 6);
-                menu.findItem(R.id.nav_settings).setIcon(ARRY_DRAWER_ICONS[pos]);
-                // save icons to shared prefs
-            } else if (i== 2) {
-                pos = (rand.nextInt(17) + 12);
-                menu.findItem(R.id.nav_history).setIcon(ARRY_DRAWER_ICONS[pos]);
-                // save icons to shared prefs
-            } else if (i == 3) {
-                pos = (rand.nextInt(21) + 18);
-                menu.findItem(R.id.nav_share).setIcon(ARRY_DRAWER_ICONS[pos]);
-                // save icons to shared prefs
+        if (mSharedPref.getIntPref(Constants.KEY_DRAWER_ICON_A, 0) >= 0 &&
+                mSharedPref.getIntPref(Constants.KEY_DRAWER_ICON_B, 0) > 0 &&
+                mSharedPref.getIntPref(Constants.KEY_DRAWER_ICON_C, 0) > 0 &&
+                mSharedPref.getIntPref(Constants.KEY_DRAWER_ICON_D, 0) > 0) {
+            // setup menu icons
+            for (int i = 0; i < menu.size(); i++) {
+                if (i == 0) {
+                    menu.findItem(R.id.nav_guide).setIcon(ARRY_DRAWER_ICONS[
+                            mSharedPref.getIntPref(Constants.KEY_DRAWER_ICON_A, 0)]);
+                } else if (i == 1) {
+                    menu.findItem(R.id.nav_settings).setIcon(ARRY_DRAWER_ICONS[
+                            mSharedPref.getIntPref(Constants.KEY_DRAWER_ICON_B, 0)]);
+                } else if (i == 2) {
+                    menu.findItem(R.id.nav_history).setIcon(ARRY_DRAWER_ICONS[
+                            mSharedPref.getIntPref(Constants.KEY_DRAWER_ICON_C, 0)]);
+                } else if (i == 3) {
+                    menu.findItem(R.id.nav_share).setIcon(ARRY_DRAWER_ICONS[
+                            mSharedPref.getIntPref(Constants.KEY_DRAWER_ICON_D, 0)]);
+                }
+            }
+        } else {
+            // setup menu icons
+            Random rand = new Random();
+            int pos;
+            for (int i = 0; i < menu.size(); i++) {
+                if (i == 0) {
+                    pos = rand.nextInt(5);
+                    menu.findItem(R.id.nav_guide).setIcon(ARRY_DRAWER_ICONS[pos]);
+                    // save icons to shared prefs
+                    mSharedPref.setPref(Constants.KEY_DRAWER_ICON_A, pos);
+                } else if (i == 1) {
+                    pos = (rand.nextInt(5) + 6);
+                    menu.findItem(R.id.nav_settings).setIcon(ARRY_DRAWER_ICONS[pos]);
+                    // save icons to shared prefs
+                    mSharedPref.setPref(Constants.KEY_DRAWER_ICON_B, pos);
+                } else if (i == 2) {
+                    pos = (rand.nextInt(5) + 12);
+                    menu.findItem(R.id.nav_history).setIcon(ARRY_DRAWER_ICONS[pos]);
+                    // save icons to shared prefs
+                    mSharedPref.setPref(Constants.KEY_DRAWER_ICON_C, pos);
+                } else if (i == 3) {
+                    pos = (rand.nextInt(5) + (ARRY_DRAWER_ICONS.length - 6));
+                    menu.findItem(R.id.nav_share).setIcon(ARRY_DRAWER_ICONS[pos]);
+                    // save icons to shared prefs
+                    mSharedPref.setPref(Constants.KEY_DRAWER_ICON_D, pos);
+                }
             }
         }
-
-
     }
 
     /**
@@ -431,44 +462,44 @@ public class MainActivity extends BaseFragmentActivity implements OnClickListene
 
         // setup spinner configurations
         spinner.setAdapter(null); // make sure spinner is empty
-        stringArray.clear(); // make sure arrayList is empty
+        alSpinnerItems.clear(); // make sure arrayList is empty
 
-        stringArray.add("0%");
-        stringArray.add("1%");
-        stringArray.add("2%");
-        stringArray.add("3%");
-        stringArray.add("4%");
-        stringArray.add("5% Poor");
-        stringArray.add("6%");
-        stringArray.add("7%");
-        stringArray.add("8%");
-        stringArray.add("9%");
-        stringArray.add("10% Fair");
-        stringArray.add("11%");
-        stringArray.add("12%");
-        stringArray.add("13%");
-        stringArray.add("14%");
-        stringArray.add("15% Good!");
-        stringArray.add("16%");
-        stringArray.add("17%");
-        stringArray.add("18%");
-        stringArray.add("19%");
-        stringArray.add("20% Great!");
-        stringArray.add("21%");
-        stringArray.add("22%");
-        stringArray.add("23%");
-        stringArray.add("24%");
-        stringArray.add("25% Royal!");
-        stringArray.add("26%");
-        stringArray.add("27%");
-        stringArray.add("28%");
-        stringArray.add("29%");
-        stringArray.add("30%");
+        alSpinnerItems.add("0%");
+        alSpinnerItems.add("1%");
+        alSpinnerItems.add("2%");
+        alSpinnerItems.add("3%");
+        alSpinnerItems.add("4%");
+        alSpinnerItems.add("5% Poor");
+        alSpinnerItems.add("6%");
+        alSpinnerItems.add("7%");
+        alSpinnerItems.add("8%");
+        alSpinnerItems.add("9%");
+        alSpinnerItems.add("10% Fair");
+        alSpinnerItems.add("11%");
+        alSpinnerItems.add("12%");
+        alSpinnerItems.add("13%");
+        alSpinnerItems.add("14%");
+        alSpinnerItems.add("15% Good!");
+        alSpinnerItems.add("16%");
+        alSpinnerItems.add("17%");
+        alSpinnerItems.add("18%");
+        alSpinnerItems.add("19%");
+        alSpinnerItems.add("20% Great!");
+        alSpinnerItems.add("21%");
+        alSpinnerItems.add("22%");
+        alSpinnerItems.add("23%");
+        alSpinnerItems.add("24%");
+        alSpinnerItems.add("25% Royal!");
+        alSpinnerItems.add("26%");
+        alSpinnerItems.add("27%");
+        alSpinnerItems.add("28%");
+        alSpinnerItems.add("29%");
+        alSpinnerItems.add("30%");
 
         // create ArrayAdapter
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
                 MainActivity.this, android.R.layout.simple_spinner_item,
-                stringArray);
+                alSpinnerItems);
 
         arrayAdapter
                 .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
