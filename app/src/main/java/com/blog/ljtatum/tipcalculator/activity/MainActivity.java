@@ -76,12 +76,13 @@ public class MainActivity extends BaseFragmentActivity implements OnClickListene
     private int intSelected;
     private int integerPlaces; // track number of integers in editText
     private int decimalPlaces; // track number of decimals in editText
-    private final int[] ARRY_DRAWER_ICONS = {R.drawable.food_01, R.drawable.food_02, R.drawable.food_03,
-            R.drawable.food_04, R.drawable.food_05, R.drawable.food_06, R.drawable.food_07,
-            R.drawable.food_08, R.drawable.food_09, R.drawable.food_10, R.drawable.food_11,
-            R.drawable.food_12, R.drawable.food_13, R.drawable.food_14, R.drawable.food_15,
-            R.drawable.food_16, R.drawable.food_17, R.drawable.food_18, R.drawable.food_19,
-            R.drawable.food_20, R.drawable.food_21, R.drawable.food_22, R.drawable.food_23};
+    private static final int[] ARRY_DRAWER_ICONS = {R.drawable.food_01, R.drawable.food_02,
+            R.drawable.food_03, R.drawable.food_04, R.drawable.food_05, R.drawable.food_06,
+            R.drawable.food_07, R.drawable.food_08, R.drawable.food_09, R.drawable.food_10,
+            R.drawable.food_11, R.drawable.food_12, R.drawable.food_13, R.drawable.food_14,
+            R.drawable.food_15, R.drawable.food_16, R.drawable.food_17, R.drawable.food_18,
+            R.drawable.food_19, R.drawable.food_20, R.drawable.food_21, R.drawable.food_22,
+            R.drawable.food_23};
 
     private double doubleBill, temp1, temp2, temp3, temp4, temp5;
     private boolean clear, specialCase;

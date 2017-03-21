@@ -28,6 +28,74 @@
     <string name="btn_inc">+</string>
     <string name="btn_dec">-</string>
 
+	<!-- Guide -->
+	<string name="tip_req">Local currency: %s1 | Tipping Required: %s2</string>
+	<string name="required">Required</string>
+	<string name="not_required">Not Required</string>
+	<string name="guide_australia">There isn\'t a rule when it comes to tipping in Australia.
+		Traditionally, tourism industry employees get paid enough that they don\'t need a tip.
+		\n\nLocals will tell you not to tip, but it has become more common as a result of Americans
+		traveling to the country.\n\nIf you are in a really nice restaurant or bar or any tourist
+		spot, you can tip 10%-15%.</string>
+	<string name="guide_bahamas">Tipping is expected in these islands, and you should tip
+		according to the quality of service.\n\nBellboys and porters usually receive $1-$2 per bag,
+		while most other servers, e.g. waiters, taxis, ect receive 15%.</string>
+	<string name="guide_canada">Gratuities are seldom included in Canadian restaurants, so it is
+		up to you to provide the tip.\n\nIt\'s customary to tip approximately 15-20% on the total
+		bill before tax, less for poor service, more for truly exceptional service.\n\nMany restaurants,
+		may charge an automatic 15-18% gratuity for larger groups.</string>
+	<string name="guide_china">If you are dining or drinking somewhere local, there is no need to tip.\n\n
+		If you are at a nicer establishment, you might notice a 10%-15% service charge added to your
+		bill. There is no need to tip anything in addition to that.\n\nBe careful how you use your
+		chopsticks. For example, it is rude to stand them upright in your rice bowl or point them
+		at someone else.</string>
+	<string name="guide_cuba">It\'s a good idea to have a few 1 CUC notes on hand when staying in a
+		hotel. When your bags are carried to your room, a 1 CUC tip is acceptable. You might be in
+		the habit of leaving a tip for your maid on the day you check out, but when tipping in Cuba,
+		it\'s more appropriate to level 1 CUC for the maid each day.</string>
+	<string name="guide_dominican_republic">Tipping is very appreciated in the DR (Dominican Republic),
+		as wages are extremely low. A dollar to them goes a long way. Guests can leave small items
+		and usually $1 to $2 each morning on the pillows for the maids and just add a little note to
+		let them know that it is for them.</string>
+	<string name="guide_france">Your bill will include a 15% service charge, but locals usually tip 10%
+		on top of that.\n\nLooking to save some coin? Just remember there is no need to tip at bars!
+		\n\nSplitting the bill is considered unsophisticated in France, so always offer to pay the
+		whole bill.</string>
+	<string name="guide_germany">Round up to the nearest euro and consider this their tip, especially
+		when ordering only one item, like a drink.\n\nIf you want to leave a more substantial tip
+		(for a larger meal), leave 10%-15%, and let your service know what you are tipping before you
+		pay.\n\nWater or bread served at restaurants is not free. Asking for tap water is uncommon and
+		frowned upon; the service will often turn down your request.</string>
+	<string name="guide_ghana">The way money is used and talked about in Ghana may be very different
+		from what you are used to. Be prepared for people asking you for money, bargaining in shops
+		and make sure you leave a tip for good service!\n\nAlthough it is not protocol to tip,
+		generally a tip is expected and always appreciated. It is customary to leave a tip for the
+		maid so that he or she cleans your hotel room properly, and when someone goes out of their
+		way to help you, for example, giving you directions.\n\nAs words of caution, do not be overly
+		generous, as this may appear that you are flaunting money.</string>
+	<string name="guide_jamaica">Employees at no tipping resorts can lose their job for accepting
+		gifts or tips. Taxis in Jamaica are mainly non-metered, which means you set the price with
+		the driver before boarding the taxi. It\'s OK to leave a tip during this time.</string>
+	<string name="guide_japan">Tipping is not mandatory or expected.\n\nOffering a cash tip to a
+		waiter is rude and doing so may cause confusion. If you feel the need to tip, put the yen in
+		a small envelope and give it directly to your server.\n\nDo not be afraid to audibly slurp
+		noodles here; it's though to help the eater enjoy the dish more and improve the flavor.</string>
+	<string name="guide_kenya">For more structured services, a 100 shilling (roughly $1) tip would
+		be fair enough. At hotels, porters can be tipped anything from 50 shillings to 100 shillings.
+		\n\nYou may give your housekeeper anything from 200 shillings to 500 shillings per week to
+		ensure motivation and good service by her.</string>
+	<string name="guide_mexico">At restaurants, it is customary to leave a 10%-15% tip.\n\nIf there is
+        an amount listed as "IVA" on your bill, that\'s 16% of your bill, so you can also tip that
+        instead.\n\nSometimes the tip will be included in your restaurant bill, so there will be no
+        need to leave any additional tip.\n\nIt\'s completely acceptable to eat with your hands here.</string>
+	<string name="guide_niger">Tipping is appreciated in Niger and, while a service charge is
+        generally added to restaurant bills, extra tips are still appreciated. Taxi drivers, tour
+        guides, barmen and porters all take tips.\n\n10% tip is customary. Be careful with
+        over tipping as you may draw unwanted, and even dangerous, attention to yourself.</string>
+	<string name="guide_spain"></string>
+	<string name="guide_united_kingdom"></string>
+	<string name="guide_united_states"></string>
+
 	<!-- About -->
 	<string name="copyright_year">Copyright %s, Leonard Tatum. All Rights Reserved</string>
 	<string name="about_desc">This app is 100% free, created for the education, convenience

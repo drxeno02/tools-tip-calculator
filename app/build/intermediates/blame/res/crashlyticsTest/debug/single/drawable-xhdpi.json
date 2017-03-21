@@ -1,19 +1,15 @@
 [
     {
-        "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable-xhdpi\\star_on.png",
-        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\src\\main\\res\\drawable-xhdpi\\star_on.png"
-    },
-    {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable-xhdpi\\food_22.png",
         "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\src\\main\\res\\drawable-xhdpi\\food_22.png"
     },
     {
-        "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable-xhdpi\\food_11.png",
-        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\src\\main\\res\\drawable-xhdpi\\food_11.png"
-    },
-    {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable-xhdpi\\linkedin_01.png",
         "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\src\\main\\res\\drawable-xhdpi\\linkedin_01.png"
+    },
+    {
+        "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable-xhdpi\\flag_united_kingdom.png",
+        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\src\\main\\res\\drawable-xhdpi\\flag_united_kingdom.png"
     },
     {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable-xhdpi\\food_14.png",
@@ -28,12 +24,12 @@
         "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\src\\main\\res\\drawable-xhdpi\\ic_launcher.png"
     },
     {
-        "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable-xhdpi\\food_08.png",
-        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\src\\main\\res\\drawable-xhdpi\\food_08.png"
+        "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable-xhdpi\\flag_mexico.png",
+        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\src\\main\\res\\drawable-xhdpi\\flag_mexico.png"
     },
     {
-        "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable-xhdpi\\food_03.png",
-        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\src\\main\\res\\drawable-xhdpi\\food_03.png"
+        "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable-xhdpi\\flag_niger.png",
+        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\src\\main\\res\\drawable-xhdpi\\flag_niger.png"
     },
     {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable-xhdpi\\food_05.png",
@@ -44,6 +40,10 @@
         "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\src\\main\\res\\drawable-xhdpi\\arrow_white.png"
     },
     {
+        "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable-xhdpi\\flag_united_states.png",
+        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\src\\main\\res\\drawable-xhdpi\\flag_united_states.png"
+    },
+    {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable-xhdpi\\food_13.png",
         "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\src\\main\\res\\drawable-xhdpi\\food_13.png"
     },
@@ -52,28 +52,16 @@
         "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\src\\main\\res\\drawable-xhdpi\\food_06.png"
     },
     {
-        "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable-xhdpi\\food_10.png",
-        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\src\\main\\res\\drawable-xhdpi\\food_10.png"
+        "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable-xhdpi\\flag_ghana.png",
+        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\src\\main\\res\\drawable-xhdpi\\flag_ghana.png"
     },
     {
-        "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable-xhdpi\\food_02.png",
-        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\src\\main\\res\\drawable-xhdpi\\food_02.png"
-    },
-    {
-        "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable-xhdpi\\food_17.png",
-        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\src\\main\\res\\drawable-xhdpi\\food_17.png"
-    },
-    {
-        "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable-xhdpi\\food_09.png",
-        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\src\\main\\res\\drawable-xhdpi\\food_09.png"
+        "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable-xhdpi\\flag_kenya.png",
+        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\src\\main\\res\\drawable-xhdpi\\flag_kenya.png"
     },
     {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable-xhdpi\\food_04.png",
         "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\src\\main\\res\\drawable-xhdpi\\food_04.png"
-    },
-    {
-        "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable-xhdpi\\banner.png",
-        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\src\\main\\res\\drawable-xhdpi\\banner.png"
     },
     {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable-xhdpi\\food_07.png",
@@ -92,40 +80,32 @@
         "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\src\\main\\res\\drawable-xhdpi\\food_18.png"
     },
     {
-        "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable-xhdpi\\food_21.png",
-        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\src\\main\\res\\drawable-xhdpi\\food_21.png"
-    },
-    {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable-xhdpi\\about.png",
         "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\src\\main\\res\\drawable-xhdpi\\about.png"
     },
     {
-        "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable-xhdpi\\arrow_black.png",
-        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\src\\main\\res\\drawable-xhdpi\\arrow_black.png"
-    },
-    {
-        "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable-xhdpi\\star_off.png",
-        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\src\\main\\res\\drawable-xhdpi\\star_off.png"
+        "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable-xhdpi\\flag_cuba.png",
+        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\src\\main\\res\\drawable-xhdpi\\flag_cuba.png"
     },
     {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable-xhdpi\\privacy.png",
         "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\src\\main\\res\\drawable-xhdpi\\privacy.png"
     },
     {
-        "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable-xhdpi\\food_16.png",
-        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\src\\main\\res\\drawable-xhdpi\\food_16.png"
+        "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable-xhdpi\\flag_germany.png",
+        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\src\\main\\res\\drawable-xhdpi\\flag_germany.png"
     },
     {
-        "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable-xhdpi\\fb_02.png",
-        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\src\\main\\res\\drawable-xhdpi\\fb_02.png"
+        "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable-xhdpi\\flag_china.png",
+        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\src\\main\\res\\drawable-xhdpi\\flag_china.png"
     },
     {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable-xhdpi\\food_23.png",
         "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\src\\main\\res\\drawable-xhdpi\\food_23.png"
     },
     {
-        "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable-xhdpi\\food_19.png",
-        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\src\\main\\res\\drawable-xhdpi\\food_19.png"
+        "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable-xhdpi\\flag_japan.png",
+        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\src\\main\\res\\drawable-xhdpi\\flag_japan.png"
     },
     {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable-xhdpi\\fb_01.png",
@@ -136,15 +116,99 @@
         "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\src\\main\\res\\drawable-xhdpi\\linkedin_02.png"
     },
     {
-        "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable-xhdpi\\twitter_01.png",
-        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\src\\main\\res\\drawable-xhdpi\\twitter_01.png"
-    },
-    {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable-xhdpi\\food_20.png",
         "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\src\\main\\res\\drawable-xhdpi\\food_20.png"
     },
     {
         "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable-xhdpi\\food_12.png",
         "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\src\\main\\res\\drawable-xhdpi\\food_12.png"
+    },
+    {
+        "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable-xhdpi\\star_on.png",
+        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\src\\main\\res\\drawable-xhdpi\\star_on.png"
+    },
+    {
+        "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable-xhdpi\\food_11.png",
+        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\src\\main\\res\\drawable-xhdpi\\food_11.png"
+    },
+    {
+        "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable-xhdpi\\food_08.png",
+        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\src\\main\\res\\drawable-xhdpi\\food_08.png"
+    },
+    {
+        "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable-xhdpi\\food_03.png",
+        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\src\\main\\res\\drawable-xhdpi\\food_03.png"
+    },
+    {
+        "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable-xhdpi\\flag_bahamas.png",
+        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\src\\main\\res\\drawable-xhdpi\\flag_bahamas.png"
+    },
+    {
+        "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable-xhdpi\\flag_canada.png",
+        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\src\\main\\res\\drawable-xhdpi\\flag_canada.png"
+    },
+    {
+        "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable-xhdpi\\flag_france.png",
+        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\src\\main\\res\\drawable-xhdpi\\flag_france.png"
+    },
+    {
+        "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable-xhdpi\\food_10.png",
+        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\src\\main\\res\\drawable-xhdpi\\food_10.png"
+    },
+    {
+        "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable-xhdpi\\food_02.png",
+        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\src\\main\\res\\drawable-xhdpi\\food_02.png"
+    },
+    {
+        "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable-xhdpi\\food_17.png",
+        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\src\\main\\res\\drawable-xhdpi\\food_17.png"
+    },
+    {
+        "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable-xhdpi\\food_09.png",
+        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\src\\main\\res\\drawable-xhdpi\\food_09.png"
+    },
+    {
+        "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable-xhdpi\\banner.png",
+        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\src\\main\\res\\drawable-xhdpi\\banner.png"
+    },
+    {
+        "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable-xhdpi\\flag_australia.png",
+        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\src\\main\\res\\drawable-xhdpi\\flag_australia.png"
+    },
+    {
+        "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable-xhdpi\\food_21.png",
+        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\src\\main\\res\\drawable-xhdpi\\food_21.png"
+    },
+    {
+        "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable-xhdpi\\flag_dominican_republic.png",
+        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\src\\main\\res\\drawable-xhdpi\\flag_dominican_republic.png"
+    },
+    {
+        "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable-xhdpi\\flag_spain.png",
+        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\src\\main\\res\\drawable-xhdpi\\flag_spain.png"
+    },
+    {
+        "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable-xhdpi\\arrow_black.png",
+        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\src\\main\\res\\drawable-xhdpi\\arrow_black.png"
+    },
+    {
+        "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable-xhdpi\\star_off.png",
+        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\src\\main\\res\\drawable-xhdpi\\star_off.png"
+    },
+    {
+        "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable-xhdpi\\food_16.png",
+        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\src\\main\\res\\drawable-xhdpi\\food_16.png"
+    },
+    {
+        "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable-xhdpi\\fb_02.png",
+        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\src\\main\\res\\drawable-xhdpi\\fb_02.png"
+    },
+    {
+        "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable-xhdpi\\food_19.png",
+        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\src\\main\\res\\drawable-xhdpi\\food_19.png"
+    },
+    {
+        "merged": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\res\\merged\\crashlyticsTest\\debug\\drawable-xhdpi\\twitter_01.png",
+        "source": "C:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\src\\main\\res\\drawable-xhdpi\\twitter_01.png"
     }
 ]
