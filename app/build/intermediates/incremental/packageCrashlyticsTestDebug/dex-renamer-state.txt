@@ -1,4 +1,4 @@
-#Tue Mar 07 21:44:32 PST 2017
+#Thu Mar 30 08:12:53 PDT 2017
 base.0=C\:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\transforms\\dex\\crashlyticsTest\\debug\\folders\\1000\\10000\\instant-run-bootstrap_e3e6903c7cfc5d482a840b45d330e91071c4f1cf
 renamed.1=classes.dex
 renamed.0=classes2.dex

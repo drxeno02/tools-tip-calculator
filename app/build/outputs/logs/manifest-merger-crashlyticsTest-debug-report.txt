@@ -78,7 +78,7 @@ MERGED from [com.crashlytics.sdk.android:beta:1.2.3] C:\Users\LJTat\.android\bui
 MERGED from [com.crashlytics.sdk.android:crashlytics-core:2.3.15] C:\Users\LJTat\.android\build-cache\8e4a42b676515866935c6a95396316f0ba4ba532\output\AndroidManifest.xml:54:5-20
 MERGED from [com.crashlytics.sdk.android:answers:1.3.11] C:\Users\LJTat\.android\build-cache\bb668501f48c5d043c8cc6bf28e38aaf371196a5\output\AndroidManifest.xml:11:5-20
 MERGED from [io.fabric.sdk.android:fabric:1.3.15] C:\Users\LJTat\.android\build-cache\0091f25181b12e625cd4f8580fc784bc42756f6a\output\AndroidManifest.xml:31:5-20
-MERGED from [com.android.support:cardview-v7:25.1.1] C:\Users\LJTat\.android\build-cache\85d7c768dfd48aa55cde9f698415f6818203cef7\output\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:cardview-v7:25.3.1] C:\Users\LJTat\.android\build-cache\03bc59417816e7595c1a4d8454a49954cddcb34c\output\AndroidManifest.xml:26:5-20
 MERGED from [com.google.android.gms:play-services:10.2.0] C:\Users\LJTat\.android\build-cache\678ffa08c8674331bf2ebc78226a6a3d08b90634\output\AndroidManifest.xml:5:5-20
 MERGED from [com.google.android.gms:play-services-ads-lite:10.2.0] C:\Users\LJTat\.android\build-cache\f0ad67c28b78974a9a224335e38b9c81d97e38fa\output\AndroidManifest.xml:23:5-27:19
 MERGED from [com.google.android.gms:play-services-analytics:10.2.0] C:\Users\LJTat\.android\build-cache\e9aa763a606bf50295992b08d8f10748f1e72cc1\output\AndroidManifest.xml:26:5-19
@@ -86,8 +86,8 @@ MERGED from [com.google.android.gms:play-services-appinvite:10.2.0] C:\Users\LJT
 MERGED from [com.google.android.gms:play-services-auth:10.2.0] C:\Users\LJTat\.android\build-cache\041222061af84e47f2bf64990f352ab4281bae39\output\AndroidManifest.xml:19:5-25:19
 MERGED from [com.google.android.gms:play-services-cast-framework:10.2.0] C:\Users\LJTat\.android\build-cache\9f4bad35e59f221a50fe5b2ba40be68742500157\output\AndroidManifest.xml:4:5-8:19
 MERGED from [com.google.android.gms:play-services-cast:10.2.0] C:\Users\LJTat\.android\build-cache\9942a61b177977ac0eae65a8c739f1457b37191a\output\AndroidManifest.xml:18:5-19
-MERGED from [com.android.support:mediarouter-v7:24.0.0] C:\Users\LJTat\.android\build-cache\c812e9a44b95994bda0335a0d665e0d43ee077f3\output\AndroidManifest.xml:22:5-20
-MERGED from [com.android.support:palette-v7:24.0.0] C:\Users\LJTat\.android\build-cache\40a4dde875fd95c346b9c11f2ed13b6f9881ad10\output\AndroidManifest.xml:22:5-23:19
+MERGED from [com.android.support:mediarouter-v7:24.0.0] C:\Users\LJTat\.android\build-cache\186a5511855cc137dcba7583e337c86c393626bb\output\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:palette-v7:24.0.0] C:\Users\LJTat\.android\build-cache\1f9ef5fc239f4af67c4e80619241b9bdb9b60ae7\output\AndroidManifest.xml:22:5-23:19
 MERGED from [com.google.android.gms:play-services-clearcut:10.2.0] C:\Users\LJTat\.android\build-cache\2bbd0f07df73db036fc8d441888d6d5f753a3cba\output\AndroidManifest.xml:18:5-19
 MERGED from [com.google.firebase:firebase-config:10.2.0] C:\Users\LJTat\.android\build-cache\e05f0a04c49efe308bf4d22885b1474ac3a51e36\output\AndroidManifest.xml:18:5-19
 MERGED from [com.google.android.gms:play-services-awareness:10.2.0] C:\Users\LJTat\.android\build-cache\108788eea70989656e9f168f5b0f5761234fa3bd\output\AndroidManifest.xml:18:5-19
@@ -122,17 +122,17 @@ MERGED from [com.google.firebase:firebase-iid:10.2.0] C:\Users\LJTat\.android\bu
 MERGED from [com.google.firebase:firebase-common:10.2.0] C:\Users\LJTat\.android\build-cache\a62583ad1b032d187558d1a34becbc4ee3825591\output\AndroidManifest.xml:4:5-7:19
 MERGED from [com.google.android.gms:play-services-tasks:10.2.0] C:\Users\LJTat\.android\build-cache\78ac404771fdb2ce72295c317c21a06c80ddfc2c\output\AndroidManifest.xml:4:5-19
 MERGED from [com.google.android.gms:play-services-basement:10.2.0] C:\Users\LJTat\.android\build-cache\de4acd94adb98259b675888cc964c228d7ba4391\output\AndroidManifest.xml:19:5-21:19
-MERGED from [com.android.support:design:25.1.1] C:\Users\LJTat\.android\build-cache\a192d6cece43ab7edb0c5c51b79399464c92babd\output\AndroidManifest.xml:25:5-20
-MERGED from [com.android.support:appcompat-v7:25.1.1] C:\Users\LJTat\.android\build-cache\1ad41ecfac48b9f4f4d5bd90e1a3c5649e6fbc43\output\AndroidManifest.xml:25:5-20
-MERGED from [com.android.support:animated-vector-drawable:25.1.1] C:\Users\LJTat\.android\build-cache\164e8351039f7177fbca0466ffeef7409b393a8f\output\AndroidManifest.xml:22:5-20
-MERGED from [com.android.support:support-vector-drawable:25.1.1] C:\Users\LJTat\.android\build-cache\44591a4d0e218e39713380c1b6704c42b9c97004\output\AndroidManifest.xml:23:5-20
-MERGED from [com.android.support:transition:25.1.1] C:\Users\LJTat\.android\build-cache\d2d02eb8ce5ddd371990580422976bece6c8db45\output\AndroidManifest.xml:22:5-20
-MERGED from [com.android.support:support-v4:25.1.1] C:\Users\LJTat\.android\build-cache\01288f5d2312fa1a15387b013d0210c55f187086\output\AndroidManifest.xml:25:5-20
-MERGED from [com.android.support:support-fragment:25.1.1] C:\Users\LJTat\.android\build-cache\013e6e471d4305eb162ea117df5877e2e86ce902\output\AndroidManifest.xml:25:5-20
-MERGED from [com.android.support:support-media-compat:25.1.1] C:\Users\LJTat\.android\build-cache\1d008486023f1aa20b357bb798ca71c5e1d1312d\output\AndroidManifest.xml:25:5-20
-MERGED from [com.android.support:support-core-ui:25.1.1] C:\Users\LJTat\.android\build-cache\7d0f00e69ab73eece89069b8453b007d2eb182eb\output\AndroidManifest.xml:25:5-20
-MERGED from [com.android.support:support-core-utils:25.1.1] C:\Users\LJTat\.android\build-cache\707354740e45e33c6db410316f5c1d8db78dded9\output\AndroidManifest.xml:25:5-20
-MERGED from [com.android.support:support-compat:25.1.1] C:\Users\LJTat\.android\build-cache\56133087f78c21fa9183635e5ca3141566b2ab37\output\AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:design:25.3.1] C:\Users\LJTat\.android\build-cache\6319d9ff6b7eba76accbb9489360bbeadf00a8d5\output\AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:appcompat-v7:25.3.1] C:\Users\LJTat\.android\build-cache\e5da2550a400292022685482f0d29900859fea11\output\AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:animated-vector-drawable:25.3.1] C:\Users\LJTat\.android\build-cache\1c4610991aa755e211e8ebb9e38d2857419ad1aa\output\AndroidManifest.xml:26:5-20
+MERGED from [com.android.support:support-vector-drawable:25.3.1] C:\Users\LJTat\.android\build-cache\62f0dbd50cac78b8ba647d2fd06110866db7e832\output\AndroidManifest.xml:26:5-20
+MERGED from [com.android.support:transition:25.3.1] C:\Users\LJTat\.android\build-cache\94d3aea5f7979853a49e38a62c638db2863ed8d7\output\AndroidManifest.xml:26:5-20
+MERGED from [com.android.support:support-v4:25.3.1] C:\Users\LJTat\.android\build-cache\62a36b4b8af126fffa387f309e47228324a9d341\output\AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-fragment:25.3.1] C:\Users\LJTat\.android\build-cache\0167510dad911e2e8ac512d6df6c23c8621f9023\output\AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-media-compat:25.3.1] C:\Users\LJTat\.android\build-cache\df09458c4595d9388247732f01a1e23b32422cce\output\AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-core-ui:25.3.1] C:\Users\LJTat\.android\build-cache\b3009be5587027fe0a387abe5e8b004e4888ab71\output\AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-core-utils:25.3.1] C:\Users\LJTat\.android\build-cache\04960c47ff9ae9f06dd3e4971b6773ba1e577a55\output\AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-compat:25.3.1] C:\Users\LJTat\.android\build-cache\86210f1c984d1357264ee6c3527de8815d7e616a\output\AndroidManifest.xml:29:5-20
 	android:label
 		ADDED from C:\AndroidStudio\Publish Workspace\TipCalculator\app\src\main\AndroidManifest.xml:22:9-41
 	android:allowBackup
@@ -200,7 +200,7 @@ MERGED from [com.crashlytics.sdk.android:beta:1.2.3] C:\Users\LJTat\.android\bui
 MERGED from [com.crashlytics.sdk.android:crashlytics-core:2.3.15] C:\Users\LJTat\.android\build-cache\8e4a42b676515866935c6a95396316f0ba4ba532\output\AndroidManifest.xml:50:5-43
 MERGED from [com.crashlytics.sdk.android:answers:1.3.11] C:\Users\LJTat\.android\build-cache\bb668501f48c5d043c8cc6bf28e38aaf371196a5\output\AndroidManifest.xml:7:5-43
 MERGED from [io.fabric.sdk.android:fabric:1.3.15] C:\Users\LJTat\.android\build-cache\0091f25181b12e625cd4f8580fc784bc42756f6a\output\AndroidManifest.xml:27:5-43
-MERGED from [com.android.support:cardview-v7:25.1.1] C:\Users\LJTat\.android\build-cache\85d7c768dfd48aa55cde9f698415f6818203cef7\output\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:cardview-v7:25.3.1] C:\Users\LJTat\.android\build-cache\03bc59417816e7595c1a4d8454a49954cddcb34c\output\AndroidManifest.xml:20:5-43
 MERGED from [com.google.android.gms:play-services:10.2.0] C:\Users\LJTat\.android\build-cache\678ffa08c8674331bf2ebc78226a6a3d08b90634\output\AndroidManifest.xml:4:5-43
 MERGED from [com.google.android.gms:play-services-ads:10.2.0] C:\Users\LJTat\.android\build-cache\f4966adaee879a9d9e177096cad6c8826eaaca1c\output\AndroidManifest.xml:17:5-43
 MERGED from [com.google.android.gms:play-services-ads-lite:10.2.0] C:\Users\LJTat\.android\build-cache\f0ad67c28b78974a9a224335e38b9c81d97e38fa\output\AndroidManifest.xml:22:5-43
@@ -210,8 +210,8 @@ MERGED from [com.google.android.gms:play-services-auth:10.2.0] C:\Users\LJTat\.a
 MERGED from [com.google.android.gms:play-services-auth-base:10.2.0] C:\Users\LJTat\.android\build-cache\83bf922b8d3848357ac57f7c580f43162ac495ac\output\AndroidManifest.xml:4:5-43
 MERGED from [com.google.android.gms:play-services-cast-framework:10.2.0] C:\Users\LJTat\.android\build-cache\9f4bad35e59f221a50fe5b2ba40be68742500157\output\AndroidManifest.xml:3:5-43
 MERGED from [com.google.android.gms:play-services-cast:10.2.0] C:\Users\LJTat\.android\build-cache\9942a61b177977ac0eae65a8c739f1457b37191a\output\AndroidManifest.xml:17:5-43
-MERGED from [com.android.support:mediarouter-v7:24.0.0] C:\Users\LJTat\.android\build-cache\c812e9a44b95994bda0335a0d665e0d43ee077f3\output\AndroidManifest.xml:20:5-43
-MERGED from [com.android.support:palette-v7:24.0.0] C:\Users\LJTat\.android\build-cache\40a4dde875fd95c346b9c11f2ed13b6f9881ad10\output\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:mediarouter-v7:24.0.0] C:\Users\LJTat\.android\build-cache\186a5511855cc137dcba7583e337c86c393626bb\output\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:palette-v7:24.0.0] C:\Users\LJTat\.android\build-cache\1f9ef5fc239f4af67c4e80619241b9bdb9b60ae7\output\AndroidManifest.xml:20:5-43
 MERGED from [com.google.android.gms:play-services-clearcut:10.2.0] C:\Users\LJTat\.android\build-cache\2bbd0f07df73db036fc8d441888d6d5f753a3cba\output\AndroidManifest.xml:17:5-43
 MERGED from [com.google.firebase:firebase-config:10.2.0] C:\Users\LJTat\.android\build-cache\e05f0a04c49efe308bf4d22885b1474ac3a51e36\output\AndroidManifest.xml:17:5-43
 MERGED from [com.google.android.gms:play-services-awareness:10.2.0] C:\Users\LJTat\.android\build-cache\108788eea70989656e9f168f5b0f5761234fa3bd\output\AndroidManifest.xml:17:5-43
@@ -253,26 +253,44 @@ MERGED from [com.google.firebase:firebase-iid:10.2.0] C:\Users\LJTat\.android\bu
 MERGED from [com.google.firebase:firebase-common:10.2.0] C:\Users\LJTat\.android\build-cache\a62583ad1b032d187558d1a34becbc4ee3825591\output\AndroidManifest.xml:3:5-43
 MERGED from [com.google.android.gms:play-services-tasks:10.2.0] C:\Users\LJTat\.android\build-cache\78ac404771fdb2ce72295c317c21a06c80ddfc2c\output\AndroidManifest.xml:3:5-43
 MERGED from [com.google.android.gms:play-services-basement:10.2.0] C:\Users\LJTat\.android\build-cache\de4acd94adb98259b675888cc964c228d7ba4391\output\AndroidManifest.xml:17:5-43
-MERGED from [com.android.support:design:25.1.1] C:\Users\LJTat\.android\build-cache\a192d6cece43ab7edb0c5c51b79399464c92babd\output\AndroidManifest.xml:21:5-23:62
-MERGED from [com.android.support:appcompat-v7:25.1.1] C:\Users\LJTat\.android\build-cache\1ad41ecfac48b9f4f4d5bd90e1a3c5649e6fbc43\output\AndroidManifest.xml:21:5-23:78
-MERGED from [com.android.support:animated-vector-drawable:25.1.1] C:\Users\LJTat\.android\build-cache\164e8351039f7177fbca0466ffeef7409b393a8f\output\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-vector-drawable:25.1.1] C:\Users\LJTat\.android\build-cache\44591a4d0e218e39713380c1b6704c42b9c97004\output\AndroidManifest.xml:21:5-43
-MERGED from [com.android.support:recyclerview-v7:25.1.1] C:\Users\LJTat\.android\build-cache\5e3aec1729fd0fecb8e8794fdfea7dd6b03b173b\output\AndroidManifest.xml:20:5-43
-MERGED from [com.android.support:transition:25.1.1] C:\Users\LJTat\.android\build-cache\d2d02eb8ce5ddd371990580422976bece6c8db45\output\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-v4:25.1.1] C:\Users\LJTat\.android\build-cache\01288f5d2312fa1a15387b013d0210c55f187086\output\AndroidManifest.xml:21:5-23:54
-MERGED from [com.android.support:support-fragment:25.1.1] C:\Users\LJTat\.android\build-cache\013e6e471d4305eb162ea117df5877e2e86ce902\output\AndroidManifest.xml:21:5-23:60
-MERGED from [com.android.support:support-media-compat:25.1.1] C:\Users\LJTat\.android\build-cache\1d008486023f1aa20b357bb798ca71c5e1d1312d\output\AndroidManifest.xml:21:5-23:63
-MERGED from [com.android.support:support-core-ui:25.1.1] C:\Users\LJTat\.android\build-cache\7d0f00e69ab73eece89069b8453b007d2eb182eb\output\AndroidManifest.xml:21:5-23:58
-MERGED from [com.android.support:support-core-utils:25.1.1] C:\Users\LJTat\.android\build-cache\707354740e45e33c6db410316f5c1d8db78dded9\output\AndroidManifest.xml:21:5-23:61
-MERGED from [com.android.support:support-compat:25.1.1] C:\Users\LJTat\.android\build-cache\56133087f78c21fa9183635e5ca3141566b2ab37\output\AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:design:25.3.1] C:\Users\LJTat\.android\build-cache\6319d9ff6b7eba76accbb9489360bbeadf00a8d5\output\AndroidManifest.xml:21:5-23:62
+MERGED from [com.android.support:appcompat-v7:25.3.1] C:\Users\LJTat\.android\build-cache\e5da2550a400292022685482f0d29900859fea11\output\AndroidManifest.xml:21:5-23:78
+MERGED from [com.android.support:animated-vector-drawable:25.3.1] C:\Users\LJTat\.android\build-cache\1c4610991aa755e211e8ebb9e38d2857419ad1aa\output\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:25.3.1] C:\Users\LJTat\.android\build-cache\62f0dbd50cac78b8ba647d2fd06110866db7e832\output\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:recyclerview-v7:25.3.1] C:\Users\LJTat\.android\build-cache\27cae0c7b33b864dad1cbdda41b3f1f2f21ad35d\output\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:transition:25.3.1] C:\Users\LJTat\.android\build-cache\94d3aea5f7979853a49e38a62c638db2863ed8d7\output\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-v4:25.3.1] C:\Users\LJTat\.android\build-cache\62a36b4b8af126fffa387f309e47228324a9d341\output\AndroidManifest.xml:21:5-23:54
+MERGED from [com.android.support:support-fragment:25.3.1] C:\Users\LJTat\.android\build-cache\0167510dad911e2e8ac512d6df6c23c8621f9023\output\AndroidManifest.xml:21:5-23:60
+MERGED from [com.android.support:support-media-compat:25.3.1] C:\Users\LJTat\.android\build-cache\df09458c4595d9388247732f01a1e23b32422cce\output\AndroidManifest.xml:21:5-23:63
+MERGED from [com.android.support:support-core-ui:25.3.1] C:\Users\LJTat\.android\build-cache\b3009be5587027fe0a387abe5e8b004e4888ab71\output\AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-core-utils:25.3.1] C:\Users\LJTat\.android\build-cache\04960c47ff9ae9f06dd3e4971b6773ba1e577a55\output\AndroidManifest.xml:21:5-23:61
+MERGED from [com.android.support:support-compat:25.3.1] C:\Users\LJTat\.android\build-cache\86210f1c984d1357264ee6c3527de8815d7e616a\output\AndroidManifest.xml:21:5-23:58
 	tools:overrideLibrary
-		ADDED from [com.android.support:design:25.1.1] C:\Users\LJTat\.android\build-cache\a192d6cece43ab7edb0c5c51b79399464c92babd\output\AndroidManifest.xml:23:9-59
+		ADDED from [com.android.support:design:25.3.1] C:\Users\LJTat\.android\build-cache\6319d9ff6b7eba76accbb9489360bbeadf00a8d5\output\AndroidManifest.xml:23:9-59
 	android:targetSdkVersion
 		INJECTED from C:\AndroidStudio\Publish Workspace\TipCalculator\app\src\main\AndroidManifest.xml
 		INJECTED from C:\AndroidStudio\Publish Workspace\TipCalculator\app\src\main\AndroidManifest.xml
 	android:minSdkVersion
 		INJECTED from C:\AndroidStudio\Publish Workspace\TipCalculator\app\src\main\AndroidManifest.xml
 		INJECTED from C:\AndroidStudio\Publish Workspace\TipCalculator\app\src\main\AndroidManifest.xml
+meta-data#android.support.VERSION
+ADDED from [com.android.support:cardview-v7:25.3.1] C:\Users\LJTat\.android\build-cache\03bc59417816e7595c1a4d8454a49954cddcb34c\output\AndroidManifest.xml:22:5-24:34
+MERGED from [com.android.support:design:25.3.1] C:\Users\LJTat\.android\build-cache\6319d9ff6b7eba76accbb9489360bbeadf00a8d5\output\AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:appcompat-v7:25.3.1] C:\Users\LJTat\.android\build-cache\e5da2550a400292022685482f0d29900859fea11\output\AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:animated-vector-drawable:25.3.1] C:\Users\LJTat\.android\build-cache\1c4610991aa755e211e8ebb9e38d2857419ad1aa\output\AndroidManifest.xml:22:5-24:34
+MERGED from [com.android.support:support-vector-drawable:25.3.1] C:\Users\LJTat\.android\build-cache\62f0dbd50cac78b8ba647d2fd06110866db7e832\output\AndroidManifest.xml:22:5-24:34
+MERGED from [com.android.support:recyclerview-v7:25.3.1] C:\Users\LJTat\.android\build-cache\27cae0c7b33b864dad1cbdda41b3f1f2f21ad35d\output\AndroidManifest.xml:22:5-24:34
+MERGED from [com.android.support:transition:25.3.1] C:\Users\LJTat\.android\build-cache\94d3aea5f7979853a49e38a62c638db2863ed8d7\output\AndroidManifest.xml:22:5-24:34
+MERGED from [com.android.support:support-v4:25.3.1] C:\Users\LJTat\.android\build-cache\62a36b4b8af126fffa387f309e47228324a9d341\output\AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-fragment:25.3.1] C:\Users\LJTat\.android\build-cache\0167510dad911e2e8ac512d6df6c23c8621f9023\output\AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-media-compat:25.3.1] C:\Users\LJTat\.android\build-cache\df09458c4595d9388247732f01a1e23b32422cce\output\AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-core-ui:25.3.1] C:\Users\LJTat\.android\build-cache\b3009be5587027fe0a387abe5e8b004e4888ab71\output\AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-core-utils:25.3.1] C:\Users\LJTat\.android\build-cache\04960c47ff9ae9f06dd3e4971b6773ba1e577a55\output\AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-compat:25.3.1] C:\Users\LJTat\.android\build-cache\86210f1c984d1357264ee6c3527de8815d7e616a\output\AndroidManifest.xml:25:5-27:34
+	android:value
+		ADDED from [com.android.support:cardview-v7:25.3.1] C:\Users\LJTat\.android\build-cache\03bc59417816e7595c1a4d8454a49954cddcb34c\output\AndroidManifest.xml:24:9-31
+	android:name
+		ADDED from [com.android.support:cardview-v7:25.3.1] C:\Users\LJTat\.android\build-cache\03bc59417816e7595c1a4d8454a49954cddcb34c\output\AndroidManifest.xml:23:9-47
 activity#com.google.android.gms.ads.purchase.InAppPurchaseActivity
 ADDED from [com.google.android.gms:play-services-ads-lite:10.2.0] C:\Users\LJTat\.android\build-cache\f0ad67c28b78974a9a224335e38b9c81d97e38fa\output\AndroidManifest.xml:26:9-131
 	android:theme

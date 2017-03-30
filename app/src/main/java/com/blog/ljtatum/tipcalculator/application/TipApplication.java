@@ -23,8 +23,5 @@ public class TipApplication extends Application {
         Crashlytics crashlyticsKit = new Crashlytics.Builder()
                 .core(new CrashlyticsCore.Builder().disabled(BuildConfig.DEBUG).build()).build();
         Fabric.with(this, crashlyticsKit);
-        // instantiate app rating utility class
-        new AppRaterUtil(this);
-
     }
 }
