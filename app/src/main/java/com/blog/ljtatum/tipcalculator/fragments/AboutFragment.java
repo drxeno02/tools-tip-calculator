@@ -59,7 +59,7 @@ public class AboutFragment extends BaseFragment implements View.OnClickListener 
         ivBack = (ImageView) mRootView.findViewById(R.id.iv_back);
 
         // set fragment header
-        tvFragmentHeader.setText("About");
+        tvFragmentHeader.setText(getResources().getString(R.string.about));
         // set app version
         tvAppVersion.setText(BuildConfig.VERSION_NAME);
         // set copyright year

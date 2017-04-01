@@ -46,7 +46,7 @@ public class PrivacyFragment extends BaseFragment implements View.OnClickListene
         ivBack = (ImageView) mRootView.findViewById(R.id.iv_back);
 
         // set fragment header
-        tvFragmentHeader.setText("Privacy");
+        tvFragmentHeader.setText(getResources().getString(R.string.privacy));
     }
 
     /**
