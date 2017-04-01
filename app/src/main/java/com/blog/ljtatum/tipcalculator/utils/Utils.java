@@ -1,13 +1,21 @@
 package com.blog.ljtatum.tipcalculator.utils;
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Build;
 import android.os.IBinder;
 import android.os.SystemClock;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+
+import com.blog.ljtatum.tipcalculator.enums.Enum;
+
+import java.util.List;
 
 /**
  * Created by LJTat on 2/23/2017.

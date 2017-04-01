@@ -1,26 +1,21 @@
 package com.blog.ljtatum.tipcalculator.activity;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.content.pm.ActivityInfo;
-import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
 import android.hardware.Sensor;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Parcelable;
 import android.os.Vibrator;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
-import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -38,14 +33,19 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.RatingBar;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
-import android.widget.ToggleButton;
 
 import com.blog.ljtatum.tipcalculator.constants.Constants;
+import com.blog.ljtatum.tipcalculator.fragments.AboutFragment;
+import com.blog.ljtatum.tipcalculator.fragments.GuideFragment;
+import com.blog.ljtatum.tipcalculator.fragments.HistoryFragment;
+import com.blog.ljtatum.tipcalculator.fragments.PrivacyFragment;
+import com.blog.ljtatum.tipcalculator.fragments.SettingsFragment;
+import com.blog.ljtatum.tipcalculator.fragments.ShareFragment;
+import com.blog.ljtatum.tipcalculator.sharedpref.SharedPref;
 import com.blog.ljtatum.tipcalculator.utils.AppRaterUtil;
 import com.blog.ljtatum.tipcalculator.R;
 import com.blog.ljtatum.tipcalculator.listeners.ShakeEventListener;
@@ -56,8 +56,7 @@ import com.google.android.gms.ads.AdView;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
+import java.util.Random;
 
 import de.keyboardsurfer.android.widget.crouton.Crouton;
 import de.keyboardsurfer.android.widget.crouton.Style;
@@ -65,7 +64,7 @@ import de.keyboardsurfer.android.widget.crouton.Style;
 /**
  * Created by LJTat on 2/23/2017.
  */
-public class MainActivity extends AppCompatActivity implements OnClickListener,
+public class MainActivity extends BaseFragmentActivity implements OnClickListener,
         NavigationView.OnNavigationItemSelectedListener{
     public static String TAG = MainActivity.class.getSimpleName();
 
@@ -77,6 +76,13 @@ public class MainActivity extends AppCompatActivity implements OnClickListener,
     private int intSelected;
     private int integerPlaces; // track number of integers in editText
     private int decimalPlaces; // track number of decimals in editText
+    private static final int[] ARRY_DRAWER_ICONS = {R.drawable.food_01, R.drawable.food_02,
+            R.drawable.food_03, R.drawable.food_04, R.drawable.food_05, R.drawable.food_06,
+            R.drawable.food_07, R.drawable.food_08, R.drawable.food_09, R.drawable.food_10,
+            R.drawable.food_11, R.drawable.food_12, R.drawable.food_13, R.drawable.food_14,
+            R.drawable.food_15, R.drawable.food_16, R.drawable.food_17, R.drawable.food_18,
+            R.drawable.food_19, R.drawable.food_20, R.drawable.food_21, R.drawable.food_22,
+            R.drawable.food_23};
 
     private double doubleBill, temp1, temp2, temp3, temp4, temp5;
     private boolean clear, specialCase;
@@ -106,11 +112,13 @@ public class MainActivity extends AppCompatActivity implements OnClickListener,
 
     private Spinner spinner;
     private Switch mSwitch;
+    private DrawerLayout mDrawer;
 
-    private ArrayList<String> stringArray = new ArrayList<String>();
+    private ArrayList<String> alSpinnerItems;
     private SensorManager mSensorManager;
     private ShakeEventListener mSensorListener;
     private Vibrator v;
+    private SharedPref mSharedPref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -124,6 +132,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener,
         // initialize views and listeners
         initializeViews();
         initializeHandlers();
+        initializeListeners();
     }
 
     /**
@@ -131,6 +140,8 @@ public class MainActivity extends AppCompatActivity implements OnClickListener,
      */
     private void initializeViews() {
         mContext = MainActivity.this;
+        alSpinnerItems = new ArrayList<>();
+        mSharedPref = new SharedPref(mContext, Constants.PREF_FILE_NAME);
 
         // rate this app
         new AppRaterUtil(mContext);
@@ -154,17 +165,19 @@ public class MainActivity extends AppCompatActivity implements OnClickListener,
         btnInc = (Button) findViewById(R.id.btn_inc);
         btnDec = (Button) findViewById(R.id.btn_dec);
         tvValue = (TextView) findViewById(R.id.tv_meta_num);
+
         // spinner
         tvService = (TextView) findViewById(R.id.tv_meta_rating);
         tvPercent = (TextView) findViewById(R.id.tv_meta_percent);
         spinner = (Spinner) findViewById(R.id.spinner);
         populateSpinner();
+
         // drawer
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        mDrawer= (DrawerLayout) findViewById(R.id.drawer_layout);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
+                this, mDrawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        mDrawer.addDrawerListener(toggle);
         toggle.syncState();
 
         // instantiate vibrator
@@ -214,6 +227,17 @@ public class MainActivity extends AppCompatActivity implements OnClickListener,
         ivStar4.setOnClickListener(this);
         ivStar5.setOnClickListener(this);
 
+        // navigation drawer
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+        navigationView.setItemIconTintList(null);
+        setupDrawerIcons(navigationView);
+    }
+
+    /**
+     * Method is used to initialize listeners and callbacks
+     */
+    private void initializeListeners() {
         // set on shake listener
         mSensorListener.setOnShakeListener(new ShakeEventListener.OnShakeListener() {
             @Override
@@ -271,6 +295,61 @@ public class MainActivity extends AppCompatActivity implements OnClickListener,
                 calculate();
             }
         });
+    }
+
+    /**
+     * Method is used to setup drawer icons
+     */
+    private void setupDrawerIcons(NavigationView navigationView) {
+        Menu menu = navigationView.getMenu();
+        if (mSharedPref.getIntPref(Constants.KEY_DRAWER_ICON_A, 0) >= 0 &&
+                mSharedPref.getIntPref(Constants.KEY_DRAWER_ICON_B, 0) > 0 &&
+                mSharedPref.getIntPref(Constants.KEY_DRAWER_ICON_C, 0) > 0 &&
+                mSharedPref.getIntPref(Constants.KEY_DRAWER_ICON_D, 0) > 0) {
+            // setup menu icons
+            for (int i = 0; i < menu.size(); i++) {
+                if (i == 0) {
+                    menu.findItem(R.id.nav_guide).setIcon(ARRY_DRAWER_ICONS[
+                            mSharedPref.getIntPref(Constants.KEY_DRAWER_ICON_A, 0)]);
+                } else if (i == 1) {
+                    menu.findItem(R.id.nav_settings).setIcon(ARRY_DRAWER_ICONS[
+                            mSharedPref.getIntPref(Constants.KEY_DRAWER_ICON_B, 0)]);
+                } else if (i == 2) {
+                    menu.findItem(R.id.nav_history).setIcon(ARRY_DRAWER_ICONS[
+                            mSharedPref.getIntPref(Constants.KEY_DRAWER_ICON_C, 0)]);
+                } else if (i == 3) {
+                    menu.findItem(R.id.nav_share).setIcon(ARRY_DRAWER_ICONS[
+                            mSharedPref.getIntPref(Constants.KEY_DRAWER_ICON_D, 0)]);
+                }
+            }
+        } else {
+            // setup menu icons
+            Random rand = new Random();
+            int pos;
+            for (int i = 0; i < menu.size(); i++) {
+                if (i == 0) {
+                    pos = rand.nextInt(5);
+                    menu.findItem(R.id.nav_guide).setIcon(ARRY_DRAWER_ICONS[pos]);
+                    // save icons to shared prefs
+                    mSharedPref.setPref(Constants.KEY_DRAWER_ICON_A, pos);
+                } else if (i == 1) {
+                    pos = (rand.nextInt(5) + 6);
+                    menu.findItem(R.id.nav_settings).setIcon(ARRY_DRAWER_ICONS[pos]);
+                    // save icons to shared prefs
+                    mSharedPref.setPref(Constants.KEY_DRAWER_ICON_B, pos);
+                } else if (i == 2) {
+                    pos = (rand.nextInt(5) + 12);
+                    menu.findItem(R.id.nav_history).setIcon(ARRY_DRAWER_ICONS[pos]);
+                    // save icons to shared prefs
+                    mSharedPref.setPref(Constants.KEY_DRAWER_ICON_C, pos);
+                } else if (i == 3) {
+                    pos = (rand.nextInt(5) + (ARRY_DRAWER_ICONS.length - 6));
+                    menu.findItem(R.id.nav_share).setIcon(ARRY_DRAWER_ICONS[pos]);
+                    // save icons to shared prefs
+                    mSharedPref.setPref(Constants.KEY_DRAWER_ICON_D, pos);
+                }
+            }
+        }
     }
 
     /**
@@ -384,44 +463,44 @@ public class MainActivity extends AppCompatActivity implements OnClickListener,
 
         // setup spinner configurations
         spinner.setAdapter(null); // make sure spinner is empty
-        stringArray.clear(); // make sure arrayList is empty
+        alSpinnerItems.clear(); // make sure arrayList is empty
 
-        stringArray.add("0%");
-        stringArray.add("1%");
-        stringArray.add("2%");
-        stringArray.add("3%");
-        stringArray.add("4%");
-        stringArray.add("5% Poor");
-        stringArray.add("6%");
-        stringArray.add("7%");
-        stringArray.add("8%");
-        stringArray.add("9%");
-        stringArray.add("10% Fair");
-        stringArray.add("11%");
-        stringArray.add("12%");
-        stringArray.add("13%");
-        stringArray.add("14%");
-        stringArray.add("15% Good!");
-        stringArray.add("16%");
-        stringArray.add("17%");
-        stringArray.add("18%");
-        stringArray.add("19%");
-        stringArray.add("20% Great!");
-        stringArray.add("21%");
-        stringArray.add("22%");
-        stringArray.add("23%");
-        stringArray.add("24%");
-        stringArray.add("25% Royal!");
-        stringArray.add("26%");
-        stringArray.add("27%");
-        stringArray.add("28%");
-        stringArray.add("29%");
-        stringArray.add("30%");
+        alSpinnerItems.add("0%");
+        alSpinnerItems.add("1%");
+        alSpinnerItems.add("2%");
+        alSpinnerItems.add("3%");
+        alSpinnerItems.add("4%");
+        alSpinnerItems.add("5% Poor");
+        alSpinnerItems.add("6%");
+        alSpinnerItems.add("7%");
+        alSpinnerItems.add("8%");
+        alSpinnerItems.add("9%");
+        alSpinnerItems.add("10% Fair");
+        alSpinnerItems.add("11%");
+        alSpinnerItems.add("12%");
+        alSpinnerItems.add("13%");
+        alSpinnerItems.add("14%");
+        alSpinnerItems.add("15% Good!");
+        alSpinnerItems.add("16%");
+        alSpinnerItems.add("17%");
+        alSpinnerItems.add("18%");
+        alSpinnerItems.add("19%");
+        alSpinnerItems.add("20% Great!");
+        alSpinnerItems.add("21%");
+        alSpinnerItems.add("22%");
+        alSpinnerItems.add("23%");
+        alSpinnerItems.add("24%");
+        alSpinnerItems.add("25% Royal!");
+        alSpinnerItems.add("26%");
+        alSpinnerItems.add("27%");
+        alSpinnerItems.add("28%");
+        alSpinnerItems.add("29%");
+        alSpinnerItems.add("30%");
 
         // create ArrayAdapter
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
                 MainActivity.this, android.R.layout.simple_spinner_item,
-                stringArray);
+                alSpinnerItems);
 
         arrayAdapter
                 .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -587,156 +666,6 @@ public class MainActivity extends AppCompatActivity implements OnClickListener,
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-
-    /**
-     * Method is used to share via email, facebook and twitter
-     * @return
-     */
-    private Intent shareIntent() {
-        List<Intent> targetedShareIntents = new ArrayList<Intent>();
-        Intent shareIntent = new Intent(Intent.ACTION_SEND_MULTIPLE);
-        shareIntent.setType("text/plain");
-
-        String shareMsg = "Check out this great tip calculator app "
-                + "developed by Leonard Tatum and Kazuya Shibuta! "
-                + "http://play.google.com/store/apps/details?id=com.blog.ljtatum.tipcalculator";
-
-        String emailMsg = "Hello Leonard Tatum and Kazuya Shibuta, "
-                + "I have something to tell you about your application....\n\n";
-
-        PackageManager pm = getPackageManager();
-        List<ResolveInfo> activityList = pm.queryIntentActivities(shareIntent, 0);
-        for (final ResolveInfo app : activityList) {
-            String packageName = app.activityInfo.packageName;
-            Intent targetedShareIntent = new Intent(
-                    android.content.Intent.ACTION_SEND_MULTIPLE);
-            targetedShareIntent.setType("text/plain");
-            targetedShareIntent.putExtra(android.content.Intent.EXTRA_SUBJECT,
-                    "Tip Calculator");
-
-            if (TextUtils.equals(packageName, "com.google.android.gm")) {
-                targetedShareIntent.putExtra(
-                        android.content.Intent.EXTRA_EMAIL, new String[]{
-                                "ljtatum@hotmail.com",
-                                "kazuyashibuta@gmail.com"});
-                targetedShareIntent.putExtra(android.content.Intent.EXTRA_TEXT,
-                        emailMsg);
-            } else if (TextUtils.equals(packageName, "com.android.email")) {
-                targetedShareIntent.putExtra(
-                        android.content.Intent.EXTRA_EMAIL, new String[]{
-                                "ljtatum@hotmail.com",
-                                "kazuyashibuta@gmail.com"});
-                targetedShareIntent.putExtra(android.content.Intent.EXTRA_TEXT,
-                        emailMsg);
-            } else if (TextUtils.equals(packageName, "com.android.mms")) {
-                targetedShareIntent.putExtra(android.content.Intent.EXTRA_TEXT,
-                        shareMsg);
-            }
-
-            targetedShareIntent.setPackage(packageName);
-            targetedShareIntents.add(targetedShareIntent);
-        }
-
-        Intent facebookIntent = getShareIntent("facebook", "Tip Calculator",
-                shareMsg);
-        if (facebookIntent != null)
-            targetedShareIntents.add(facebookIntent);
-
-        Intent twitterIntent = getShareIntent("twitter", "Tip Calculator",
-                shareMsg);
-        if (twitterIntent != null)
-            targetedShareIntents.add(twitterIntent);
-
-        Intent chooserIntent = Intent.createChooser(
-                targetedShareIntents.remove(0), "Share via");
-        chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS,
-                targetedShareIntents.toArray(new Parcelable[targetedShareIntents.size()]));
-        startActivity(chooserIntent);
-        return shareIntent;
-    }
-
-    /**
-     * Method is used to retrieve share intent
-     * @param type
-     * @param subject
-     * @param text
-     * @return
-     */
-    private Intent getShareIntent(String type, String subject, String text) {
-        boolean found = false;
-        Intent share = new Intent(android.content.Intent.ACTION_SEND);
-        share.setType("text/plain");
-
-        // gets the list of intents that can be loaded.
-        List<ResolveInfo> resInfo = this.getPackageManager()
-                .queryIntentActivities(share, 0);
-        System.out.println("resinfo: " + resInfo);
-        if (!resInfo.isEmpty()) {
-            for (ResolveInfo info : resInfo) {
-                if (info.activityInfo.packageName.toLowerCase(Locale.US).contains(type)
-                        || info.activityInfo.name.toLowerCase(Locale.US).contains(type)) {
-                    share.putExtra(Intent.EXTRA_SUBJECT, subject);
-                    share.putExtra(Intent.EXTRA_TEXT, text);
-                    share.setPackage(info.activityInfo.packageName);
-                    found = true;
-                    break;
-                }
-            }
-            if (!found)
-                return null;
-            return share;
-        }
-        return null;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle item selection
-        switch (item.getItemId()) {
-            case R.id.share:
-                shareIntent();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
-
-    @Override
-    public void onPause() {
-        adView.pause();
-        mSensorManager.unregisterListener(mSensorListener);
-        super.onPause();
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        adView.resume();
-        mSensorManager.registerListener(mSensorListener,
-                mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
-                SensorManager.SENSOR_DELAY_UI);
-    }
-
-    @Override
-    public void onDestroy() {
-        if (adView != null) {
-            // destroy the adview
-            adView.destroy();
-        }
-        super.onDestroy();
-    }
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-    }
-
-    @Override
     public void onClick(View view) {
         if (!Utils.isViewClickable()) {
             return;
@@ -783,11 +712,74 @@ public class MainActivity extends AppCompatActivity implements OnClickListener,
             default:
                 break;
         }
-
     }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        Fragment fragment = null;
+        switch (item.getItemId()) {
+            case R.id.nav_guide:
+                fragment = new GuideFragment();
+                break;
+            case R.id.nav_settings:
+                fragment = new SettingsFragment();
+                break;
+            case R.id.nav_history:
+                fragment = new HistoryFragment();
+                break;
+            case R.id.nav_share:
+                fragment = new ShareFragment();
+                break;
+            case R.id.nav_about:
+                fragment = new AboutFragment();
+                break;
+            case R.id.nav_privacy:
+                fragment = new PrivacyFragment();
+                break;
+            default:
+                break;
+        }
+        // add fragment
+        if (!Utils.checkIfNull(fragment)) {
+            addFragment(fragment);
+        }
+
+        // close drawer after selection
+        mDrawer.closeDrawer(GravityCompat.START);
         return false;
+    }
+
+    @Override
+    public void onPause() {
+        adView.pause();
+        if (!Utils.checkIfNull(mSensorManager) && !Utils.checkIfNull(mSensorListener)) {
+            mSensorManager.unregisterListener(mSensorListener);
+        }
+        super.onPause();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        adView.resume();
+        if (!Utils.checkIfNull(mSensorManager) && !Utils.checkIfNull(mSensorListener)) {
+            mSensorManager.registerListener(mSensorListener,
+                    mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
+                    SensorManager.SENSOR_DELAY_UI);
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        if (!Utils.checkIfNull(adView)) {
+            // destroy the adview
+            adView.destroy();
+        }
+        super.onDestroy();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 }

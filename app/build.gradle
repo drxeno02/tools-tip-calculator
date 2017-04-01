@@ -14,9 +14,15 @@ repositories {
     maven { url 'https://maven.fabric.io/public' }
 }
 
+// top-level build file to help synchronize library versions
+ext {
+    supportLib = "25.3.1"
+    googleLib = "10.2.0"
+}
+
 android {
     compileSdkVersion 25
-    buildToolsVersion '25.0.1'
+    buildToolsVersion '25.0.2'
 
     // construct version name
     def versionMajor = 2
@@ -91,11 +97,12 @@ dependencies {
     compile('com.crashlytics.sdk.android:crashlytics:2.6.6@aar') {
         transitive = true;
     }
-    compile 'com.android.support:support-v4:25.1.1'
-    compile 'com.android.support:appcompat-v7:25.1.1'
-    compile 'com.google.android.gms:play-services:10.2.0'
-    compile 'com.google.firebase:firebase-core:10.2.0'
-    compile 'com.android.support:design:25.1.1'
+    compile "com.android.support:cardview-v7:${supportLib}"
+    compile "com.android.support:support-v4:${supportLib}"
+    compile "com.android.support:appcompat-v7:${supportLib}"
+    compile "com.google.android.gms:play-services:${googleLib}"
+    compile "com.google.firebase:firebase-core:${googleLib}"
+    compile "com.android.support:design:${supportLib}"
 }
 
 apply plugin: 'com.google.gms.google-services'

@@ -1,7 +1,7 @@
-#Tue Feb 28 00:08:19 PST 2017
-base.0=C\:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\transforms\\dex\\crashlyticsTest\\debug\\folders\\1000\\10\\instant-run-bootstrap_e3e6903c7cfc5d482a840b45d330e91071c4f1cf
-renamed.1=classes2.dex
-renamed.0=classes.dex
-file.1=C\:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\transforms\\dex\\crashlyticsTest\\debug\\folders\\1000\\10\\instant-run_39d2d95be81eb79f8ed9891544ff7280347088ae\\classes.dex
-base.1=C\:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\transforms\\dex\\crashlyticsTest\\debug\\folders\\1000\\10\\instant-run_39d2d95be81eb79f8ed9891544ff7280347088ae
-file.0=C\:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\transforms\\dex\\crashlyticsTest\\debug\\folders\\1000\\10\\instant-run-bootstrap_e3e6903c7cfc5d482a840b45d330e91071c4f1cf\\classes.dex
+#Sat Apr 01 11:50:58 PDT 2017
+base.0=C\:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\transforms\\dex\\crashlyticsTest\\debug\\folders\\1000\\10000\\instant-run-bootstrap_e3e6903c7cfc5d482a840b45d330e91071c4f1cf
+renamed.1=classes.dex
+renamed.0=classes2.dex
+file.1=C\:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\transforms\\dex\\crashlyticsTest\\debug\\folders\\1000\\10000\\instant-run_39d2d95be81eb79f8ed9891544ff7280347088ae\\classes.dex
+base.1=C\:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\transforms\\dex\\crashlyticsTest\\debug\\folders\\1000\\10000\\instant-run_39d2d95be81eb79f8ed9891544ff7280347088ae
+file.0=C\:\\AndroidStudio\\Publish Workspace\\TipCalculator\\app\\build\\intermediates\\transforms\\dex\\crashlyticsTest\\debug\\folders\\1000\\10000\\instant-run-bootstrap_e3e6903c7cfc5d482a840b45d330e91071c4f1cf\\classes.dex

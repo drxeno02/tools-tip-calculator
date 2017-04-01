@@ -21,7 +21,9 @@
         android:smallScreens="true"
         android:xlargeScreens="false" />
 
-    <!-- Optional permission for Analytics to run. -->
+    <meta-data
+        android:name="android.support.VERSION"
+        android:value="25.3.1" /> <!-- Optional permission for Analytics to run. -->
     <uses-permission android:name="android.permission.WAKE_LOCK" /> <!-- Permissions required for GCM -->
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
 
@@ -36,8 +38,7 @@
     <uses-permission android:name="com.blog.ljtatum.tipcalculator.debug.permission.C2D_MESSAGE" />
 
     <application
-        name="com.blog.ljtatum.tipcalculator.application.TipApplication"
-        android:name="com.android.tools.fd.runtime.BootstrapApplication"
+        android:name="com.blog.ljtatum.tipcalculator.application.TipApplication"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
@@ -190,6 +191,10 @@ Service handling Google Sign-In user revocation. For apps that do not integrate 
             android:authorities="com.blog.ljtatum.tipcalculator.debug.firebaseinitprovider"
             android:exported="false"
             android:initOrder="100" />
+
+        <service
+            android:name="com.android.tools.fd.runtime.InstantRunService"
+            android:exported="true" />
     </application>
 
 </manifest>
