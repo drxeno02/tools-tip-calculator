@@ -15,6 +15,8 @@ import android.view.inputmethod.InputMethodManager;
 
 import com.blog.ljtatum.tipcalculator.enums.Enum;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.List;
 
 /**
@@ -147,5 +149,20 @@ public class Utils {
     public static void hideKeyboard(Context context, IBinder binder) {
         InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(binder, 0);
+    }
+
+    /**
+     * Method is used to encode an url string
+     *
+     * @param str
+     * @return
+     */
+    public static String urlEncode(String str) {
+        try {
+            return URLEncoder.encode(str, "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+            throw new RuntimeException("URLEncoder.encode() failed for " + str);
+        }
     }
 }

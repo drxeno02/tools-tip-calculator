@@ -97,13 +97,13 @@ public class AboutFragment extends BaseFragment implements View.OnClickListener 
                 popBackStack();
                 break;
             case R.id.iv_fb:
-                ShareUtils.openSocialMediaViaIntent(mContext, Enum.SocialMedia.FB);
+                ShareUtils.openSocialMediaViaIntent(mContext, Enum.SocialMedia.FB, true);
                 break;
             case R.id.iv_twitter:
-                ShareUtils.openSocialMediaViaIntent(mContext, Enum.SocialMedia.TWITTER);
+                ShareUtils.openSocialMediaViaIntent(mContext, Enum.SocialMedia.TWITTER, true);
                 break;
             case R.id.iv_linkedin:
-                ShareUtils.openSocialMediaViaIntent(mContext, Enum.SocialMedia.LINKEDIN);
+                ShareUtils.openSocialMediaViaIntent(mContext, Enum.SocialMedia.LINKEDIN, true);
                 break;
             default:
                 break;

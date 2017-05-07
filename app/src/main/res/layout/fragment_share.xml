@@ -28,35 +28,17 @@
             android:textSize="@dimen/font_size_24" />
 
         <TextView
-            android:id="@+id/tv_app_version"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:textColor="@color/black"
-            android:textSize="@dimen/font_size_16" />
-
-        <TextView
-            android:id="@+id/tv_copyright"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:gravity="center"
-            android:text="@string/copyright_year"
-            android:textColor="@color/black"
-            android:textSize="@dimen/font_size_18" />
-
-        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:gravity="center"
-            android:text="@string/about_desc"
+            android:text="@string/share_desc"
             android:textColor="@color/black"
             android:textSize="@dimen/font_size_18" />
 
     </LinearLayout>
 
-    <!-- follow me -->
+    <!-- share -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -65,7 +47,7 @@
         android:layout_marginRight="10dp"
         android:layout_marginStart="10dp"
         android:layout_marginTop="20dp"
-        android:text="@string/follow_me"
+        android:text="@string/spread_word"
         android:textColor="@color/black"
         android:textSize="@dimen/font_size_18" />
 
@@ -77,7 +59,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:gravity="center"
         android:orientation="horizontal"
         android:weightSum="1">
@@ -104,19 +86,5 @@
             android:src="@drawable/linkedin_01" />
 
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/tv_feedback_email"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="20dp"
-        android:gravity="center"
-        android:text="@string/feedback_email"
-        android:textColor="@color/black"
-        android:textSize="@dimen/font_size_18" />
 
 </LinearLayout>

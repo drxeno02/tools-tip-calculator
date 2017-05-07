@@ -17,7 +17,7 @@ repositories {
 // top-level build file to help synchronize library versions
 ext {
     supportLib = "25.3.1"
-    googleLib = "10.2.0"
+    googleLib = "10.2.4"
 }
 
 android {
@@ -33,7 +33,7 @@ android {
     defaultConfig {
         applicationId "com.blog.ljtatum.tipcalculator"
         versionName "${versionMajor}.${versionMinor}.${versionPatch}"
-        minSdkVersion 14
+        minSdkVersion 15
         targetSdkVersion 25
         versionCode code
 
@@ -103,6 +103,7 @@ dependencies {
     compile "com.google.android.gms:play-services:${googleLib}"
     compile "com.google.firebase:firebase-core:${googleLib}"
     compile "com.android.support:design:${supportLib}"
+    compile 'com.facebook.android:facebook-android-sdk:4.+'
 }
 
 apply plugin: 'com.google.gms.google-services'
