@@ -5,6 +5,7 @@ import android.support.v4.app.FragmentTransaction;
 
 import com.blog.ljtatum.tipcalculator.R;
 import com.blog.ljtatum.tipcalculator.utils.Utils;
+import com.udi.app.framework.utilities.FrameworkUtils;
 
 /**
  * Created by LJTat on 3/3/2017.
@@ -19,7 +20,7 @@ public class BaseFragment extends Fragment {
      * returns to its event loop.
      */
     public void popBackStack() {
-        if (!Utils.checkIfNull(getActivity())) {
+        if (!FrameworkUtils.checkIfNull(getActivity())) {
             try {
                 getActivity().getSupportFragmentManager().popBackStack();
             } catch (Exception e) {
@@ -32,7 +33,7 @@ public class BaseFragment extends Fragment {
      * Method for removing the Fragment view
      */
     void remove() {
-        if (!Utils.checkIfNull(getActivity())) {
+        if (!FrameworkUtils.checkIfNull(getActivity())) {
             FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
             ft.setCustomAnimations(R.anim.ui_slide_in_from_bottom_frag, R.anim.ui_slide_out_to_bottom_frag);
             ft.remove(this).commitAllowingStateLoss();

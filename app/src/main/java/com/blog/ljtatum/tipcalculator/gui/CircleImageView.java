@@ -23,6 +23,7 @@ import android.widget.ImageView;
 
 import com.blog.ljtatum.tipcalculator.R;
 import com.blog.ljtatum.tipcalculator.utils.Utils;
+import com.udi.app.framework.utilities.FrameworkUtils;
 
 
 /**
@@ -201,7 +202,7 @@ public class CircleImageView extends android.support.v7.widget.AppCompatImageVie
      * @return bitmap
      */
     private Bitmap getBitmapFromDrawable(Drawable drawable) {
-        if (Utils.checkIfNull(drawable)) {
+        if (FrameworkUtils.checkIfNull(drawable)) {
             return null;
         }
 
@@ -234,7 +235,7 @@ public class CircleImageView extends android.support.v7.widget.AppCompatImageVie
             return;
         }
 
-        if (Utils.checkIfNull(mBitmap)) {
+        if (FrameworkUtils.checkIfNull(mBitmap)) {
             return;
         }
         mBitmapShader = new BitmapShader(mBitmap, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP);
@@ -259,7 +260,7 @@ public class CircleImageView extends android.support.v7.widget.AppCompatImageVie
 
     @Override
     protected void onDraw(@NonNull Canvas canvas) {
-        if (Utils.checkIfNull(getDrawable())) {
+        if (FrameworkUtils.checkIfNull(getDrawable())) {
             return;
         }
         canvas.drawCircle(getWidth() / 2, getHeight() / 2, mDrawableRadius, mBitmapPaint);

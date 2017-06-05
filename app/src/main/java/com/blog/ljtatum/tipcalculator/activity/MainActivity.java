@@ -45,6 +45,7 @@ import com.blog.ljtatum.tipcalculator.fragments.HistoryFragment;
 import com.blog.ljtatum.tipcalculator.fragments.PrivacyFragment;
 import com.blog.ljtatum.tipcalculator.fragments.SettingsFragment;
 import com.blog.ljtatum.tipcalculator.fragments.ShareFragment;
+import com.blog.ljtatum.tipcalculator.logger.Logger;
 import com.blog.ljtatum.tipcalculator.sharedpref.SharedPref;
 import com.blog.ljtatum.tipcalculator.utils.AppRaterUtil;
 import com.blog.ljtatum.tipcalculator.R;
@@ -53,9 +54,24 @@ import com.blog.ljtatum.tipcalculator.utils.NetworkUtils;
 import com.blog.ljtatum.tipcalculator.utils.Utils;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.udi.app.framework.utilities.DeviceUtils;
+import com.udi.app.framework.utilities.FrameworkUtils;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 import de.keyboardsurfer.android.widget.crouton.Crouton;
@@ -212,6 +228,7 @@ public class MainActivity extends BaseFragmentActivity implements OnClickListene
             e.printStackTrace();
             adView.setBackgroundResource(R.drawable.banner);
         }
+
     }
 
     /**
@@ -291,7 +308,7 @@ public class MainActivity extends BaseFragmentActivity implements OnClickListene
         mSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                Utils.hideKeyboard(mContext, MainActivity.this.getWindow().getDecorView().getWindowToken());
+                DeviceUtils.hideKeyboard(mContext, MainActivity.this.getWindow().getDecorView().getWindowToken());
                 calculate();
             }
         });
@@ -459,7 +476,7 @@ public class MainActivity extends BaseFragmentActivity implements OnClickListene
      * Method is used to populate spinner
      */
     private void populateSpinner() {
-        Utils.hideKeyboard(mContext, MainActivity.this.getWindow().getDecorView().getWindowToken());
+        DeviceUtils.hideKeyboard(mContext, MainActivity.this.getWindow().getDecorView().getWindowToken());
 
         // setup spinner configurations
         spinner.setAdapter(null); // make sure spinner is empty
@@ -673,7 +690,7 @@ public class MainActivity extends BaseFragmentActivity implements OnClickListene
 
         switch (view.getId()) {
             case R.id.btn_inc:
-                Utils.hideKeyboard(mContext, MainActivity.this.getWindow().getDecorView().getWindowToken());
+                DeviceUtils.hideKeyboard(mContext, MainActivity.this.getWindow().getDecorView().getWindowToken());
                 if (sharedNum < 99) {
                     sharedNum++; // increment # of shared values
                     strValue = Integer.toString(sharedNum);
@@ -682,7 +699,7 @@ public class MainActivity extends BaseFragmentActivity implements OnClickListene
                 }
                 break;
             case R.id.btn_dec:
-                Utils.hideKeyboard(mContext, MainActivity.this.getWindow().getDecorView().getWindowToken());
+                DeviceUtils.hideKeyboard(mContext, MainActivity.this.getWindow().getDecorView().getWindowToken());
                 if (sharedNum > 1) {
                     sharedNum--; // decrement # of shared values
                     strValue = Integer.toString(sharedNum);
@@ -740,7 +757,7 @@ public class MainActivity extends BaseFragmentActivity implements OnClickListene
                 break;
         }
         // add fragment
-        if (!Utils.checkIfNull(fragment)) {
+        if (!FrameworkUtils.checkIfNull(fragment)) {
             addFragment(fragment);
         }
 
@@ -752,7 +769,7 @@ public class MainActivity extends BaseFragmentActivity implements OnClickListene
     @Override
     public void onPause() {
         adView.pause();
-        if (!Utils.checkIfNull(mSensorManager) && !Utils.checkIfNull(mSensorListener)) {
+        if (!FrameworkUtils.checkIfNull(mSensorManager) && !FrameworkUtils.checkIfNull(mSensorListener)) {
             mSensorManager.unregisterListener(mSensorListener);
         }
         super.onPause();
@@ -762,7 +779,7 @@ public class MainActivity extends BaseFragmentActivity implements OnClickListene
     public void onResume() {
         super.onResume();
         adView.resume();
-        if (!Utils.checkIfNull(mSensorManager) && !Utils.checkIfNull(mSensorListener)) {
+        if (!FrameworkUtils.checkIfNull(mSensorManager) && !FrameworkUtils.checkIfNull(mSensorListener)) {
             mSensorManager.registerListener(mSensorListener,
                     mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
                     SensorManager.SENSOR_DELAY_UI);
@@ -771,7 +788,7 @@ public class MainActivity extends BaseFragmentActivity implements OnClickListene
 
     @Override
     public void onDestroy() {
-        if (!Utils.checkIfNull(adView)) {
+        if (!FrameworkUtils.checkIfNull(adView)) {
             // destroy the adview
             adView.destroy();
         }

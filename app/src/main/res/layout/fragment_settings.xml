@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/grey_light"
+    android:clickable="true"
+    android:orientation="vertical">
+
+    <include
+        layout="@layout/fragment_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp" />
+
+    <!-- description text -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/customize_preferences"
+        android:textColor="@color/black"
+        android:layout_gravity="center_horizontal"
+        android:textSize="@dimen/font_size_24" />
+
+    <!-- enable auto history -->
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginStart="5dp"
+            android:text="@string/enable_auto_history"
+            android:textColor="@color/black"
+            android:textSize="@dimen/font_size_18" />
+
+        <Switch
+            android:id="@+id/switch_auto_history"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|right"
+            android:gravity="end|right"
+            android:layout_marginLeft="5dp"
+            android:layout_marginStart="5dp" />
+
+    </LinearLayout>
+
+    <!-- enable shake to reset -->
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginStart="5dp"
+            android:text="@string/enable_shake"
+            android:textColor="@color/black"
+            android:textSize="@dimen/font_size_18" />
+
+        <Switch
+            android:id="@+id/switch_shake_reset"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|right"
+            android:gravity="end|right"
+            android:layout_marginLeft="5dp"
+            android:layout_marginStart="5dp" />
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

@@ -33,7 +33,7 @@ android {
     defaultConfig {
         applicationId "com.blog.ljtatum.tipcalculator"
         versionName "${versionMajor}.${versionMinor}.${versionPatch}"
-        minSdkVersion 15
+        minSdkVersion 16
         targetSdkVersion 25
         versionCode code
 
@@ -93,6 +93,7 @@ android {
 }
 
 dependencies {
+    compile project(path: ':UDIApplicationFramework')
     compile files('libs/crouton-1.8.5.jar')
     compile('com.crashlytics.sdk.android:crashlytics:2.6.6@aar') {
         transitive = true;
@@ -102,8 +103,12 @@ dependencies {
     compile "com.android.support:appcompat-v7:${supportLib}"
     compile "com.google.android.gms:play-services:${googleLib}"
     compile "com.google.firebase:firebase-core:${googleLib}"
+    compile "com.google.firebase:firebase-auth:${googleLib}"
+    compile "com.google.firebase:firebase-database:${googleLib}"
+    compile 'com.firebaseui:firebase-ui-database:1.0.0'
     compile "com.android.support:design:${supportLib}"
     compile 'com.facebook.android:facebook-android-sdk:4.+'
+    compile 'com.google.maps.android:android-maps-utils:0.5+'
 }
 
 apply plugin: 'com.google.gms.google-services'

@@ -11,6 +11,7 @@ import com.blog.ljtatum.tipcalculator.R;
 import com.blog.ljtatum.tipcalculator.enums.Enum;
 import com.facebook.share.model.ShareLinkContent;
 import com.facebook.share.widget.ShareDialog;
+import com.udi.app.framework.utilities.FrameworkUtils;
 
 import java.util.List;
 
@@ -66,7 +67,7 @@ public class ShareUtils {
                 } else if (socialMedia.equals(Enum.SocialMedia.TWITTER)) {
                     intent = new Intent(Intent.ACTION_VIEW, Uri.parse(TWITTER_PERSONAL_URI));
                     final List<ResolveInfo> matches = packageManager.queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY);
-                    if (!Utils.checkIfNull(matches) && matches.size() > 0 && !matches.isEmpty()) {
+                    if (!FrameworkUtils.checkIfNull(matches) && matches.size() > 0 && !matches.isEmpty()) {
                         // search for package and set intent package
                         for (ResolveInfo info : matches) {
                             if (info.activityInfo.packageName.toLowerCase().startsWith(TWITTER_PACKAGE)) {
@@ -80,7 +81,7 @@ public class ShareUtils {
                 } else if (socialMedia.equals(Enum.SocialMedia.LINKEDIN)) {
                     intent = new Intent(Intent.ACTION_VIEW, Uri.parse(LINKEDIN_PERSONAL_URI));
                     final List<ResolveInfo> matches = packageManager.queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY);
-                    if (!Utils.checkIfNull(matches) && matches.size() > 0 && !matches.isEmpty()) {
+                    if (!FrameworkUtils.checkIfNull(matches) && matches.size() > 0 && !matches.isEmpty()) {
                         // search for package and set intent package
                         for (ResolveInfo info : matches) {
                             if (info.activityInfo.packageName.toLowerCase().startsWith(LINKEDIN_PACKAGE)) {
@@ -108,7 +109,7 @@ public class ShareUtils {
                             Utils.urlEncode(context.getResources().getString(R.string.google_play_link)));
                     intent = new Intent(Intent.ACTION_SEND, Uri.parse(tweetMsg));
                     List<ResolveInfo> matches = packageManager.queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY);
-                    if (!Utils.checkIfNull(matches) && matches.size() > 0 && !matches.isEmpty()) {
+                    if (!FrameworkUtils.checkIfNull(matches) && matches.size() > 0 && !matches.isEmpty()) {
                         for (ResolveInfo info : matches) {
                             if (info.activityInfo.packageName.toLowerCase().startsWith(TWITTER_PACKAGE)) {
                                 intent.setPackage(info.activityInfo.packageName);
@@ -126,7 +127,7 @@ public class ShareUtils {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            if (!Utils.checkIfNull(intent)) {
+            if (!FrameworkUtils.checkIfNull(intent)) {
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intent);
             }

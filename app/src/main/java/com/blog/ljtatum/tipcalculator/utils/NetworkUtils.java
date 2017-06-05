@@ -8,6 +8,8 @@ import android.net.wifi.WifiManager;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 
+import com.udi.app.framework.utilities.FrameworkUtils;
+
 import java.util.Locale;
 
 /**
@@ -19,8 +21,8 @@ public class NetworkUtils {
         public static boolean isNetworkAvailable(Context context) {
             //check general connectivity
             ConnectivityManager conMgr = (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
-            if (!Utils.checkIfNull(conMgr)) {
-                if (!Utils.checkIfNull(conMgr.getActiveNetworkInfo()) &&
+            if (!FrameworkUtils.checkIfNull(conMgr)) {
+                if (!FrameworkUtils.checkIfNull(conMgr.getActiveNetworkInfo()) &&
                         conMgr.getActiveNetworkInfo().isConnected() &&
                         conMgr.getActiveNetworkInfo().isAvailable()) {
                     Log.i(TAG, "Active Connection");

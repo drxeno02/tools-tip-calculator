@@ -34,6 +34,7 @@
     <string name="privacy">Privacy</string>
     <string name="guide">Guide</string>
     <string name="history">History</string>
+	<string name="setting">Settings</string>
 
     <!-- guide -->
     <string name="tip_req">Local currency: %1$s | Tipping Required: %2$s</string>
@@ -164,6 +165,13 @@
 	include online ads or other forms or marketing (iii) provide, improve, test and monitor the
 	effectiveness of our Service (iv) develop and test new products and features (v) diagnose or
 	fix bugs and issues.</string>
+
+	<!-- settings -->
+	<string name="customize_preferences">Customize Your Preferences</string>
+	<string name="enable_auto_history">Enable Auto History:</string>
+	<string name="enable_shake">Enable Shake To Reset:</string>
+	<string name="set_default_tip">Set Default Tip%:</string>
+	<string name="set_default_shared_by">Set Default Shared By:</string>
 
     <!-- guide text -->
     <string name="txt_guide">Q1: Where don’t you tip? 
