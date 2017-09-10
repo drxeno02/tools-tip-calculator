@@ -1,7 +1,6 @@
 package com.blog.ljtatum.tipcalculator.activity;
 
 import android.content.Context;
-import android.content.pm.ActivityInfo;
 import android.hardware.Sensor;
 import android.hardware.SensorManager;
 import android.os.Bundle;
@@ -17,14 +16,11 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.Window;
-import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
@@ -38,6 +34,12 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 
+import com.app.framework.sharedpref.SharedPref;
+import com.app.framework.utilities.AppRaterUtil;
+import com.app.framework.utilities.DeviceUtils;
+import com.app.framework.utilities.FrameworkUtils;
+import com.app.framework.utilities.NetworkUtils;
+import com.blog.ljtatum.tipcalculator.R;
 import com.blog.ljtatum.tipcalculator.constants.Constants;
 import com.blog.ljtatum.tipcalculator.fragments.AboutFragment;
 import com.blog.ljtatum.tipcalculator.fragments.GuideFragment;
@@ -45,33 +47,12 @@ import com.blog.ljtatum.tipcalculator.fragments.HistoryFragment;
 import com.blog.ljtatum.tipcalculator.fragments.PrivacyFragment;
 import com.blog.ljtatum.tipcalculator.fragments.SettingsFragment;
 import com.blog.ljtatum.tipcalculator.fragments.ShareFragment;
-import com.blog.ljtatum.tipcalculator.logger.Logger;
-import com.blog.ljtatum.tipcalculator.sharedpref.SharedPref;
-import com.blog.ljtatum.tipcalculator.utils.AppRaterUtil;
-import com.blog.ljtatum.tipcalculator.R;
 import com.blog.ljtatum.tipcalculator.listeners.ShakeEventListener;
-import com.blog.ljtatum.tipcalculator.utils.NetworkUtils;
-import com.blog.ljtatum.tipcalculator.utils.Utils;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthCredential;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.ChildEventListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-import com.udi.app.framework.utilities.DeviceUtils;
-import com.udi.app.framework.utilities.FrameworkUtils;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Random;
 
 import de.keyboardsurfer.android.widget.crouton.Crouton;
@@ -127,7 +108,7 @@ public class MainActivity extends BaseFragmentActivity implements OnClickListene
     private String strTotal; // used for format total bill textView
 
     private Spinner spinner;
-    private Switch mSwitch;
+    private Switch switchRoundOff;
     private DrawerLayout mDrawer;
 
     private ArrayList<String> alSpinnerItems;
@@ -138,10 +119,6 @@ public class MainActivity extends BaseFragmentActivity implements OnClickListene
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.drawer);
 
@@ -157,27 +134,24 @@ public class MainActivity extends BaseFragmentActivity implements OnClickListene
     private void initializeViews() {
         mContext = MainActivity.this;
         alSpinnerItems = new ArrayList<>();
-        mSharedPref = new SharedPref(mContext, Constants.PREF_FILE_NAME);
+        mSharedPref = new SharedPref(mContext, com.app.framework.constants.Constants.PREF_FILE_NAME);
+
+        // instantiate FirebaseUtils
+//        new FirebaseUtils(this);
 
         // rate this app
         new AppRaterUtil(mContext);
-        mSwitch = (Switch) findViewById(R.id.btn_switch);
+        switchRoundOff = (Switch) findViewById(R.id.switch_round_off);
         ivStar1 = (ImageView) findViewById(R.id.iv_star_1);
         ivStar2 = (ImageView) findViewById(R.id.iv_star_2);
         ivStar3 = (ImageView) findViewById(R.id.iv_star_3);
         ivStar4 = (ImageView) findViewById(R.id.iv_star_4);
         ivStar5 = (ImageView) findViewById(R.id.iv_star_5);
-        // tip textView
         tvTip = (TextView) findViewById(R.id.tv_meta_tip);
-        // shared by textView
         tvPerson = (TextView) findViewById(R.id.tv_meta_person);
-        // total bill amount textView
         tvTotal = (TextView) findViewById(R.id.tv_meta_total);
-        // bill editText
         edtBill = (EditText) findViewById(R.id.edt_bill);
-        // clear button
         btnClear = (Button) findViewById(R.id.btn_clear);
-        // increment, decrement buttons
         btnInc = (Button) findViewById(R.id.btn_inc);
         btnDec = (Button) findViewById(R.id.btn_dec);
         tvValue = (TextView) findViewById(R.id.tv_meta_num);
@@ -191,6 +165,7 @@ public class MainActivity extends BaseFragmentActivity implements OnClickListene
         // drawer
         mDrawer= (DrawerLayout) findViewById(R.id.drawer_layout);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, mDrawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         mDrawer.addDrawerListener(toggle);
@@ -305,7 +280,7 @@ public class MainActivity extends BaseFragmentActivity implements OnClickListene
         });
 
         // OnCheckedChangeListener
-        mSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        switchRoundOff.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 DeviceUtils.hideKeyboard(mContext, MainActivity.this.getWindow().getDecorView().getWindowToken());
@@ -655,7 +630,7 @@ public class MainActivity extends BaseFragmentActivity implements OnClickListene
                 DecimalFormat formatTip = new DecimalFormat("0.00");
                 strTip = formatTip.format(temp2);
 
-                if (mSwitch.isChecked()) {
+                if (switchRoundOff.isChecked()) {
                     // round ON; update calculations
                     temp3 = (int) Math.round(temp2);
                     tvTip.setText(String.valueOf("$" + temp3 + "0"));
@@ -684,7 +659,7 @@ public class MainActivity extends BaseFragmentActivity implements OnClickListene
 
     @Override
     public void onClick(View view) {
-        if (!Utils.isViewClickable()) {
+        if (!FrameworkUtils.isViewClickable()) {
             return;
         }
 

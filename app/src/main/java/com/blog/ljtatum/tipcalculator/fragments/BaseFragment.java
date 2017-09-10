@@ -4,8 +4,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 
 import com.blog.ljtatum.tipcalculator.R;
-import com.blog.ljtatum.tipcalculator.utils.Utils;
-import com.udi.app.framework.utilities.FrameworkUtils;
+import com.app.framework.utilities.FrameworkUtils;
 
 /**
  * Created by LJTat on 3/3/2017.

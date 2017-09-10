@@ -129,7 +129,6 @@
                 android:textColor="@color/black"
                 android:textColorHint="@color/grey_normal"
                 android:textSize="@dimen/font_size_18">
-
                 <requestFocus />
             </EditText>
 
@@ -176,14 +175,14 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="5dp"
                 android:layout_marginStart="5dp"
-                android:layout_toLeftOf="@+id/btn_switch"
-                android:layout_toStartOf="@+id/btn_switch"
+                android:layout_toLeftOf="@+id/switch_round_off"
+                android:layout_toStartOf="@+id/switch_round_off"
                 android:text="@string/txt_round_off"
                 android:textColor="@color/black"
                 android:textSize="@dimen/font_size_18" />
 
             <Switch
-                android:id="@+id/btn_switch"
+                android:id="@+id/switch_round_off"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"

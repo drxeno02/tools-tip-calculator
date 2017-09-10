@@ -11,9 +11,10 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
 
 import com.blog.ljtatum.tipcalculator.R;
-import com.blog.ljtatum.tipcalculator.utils.Utils;
+import com.app.framework.utilities.FrameworkUtils;
 
 
 /**
@@ -21,7 +22,7 @@ import com.blog.ljtatum.tipcalculator.utils.Utils;
  * BaseFragmentActivity is extended by all Activities. It provides useful functions such as
  * adding and removing fragments, as well as showing and hiding network and deprecation dialogs.
  */
-public abstract class BaseFragmentActivity extends FragmentActivity {
+public abstract class BaseFragmentActivity extends AppCompatActivity {
     private FragmentManager mFragmentManager;
 
     @Override
@@ -38,7 +39,7 @@ public abstract class BaseFragmentActivity extends FragmentActivity {
     public void addFragment(@NonNull Fragment fragment) {
         // check if the fragment has been added already
         Fragment temp = mFragmentManager.findFragmentByTag(fragment.getClass().getSimpleName());
-        if (!Utils.checkIfNull(temp) && temp.isAdded()) {
+        if (!FrameworkUtils.checkIfNull(temp) && temp.isAdded()) {
             return;
         }
 

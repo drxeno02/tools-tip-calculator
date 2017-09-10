@@ -3,7 +3,6 @@ package com.blog.ljtatum.tipcalculator.fragments;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.text.Html;
 import android.text.SpannableString;
 import android.text.method.LinkMovementMethod;
 import android.text.util.Linkify;
@@ -13,11 +12,11 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.app.framework.enums.Enum;
+import com.app.framework.utilities.FrameworkUtils;
 import com.blog.ljtatum.tipcalculator.BuildConfig;
 import com.blog.ljtatum.tipcalculator.R;
-import com.blog.ljtatum.tipcalculator.enums.Enum;
-import com.blog.ljtatum.tipcalculator.utils.ShareUtils;
-import com.blog.ljtatum.tipcalculator.utils.Utils;
+import com.app.framework.utilities.ShareUtils;
 
 import java.util.Calendar;
 
@@ -86,7 +85,7 @@ public class AboutFragment extends BaseFragment implements View.OnClickListener 
 
     @Override
     public void onClick(View view) {
-        if (!Utils.isViewClickable()) {
+        if (!FrameworkUtils.isViewClickable()) {
             return;
         }
 

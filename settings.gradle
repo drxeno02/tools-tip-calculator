@@ -1,1 +1,1 @@
-include ':app', ':UDIApplicationFramework'
+include ':app', ':ApplicationFramework'

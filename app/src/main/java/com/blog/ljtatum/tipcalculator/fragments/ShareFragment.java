@@ -9,10 +9,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.app.framework.enums.Enum;
+import com.app.framework.utilities.FrameworkUtils;
 import com.blog.ljtatum.tipcalculator.R;
-import com.blog.ljtatum.tipcalculator.enums.Enum;
-import com.blog.ljtatum.tipcalculator.utils.ShareUtils;
-import com.blog.ljtatum.tipcalculator.utils.Utils;
+import com.app.framework.utilities.ShareUtils;
 
 /**
  * Created by LJTat on 2/27/2017.
@@ -65,7 +65,7 @@ public class ShareFragment extends BaseFragment implements View.OnClickListener 
 
     @Override
     public void onClick(View view) {
-        if (!Utils.isViewClickable()) {
+        if (!FrameworkUtils.isViewClickable()) {
             return;
         }
 

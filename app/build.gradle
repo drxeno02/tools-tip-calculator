@@ -14,15 +14,9 @@ repositories {
     maven { url 'https://maven.fabric.io/public' }
 }
 
-// top-level build file to help synchronize library versions
-ext {
-    supportLib = "25.3.1"
-    googleLib = "10.2.4"
-}
-
 android {
     compileSdkVersion 25
-    buildToolsVersion '25.0.2'
+    buildToolsVersion '26.0.1'
 
     // construct version name
     def versionMajor = 2
@@ -40,50 +34,38 @@ android {
         //noinspection GroovyAssignabilityCheck
         signingConfig signingConfigs.debug
     }
-
+    // specifies a flavor dimension
+    flavorDimensions "tatum"
     buildTypes {
         debug {
+            applicationIdSuffix '.debug'
             buildConfigField "String", "ENVIRONMENT", "\"test\""
             buildConfigField "boolean", "DEBUG_MODE", "true"
             manifestPlaceholders = [build_version: "${versionMajor}.${versionMinor}.${versionPatch}"]
 
             // debuggable
             debuggable true
-
-            // enable crashlytics
-            ext.enableCrashlytics = false
-
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
         release {
+            applicationIdSuffix '.prod'
             buildConfigField "String", "ENVIRONMENT", "\"production\""
             buildConfigField "boolean", "DEBUG_MODE", "false"
             manifestPlaceholders = [build_version: "${versionMajor}.${versionMinor}.${versionPatch}"]
 
-            // debuggable
-            debuggable false
-
-            // enable crashlytics
-            ext.enableCrashlytics = false
-
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            proguardFile 'proguard-rules.pro'
         }
     }
     // flavor implementation propelled by request for multiple environments on Crashlytics
     productFlavors {
         standard {
             applicationId 'com.blog.ljtatum.tipcalculator'
-            manifestPlaceholders = [package_name: "com.blog.ljtatum.tipcalculator", primary_lang: "en"]
+            dimension "tatum"
         }
-        crashlyticsTest {
-            applicationId 'com.blog.ljtatum.tipcalculator.debug'
-            manifestPlaceholders = [package_name: "com.blog.ljtatum.tipcalculator.debug", primary_lang: "en"]
-        }
-        crashlyticsProd {
-            applicationId 'com.blog.ljtatum.tipcalculator.prod'
-            manifestPlaceholders = [package_name: "com.blog.ljtatum.tipcalculator.prod", primary_lang: "en"]
+        crashlytics {
+            applicationId 'com.blog.ljtatum.tipcalculator.crashlytics'
+            dimension "tatum"
         }
     }
     lintOptions {
@@ -93,22 +75,8 @@ android {
 }
 
 dependencies {
-    compile project(path: ':UDIApplicationFramework')
-    compile files('libs/crouton-1.8.5.jar')
-    compile('com.crashlytics.sdk.android:crashlytics:2.6.6@aar') {
+    compile project(path: ':ApplicationFramework')
+    compile('com.crashlytics.sdk.android:crashlytics:2.6.7@aar') {
         transitive = true;
     }
-    compile "com.android.support:cardview-v7:${supportLib}"
-    compile "com.android.support:support-v4:${supportLib}"
-    compile "com.android.support:appcompat-v7:${supportLib}"
-    compile "com.google.android.gms:play-services:${googleLib}"
-    compile "com.google.firebase:firebase-core:${googleLib}"
-    compile "com.google.firebase:firebase-auth:${googleLib}"
-    compile "com.google.firebase:firebase-database:${googleLib}"
-    compile 'com.firebaseui:firebase-ui-database:1.0.0'
-    compile "com.android.support:design:${supportLib}"
-    compile 'com.facebook.android:facebook-android-sdk:4.+'
-    compile 'com.google.maps.android:android-maps-utils:0.5+'
 }
-
-apply plugin: 'com.google.gms.google-services'

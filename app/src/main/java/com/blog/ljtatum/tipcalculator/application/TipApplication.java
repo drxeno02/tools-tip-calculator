@@ -3,8 +3,7 @@ package com.blog.ljtatum.tipcalculator.application;
 import android.app.Application;
 
 import com.blog.ljtatum.tipcalculator.BuildConfig;
-import com.blog.ljtatum.tipcalculator.utils.AppRaterUtil;
-import com.blog.ljtatum.tipcalculator.utils.FirebaseUtils;
+import com.app.framework.utilities.FirebaseUtils;
 import com.crashlytics.android.core.CrashlyticsCore;
 import com.google.firebase.FirebaseApp;
 import com.crashlytics.android.Crashlytics;
@@ -18,10 +17,10 @@ public class TipApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        // instantiate push notifications
+        // instantiate FireBase
         FirebaseApp.initializeApp(this);
-        // instantiate FirebaseUtils
-        new FirebaseUtils();
+//        // instantiate FirebaseUtils
+//        new FirebaseUtils();
         // instantiate crashlytics
         Crashlytics crashlyticsKit = new Crashlytics.Builder()
                 .core(new CrashlyticsCore.Builder().disabled(BuildConfig.DEBUG).build()).build();

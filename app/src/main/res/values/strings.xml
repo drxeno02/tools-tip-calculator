@@ -36,6 +36,12 @@
     <string name="history">History</string>
 	<string name="setting">Settings</string>
 
+	<!-- history -->
+	<string name="tip_amount_week">Tip Amount For the Week: %1$s</string>
+	<string name="history_item">%1$s - %2$s</string>
+	<string name="view_location">View Location</string>
+	<string name="location">%1$s</string>
+
     <!-- guide -->
     <string name="tip_req">Local currency: %1$s | Tipping Required: %2$s</string>
     <string name="required">Required</string>
@@ -133,19 +139,6 @@
 		as a percentage of your total bill. Tip 10\%% if you are not completely happy. 15\%% indicates
 		that the service was acceptable. And 20\%% means the service was really good.</string>
 
-    <!-- share -->
-	<string name="fb_share_msg">Check out this great tipping tool! Know how much to tip, track history
-		and manage your finances! It\'s 100% free and available on Google Play,
-		https://play.google.com/store/apps/details?id=com.blog.ljtatum.tipcalculator</string>
-	<string name="linkedin_share_msg">Came across this great tipping tool! Know how much to tip, track history
-		and manage your finances! It\'s 100% free and available on Google Play. Download it today!
-		https://play.google.com/store/apps/details?id=com.blog.ljtatum.tipcalculator</string>
-	<string name="twitter_share_msg">Know how much to tip, track history and manage your finances!</string>
-	<string name="google_play_link">https://play.google.com/store/apps/details?id=com.blog.ljtatum.tipcalculator</string>
-    <string name="spread_word">Spread the Word:</string>
-    <string name="share_desc">Enjoying the app? Tell your friends about it! And don\'t forget to
-		show your appreciation by rating this app. Thank you!</string>
-
     <!-- about -->
     <string name="follow_me">Follow Me:</string>
     <string name="copyright_year">Copyright %s, Leonard Tatum. All Rights Reserved.</string>
@@ -170,6 +163,7 @@
 	<string name="customize_preferences">Customize Your Preferences</string>
 	<string name="enable_auto_history">Enable Auto History:</string>
 	<string name="enable_shake">Enable Shake To Reset:</string>
+	<string name="enable_round_off">Enable Default Round Off:</string>
 	<string name="set_default_tip">Set Default Tip%:</string>
 	<string name="set_default_shared_by">Set Default Shared By:</string>
 

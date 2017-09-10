@@ -22,8 +22,7 @@ import android.util.AttributeSet;
 import android.widget.ImageView;
 
 import com.blog.ljtatum.tipcalculator.R;
-import com.blog.ljtatum.tipcalculator.utils.Utils;
-import com.udi.app.framework.utilities.FrameworkUtils;
+import com.app.framework.utilities.FrameworkUtils;
 
 
 /**

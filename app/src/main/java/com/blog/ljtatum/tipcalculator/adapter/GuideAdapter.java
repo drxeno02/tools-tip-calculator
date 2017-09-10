@@ -21,7 +21,7 @@ import java.util.ArrayList;
 public class GuideAdapter extends RecyclerView.Adapter<GuideAdapter.ViewHolder> {
 
     private Context mContext;
-    private ArrayList<GuideModel> alGuideModel;
+    private ArrayList<GuideModel> alGuide;
 
     /**
      * Constructor
@@ -31,7 +31,7 @@ public class GuideAdapter extends RecyclerView.Adapter<GuideAdapter.ViewHolder> 
      */
     public GuideAdapter(Context context, ArrayList<GuideModel> guideModel) {
         mContext = context;
-        alGuideModel = guideModel;
+        alGuide = guideModel;
     }
 
     @Override
@@ -41,7 +41,7 @@ public class GuideAdapter extends RecyclerView.Adapter<GuideAdapter.ViewHolder> 
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.ivFlag.setImageDrawable(ContextCompat.getDrawable(mContext, alGuideModel.get(position).countryFlagIcon));
+        holder.ivFlag.setImageDrawable(ContextCompat.getDrawable(mContext, alGuide.get(position).countryFlagIcon));
         if (position % 2 == 0) {
             holder.ivFlag.setBorderColor(ContextCompat.getColor(mContext, R.color.orange_light));
             holder.ivFlag.setBorderWidth(8);
@@ -49,14 +49,14 @@ public class GuideAdapter extends RecyclerView.Adapter<GuideAdapter.ViewHolder> 
             holder.ivFlag.setBorderColor(ContextCompat.getColor(mContext, R.color.purple_light));
             holder.ivFlag.setBorderWidth(8);
         }
-        holder.tvCountryName.setText(alGuideModel.get(position).countryName);
-        holder.tvCountryReq.setText(alGuideModel.get(position).countryReq);
-        holder.tvCountryDesc.setText(alGuideModel.get(position).ccountryDesc);
+        holder.tvCountryName.setText(alGuide.get(position).countryName);
+        holder.tvCountryReq.setText(alGuide.get(position).countryReq);
+        holder.tvCountryDesc.setText(alGuide.get(position).ccountryDesc);
     }
 
     @Override
     public int getItemCount() {
-        return alGuideModel.size();
+        return alGuide.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

@@ -7,8 +7,7 @@ package com.blog.ljtatum.tipcalculator.logger;
 import android.util.Log;
 
 import com.blog.ljtatum.tipcalculator.constants.Constants;
-import com.blog.ljtatum.tipcalculator.utils.Utils;
-import com.udi.app.framework.utilities.FrameworkUtils;
+import com.app.framework.utilities.FrameworkUtils;
 
 
 /**

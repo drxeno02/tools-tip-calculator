@@ -11,10 +11,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.app.framework.utilities.FrameworkUtils;
 import com.blog.ljtatum.tipcalculator.R;
-import com.blog.ljtatum.tipcalculator.adapter.GuideAdapter;
-import com.blog.ljtatum.tipcalculator.model.GuideModel;
-import com.blog.ljtatum.tipcalculator.utils.Utils;
+import com.blog.ljtatum.tipcalculator.adapter.HistoryAdapter;
+import com.blog.ljtatum.tipcalculator.model.HistoryModel;
 
 import java.util.ArrayList;
 
@@ -26,8 +26,11 @@ public class HistoryFragment extends BaseFragment implements View.OnClickListene
 
     private Context mContext;
     private View mRootView;
-    private TextView tvFragmentHeader;
+    private TextView tvFragmentHeader, tvTipWeek;
     private ImageView ivBack;
+    private RecyclerView rvHistory;
+    private HistoryAdapter mHistoryAdapter;
+    private ArrayList<HistoryModel> alTipHistory;
 
 
     @Nullable
@@ -39,6 +42,9 @@ public class HistoryFragment extends BaseFragment implements View.OnClickListene
         initializeViews();
         initializeHandlers();
         initializeListeners();
+        // populate adapter
+        populateHistoryList();
+
         return mRootView;
     }
 
@@ -47,16 +53,23 @@ public class HistoryFragment extends BaseFragment implements View.OnClickListene
      */
     private void initializeViews() {
         mContext = getActivity();
+        alTipHistory = new ArrayList<>();
 
         // instantiate views
+        rvHistory = (RecyclerView) mRootView.findViewById(R.id.rv_history);
         tvFragmentHeader = (TextView) mRootView.findViewById(R.id.tv_fragment_header);
+        tvTipWeek = (TextView) mRootView.findViewById(R.id.tv_tip_week);
         ivBack = (ImageView) mRootView.findViewById(R.id.iv_back);
 
         // instantiate adapter
-
+        LinearLayoutManager layoutManager = new LinearLayoutManager(mContext);
+        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        rvHistory.setLayoutManager(layoutManager);
+        mHistoryAdapter = new HistoryAdapter(mContext, new ArrayList<HistoryModel>());
+        rvHistory.setAdapter(mHistoryAdapter);
 
         // set fragment header
-        tvFragmentHeader.setText(getResources().getString(R.string.guide));
+        tvFragmentHeader.setText(getResources().getString(R.string.history));
     }
 
     /**
@@ -71,9 +84,17 @@ public class HistoryFragment extends BaseFragment implements View.OnClickListene
 
     }
 
+    private void populateHistoryList() {
+
+
+        mHistoryAdapter = new HistoryAdapter(mContext, alTipHistory);
+        rvHistory.setAdapter(mHistoryAdapter);
+        mHistoryAdapter.notifyDataSetChanged();
+    }
+
     @Override
     public void onClick(View v) {
-        if (!Utils.isViewClickable()) {
+        if (!FrameworkUtils.isViewClickable()) {
             return;
         }
 

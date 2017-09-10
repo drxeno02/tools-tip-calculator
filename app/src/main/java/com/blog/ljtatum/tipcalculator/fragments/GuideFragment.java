@@ -11,11 +11,11 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.app.framework.utilities.FrameworkUtils;
 import com.blog.ljtatum.tipcalculator.R;
 import com.blog.ljtatum.tipcalculator.adapter.GuideAdapter;
 import com.blog.ljtatum.tipcalculator.logger.Logger;
 import com.blog.ljtatum.tipcalculator.model.GuideModel;
-import com.blog.ljtatum.tipcalculator.utils.Utils;
 
 import java.util.ArrayList;
 
@@ -137,7 +137,7 @@ public class GuideFragment extends BaseFragment implements View.OnClickListener 
 
     @Override
     public void onClick(View v) {
-        if (!Utils.isViewClickable()) {
+        if (!FrameworkUtils.isViewClickable()) {
             return;
         }
 

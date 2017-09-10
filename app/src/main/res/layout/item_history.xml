@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!-- tip history e.g. Monday - Mar 12 2017 -->
+    <TextView
+        android:id="@+id/tv_day_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:textColor="@color/black"
+        android:text="@string/history_item" />
+
+    <!-- view location where tipped -->
+    <TextView
+        android:id="@+id/tv_view_location"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:textColor="@color/orange_normal"
+        android:text="@string/view_location" />
+
+</LinearLayout>
