@@ -11,132 +11,46 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="884e0b4b-c85f-46fe-878c-ccedd3fd2ec8" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ApplicationFramework/src/main/java/com/app/framework/anim/CustomAnimations.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ApplicationFramework/src/main/java/com/app/framework/anim/listeners/OnAnimationPaddingListener.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ApplicationFramework/src/main/java/com/app/framework/anim/listeners/OnAnimationTranslateListener.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ApplicationFramework/src/main/java/com/app/framework/anim/listeners/OnAnimationUpdateListener.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ApplicationFramework/src/main/java/com/app/framework/constants/Constants.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ApplicationFramework/src/main/java/com/app/framework/entities/Address.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ApplicationFramework/src/main/java/com/app/framework/entities/Place.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ApplicationFramework/src/main/java/com/app/framework/listeners/AddressListener.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ApplicationFramework/src/main/java/com/app/framework/listeners/DirectionsListener.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ApplicationFramework/src/main/java/com/app/framework/listeners/DistanceListener.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ApplicationFramework/src/main/java/com/app/framework/listeners/ErrorListener.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ApplicationFramework/src/main/java/com/app/framework/listeners/GooglePlacesListener.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ApplicationFramework/src/main/java/com/app/framework/listeners/MapListener.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ApplicationFramework/src/main/java/com/app/framework/listeners/MapScaleListener.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ApplicationFramework/src/main/java/com/app/framework/listeners/MapTouchListener.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ApplicationFramework/src/main/java/com/app/framework/listeners/OnWeatherRetrievedListener.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ApplicationFramework/src/main/java/com/app/framework/listeners/TurnByTurnListener.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ApplicationFramework/src/main/java/com/app/framework/net/JsonRequest.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ApplicationFramework/src/main/java/com/app/framework/net/JsonResponseListener.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ApplicationFramework/src/main/java/com/app/framework/net/VolleyClient.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ApplicationFramework/src/main/java/com/app/framework/utilities/DeviceUtils.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ApplicationFramework/src/main/java/com/app/framework/utilities/ErrorUtils.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ApplicationFramework/src/main/java/com/app/framework/utilities/FrameworkUtils.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ApplicationFramework/src/main/java/com/app/framework/utilities/NetworkUtils.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ApplicationFramework/src/main/java/com/app/framework/utilities/map/Base64.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ApplicationFramework/src/main/java/com/app/framework/utilities/map/BaseNCodec.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ApplicationFramework/src/main/java/com/app/framework/utilities/map/ConfigurationManager.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ApplicationFramework/src/main/java/com/app/framework/utilities/map/GoogleServiceUtility.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ApplicationFramework/src/main/java/com/app/framework/utilities/map/UrlSigner.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ApplicationFramework/src/main/java/com/app/framework/utilities/map/model/TurnByTurnModel.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ApplicationFramework/src/main/java/com/app/framework/utilities/weather/WeatherUtils.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ApplicationFramework/src/main/res/values/colors.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/blog/ljtatum/tipcalculator/adapter/HistoryAdapter.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_location.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_history.xml" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ApplicationFramework/src/main/java/com/udi/app/framework/anim/CustomAnimations.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ApplicationFramework/src/main/java/com/udi/app/framework/anim/listeners/OnAnimationPaddingListener.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ApplicationFramework/src/main/java/com/udi/app/framework/anim/listeners/OnAnimationTranslateListener.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ApplicationFramework/src/main/java/com/udi/app/framework/anim/listeners/OnAnimationUpdateListener.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ApplicationFramework/src/main/java/com/udi/app/framework/constants/Constants.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ApplicationFramework/src/main/java/com/udi/app/framework/entities/Address.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ApplicationFramework/src/main/java/com/udi/app/framework/entities/Place.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ApplicationFramework/src/main/java/com/udi/app/framework/listeners/AddressListener.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ApplicationFramework/src/main/java/com/udi/app/framework/listeners/DirectionsListener.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ApplicationFramework/src/main/java/com/udi/app/framework/listeners/DistanceListener.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ApplicationFramework/src/main/java/com/udi/app/framework/listeners/ErrorListener.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ApplicationFramework/src/main/java/com/udi/app/framework/listeners/GooglePlacesListener.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ApplicationFramework/src/main/java/com/udi/app/framework/listeners/MapListener.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ApplicationFramework/src/main/java/com/udi/app/framework/listeners/MapScaleListener.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ApplicationFramework/src/main/java/com/udi/app/framework/listeners/MapTouchListener.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ApplicationFramework/src/main/java/com/udi/app/framework/listeners/OnForgotPasswordNextStepListener.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ApplicationFramework/src/main/java/com/udi/app/framework/listeners/OnWeatherRetrievedListener.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ApplicationFramework/src/main/java/com/udi/app/framework/listeners/TurnByTurnListener.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ApplicationFramework/src/main/java/com/udi/app/framework/net/JsonRequest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ApplicationFramework/src/main/java/com/udi/app/framework/net/JsonResponseListener.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ApplicationFramework/src/main/java/com/udi/app/framework/net/VolleyClient.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ApplicationFramework/src/main/java/com/udi/app/framework/utilities/DeviceUtils.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ApplicationFramework/src/main/java/com/udi/app/framework/utilities/ErrorUtils.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ApplicationFramework/src/main/java/com/udi/app/framework/utilities/FrameworkUtils.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ApplicationFramework/src/main/java/com/udi/app/framework/utilities/NetworkUtils.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ApplicationFramework/src/main/java/com/udi/app/framework/utilities/map/Base64.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ApplicationFramework/src/main/java/com/udi/app/framework/utilities/map/BaseNCodec.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ApplicationFramework/src/main/java/com/udi/app/framework/utilities/map/ConfigurationManager.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ApplicationFramework/src/main/java/com/udi/app/framework/utilities/map/GoogleServiceUtility.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ApplicationFramework/src/main/java/com/udi/app/framework/utilities/map/UrlSigner.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ApplicationFramework/src/main/java/com/udi/app/framework/utilities/map/model/TurnByTurnModel.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ApplicationFramework/src/main/java/com/udi/app/framework/utilities/map/polyline/RainbowGroundOverlayUtils.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ApplicationFramework/src/main/java/com/udi/app/framework/utilities/map/polyline/RainbowPoint.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ApplicationFramework/src/main/java/com/udi/app/framework/utilities/map/polyline/RainbowPolyline.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ApplicationFramework/src/main/java/com/udi/app/framework/utilities/map/polyline/RainbowPolylineOptions.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ApplicationFramework/src/main/java/com/udi/app/framework/utilities/map/polyline/RainbowPolylineShape.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ApplicationFramework/src/main/java/com/udi/app/framework/utilities/map/polyline/RainbowPolylineUtils.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ApplicationFramework/src/main/java/com/udi/app/framework/utilities/qrcode/QRCodeUtils.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ApplicationFramework/src/main/java/com/udi/app/framework/utilities/weather/WeatherUtils.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/libs/crouton-1.8.5.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/libs/google-play-services.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/java/com/blog/ljtatum/tipcalculator/utils/NetworkUtils.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/java/com/blog/ljtatum/tipcalculator/utils/Utils.java" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/UDIApplicationFramework/.gitignore" afterPath="$PROJECT_DIR$/ApplicationFramework/.gitignore" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/UDIApplicationFramework/libs/commons-codec-1.9.jar" afterPath="$PROJECT_DIR$/ApplicationFramework/libs/commons-codec-1.9.jar" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/UDIApplicationFramework/libs/volley.jar" afterPath="$PROJECT_DIR$/ApplicationFramework/libs/volley.jar" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/UDIApplicationFramework/lint.xml" afterPath="$PROJECT_DIR$/ApplicationFramework/lint.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/UDIApplicationFramework/proguard-rules.pro" afterPath="$PROJECT_DIR$/ApplicationFramework/proguard-rules.pro" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/UDIApplicationFramework/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/ApplicationFramework/src/main/AndroidManifest.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/UDIApplicationFramework/src/main/res/layout/places_list_item.xml" afterPath="$PROJECT_DIR$/ApplicationFramework/src/main/res/layout/places_list_item.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/UDIApplicationFramework/src/main/res/values-v11/styles.xml" afterPath="$PROJECT_DIR$/ApplicationFramework/src/main/res/values-v11/styles.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/UDIApplicationFramework/src/main/res/values-v14/styles.xml" afterPath="$PROJECT_DIR$/ApplicationFramework/src/main/res/values-v14/styles.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/UDIApplicationFramework/src/main/res/values/attrs.xml" afterPath="$PROJECT_DIR$/ApplicationFramework/src/main/res/values/attrs.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/UDIApplicationFramework/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/ApplicationFramework/src/main/res/values/strings.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/UDIApplicationFramework/src/main/res/values/styles.xml" afterPath="$PROJECT_DIR$/ApplicationFramework/src/main/res/values/styles.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/blog/ljtatum/tipcalculator/enums/Enum.java" afterPath="$PROJECT_DIR$/ApplicationFramework/src/main/java/com/app/framework/enums/Enum.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/blog/ljtatum/tipcalculator/listeners/OnFirebaseValueListener.java" afterPath="$PROJECT_DIR$/ApplicationFramework/src/main/java/com/app/framework/listeners/OnFirebaseValueListener.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/blog/ljtatum/tipcalculator/sharedpref/SharedPref.java" afterPath="$PROJECT_DIR$/ApplicationFramework/src/main/java/com/app/framework/sharedpref/SharedPref.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/blog/ljtatum/tipcalculator/utils/AppRaterUtil.java" afterPath="$PROJECT_DIR$/ApplicationFramework/src/main/java/com/app/framework/utilities/AppRaterUtil.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/blog/ljtatum/tipcalculator/utils/FirebaseUtils.java" afterPath="$PROJECT_DIR$/ApplicationFramework/src/main/java/com/app/framework/utilities/FirebaseUtils.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/blog/ljtatum/tipcalculator/utils/ShareUtils.java" afterPath="$PROJECT_DIR$/ApplicationFramework/src/main/java/com/app/framework/utilities/ShareUtils.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/res/drawable/custom_button.xml" afterPath="$PROJECT_DIR$/ApplicationFramework/src/main/res/drawable/custom_button.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/gradle.xml" afterPath="$PROJECT_DIR$/.idea/gradle.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/UDIApplicationFramework/src/main/java/com/udi/app/framework/anim/CustomAnimations.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/UDIApplicationFramework/src/main/java/com/udi/app/framework/anim/listeners/OnAnimationPaddingListener.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/UDIApplicationFramework/src/main/java/com/udi/app/framework/anim/listeners/OnAnimationTranslateListener.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/UDIApplicationFramework/src/main/java/com/udi/app/framework/anim/listeners/OnAnimationUpdateListener.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/UDIApplicationFramework/src/main/java/com/udi/app/framework/constants/Constants.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/UDIApplicationFramework/src/main/java/com/udi/app/framework/entities/Address.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/UDIApplicationFramework/src/main/java/com/udi/app/framework/entities/Place.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/UDIApplicationFramework/src/main/java/com/udi/app/framework/listeners/AddressListener.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/UDIApplicationFramework/src/main/java/com/udi/app/framework/listeners/DirectionsListener.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/UDIApplicationFramework/src/main/java/com/udi/app/framework/listeners/DistanceListener.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/UDIApplicationFramework/src/main/java/com/udi/app/framework/listeners/ErrorListener.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/UDIApplicationFramework/src/main/java/com/udi/app/framework/listeners/GooglePlacesListener.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/UDIApplicationFramework/src/main/java/com/udi/app/framework/listeners/MapListener.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/UDIApplicationFramework/src/main/java/com/udi/app/framework/listeners/MapScaleListener.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/UDIApplicationFramework/src/main/java/com/udi/app/framework/listeners/MapTouchListener.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/UDIApplicationFramework/src/main/java/com/udi/app/framework/listeners/OnForgotPasswordNextStepListener.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/UDIApplicationFramework/src/main/java/com/udi/app/framework/listeners/OnWeatherRetrievedListener.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/UDIApplicationFramework/src/main/java/com/udi/app/framework/listeners/TurnByTurnListener.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/UDIApplicationFramework/src/main/java/com/udi/app/framework/net/JsonRequest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/UDIApplicationFramework/src/main/java/com/udi/app/framework/net/JsonResponseListener.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/UDIApplicationFramework/src/main/java/com/udi/app/framework/net/VolleyClient.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/UDIApplicationFramework/src/main/java/com/udi/app/framework/utilities/DeviceUtils.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/UDIApplicationFramework/src/main/java/com/udi/app/framework/utilities/ErrorUtils.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/UDIApplicationFramework/src/main/java/com/udi/app/framework/utilities/FrameworkUtils.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/UDIApplicationFramework/src/main/java/com/udi/app/framework/utilities/NetworkUtils.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/UDIApplicationFramework/src/main/java/com/udi/app/framework/utilities/map/Base64.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/UDIApplicationFramework/src/main/java/com/udi/app/framework/utilities/map/BaseNCodec.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/UDIApplicationFramework/src/main/java/com/udi/app/framework/utilities/map/ConfigurationManager.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/UDIApplicationFramework/src/main/java/com/udi/app/framework/utilities/map/GoogleServiceUtility.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/UDIApplicationFramework/src/main/java/com/udi/app/framework/utilities/map/UrlSigner.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/UDIApplicationFramework/src/main/java/com/udi/app/framework/utilities/map/model/TurnByTurnModel.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/UDIApplicationFramework/src/main/java/com/udi/app/framework/utilities/map/polyline/RainbowGroundOverlayUtils.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/UDIApplicationFramework/src/main/java/com/udi/app/framework/utilities/map/polyline/RainbowPoint.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/UDIApplicationFramework/src/main/java/com/udi/app/framework/utilities/map/polyline/RainbowPolyline.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/UDIApplicationFramework/src/main/java/com/udi/app/framework/utilities/map/polyline/RainbowPolylineOptions.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/UDIApplicationFramework/src/main/java/com/udi/app/framework/utilities/map/polyline/RainbowPolylineShape.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/UDIApplicationFramework/src/main/java/com/udi/app/framework/utilities/map/polyline/RainbowPolylineUtils.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/UDIApplicationFramework/src/main/java/com/udi/app/framework/utilities/qrcode/QRCodeUtils.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/UDIApplicationFramework/src/main/java/com/udi/app/framework/utilities/weather/WeatherUtils.java" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build.gradle" afterPath="$PROJECT_DIR$/app/build.gradle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/blog/ljtatum/tipcalculator/activity/BaseFragmentActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/blog/ljtatum/tipcalculator/activity/BaseFragmentActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/blog/ljtatum/tipcalculator/activity/MainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/blog/ljtatum/tipcalculator/activity/MainActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/blog/ljtatum/tipcalculator/adapter/GuideAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/blog/ljtatum/tipcalculator/adapter/GuideAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/blog/ljtatum/tipcalculator/application/TipApplication.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/blog/ljtatum/tipcalculator/application/TipApplication.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/blog/ljtatum/tipcalculator/constants/Constants.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/blog/ljtatum/tipcalculator/constants/Constants.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/blog/ljtatum/tipcalculator/fragments/AboutFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/blog/ljtatum/tipcalculator/fragments/AboutFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/blog/ljtatum/tipcalculator/fragments/BaseFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/blog/ljtatum/tipcalculator/fragments/BaseFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/blog/ljtatum/tipcalculator/fragments/GuideFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/blog/ljtatum/tipcalculator/fragments/GuideFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/blog/ljtatum/tipcalculator/fragments/HistoryFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/blog/ljtatum/tipcalculator/fragments/HistoryFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/blog/ljtatum/tipcalculator/fragments/PrivacyFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/blog/ljtatum/tipcalculator/fragments/PrivacyFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/blog/ljtatum/tipcalculator/fragments/SettingsFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/blog/ljtatum/tipcalculator/fragments/SettingsFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/blog/ljtatum/tipcalculator/fragments/ShareFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/blog/ljtatum/tipcalculator/fragments/ShareFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/blog/ljtatum/tipcalculator/gui/CircleImageView.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/blog/ljtatum/tipcalculator/gui/CircleImageView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/blog/ljtatum/tipcalculator/logger/Logger.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/blog/ljtatum/tipcalculator/logger/Logger.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/anim/ui_slide_in_from_bottom_frag.xml" afterPath="$PROJECT_DIR$/app/src/main/res/anim/ui_slide_in_from_bottom_frag.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/anim/ui_slide_out_to_bottom_frag.xml" afterPath="$PROJECT_DIR$/app/src/main/res/anim/ui_slide_out_to_bottom_frag.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/drawer.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/drawer.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_history.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_history.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_settings.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_settings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build.gradle" afterPath="$PROJECT_DIR$/build.gradle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/settings.gradle" afterPath="$PROJECT_DIR$/settings.gradle" />
     </list>
     <list id="39076ec2-3b2c-44f6-b2b2-57d850757c0a" name="New changelist" comment="" />
     <ignored path="tools-tip-calculator.iws" />
@@ -6586,7 +6500,14 @@
       <option name="project" value="LOCAL" />
       <updated>1496628999135</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="update project settings">
+      <created>1505064995679</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1505064995679</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TodoView">
@@ -6713,7 +6634,8 @@
     <MESSAGE value="Merge branches 'development' and 'development-leonard' of https://github.com/drxeno02/tools-tip-calculator into development&#10;&#10;# Conflicts:&#10;#&#9;.idea/misc.xml&#10;#&#9;.idea/workspace.xml&#10;#&#9;app/build/intermediates/blame/res/crashlyticsTest/debug/single/color.json&#10;#&#9;app/build/intermediates/blame/res/crashlyticsTest/debug/single/drawable-hdpi-v4.json&#10;#&#9;app/build/intermediates/blame/res/crashlyticsTest/debug/single/drawable-mdpi-v4.json&#10;#&#9;app/build/intermediates/blame/res/crashlyticsTest/debug/single/drawable-xhdpi-v4.json&#10;#&#9;app/build/intermediates/blame/res/crashlyticsTest/debug/single/drawable-xhdpi.json&#10;#&#9;app/build/intermediates/blame/res/crashlyticsTest/debug/single/drawable-xxhdpi-v4.json&#10;#&#9;app/build/intermediates/blame/res/crashlyticsTest/debug/single/drawable-xxxhdpi-v4.json&#10;#&#9;app/build/intermediates/blame/res/crashlyticsTest/debug/single/drawable.json&#10;#&#9;app/build/intermediates/incremental/mergeCrashlyticsTestDebugAndroidTestResources/compile-file-map.properties&#10;#&#9;app/build/intermediates/incremental/mergeCrashlyticsTestDebugResources/compile-file-map.properties&#10;#&#9;app/build/intermediates/incremental/mergeCrashlyticsTestDebugResources/merger.xml&#10;#&#9;app/build/intermediates/res/resources-crashlyticsTest-debug.ap_&#10;" />
     <MESSAGE value="completed ShareUtils for twitter, facebook and linkedin sharing" />
     <MESSAGE value="Settings section started part 1 of 2" />
-    <option name="LAST_COMMIT_MESSAGE" value="Settings section started part 1 of 2" />
+    <MESSAGE value="update project settings" />
+    <option name="LAST_COMMIT_MESSAGE" value="update project settings" />
     <option name="PRESELECT_EXISTING_CHANGELIST" value="false" />
   </component>
   <component name="XDebuggerManager">
