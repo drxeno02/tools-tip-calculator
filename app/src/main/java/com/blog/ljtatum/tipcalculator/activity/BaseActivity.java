@@ -19,10 +19,10 @@ import com.app.framework.utilities.FrameworkUtils;
 
 /**
  * Created by leonard on 9/28/2015.
- * BaseFragmentActivity is extended by all Activities. It provides useful functions such as
+ * BaseActivity is extended by all Activities. It provides useful functions such as
  * adding and removing fragments, as well as showing and hiding network and deprecation dialogs.
  */
-public abstract class BaseFragmentActivity extends AppCompatActivity {
+public abstract class BaseActivity extends AppCompatActivity {
     private FragmentManager mFragmentManager;
 
     @Override
