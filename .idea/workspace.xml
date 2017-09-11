@@ -11,46 +11,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="884e0b4b-c85f-46fe-878c-ccedd3fd2ec8" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/UDIApplicationFramework/src/main/java/com/udi/app/framework/anim/CustomAnimations.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/UDIApplicationFramework/src/main/java/com/udi/app/framework/anim/listeners/OnAnimationPaddingListener.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/UDIApplicationFramework/src/main/java/com/udi/app/framework/anim/listeners/OnAnimationTranslateListener.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/UDIApplicationFramework/src/main/java/com/udi/app/framework/anim/listeners/OnAnimationUpdateListener.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/UDIApplicationFramework/src/main/java/com/udi/app/framework/constants/Constants.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/UDIApplicationFramework/src/main/java/com/udi/app/framework/entities/Address.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/UDIApplicationFramework/src/main/java/com/udi/app/framework/entities/Place.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/UDIApplicationFramework/src/main/java/com/udi/app/framework/listeners/AddressListener.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/UDIApplicationFramework/src/main/java/com/udi/app/framework/listeners/DirectionsListener.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/UDIApplicationFramework/src/main/java/com/udi/app/framework/listeners/DistanceListener.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/UDIApplicationFramework/src/main/java/com/udi/app/framework/listeners/ErrorListener.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/UDIApplicationFramework/src/main/java/com/udi/app/framework/listeners/GooglePlacesListener.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/UDIApplicationFramework/src/main/java/com/udi/app/framework/listeners/MapListener.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/UDIApplicationFramework/src/main/java/com/udi/app/framework/listeners/MapScaleListener.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/UDIApplicationFramework/src/main/java/com/udi/app/framework/listeners/MapTouchListener.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/UDIApplicationFramework/src/main/java/com/udi/app/framework/listeners/OnForgotPasswordNextStepListener.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/UDIApplicationFramework/src/main/java/com/udi/app/framework/listeners/OnWeatherRetrievedListener.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/UDIApplicationFramework/src/main/java/com/udi/app/framework/listeners/TurnByTurnListener.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/UDIApplicationFramework/src/main/java/com/udi/app/framework/net/JsonRequest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/UDIApplicationFramework/src/main/java/com/udi/app/framework/net/JsonResponseListener.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/UDIApplicationFramework/src/main/java/com/udi/app/framework/net/VolleyClient.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/UDIApplicationFramework/src/main/java/com/udi/app/framework/utilities/DeviceUtils.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/UDIApplicationFramework/src/main/java/com/udi/app/framework/utilities/ErrorUtils.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/UDIApplicationFramework/src/main/java/com/udi/app/framework/utilities/FrameworkUtils.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/UDIApplicationFramework/src/main/java/com/udi/app/framework/utilities/NetworkUtils.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/UDIApplicationFramework/src/main/java/com/udi/app/framework/utilities/map/Base64.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/UDIApplicationFramework/src/main/java/com/udi/app/framework/utilities/map/BaseNCodec.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/UDIApplicationFramework/src/main/java/com/udi/app/framework/utilities/map/ConfigurationManager.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/UDIApplicationFramework/src/main/java/com/udi/app/framework/utilities/map/GoogleServiceUtility.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/UDIApplicationFramework/src/main/java/com/udi/app/framework/utilities/map/UrlSigner.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/UDIApplicationFramework/src/main/java/com/udi/app/framework/utilities/map/model/TurnByTurnModel.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/UDIApplicationFramework/src/main/java/com/udi/app/framework/utilities/map/polyline/RainbowGroundOverlayUtils.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/UDIApplicationFramework/src/main/java/com/udi/app/framework/utilities/map/polyline/RainbowPoint.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/UDIApplicationFramework/src/main/java/com/udi/app/framework/utilities/map/polyline/RainbowPolyline.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/UDIApplicationFramework/src/main/java/com/udi/app/framework/utilities/map/polyline/RainbowPolylineOptions.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/UDIApplicationFramework/src/main/java/com/udi/app/framework/utilities/map/polyline/RainbowPolylineShape.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/UDIApplicationFramework/src/main/java/com/udi/app/framework/utilities/map/polyline/RainbowPolylineUtils.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/UDIApplicationFramework/src/main/java/com/udi/app/framework/utilities/qrcode/QRCodeUtils.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/UDIApplicationFramework/src/main/java/com/udi/app/framework/utilities/weather/WeatherUtils.java" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/blog/ljtatum/tipcalculator/activity/MainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/blog/ljtatum/tipcalculator/activity/MainActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/blog/ljtatum/tipcalculator/fragments/GuideFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/blog/ljtatum/tipcalculator/fragments/GuideFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/item_guide.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_guide.xml" />
     </list>
     <list id="39076ec2-3b2c-44f6-b2b2-57d850757c0a" name="New changelist" comment="" />
     <ignored path="tools-tip-calculator.iws" />
@@ -94,7 +58,41 @@
     <favorites_list name="tools-tip-calculator" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf>
+      <file leaf-file-name="GuideFragment.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/blog/ljtatum/tipcalculator/fragments/GuideFragment.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="502">
+              <caret line="154" column="13" selection-start-line="154" selection-start-column="13" selection-end-line="154" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/blog/ljtatum/tipcalculator/activity/MainActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="120" column="34" selection-start-line="120" selection-start-column="34" selection-end-line="120" selection-end-column="34" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="item_guide.xml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/item_guide.xml">
+          <provider editor-type-id="android-designer2">
+            <state />
+          </provider>
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="153">
+              <caret line="9" column="38" selection-start-line="9" selection-start-column="38" selection-end-line="9" selection-end-column="38" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -5517,8 +5515,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/ApplicationFramework/src/main/java/com/app/framework/utilities/map/polyline/RainbowPolyline.java" />
-        <option value="$PROJECT_DIR$/ApplicationFramework/src/main/java/com/app/framework/utilities/map/polyline/RainbowPolylineOptions.java" />
         <option value="$PROJECT_DIR$/ApplicationFramework/src/main/java/com/app/framework/utilities/map/polyline/RainbowPolylineShape.java" />
         <option value="$PROJECT_DIR$/ApplicationFramework/src/main/java/com/app/framework/utilities/map/polyline/RainbowPolylineUtils.java" />
         <option value="$PROJECT_DIR$/ApplicationFramework/src/main/java/com/app/framework/utilities/map/BaseNCodec.java" />
@@ -5550,7 +5546,6 @@
         <option value="$PROJECT_DIR$/ApplicationFramework/src/main/java/com/app/framework/constants/Constants.java" />
         <option value="$PROJECT_DIR$/ApplicationFramework/src/main/java/com/app/framework/utilities/DeviceUtils.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/blog/ljtatum/tipcalculator/fragments/AboutFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/blog/ljtatum/tipcalculator/fragments/GuideFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/blog/ljtatum/tipcalculator/fragments/HistoryFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/blog/ljtatum/tipcalculator/fragments/PrivacyFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/blog/ljtatum/tipcalculator/fragments/SettingsFragment.java" />
@@ -5562,18 +5557,21 @@
         <option value="$PROJECT_DIR$/build.gradle" />
         <option value="$PROJECT_DIR$/ApplicationFramework/build.gradle" />
         <option value="$PROJECT_DIR$/app/build.gradle" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/blog/ljtatum/tipcalculator/activity/MainActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/blog/ljtatum/tipcalculator/activity/BaseFragmentActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/values/styles.xml" />
-        <option value="$PROJECT_DIR$/ApplicationFramework/src/main/res/values/styles.xml" />
         <option value="$PROJECT_DIR$/ApplicationFramework/src/main/res/values-v11/styles.xml" />
         <option value="$PROJECT_DIR$/ApplicationFramework/src/main/res/values-v14/styles.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/blog/ljtatum/tipcalculator/activity/BaseActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/item_guide.xml" />
+        <option value="$PROJECT_DIR$/ApplicationFramework/src/main/res/values/styles.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/blog/ljtatum/tipcalculator/fragments/GuideFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/values/styles.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/blog/ljtatum/tipcalculator/activity/MainActivity.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="25" />
-    <option name="width" value="987" />
+    <option name="width" value="1012" />
     <option name="height" value="1034" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -5601,6 +5599,11 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
+      <pane id="PackagesPane">
+        <subPane />
+      </pane>
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -5923,6 +5926,40 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="fragments" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tools-tip-calculator" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tools-tip-calculator" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tipcalculator" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="activity" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -5947,11 +5984,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane">
-        <subPane />
-      </pane>
-      <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -6507,7 +6539,21 @@
       <option name="project" value="LOCAL" />
       <updated>1505064995679</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="update project settings">
+      <created>1505065030999</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1505065030999</updated>
+    </task>
+    <task id="LOCAL-00015" summary="rename BaseFragmentActivity to BaseActivity">
+      <created>1505097744262</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1505097744262</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TodoView">
@@ -6520,7 +6566,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="25" y="0" width="987" height="1034" extended-state="0" />
+    <frame x="25" y="0" width="1012" height="1034" extended-state="0" />
     <editor active="false" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32839224" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -6530,14 +6576,15 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.40753424" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.68074656" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31769723" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295325" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3127854" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30479452" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295325" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31607336" sideWeight="0.47591522" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27836135" sideWeight="0.47591522" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34743875" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32892057" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Fabric" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.48347548" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -6555,7 +6602,6 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34817353" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -6635,7 +6681,8 @@
     <MESSAGE value="completed ShareUtils for twitter, facebook and linkedin sharing" />
     <MESSAGE value="Settings section started part 1 of 2" />
     <MESSAGE value="update project settings" />
-    <option name="LAST_COMMIT_MESSAGE" value="update project settings" />
+    <MESSAGE value="rename BaseFragmentActivity to BaseActivity" />
+    <option name="LAST_COMMIT_MESSAGE" value="rename BaseFragmentActivity to BaseActivity" />
     <option name="PRESELECT_EXISTING_CHANGELIST" value="false" />
   </component>
   <component name="XDebuggerManager">
@@ -6645,20 +6692,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/ApplicationFramework/src/main/java/com/app/framework/listeners/ErrorListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="47" selection-start-line="8" selection-start-column="47" selection-end-line="8" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ApplicationFramework/src/main/java/com/app/framework/utilities/map/Base64.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="50" selection-start-line="6" selection-start-column="39" selection-end-line="6" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ApplicationFramework/src/main/java/com/app/framework/utilities/map/BaseNCodec.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="592">
@@ -6684,7 +6717,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-103">
           <caret line="35" column="5" selection-start-line="35" selection-start-column="5" selection-end-line="35" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -6707,7 +6739,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="9" column="17" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -6742,7 +6773,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="9" selection-start-line="0" selection-start-column="8" selection-end-line="0" selection-end-column="31" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -6750,9 +6780,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2074">
           <caret line="122" column="51" selection-start-line="122" selection-start-column="51" selection-end-line="122" selection-end-column="51" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -6785,7 +6812,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="8" column="34" selection-start-line="8" selection-start-column="34" selection-end-line="8" selection-end-column="34" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -6817,7 +6843,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="8" column="22" selection-start-line="8" selection-start-column="22" selection-end-line="8" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -6835,9 +6860,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
           <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -6845,14 +6867,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1157">
           <caret line="98" column="66" selection-start-line="98" selection-start-column="66" selection-end-line="98" selection-end-column="66" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/blog/ljtatum/tipcalculator/fragments/GuideFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="197">
-          <caret line="139" column="27" selection-start-line="139" selection-start-column="27" selection-end-line="139" selection-end-column="27" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -6888,7 +6902,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="527">
           <caret line="42" column="43" selection-start-line="42" selection-start-column="43" selection-end-line="42" selection-end-column="43" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -6896,9 +6909,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
           <caret line="23" column="34" selection-start-line="23" selection-start-column="34" selection-end-line="23" selection-end-column="34" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -6906,7 +6916,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="5" column="69" selection-start-line="5" selection-start-column="69" selection-end-line="5" selection-end-column="69" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -6953,18 +6962,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/blog/ljtatum/tipcalculator/activity/BaseFragmentActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/blog/ljtatum/tipcalculator/activity/BaseActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="214">
-          <caret line="27" column="13" selection-start-line="27" selection-start-column="13" selection-end-line="27" selection-end-column="13" />
-          <folding />
+        <state relative-caret-position="68">
+          <caret line="6" column="7" selection-start-line="6" selection-start-column="7" selection-end-line="6" selection-end-column="7" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/blog/ljtatum/tipcalculator/activity/MainActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_guide.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1020">
-          <caret line="167" column="27" selection-start-line="167" selection-start-column="8" selection-end-line="167" selection-end-column="27" />
+        <state relative-caret-position="170">
+          <caret line="10" column="33" selection-start-line="10" selection-start-column="33" selection-end-line="10" selection-end-column="33" />
           <folding />
         </state>
       </provider>
@@ -6980,10 +6994,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/styles.xml">
+    <entry file="file://$PROJECT_DIR$/ApplicationFramework/src/main/res/values/styles.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="12" selection-start-line="0" selection-start-column="0" selection-end-line="17" selection-end-column="12" />
+        <state relative-caret-position="204">
+          <caret line="12" column="53" selection-start-line="12" selection-start-column="53" selection-end-line="12" selection-end-column="53" />
           <folding />
         </state>
       </provider>
@@ -7004,10 +7018,37 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ApplicationFramework/src/main/res/values/styles.xml">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/blog/ljtatum/tipcalculator/fragments/GuideFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="68" selection-start-line="5" selection-start-column="35" selection-end-line="5" selection-end-column="68" />
+        <state relative-caret-position="502">
+          <caret line="154" column="13" selection-start-line="154" selection-start-column="13" selection-end-line="154" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/styles.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/blog/ljtatum/tipcalculator/activity/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="120" column="34" selection-start-line="120" selection-start-column="34" selection-end-line="120" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/item_guide.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="38" selection-start-line="9" selection-start-column="38" selection-end-line="9" selection-end-column="38" />
           <folding />
         </state>
       </provider>

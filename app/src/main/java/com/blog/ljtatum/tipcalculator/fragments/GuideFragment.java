@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.app.framework.utilities.FrameworkUtils;
 import com.blog.ljtatum.tipcalculator.R;
+import com.blog.ljtatum.tipcalculator.activity.MainActivity;
 import com.blog.ljtatum.tipcalculator.adapter.GuideAdapter;
 import com.blog.ljtatum.tipcalculator.logger.Logger;
 import com.blog.ljtatum.tipcalculator.model.GuideModel;
@@ -149,5 +150,19 @@ public class GuideFragment extends BaseFragment implements View.OnClickListener 
             default:
                 break;
         }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        // disable drawer
+        ((MainActivity) mContext).toggleDrawerState(false);
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        // enable drawer
+        ((MainActivity) mContext).toggleDrawerState(true);
     }
 }

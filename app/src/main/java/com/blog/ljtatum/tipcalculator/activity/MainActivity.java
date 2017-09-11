@@ -1,6 +1,7 @@
 package com.blog.ljtatum.tipcalculator.activity;
 
 import android.content.Context;
+import android.content.pm.ActivityInfo;
 import android.hardware.Sensor;
 import android.hardware.SensorManager;
 import android.os.Bundle;
@@ -21,6 +22,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.Window;
+import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
@@ -61,7 +64,7 @@ import de.keyboardsurfer.android.widget.crouton.Style;
 /**
  * Created by LJTat on 2/23/2017.
  */
-public class MainActivity extends BaseFragmentActivity implements OnClickListener,
+public class MainActivity extends BaseActivity implements OnClickListener,
         NavigationView.OnNavigationItemSelectedListener{
     public static String TAG = MainActivity.class.getSimpleName();
 
@@ -109,7 +112,7 @@ public class MainActivity extends BaseFragmentActivity implements OnClickListene
 
     private Spinner spinner;
     private Switch switchRoundOff;
-    private DrawerLayout mDrawer;
+    private DrawerLayout mDrawerLayout;
 
     private ArrayList<String> alSpinnerItems;
     private SensorManager mSensorManager;
@@ -119,6 +122,10 @@ public class MainActivity extends BaseFragmentActivity implements OnClickListene
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.drawer);
 
@@ -163,12 +170,12 @@ public class MainActivity extends BaseFragmentActivity implements OnClickListene
         populateSpinner();
 
         // drawer
-        mDrawer= (DrawerLayout) findViewById(R.id.drawer_layout);
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, mDrawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        mDrawer.addDrawerListener(toggle);
+                this, mDrawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        mDrawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
         // instantiate vibrator
@@ -287,6 +294,25 @@ public class MainActivity extends BaseFragmentActivity implements OnClickListene
                 calculate();
             }
         });
+    }
+
+    /**
+     * Method is used to enable/disable drawer
+     *
+     * @param isEnabled
+     */
+    public void toggleDrawerState(boolean isEnabled) {
+        if (!FrameworkUtils.checkIfNull(mDrawerLayout)) {
+            if (isEnabled) {
+                // only unlock (enable) drawer interaction if it is disabled
+                if (mDrawerLayout.getDrawerLockMode(GravityCompat.START) != DrawerLayout.LOCK_MODE_UNLOCKED) {
+                    mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
+                }
+            } else {
+                // only allow disabling of drawer interaction if the drawer is closed
+                mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+            }
+        }
     }
 
     /**
@@ -493,9 +519,8 @@ public class MainActivity extends BaseFragmentActivity implements OnClickListene
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
                 MainActivity.this, android.R.layout.simple_spinner_item,
                 alSpinnerItems);
-
-        arrayAdapter
-                .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        // set array adapter
+        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         // setup adapter
         spinner.setAdapter(arrayAdapter);
@@ -737,7 +762,7 @@ public class MainActivity extends BaseFragmentActivity implements OnClickListene
         }
 
         // close drawer after selection
-        mDrawer.closeDrawer(GravityCompat.START);
+        mDrawerLayout.closeDrawer(GravityCompat.START);
         return false;
     }
 
