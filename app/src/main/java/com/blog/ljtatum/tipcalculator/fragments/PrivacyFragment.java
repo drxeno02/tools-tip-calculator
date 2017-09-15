@@ -1,5 +1,6 @@
 package com.blog.ljtatum.tipcalculator.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -10,12 +11,14 @@ import android.widget.TextView;
 
 import com.app.framework.utilities.FrameworkUtils;
 import com.blog.ljtatum.tipcalculator.R;
+import com.blog.ljtatum.tipcalculator.activity.MainActivity;
 
 /**
  * Created by LJTat on 2/27/2017.
  */
 public class PrivacyFragment extends BaseFragment implements View.OnClickListener {
 
+    private Context mContext;
     private View mRootView;
     private TextView tvFragmentHeader;
     private ImageView ivBack;
@@ -36,6 +39,7 @@ public class PrivacyFragment extends BaseFragment implements View.OnClickListene
      * Method is used to instantiate views
      */
     private void initializeViews() {
+        mContext = getActivity();
         tvFragmentHeader = (TextView) mRootView.findViewById(R.id.tv_fragment_header);
         ivBack = (ImageView) mRootView.findViewById(R.id.iv_back);
 
@@ -66,5 +70,19 @@ public class PrivacyFragment extends BaseFragment implements View.OnClickListene
             default:
                 break;
         }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        // disable drawer
+        ((MainActivity) mContext).toggleDrawerState(false);
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        // enable drawer
+        ((MainActivity) mContext).toggleDrawerState(true);
     }
 }

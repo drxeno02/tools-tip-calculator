@@ -17,6 +17,7 @@ import com.app.framework.utilities.FrameworkUtils;
 import com.blog.ljtatum.tipcalculator.BuildConfig;
 import com.blog.ljtatum.tipcalculator.R;
 import com.app.framework.utilities.ShareUtils;
+import com.blog.ljtatum.tipcalculator.activity.MainActivity;
 
 import java.util.Calendar;
 
@@ -107,5 +108,19 @@ public class AboutFragment extends BaseFragment implements View.OnClickListener 
             default:
                 break;
         }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        // disable drawer
+        ((MainActivity) mContext).toggleDrawerState(false);
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        // enable drawer
+        ((MainActivity) mContext).toggleDrawerState(true);
     }
 }

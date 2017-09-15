@@ -40,6 +40,7 @@ import android.widget.TextView.OnEditorActionListener;
 import com.app.framework.sharedpref.SharedPref;
 import com.app.framework.utilities.AppRaterUtil;
 import com.app.framework.utilities.DeviceUtils;
+import com.app.framework.utilities.FirebaseUtils;
 import com.app.framework.utilities.FrameworkUtils;
 import com.app.framework.utilities.NetworkUtils;
 import com.blog.ljtatum.tipcalculator.R;
@@ -144,7 +145,7 @@ public class MainActivity extends BaseActivity implements OnClickListener,
         mSharedPref = new SharedPref(mContext, com.app.framework.constants.Constants.PREF_FILE_NAME);
 
         // instantiate FirebaseUtils
-//        new FirebaseUtils(this);
+        new FirebaseUtils();
 
         // rate this app
         new AppRaterUtil(mContext);

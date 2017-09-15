@@ -35,7 +35,7 @@ android {
         signingConfig signingConfigs.debug
     }
     // specifies a flavor dimension
-    flavorDimensions "tatum"
+    flavorDimensions "app"
     buildTypes {
         debug {
             applicationIdSuffix '.debug'
@@ -61,11 +61,7 @@ android {
     productFlavors {
         standard {
             applicationId 'com.blog.ljtatum.tipcalculator'
-            dimension "tatum"
-        }
-        crashlytics {
-            applicationId 'com.blog.ljtatum.tipcalculator.crashlytics'
-            dimension "tatum"
+            dimension "app"
         }
     }
     lintOptions {

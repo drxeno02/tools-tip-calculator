@@ -2,10 +2,14 @@ package com.app.framework.utilities;
 
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.app.framework.listeners.OnFirebaseValueListener;
 import com.google.firebase.FirebaseApp;
+import com.google.firebase.FirebaseOptions;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -21,7 +25,6 @@ import java.util.List;
 public class FirebaseUtils {
     private static final String TAG = FirebaseUtils.class.getSimpleName();
 
-    private static FirebaseDatabase mFirebaseDatabase;
     private static DatabaseReference mDbReference;
 
     // listeners
@@ -39,10 +42,8 @@ public class FirebaseUtils {
     /**
      * Constructor
      */
-    public FirebaseUtils(Context context) {
-        FirebaseApp.initializeApp(context);
-        mFirebaseDatabase = FirebaseDatabase.getInstance();
-        mDbReference = mFirebaseDatabase.getReference();
+    public FirebaseUtils() {
+        mDbReference = FirebaseDatabase.getInstance().getReference();
     }
 
     /**

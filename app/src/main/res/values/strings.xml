@@ -19,7 +19,8 @@
     <string name="txt_shared">Shared By:</string>
     <string name="txt_person">Each Person Pays:</string>
     <string name="txt_total">Total Bill Amount:</string>
-    <string name="txt_hint">0.00</string>
+    <string name="txt_hint_dollar">0.00</string>
+	<string name="txt_hint_integer">0</string>
     <string name="txt_round_on">Round On:</string>
     <string name="txt_round_off">Round Off:</string>
     <string name="txt_spinner_default">Select Tip Percent</string>
@@ -161,11 +162,13 @@
 
 	<!-- settings -->
 	<string name="customize_preferences">Customize Your Preferences</string>
-	<string name="enable_auto_history">Enable Auto History:</string>
-	<string name="enable_shake">Enable Shake To Reset:</string>
-	<string name="enable_round_off">Enable Default Round Off:</string>
-	<string name="set_default_tip">Set Default Tip%:</string>
-	<string name="set_default_shared_by">Set Default Shared By:</string>
+	<string name="settings_auto_history">Auto History: %s</string>
+	<string name="settings_shake">Shake To Reset: %s</string>
+	<string name="settings_round_off">Default Round Off: %s</string>
+	<string name="settings_set_default_tip">Set Default Tip%:</string>
+	<string name="settings_set_default_shared_by">Set Default Shared By:</string>
+	<string name="settings_enabled">Enabled</string>
+	<string name="settings_disabled">Disabled</string>
 
     <!-- guide text -->
     <string name="txt_guide">Q1: Where don’t you tip? 

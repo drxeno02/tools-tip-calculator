@@ -122,7 +122,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="0.5"
                 android:gravity="right|end"
-                android:hint="@string/txt_hint"
+                android:hint="@string/txt_hint_dollar"
                 android:inputType="numberDecimal"
                 android:maxLength="10"
                 android:maxLines="1"
@@ -163,7 +163,7 @@
                 android:layout_toRightOf="@id/tv_tip"
                 android:layout_toStartOf="@+id/tv_round"
                 android:maxLines="1"
-                android:text="@string/txt_hint"
+                android:text="@string/txt_hint_dollar"
                 android:textColor="@color/black"
                 android:textSize="@dimen/font_size_18"
                 android:textStyle="bold" />
@@ -282,7 +282,7 @@
                 android:layout_weight="0.5"
                 android:gravity="right|end"
                 android:maxLines="1"
-                android:text="@string/txt_hint"
+                android:text="@string/txt_hint_dollar"
                 android:textColor="@color/black"
                 android:textSize="@dimen/font_size_18"
                 android:textStyle="bold" />
@@ -315,7 +315,7 @@
                 android:layout_weight="0.5"
                 android:gravity="right|end"
                 android:maxLines="1"
-                android:text="@string/txt_hint"
+                android:text="@string/txt_hint_dollar"
                 android:textColor="@color/green_normal"
                 android:textSize="@dimen/font_size_18"
                 android:textStyle="bold" />

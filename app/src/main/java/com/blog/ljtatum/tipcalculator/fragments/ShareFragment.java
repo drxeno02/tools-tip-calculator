@@ -13,6 +13,7 @@ import com.app.framework.enums.Enum;
 import com.app.framework.utilities.FrameworkUtils;
 import com.blog.ljtatum.tipcalculator.R;
 import com.app.framework.utilities.ShareUtils;
+import com.blog.ljtatum.tipcalculator.activity.MainActivity;
 
 /**
  * Created by LJTat on 2/27/2017.
@@ -87,5 +88,19 @@ public class ShareFragment extends BaseFragment implements View.OnClickListener 
             default:
                 break;
         }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        // disable drawer
+        ((MainActivity) mContext).toggleDrawerState(false);
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        // enable drawer
+        ((MainActivity) mContext).toggleDrawerState(true);
     }
 }

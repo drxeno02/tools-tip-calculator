@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
     android:background="@color/grey_light"
+    android:clickable="true"
     android:orientation="vertical">
 
     <include

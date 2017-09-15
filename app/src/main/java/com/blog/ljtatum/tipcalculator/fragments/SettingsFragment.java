@@ -11,8 +11,11 @@ import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
 
+import com.app.framework.sharedpref.SharedPref;
 import com.app.framework.utilities.FrameworkUtils;
 import com.blog.ljtatum.tipcalculator.R;
+import com.blog.ljtatum.tipcalculator.activity.MainActivity;
+import com.blog.ljtatum.tipcalculator.constants.Constants;
 
 /**
  * Created by LJTat on 2/27/2017.
@@ -26,6 +29,7 @@ public class SettingsFragment extends BaseFragment implements View.OnClickListen
     private EditText edtTipPercent, edtSharedBy;
     private Switch switchAutoHistory, switchShakeReset, switchRoundOff;
     private ImageView ivBack;
+    private SharedPref mSharedPref;
 
 
     @Nullable
@@ -37,6 +41,7 @@ public class SettingsFragment extends BaseFragment implements View.OnClickListen
         initializeViews();
         initializeHandlers();
         initializeListeners();
+
         return mRootView;
     }
 
@@ -45,6 +50,7 @@ public class SettingsFragment extends BaseFragment implements View.OnClickListen
      */
     private void initializeViews() {
         mContext = getActivity();
+        mSharedPref = new SharedPref(mContext, com.app.framework.constants.Constants.PREF_FILE_NAME);
 
         // instantiate views
         tvFragmentHeader = (TextView) mRootView.findViewById(R.id.tv_fragment_header);
@@ -57,6 +63,9 @@ public class SettingsFragment extends BaseFragment implements View.OnClickListen
 
         // set fragment header
         tvFragmentHeader.setText(getResources().getString(R.string.setting));
+
+        // update settings
+        updateSettings();
     }
 
     /**
@@ -69,6 +78,43 @@ public class SettingsFragment extends BaseFragment implements View.OnClickListen
 
     private void initializeListeners() {
 
+    }
+
+    /**
+     * Method is used to update settings
+     */
+    private void updateSettings() {
+        // set default pref
+        edtTipPercent.setText(mSharedPref.getIntPref(Constants.KEY_DEFAULT_TIP, 15));
+        // set default shared by
+        edtSharedBy.setText(mSharedPref.getIntPref(Constants.KEY_DEFAULT_SHARED_BY, 1));
+
+        // default auto history
+        if (mSharedPref.getBooleanPref(Constants.KEY_DEFAULT_AUTO_HISTORY, true)) {
+            // enable
+            switchAutoHistory.setChecked(true);
+        } else {
+            // disable
+            switchAutoHistory.setChecked(false);
+        }
+
+        // default shake reset
+        if (mSharedPref.getBooleanPref(Constants.KEY_DEFAULT_SHAKE_RESET, true)) {
+            // enable
+            switchShakeReset.setChecked(true);
+        } else {
+            // disable
+            switchShakeReset.setChecked(false);
+        }
+
+        // default round off
+        if (mSharedPref.getBooleanPref(Constants.KEY_DEFAULT_ROUND_OFF, true)) {
+            // enable
+            switchRoundOff.setChecked(true);
+        } else {
+            // disable
+            switchRoundOff.setChecked(false);
+        }
     }
 
     @Override
@@ -85,6 +131,20 @@ public class SettingsFragment extends BaseFragment implements View.OnClickListen
             default:
                 break;
         }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        // disable drawer
+        ((MainActivity) mContext).toggleDrawerState(false);
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        // enable drawer
+        ((MainActivity) mContext).toggleDrawerState(true);
     }
 
 }

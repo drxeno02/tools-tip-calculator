@@ -18,6 +18,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
         android:text="@string/customize_preferences"
         android:textColor="@color/black"
         android:textSize="@dimen/font_size_24" />
@@ -25,10 +26,9 @@
     <!-- set default tip% -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="35dp"
+        android:layout_height="40dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:layout_marginTop="20dp"
         android:orientation="horizontal"
         android:weightSum="1">
 
@@ -39,7 +39,7 @@
             android:layout_marginLeft="5dp"
             android:layout_marginStart="5dp"
             android:layout_weight="0.6"
-            android:text="@string/set_default_tip"
+            android:text="@string/settings_set_default_tip"
             android:textColor="@color/black"
             android:textSize="@dimen/font_size_18" />
 
@@ -50,14 +50,13 @@
             android:layout_height="match_parent"
             android:layout_weight="0.4"
             android:gravity="right|end"
-            android:hint="@string/txt_hint"
-            android:inputType="numberDecimal"
-            android:maxLength="10"
+            android:hint="@string/txt_hint_integer"
+            android:inputType="number"
+            android:maxLength="3"
             android:maxLines="1"
             android:textColor="@color/black"
             android:textColorHint="@color/grey_normal"
             android:textSize="@dimen/font_size_18">
-
             <requestFocus />
         </EditText>
 
@@ -66,10 +65,9 @@
     <!-- set default shared by -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="35dp"
+        android:layout_height="40dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:layout_marginTop="20dp"
         android:orientation="horizontal">
 
         <!-- 60% weight -->
@@ -79,7 +77,7 @@
             android:layout_marginLeft="5dp"
             android:layout_marginStart="5dp"
             android:layout_weight="0.6"
-            android:text="@string/set_default_shared_by"
+            android:text="@string/settings_set_default_shared_by"
             android:textColor="@color/black"
             android:textSize="@dimen/font_size_18" />
 
@@ -90,13 +88,14 @@
             android:layout_height="match_parent"
             android:layout_weight="0.4"
             android:gravity="right|end"
-            android:hint="@string/txt_hint"
-            android:inputType="numberDecimal"
-            android:maxLength="10"
+            android:hint="@string/txt_hint_integer"
+            android:inputType="number"
+            android:maxLength="2"
             android:maxLines="1"
             android:textColor="@color/black"
             android:textColorHint="@color/grey_normal"
-            android:textSize="@dimen/font_size_18"></EditText>
+            android:textSize="@dimen/font_size_18">
+        </EditText>
 
     </LinearLayout>
 
@@ -104,24 +103,24 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:layout_marginTop="15dp"
         android:orientation="horizontal"
         android:weightSum="1">
 
-        <!-- 65% weight -->
+        <!-- 85% weight -->
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
             android:layout_marginStart="5dp"
-            android:layout_weight="0.65"
-            android:text="@string/enable_auto_history"
+            android:layout_weight="0.85"
+            android:text="@string/settings_auto_history"
             android:textColor="@color/black"
             android:textSize="@dimen/font_size_18" />
 
-        <!-- 35% weight -->
+        <!-- 15% weight -->
         <Switch
             android:id="@+id/switch_auto_history"
             android:layout_width="0dp"
@@ -129,7 +128,7 @@
             android:layout_gravity="end|right"
             android:layout_marginLeft="5dp"
             android:layout_marginStart="5dp"
-            android:layout_weight="0.35"
+            android:layout_weight="0.15"
             android:checked="true"
             android:gravity="end|right" />
 
@@ -145,18 +144,18 @@
         android:orientation="horizontal"
         android:weightSum="1">
 
-        <!-- 65% weight -->
+        <!-- 85% weight -->
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
             android:layout_marginStart="5dp"
-            android:layout_weight="0.65"
-            android:text="@string/enable_shake"
+            android:layout_weight="0.85"
+            android:text="@string/settings_shake"
             android:textColor="@color/black"
             android:textSize="@dimen/font_size_18" />
 
-        <!-- 35% weight -->
+        <!-- 15% weight -->
         <Switch
             android:id="@+id/switch_shake_reset"
             android:layout_width="0dp"
@@ -164,7 +163,7 @@
             android:layout_gravity="end|right"
             android:layout_marginLeft="5dp"
             android:layout_marginStart="5dp"
-            android:layout_weight="0.35"
+            android:layout_weight="0.15"
             android:checked="true"
             android:gravity="end|right" />
 
@@ -180,18 +179,18 @@
         android:orientation="horizontal"
         android:weightSum="1">
 
-        <!-- 65% weight -->
+        <!-- 85% weight -->
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
             android:layout_marginStart="5dp"
-            android:layout_weight="0.65"
-            android:text="@string/enable_round_off"
+            android:layout_weight="0.85"
+            android:text="@string/settings_round_off"
             android:textColor="@color/black"
             android:textSize="@dimen/font_size_18" />
 
-        <!-- 35% weight -->
+        <!-- 15% weight -->
         <Switch
             android:id="@+id/switch_round_off"
             android:layout_width="0dp"
@@ -199,7 +198,7 @@
             android:layout_gravity="end|right"
             android:layout_marginLeft="5dp"
             android:layout_marginStart="5dp"
-            android:layout_weight="0.35"
+            android:layout_weight="0.15"
             android:checked="true"
             android:gravity="end|right" />
 
