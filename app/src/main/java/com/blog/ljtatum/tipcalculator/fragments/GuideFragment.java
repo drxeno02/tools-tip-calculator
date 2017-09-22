@@ -65,7 +65,6 @@ public class GuideFragment extends BaseFragment implements View.OnClickListener 
     private GuideAdapter mGuideAdapter;
     private ArrayList<GuideModel> alGuideModel;
     private TextView tvFragmentHeader;
-    private ImageView ivBack;
 
     @Nullable
     @Override
@@ -91,7 +90,6 @@ public class GuideFragment extends BaseFragment implements View.OnClickListener 
         // instantiate views
         rvGuide = (RecyclerView) mRootView.findViewById(R.id.rv_guide);
         tvFragmentHeader = (TextView) mRootView.findViewById(R.id.tv_fragment_header);
-        ivBack = (ImageView) mRootView.findViewById(R.id.iv_back);
 
         // instantiate adapter
         LinearLayoutManager layoutManager = new LinearLayoutManager(mContext);
@@ -108,7 +106,7 @@ public class GuideFragment extends BaseFragment implements View.OnClickListener 
      * Method is used to set click listeners
      */
     private void initializeHandlers() {
-        ivBack.setOnClickListener(this);
+        tvFragmentHeader.setOnClickListener(this);
     }
 
     /**
@@ -143,7 +141,7 @@ public class GuideFragment extends BaseFragment implements View.OnClickListener 
         }
 
         switch (v.getId()) {
-            case R.id.iv_back:
+            case R.id.tv_fragment_header:
                 remove();
                 popBackStack();
                 break;

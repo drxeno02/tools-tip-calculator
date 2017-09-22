@@ -17,6 +17,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -45,6 +46,7 @@ import com.app.framework.utilities.FrameworkUtils;
 import com.app.framework.utilities.NetworkUtils;
 import com.blog.ljtatum.tipcalculator.R;
 import com.blog.ljtatum.tipcalculator.constants.Constants;
+import com.blog.ljtatum.tipcalculator.constants.Durations;
 import com.blog.ljtatum.tipcalculator.fragments.AboutFragment;
 import com.blog.ljtatum.tipcalculator.fragments.GuideFragment;
 import com.blog.ljtatum.tipcalculator.fragments.HistoryFragment;
@@ -52,6 +54,7 @@ import com.blog.ljtatum.tipcalculator.fragments.PrivacyFragment;
 import com.blog.ljtatum.tipcalculator.fragments.SettingsFragment;
 import com.blog.ljtatum.tipcalculator.fragments.ShareFragment;
 import com.blog.ljtatum.tipcalculator.listeners.ShakeEventListener;
+import com.blog.ljtatum.tipcalculator.logger.Logger;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
@@ -70,7 +73,6 @@ public class MainActivity extends BaseActivity implements OnClickListener,
     public static String TAG = MainActivity.class.getSimpleName();
 
     private static final String AD_ID_TEST = "950036DB8197D296BE390357BD9A964E";
-    private static final long AD_LOAD_DELAY = 500;
 
     private Context mContext;
     private int sharedNum = 1; // default value
@@ -144,9 +146,6 @@ public class MainActivity extends BaseActivity implements OnClickListener,
         alSpinnerItems = new ArrayList<>();
         mSharedPref = new SharedPref(mContext, com.app.framework.constants.Constants.PREF_FILE_NAME);
 
-        // instantiate FirebaseUtils
-        new FirebaseUtils();
-
         // rate this app
         new AppRaterUtil(mContext);
         switchRoundOff = (Switch) findViewById(R.id.switch_round_off);
@@ -175,9 +174,26 @@ public class MainActivity extends BaseActivity implements OnClickListener,
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, mDrawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+                this, mDrawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close) {
+
+            @Override
+            public void onDrawerClosed(View view) {
+                super.onDrawerClosed(view);
+                edtBill.requestFocus();
+                // show keyboard
+                DeviceUtils.showKeyboard(mContext);
+            }
+
+            @Override
+            public void onDrawerOpened(View drawerView) {
+                super.onDrawerOpened(drawerView);
+                // hide keyboard
+                DeviceUtils.hideKeyboard(mContext, getWindow().getDecorView().getWindowToken());
+            }
+        };
         mDrawerLayout.addDrawerListener(toggle);
         toggle.syncState();
+
 
         // instantiate vibrator
         v = (Vibrator) MainActivity.this.getSystemService(Context.VIBRATOR_SERVICE);
@@ -205,7 +221,7 @@ public class MainActivity extends BaseActivity implements OnClickListener,
                         // load banner ads
                         adView.loadAd(adRequestBanner);
                     }
-                }, AD_LOAD_DELAY);
+                }, Durations.DELAY_MS_500);
             }
         } catch (RuntimeException e) {
             e.printStackTrace();
@@ -242,7 +258,7 @@ public class MainActivity extends BaseActivity implements OnClickListener,
         mSensorListener.setOnShakeListener(new ShakeEventListener.OnShakeListener() {
             @Override
             public void onShake() {
-                v.vibrate(500); //vibrate for 500 milliseconds
+                v.vibrate(Durations.DELAY_MS_500); //vibrate for 500 milliseconds
                 clear = true;
                 calculate();
             }
@@ -254,9 +270,8 @@ public class MainActivity extends BaseActivity implements OnClickListener,
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
-                    // hide virtual keyboard
-                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                    imm.hideSoftInputFromWindow(edtBill.getWindowToken(), 0);
+                    // hide keyboard
+                    DeviceUtils.hideKeyboard(mContext, getWindow().getDecorView().getWindowToken());
                 }
                 return false;
             }
@@ -291,7 +306,8 @@ public class MainActivity extends BaseActivity implements OnClickListener,
         switchRoundOff.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                DeviceUtils.hideKeyboard(mContext, MainActivity.this.getWindow().getDecorView().getWindowToken());
+                // hide keyboard
+                DeviceUtils.hideKeyboard(mContext, getWindow().getDecorView().getWindowToken());
                 calculate();
             }
         });
@@ -478,8 +494,6 @@ public class MainActivity extends BaseActivity implements OnClickListener,
      * Method is used to populate spinner
      */
     private void populateSpinner() {
-        DeviceUtils.hideKeyboard(mContext, MainActivity.this.getWindow().getDecorView().getWindowToken());
-
         // setup spinner configurations
         spinner.setAdapter(null); // make sure spinner is empty
         alSpinnerItems.clear(); // make sure arrayList is empty
@@ -691,7 +705,8 @@ public class MainActivity extends BaseActivity implements OnClickListener,
 
         switch (view.getId()) {
             case R.id.btn_inc:
-                DeviceUtils.hideKeyboard(mContext, MainActivity.this.getWindow().getDecorView().getWindowToken());
+                // hide keyboard
+                DeviceUtils.hideKeyboard(mContext, getWindow().getDecorView().getWindowToken());
                 if (sharedNum < 99) {
                     sharedNum++; // increment # of shared values
                     strValue = Integer.toString(sharedNum);
@@ -700,7 +715,8 @@ public class MainActivity extends BaseActivity implements OnClickListener,
                 }
                 break;
             case R.id.btn_dec:
-                DeviceUtils.hideKeyboard(mContext, MainActivity.this.getWindow().getDecorView().getWindowToken());
+                // hide keyboard
+                DeviceUtils.hideKeyboard(mContext, getWindow().getDecorView().getWindowToken());
                 if (sharedNum > 1) {
                     sharedNum--; // decrement # of shared values
                     strValue = Integer.toString(sharedNum);
@@ -798,6 +814,12 @@ public class MainActivity extends BaseActivity implements OnClickListener,
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
+        if (mDrawerLayout.isDrawerOpen(Gravity.LEFT)) {
+            // close drawer
+            mDrawerLayout.closeDrawer(Gravity.LEFT);
+        } else {
+            super.onBackPressed();
+        }
+
     }
 }

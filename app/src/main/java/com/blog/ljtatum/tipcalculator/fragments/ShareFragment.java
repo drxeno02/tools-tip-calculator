@@ -24,7 +24,7 @@ public class ShareFragment extends BaseFragment implements View.OnClickListener 
     private Context mContext;
     private View mRootView;
     private TextView tvFragmentHeader;
-    private ImageView ivFb, ivTwitter, ivLinkedin, ivBack;
+    private ImageView ivFb, ivTwitter, ivLinkedin;
 
     @Nullable
     @Override
@@ -47,7 +47,6 @@ public class ShareFragment extends BaseFragment implements View.OnClickListener 
         ivFb = (ImageView) mRootView.findViewById(R.id.iv_fb);
         ivTwitter = (ImageView) mRootView.findViewById(R.id.iv_twitter);
         ivLinkedin = (ImageView) mRootView.findViewById(R.id.iv_linkedin);
-        ivBack = (ImageView) mRootView.findViewById(R.id.iv_back);
 
         // set fragment header
         tvFragmentHeader.setText(getResources().getString(R.string.share));
@@ -60,7 +59,6 @@ public class ShareFragment extends BaseFragment implements View.OnClickListener 
         ivFb.setOnClickListener(this);
         ivTwitter.setOnClickListener(this);
         ivLinkedin.setOnClickListener(this);
-        ivBack.setOnClickListener(this);
         tvFragmentHeader.setOnClickListener(this);
     }
 
@@ -72,7 +70,6 @@ public class ShareFragment extends BaseFragment implements View.OnClickListener 
 
         switch (view.getId()) {
             case R.id.tv_fragment_header:
-            case R.id.iv_back:
                 remove();
                 popBackStack();
                 break;

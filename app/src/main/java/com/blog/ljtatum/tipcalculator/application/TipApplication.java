@@ -19,8 +19,8 @@ public class TipApplication extends Application {
         super.onCreate();
         // instantiate FireBase
         FirebaseApp.initializeApp(this);
-//        // instantiate FirebaseUtils
-//        new FirebaseUtils();
+        // instantiate FirebaseUtils
+        new FirebaseUtils();
         // instantiate crashlytics
         Crashlytics crashlyticsKit = new Crashlytics.Builder()
                 .core(new CrashlyticsCore.Builder().disabled(BuildConfig.DEBUG).build()).build();

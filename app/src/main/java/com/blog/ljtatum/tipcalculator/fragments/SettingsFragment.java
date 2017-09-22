@@ -3,11 +3,12 @@ package com.blog.ljtatum.tipcalculator.fragments;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
 
@@ -16,6 +17,7 @@ import com.app.framework.utilities.FrameworkUtils;
 import com.blog.ljtatum.tipcalculator.R;
 import com.blog.ljtatum.tipcalculator.activity.MainActivity;
 import com.blog.ljtatum.tipcalculator.constants.Constants;
+import com.blog.ljtatum.tipcalculator.logger.Logger;
 
 /**
  * Created by LJTat on 2/27/2017.
@@ -28,7 +30,6 @@ public class SettingsFragment extends BaseFragment implements View.OnClickListen
     private TextView tvFragmentHeader;
     private EditText edtTipPercent, edtSharedBy;
     private Switch switchAutoHistory, switchShakeReset, switchRoundOff;
-    private ImageView ivBack;
     private SharedPref mSharedPref;
 
 
@@ -54,7 +55,6 @@ public class SettingsFragment extends BaseFragment implements View.OnClickListen
 
         // instantiate views
         tvFragmentHeader = (TextView) mRootView.findViewById(R.id.tv_fragment_header);
-        ivBack = (ImageView) mRootView.findViewById(R.id.iv_back);
         edtTipPercent = (EditText) mRootView.findViewById(R.id.edt_tip_percent);
         edtSharedBy = (EditText) mRootView.findViewById(R.id.edt_shared_by);
         switchAutoHistory = (Switch) mRootView.findViewById(R.id.switch_auto_history);
@@ -72,12 +72,48 @@ public class SettingsFragment extends BaseFragment implements View.OnClickListen
      * Method is used to set click listeners
      */
     private void initializeHandlers() {
-        ivBack.setOnClickListener(this);
+        tvFragmentHeader.setOnClickListener(this);
     }
 
 
     private void initializeListeners() {
+        // TextChangedListener tip percent
+        edtTipPercent.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                // do nothing
+            }
 
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                Logger.e("TEST", "<edtTipPercent> s= " + s.toString());
+                mSharedPref.setPref(Constants.KEY_DEFAULT_TIP, Integer.parseInt(s.toString()));
+            }
+        });
+
+        // TextChangedListener shared by
+        edtSharedBy.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                // do nothing
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                Logger.e("TEST", "<edtSharedBy> s= " + s.toString());
+                mSharedPref.setPref(Constants.KEY_DEFAULT_SHARED_BY, Integer.parseInt(s.toString()));
+            }
+        });
     }
 
     /**
@@ -85,9 +121,9 @@ public class SettingsFragment extends BaseFragment implements View.OnClickListen
      */
     private void updateSettings() {
         // set default pref
-        edtTipPercent.setText(mSharedPref.getIntPref(Constants.KEY_DEFAULT_TIP, 15));
+        edtTipPercent.setText(String.valueOf(mSharedPref.getIntPref(Constants.KEY_DEFAULT_TIP, 15)));
         // set default shared by
-        edtSharedBy.setText(mSharedPref.getIntPref(Constants.KEY_DEFAULT_SHARED_BY, 1));
+        edtSharedBy.setText(String.valueOf(mSharedPref.getIntPref(Constants.KEY_DEFAULT_SHARED_BY, 1)));
 
         // default auto history
         if (mSharedPref.getBooleanPref(Constants.KEY_DEFAULT_AUTO_HISTORY, true)) {
@@ -124,7 +160,7 @@ public class SettingsFragment extends BaseFragment implements View.OnClickListen
         }
 
         switch (v.getId()) {
-            case R.id.iv_back:
+            case R.id.tv_fragment_header:
                 remove();
                 popBackStack();
                 break;

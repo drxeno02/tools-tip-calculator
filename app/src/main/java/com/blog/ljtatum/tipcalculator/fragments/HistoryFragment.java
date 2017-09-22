@@ -28,7 +28,6 @@ public class HistoryFragment extends BaseFragment implements View.OnClickListene
     private Context mContext;
     private View mRootView;
     private TextView tvFragmentHeader, tvTipWeek;
-    private ImageView ivBack;
     private RecyclerView rvHistory;
     private HistoryAdapter mHistoryAdapter;
     private ArrayList<HistoryModel> alTipHistory;
@@ -60,7 +59,6 @@ public class HistoryFragment extends BaseFragment implements View.OnClickListene
         rvHistory = (RecyclerView) mRootView.findViewById(R.id.rv_history);
         tvFragmentHeader = (TextView) mRootView.findViewById(R.id.tv_fragment_header);
         tvTipWeek = (TextView) mRootView.findViewById(R.id.tv_tip_week);
-        ivBack = (ImageView) mRootView.findViewById(R.id.iv_back);
 
         // instantiate adapter
         LinearLayoutManager layoutManager = new LinearLayoutManager(mContext);
@@ -77,7 +75,7 @@ public class HistoryFragment extends BaseFragment implements View.OnClickListene
      * Method is used to set click listeners
      */
     private void initializeHandlers() {
-        ivBack.setOnClickListener(this);
+        tvFragmentHeader.setOnClickListener(this);
     }
 
 
@@ -98,7 +96,7 @@ public class HistoryFragment extends BaseFragment implements View.OnClickListene
         }
 
         switch (v.getId()) {
-            case R.id.iv_back:
+            case R.id.tv_fragment_header:
                 remove();
                 popBackStack();
                 break;

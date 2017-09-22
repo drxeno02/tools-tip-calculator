@@ -21,7 +21,6 @@ public class PrivacyFragment extends BaseFragment implements View.OnClickListene
     private Context mContext;
     private View mRootView;
     private TextView tvFragmentHeader;
-    private ImageView ivBack;
 
     @Nullable
     @Override
@@ -41,7 +40,6 @@ public class PrivacyFragment extends BaseFragment implements View.OnClickListene
     private void initializeViews() {
         mContext = getActivity();
         tvFragmentHeader = (TextView) mRootView.findViewById(R.id.tv_fragment_header);
-        ivBack = (ImageView) mRootView.findViewById(R.id.iv_back);
 
         // set fragment header
         tvFragmentHeader.setText(getResources().getString(R.string.privacy));
@@ -51,7 +49,6 @@ public class PrivacyFragment extends BaseFragment implements View.OnClickListene
      * Method is used to set click listeners
      */
     private void initializeHandlers() {
-        ivBack.setOnClickListener(this);
         tvFragmentHeader.setOnClickListener(this);
     }
 
@@ -63,7 +60,6 @@ public class PrivacyFragment extends BaseFragment implements View.OnClickListene
 
         switch (view.getId()) {
             case R.id.tv_fragment_header:
-            case R.id.iv_back:
                 remove();
                 popBackStack();
                 break;
