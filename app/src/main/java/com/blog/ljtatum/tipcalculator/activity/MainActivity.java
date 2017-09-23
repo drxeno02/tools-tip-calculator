@@ -26,7 +26,6 @@ import android.view.View.OnClickListener;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -41,7 +40,6 @@ import android.widget.TextView.OnEditorActionListener;
 import com.app.framework.sharedpref.SharedPref;
 import com.app.framework.utilities.AppRaterUtil;
 import com.app.framework.utilities.DeviceUtils;
-import com.app.framework.utilities.FirebaseUtils;
 import com.app.framework.utilities.FrameworkUtils;
 import com.app.framework.utilities.NetworkUtils;
 import com.blog.ljtatum.tipcalculator.R;
@@ -69,16 +67,10 @@ import de.keyboardsurfer.android.widget.crouton.Style;
  * Created by LJTat on 2/23/2017.
  */
 public class MainActivity extends BaseActivity implements OnClickListener,
-        NavigationView.OnNavigationItemSelectedListener{
+        NavigationView.OnNavigationItemSelectedListener {
     public static String TAG = MainActivity.class.getSimpleName();
 
     private static final String AD_ID_TEST = "950036DB8197D296BE390357BD9A964E";
-
-    private Context mContext;
-    private int sharedNum = 1; // default value
-    private int intSelected;
-    private int integerPlaces; // track number of integers in editText
-    private int decimalPlaces; // track number of decimals in editText
     private static final int[] ARRY_DRAWER_ICONS = {R.drawable.food_01, R.drawable.food_02,
             R.drawable.food_03, R.drawable.food_04, R.drawable.food_05, R.drawable.food_06,
             R.drawable.food_07, R.drawable.food_08, R.drawable.food_09, R.drawable.food_10,
@@ -87,7 +79,8 @@ public class MainActivity extends BaseActivity implements OnClickListener,
             R.drawable.food_19, R.drawable.food_20, R.drawable.food_21, R.drawable.food_22,
             R.drawable.food_23};
 
-    private double doubleBill, temp1, temp2, temp3, temp4, temp5;
+    private Context mContext;
+    private int sharedNum, intSelected, decimalPlaces;
     private boolean clear, specialCase;
 
     private ImageView ivStar1, ivStar2, ivStar3, ivStar4, ivStar5;
@@ -98,7 +91,7 @@ public class MainActivity extends BaseActivity implements OnClickListener,
 
     private AdView adView; // container for banner ads
 
-    private TextView tvValue; // container for sharedNum
+    private TextView tvSharedBy; // container for sharedNum
     private TextView tvService; // container for rating
     private TextView tvPercent; // container for tip percent
     private TextView tvTip; // container for tip amount
@@ -107,11 +100,7 @@ public class MainActivity extends BaseActivity implements OnClickListener,
 
     private EditText edtBill;
 
-    private String strValue;
     private String strFormatted;
-    private String strTip; // used for format tip textView
-    private String strPerson; // used for format person textView
-    private String strTotal; // used for format total bill textView
 
     private Spinner spinner;
     private Switch switchRoundOff;
@@ -161,7 +150,10 @@ public class MainActivity extends BaseActivity implements OnClickListener,
         btnClear = (Button) findViewById(R.id.btn_clear);
         btnInc = (Button) findViewById(R.id.btn_inc);
         btnDec = (Button) findViewById(R.id.btn_dec);
-        tvValue = (TextView) findViewById(R.id.tv_meta_num);
+        tvSharedBy = (TextView) findViewById(R.id.tv_meta_shared_by);
+
+        // set initial shared by value
+        sharedNum = mSharedPref.getIntPref(Constants.KEY_DEFAULT_SHARED_BY, 1);
 
         // spinner
         tvService = (TextView) findViewById(R.id.tv_meta_rating);
@@ -179,9 +171,11 @@ public class MainActivity extends BaseActivity implements OnClickListener,
             @Override
             public void onDrawerClosed(View view) {
                 super.onDrawerClosed(view);
-                edtBill.requestFocus();
-                // show keyboard
-                DeviceUtils.showKeyboard(mContext);
+                if (FrameworkUtils.checkIfNull(getTopFragment())) {
+                    edtBill.requestFocus();
+                    // show keyboard
+                    DeviceUtils.showKeyboard(mContext);
+                }
             }
 
             @Override
@@ -227,7 +221,6 @@ public class MainActivity extends BaseActivity implements OnClickListener,
             e.printStackTrace();
             adView.setBackgroundResource(R.drawable.banner);
         }
-
     }
 
     /**
@@ -295,7 +288,7 @@ public class MainActivity extends BaseActivity implements OnClickListener,
                 if (edtBill.getText().toString().contentEquals(".")) {
                     // handle special case
                     edtBill.setText("0.00");
-                } else if (edtBill.getText().toString() != null
+                } else if (!FrameworkUtils.isStringEmpty(edtBill.getText().toString())
                         && edtBill.getText().toString().length() > 0) {
                     editTextUpdate();
                 }
@@ -394,15 +387,14 @@ public class MainActivity extends BaseActivity implements OnClickListener,
         DecimalFormat format = new DecimalFormat("0.00");
 
         // parse, convert and update appropriate values
-        doubleBill = Double.parseDouble(edtBill.getText().toString());
+        double doubleBill = Double.parseDouble(edtBill.getText().toString());
 
         String strParse = String.valueOf(doubleBill);
-        integerPlaces = strParse.indexOf('.');
-        if (edtBill.getText().toString().contains(".") == true
-                && decimalPlaces >= 1) {
+        int integerPlaces = strParse.indexOf('.');
+        if (edtBill.getText().toString().contains(".") && decimalPlaces >= 1) {
 
             // handle special case
-            if (specialCase == true) {
+            if (specialCase) {
                 specialCase = false;
                 decimalPlaces = 2; // prevents loop
             } else {
@@ -423,14 +415,12 @@ public class MainActivity extends BaseActivity implements OnClickListener,
         }
 
         // handle special case
-        if (integerPlaces == 7
-                && edtBill.getText().toString().contains(".") == false) {
+        if (integerPlaces == 7 && !edtBill.getText().toString().contains(".")) {
             edtBill.setText(strFormatted);
         }
 
         // handle special case
-        if (integerPlaces == 7 && decimalPlaces <= 1
-                && edtBill.getText().toString().contains(".") == true) {
+        if (integerPlaces == 7 && decimalPlaces <= 1 && edtBill.getText().toString().contains(".")) {
             specialCase = true;
             decimalPlaces = 2; // prevents loop
             edtBill.setText(strFormatted);
@@ -439,6 +429,7 @@ public class MainActivity extends BaseActivity implements OnClickListener,
 
     /**
      * Method is used to set rating from stars
+     *
      * @param num
      */
     private void setRating(int num, boolean isSetFromSpinner) {
@@ -539,81 +530,73 @@ public class MainActivity extends BaseActivity implements OnClickListener,
 
         // setup adapter
         spinner.setAdapter(arrayAdapter);
-        spinner.setSelection(15);
+        spinner.setSelection(mSharedPref.getIntPref(Constants.KEY_DEFAULT_TIP, 15));
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             @Override
             public void onItemSelected(AdapterView<?> parent, View view,
                                        int pos, long id) {
+                Logger.e("TEST", "<onItemSelected>");
                 intSelected = spinner.getSelectedItemPosition();
                 if (intSelected >= 0 && intSelected <= 2) {
                     setRating(1, true);
                     tvService.setText("Poor");
                     tvService.setTextColor(ContextCompat.getColor(mContext, R.color.red_shade));
                     Crouton.showText(MainActivity.this, "Poor tip service percent", Style.ALERT);
-                    calculate();
                 } else if (intSelected >= 3 && intSelected <= 4) {
                     setRating(1, true);
                     tvService.setText("Poor");
                     tvService.setTextColor(ContextCompat.getColor(mContext, R.color.red_shade));
                     Crouton.showText(MainActivity.this, "Poor tip service percent", Style.ALERT);
-                    calculate();
                 } else if (intSelected >= 5 && intSelected <= 7) {
                     setRating(1, true);
                     tvService.setText("Poor");
                     tvService.setTextColor(ContextCompat.getColor(mContext, R.color.red_shade));
                     Crouton.showText(MainActivity.this, "Poor tip service percent", Style.ALERT);
-                    calculate();
                 } else if (intSelected >= 8 && intSelected <= 9) {
                     setRating(1, true);
                     tvService.setText("Poor");
                     tvService.setTextColor(ContextCompat.getColor(mContext, R.color.red_shade));
                     Crouton.showText(MainActivity.this, "Poor tip service percent", Style.ALERT);
-                    calculate();
                 } else if (intSelected >= 10 && intSelected <= 12) {
                     setRating(2, true);
                     tvService.setText("Fair");
                     tvService.setTextColor(ContextCompat.getColor(mContext, R.color.green_dark));
                     Crouton.showText(MainActivity.this, "Fair tip service percent", Style.CONFIRM);
-                    calculate();
                 } else if (intSelected >= 13 && intSelected <= 14) {
                     setRating(2, true);
                     tvService.setText("Fair");
                     tvService.setTextColor(ContextCompat.getColor(mContext, R.color.green_dark));
                     Crouton.showText(MainActivity.this, "Fair tip service percent", Style.CONFIRM);
-                    calculate();
                 } else if (intSelected >= 15 && intSelected <= 17) {
                     setRating(3, true);
                     tvService.setText("Good!");
                     tvService.setTextColor(ContextCompat.getColor(mContext, R.color.green_dark));
                     Crouton.showText(MainActivity.this, "Good tip service percent", Style.CONFIRM);
-                    calculate();
                 } else if (intSelected >= 18 && intSelected <= 19) {
                     setRating(3, true);
                     tvService.setText("Good!");
                     tvService.setTextColor(ContextCompat.getColor(mContext, R.color.green_dark));
                     Crouton.showText(MainActivity.this, "Good service percent", Style.CONFIRM);
-                    calculate();
                 } else if (intSelected >= 20 && intSelected <= 22) {
                     setRating(4, true);
                     tvService.setText("Great!");
                     tvService.setTextColor(ContextCompat.getColor(mContext, R.color.green_dark));
                     Crouton.showText(MainActivity.this, "Great tip service percent", Style.CONFIRM);
-                    calculate();
                 } else if (intSelected >= 23 && intSelected <= 24) {
                     setRating(4, true);
                     tvService.setText("Great!");
                     tvService.setTextColor(ContextCompat.getColor(mContext, R.color.green_dark));
                     Crouton.showText(MainActivity.this, "Great tip service percent", Style.CONFIRM);
-                    calculate();
                 } else if (intSelected >= 25) {
                     setRating(5, true);
                     tvService.setText("Royal!");
                     tvService.setTextColor(ContextCompat.getColor(mContext, R.color.purple_shade));
                     Crouton.showText(MainActivity.this, "Royal tip service percent", Style.INFO);
-                    calculate();
+
                 }
                 tvPercent.setText(intSelected + "%");
+                calculate();
             }
 
             @Override
@@ -627,7 +610,10 @@ public class MainActivity extends BaseActivity implements OnClickListener,
      * Method is used to calculate tip amount
      */
     private void calculate() {
-        if (clear == true) {
+        // temp values
+        double temp1, temp2, temp3, temp4, temp5;
+
+        if (clear) {
             Crouton.showText(MainActivity.this, "All fields reset", Style.CONFIRM);
             clear = false;
 
@@ -643,16 +629,19 @@ public class MainActivity extends BaseActivity implements OnClickListener,
             temp4 = 0.00;
             temp5 = 0.00;
 
+            // reset tip and payment values
             tvTip.setText(String.valueOf("$0.00"));
             tvPerson.setText(String.valueOf("$0.00"));
             tvTotal.setText(String.valueOf("$0.00"));
 
-            sharedNum = 1;
-            tvValue.setText(String.valueOf("1"));
+            // update shared by value
+            tvSharedBy.setText(String.valueOf(mSharedPref.getIntPref(Constants.KEY_DEFAULT_SHARED_BY, 1)));
+
+            // reset bill amount
             edtBill.setText("");
         } else {
             /*
-			 * Legend:
+             * Legend:
 			 * temp1-amount of the bill
 			 * temp2-tip w/o round
 			 * temp3-tip w/round
@@ -662,14 +651,14 @@ public class MainActivity extends BaseActivity implements OnClickListener,
 
             if (edtBill.getText().toString().length() == 0) {
                 tvTip.setText(String.valueOf("$0.00")); // static
-
             } else {
                 // calculate tip amount
                 temp1 = Double.parseDouble(strFormatted);
                 temp2 = intSelected * temp1 / 100;
                 DecimalFormat formatTip = new DecimalFormat("0.00");
-                strTip = formatTip.format(temp2);
+                String strTip = formatTip.format(temp2);
 
+                String strTotal;
                 if (switchRoundOff.isChecked()) {
                     // round ON; update calculations
                     temp3 = (int) Math.round(temp2);
@@ -691,9 +680,12 @@ public class MainActivity extends BaseActivity implements OnClickListener,
 
                 // calculate each person pays amount
                 temp5 = temp4 / sharedNum;
-                strPerson = formatTip.format(temp5);
+                String strPerson = formatTip.format(temp5);
                 tvPerson.setText(String.valueOf("$" + strPerson));
             }
+
+            // update shared by value
+            tvSharedBy.setText(String.valueOf(sharedNum));
         }
     }
 
@@ -707,20 +699,20 @@ public class MainActivity extends BaseActivity implements OnClickListener,
             case R.id.btn_inc:
                 // hide keyboard
                 DeviceUtils.hideKeyboard(mContext, getWindow().getDecorView().getWindowToken());
+                // maximum shared by is 99
                 if (sharedNum < 99) {
                     sharedNum++; // increment # of shared values
-                    strValue = Integer.toString(sharedNum);
-                    tvValue.setText(strValue);
+                    tvSharedBy.setText(String.valueOf(sharedNum));
                     calculate();
                 }
                 break;
             case R.id.btn_dec:
                 // hide keyboard
                 DeviceUtils.hideKeyboard(mContext, getWindow().getDecorView().getWindowToken());
+                // least shared by is 1
                 if (sharedNum > 1) {
                     sharedNum--; // decrement # of shared values
-                    strValue = Integer.toString(sharedNum);
-                    tvValue.setText(strValue);
+                    tvSharedBy.setText(String.valueOf(sharedNum));
                     calculate();
                 }
                 break;
@@ -729,7 +721,7 @@ public class MainActivity extends BaseActivity implements OnClickListener,
                 calculate();
                 break;
             case R.id.iv_star_1:
-                setRating(1,false);
+                setRating(1, false);
                 break;
             case R.id.iv_star_2:
                 setRating(2, false);
@@ -814,9 +806,9 @@ public class MainActivity extends BaseActivity implements OnClickListener,
 
     @Override
     public void onBackPressed() {
-        if (mDrawerLayout.isDrawerOpen(Gravity.LEFT)) {
+        if (mDrawerLayout.isDrawerOpen(Gravity.START)) {
             // close drawer
-            mDrawerLayout.closeDrawer(Gravity.LEFT);
+            mDrawerLayout.closeDrawer(Gravity.START);
         } else {
             super.onBackPressed();
         }

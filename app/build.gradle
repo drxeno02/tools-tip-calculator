@@ -14,6 +14,15 @@ repositories {
     maven { url 'https://maven.fabric.io/public' }
 }
 
+ext {
+    developerId = 'drxeno02'
+    developerName = 'Leonard Tatum'
+    developerEmail = 'ljtatum@hotmail.com'
+
+    siteUrl = 'https://github.com/drxeno02/tools-tip-calculator'
+    gitUrl = 'https://github.com/drxeno02/tools-tip-calculator.git'
+}
+
 android {
     compileSdkVersion 25
     buildToolsVersion '26.0.1'

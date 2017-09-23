@@ -17,8 +17,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
         android:text="@string/customize_preferences"
         android:textColor="@color/black"
         android:textSize="@dimen/font_size_24" />
@@ -51,12 +51,14 @@
             android:layout_weight="0.4"
             android:gravity="right|end"
             android:hint="@string/txt_hint_integer"
+            android:imeOptions="actionDone"
             android:inputType="number"
-            android:maxLength="3"
+            android:maxLength="2"
             android:maxLines="1"
             android:textColor="@color/black"
             android:textColorHint="@color/grey_normal"
             android:textSize="@dimen/font_size_18">
+
             <requestFocus />
         </EditText>
 
@@ -89,13 +91,13 @@
             android:layout_weight="0.4"
             android:gravity="right|end"
             android:hint="@string/txt_hint_integer"
+            android:imeOptions="actionDone"
             android:inputType="number"
             android:maxLength="2"
             android:maxLines="1"
             android:textColor="@color/black"
             android:textColorHint="@color/grey_normal"
-            android:textSize="@dimen/font_size_18">
-        </EditText>
+            android:textSize="@dimen/font_size_18"></EditText>
 
     </LinearLayout>
 
@@ -103,9 +105,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
+        android:layout_marginTop="15dp"
         android:orientation="horizontal"
         android:weightSum="1">
 

@@ -3,21 +3,24 @@ package com.blog.ljtatum.tipcalculator.fragments;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.text.Editable;
-import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.TextView;
 
 import com.app.framework.sharedpref.SharedPref;
+import com.app.framework.utilities.DeviceUtils;
 import com.app.framework.utilities.FrameworkUtils;
 import com.blog.ljtatum.tipcalculator.R;
 import com.blog.ljtatum.tipcalculator.activity.MainActivity;
 import com.blog.ljtatum.tipcalculator.constants.Constants;
-import com.blog.ljtatum.tipcalculator.logger.Logger;
+
+import de.keyboardsurfer.android.widget.crouton.Crouton;
+import de.keyboardsurfer.android.widget.crouton.Style;
 
 /**
  * Created by LJTat on 2/27/2017.
@@ -56,6 +59,7 @@ public class SettingsFragment extends BaseFragment implements View.OnClickListen
         // instantiate views
         tvFragmentHeader = (TextView) mRootView.findViewById(R.id.tv_fragment_header);
         edtTipPercent = (EditText) mRootView.findViewById(R.id.edt_tip_percent);
+        edtTipPercent.requestFocus();
         edtSharedBy = (EditText) mRootView.findViewById(R.id.edt_shared_by);
         switchAutoHistory = (Switch) mRootView.findViewById(R.id.switch_auto_history);
         switchShakeReset = (Switch) mRootView.findViewById(R.id.switch_shake_reset);
@@ -77,41 +81,67 @@ public class SettingsFragment extends BaseFragment implements View.OnClickListen
 
 
     private void initializeListeners() {
-        // TextChangedListener tip percent
-        edtTipPercent.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                // do nothing
-            }
+        // OnEditorActionListener tip percent
+        edtTipPercent.setOnEditorActionListener(new TextView.OnEditorActionListener() {
 
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+                    if (!FrameworkUtils.isStringEmpty(v.getText().toString()) &&
+                            Integer.parseInt(v.getText().toString()) != mSharedPref.getIntPref(Constants.KEY_DEFAULT_TIP, 26)) {
 
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                Logger.e("TEST", "<edtTipPercent> s= " + s.toString());
-                mSharedPref.setPref(Constants.KEY_DEFAULT_TIP, Integer.parseInt(s.toString()));
+                        if (Integer.parseInt(v.getText().toString()) > 25) {
+                            // if value is greater than 25
+                            mSharedPref.setPref(Constants.KEY_DEFAULT_TIP, 25);
+                            // show banner
+                            Crouton.showText(getActivity(), "Maximum tip value is 25%. Information saved!", Style.CONFIRM);
+                        } else if (Integer.parseInt(v.getText().toString()) < 0) {
+                            // if value is less than 0
+                            mSharedPref.setPref(Constants.KEY_DEFAULT_TIP, 0);
+                            // show banner
+                            Crouton.showText(getActivity(), "Minimum tip value is 0%. Information saved!", Style.CONFIRM);
+                        } else {
+                            // if value is between [0-25)
+                            mSharedPref.setPref(Constants.KEY_DEFAULT_TIP, Integer.parseInt(v.getText().toString()));
+                            // show banner
+                            Crouton.showText(getActivity(), "Saved!", Style.CONFIRM);
+                        }
+                    }
+                    return true;
+                }
+                return false;
             }
         });
 
-        // TextChangedListener shared by
-        edtSharedBy.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                // do nothing
-            }
+        // OnEditorActionListener shared by
+        edtSharedBy.setOnEditorActionListener(new TextView.OnEditorActionListener() {
 
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+                    if (!FrameworkUtils.isStringEmpty(v.getText().toString()) &&
+                            Integer.parseInt(v.getText().toString()) != mSharedPref.getIntPref(Constants.KEY_DEFAULT_SHARED_BY, 100)) {
 
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                Logger.e("TEST", "<edtSharedBy> s= " + s.toString());
-                mSharedPref.setPref(Constants.KEY_DEFAULT_SHARED_BY, Integer.parseInt(s.toString()));
+                        if (Integer.parseInt(v.getText().toString()) > 99) {
+                            // if value is greater than 99
+                            mSharedPref.setPref(Constants.KEY_DEFAULT_SHARED_BY, 99);
+                            // show banner
+                            Crouton.showText(getActivity(), "Maximum value is 99. Information saved!", Style.CONFIRM);
+                        } else if (Integer.parseInt(v.getText().toString()) <= 0) {
+                            // if value is less than equal to 0
+                            mSharedPref.setPref(Constants.KEY_DEFAULT_SHARED_BY, 1);
+                            // show banner
+                            Crouton.showText(getActivity(), "Minimum value is 1. Information saved!", Style.CONFIRM);
+                        } else {
+                            // if value is between (0-100)
+                            mSharedPref.setPref(Constants.KEY_DEFAULT_SHARED_BY, Integer.parseInt(v.getText().toString()));
+                            // show banner
+                            Crouton.showText(getActivity(), "Saved!", Style.CONFIRM);
+                        }
+                    }
+                    return true;
+                }
+                return false;
             }
         });
     }
@@ -172,13 +202,25 @@ public class SettingsFragment extends BaseFragment implements View.OnClickListen
     @Override
     public void onResume() {
         super.onResume();
+        // show keyboard
+        DeviceUtils.showKeyboard(mContext);
+        edtTipPercent.requestFocus();
         // disable drawer
         ((MainActivity) mContext).toggleDrawerState(false);
     }
 
     @Override
+    public void onPause() {
+        super.onPause();
+        // hide keyboard
+        DeviceUtils.hideKeyboard(mContext, getActivity().getWindow().getDecorView().getWindowToken());
+    }
+
+    @Override
     public void onDetach() {
         super.onDetach();
+        // hide keyboard
+        DeviceUtils.hideKeyboard(mContext, getActivity().getWindow().getDecorView().getWindowToken());
         // enable drawer
         ((MainActivity) mContext).toggleDrawerState(true);
     }
