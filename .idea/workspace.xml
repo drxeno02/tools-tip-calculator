@@ -13,11 +13,9 @@
   <component name="ChangeListManager">
     <list default="true" id="884e0b4b-c85f-46fe-878c-ccedd3fd2ec8" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build.gradle" afterPath="$PROJECT_DIR$/app/build.gradle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/blog/ljtatum/tipcalculator/activity/BaseActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/blog/ljtatum/tipcalculator/activity/BaseActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ApplicationFramework/src/main/java/com/app/framework/utilities/AppRaterUtil.java" afterPath="$PROJECT_DIR$/ApplicationFramework/src/main/java/com/app/framework/utilities/AppRaterUtil.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/blog/ljtatum/tipcalculator/activity/MainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/blog/ljtatum/tipcalculator/activity/MainActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/blog/ljtatum/tipcalculator/fragments/SettingsFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/blog/ljtatum/tipcalculator/fragments/SettingsFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_settings.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_settings.xml" />
     </list>
     <list id="39076ec2-3b2c-44f6-b2b2-57d850757c0a" name="New changelist" comment="" />
@@ -62,7 +60,103 @@
     <favorites_list name="tools-tip-calculator" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="SettingsFragment.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/blog/ljtatum/tipcalculator/fragments/SettingsFragment.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="367">
+              <caret line="219" column="72" selection-start-line="219" selection-start-column="12" selection-end-line="219" selection-end-column="77" />
+              <folding>
+                <element signature="e#6756#7405#0" expanded="true" />
+                <element signature="e#7084#7165#0" expanded="true" />
+                <element signature="e#7192#7274#0" expanded="true" />
+                <element signature="e#7404#7405#0" expanded="true" />
+                <element signature="e#7496#8131#0" expanded="true" />
+                <element signature="e#7824#7898#0" expanded="true" />
+                <element signature="e#7925#8000#0" expanded="true" />
+                <element signature="e#8130#8131#0" expanded="true" />
+                <element signature="e#8220#8859#0" expanded="true" />
+                <element signature="e#8544#8622#0" expanded="true" />
+                <element signature="e#8649#8728#0" expanded="true" />
+                <element signature="e#8858#8859#0" expanded="true" />
+                <element signature="e#10229#10310#0" expanded="true" />
+                <element signature="e#10329#10411#0" expanded="true" />
+                <element signature="e#10529#10603#0" expanded="true" />
+                <element signature="e#10622#10697#0" expanded="true" />
+                <element signature="e#10811#10889#0" expanded="true" />
+                <element signature="e#10908#10987#0" expanded="true" />
+                <marker date="1506223991458" expanded="false" signature="58:873" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="fragment_settings.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_settings.xml">
+          <provider editor-type-id="android-designer2">
+            <state />
+          </provider>
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="299">
+              <caret line="193" column="48" selection-start-line="193" selection-start-column="34" selection-end-line="193" selection-end-column="52" />
+              <folding>
+                <element signature="e#4300#4331#0" expanded="true" />
+                <element signature="e#5563#5587#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/blog/ljtatum/tipcalculator/activity/MainActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="180">
+              <caret line="158" column="26" selection-start-line="158" selection-start-column="12" selection-end-line="158" selection-end-column="26" />
+              <folding>
+                <element signature="e#10370#10924#0" expanded="true" />
+                <element signature="e#10923#10924#0" expanded="true" />
+                <element signature="e#12392#12728#0" expanded="true" />
+                <element signature="e#12727#12728#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="strings.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="171">
+              <caret line="187" column="55" selection-start-line="187" selection-start-column="48" selection-end-line="187" selection-end-column="55" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="strings.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ApplicationFramework/src/main/res/values/strings.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="187">
+              <caret line="11" column="50" selection-start-line="11" selection-start-column="50" selection-end-line="11" selection-end-column="50" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AppRaterUtil.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/ApplicationFramework/src/main/java/com/app/framework/utilities/AppRaterUtil.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="476">
+              <caret line="71" column="0" selection-start-line="71" selection-start-column="0" selection-end-line="71" selection-end-column="0" />
+              <folding>
+                <element signature="e#2402#2454#0" expanded="true" />
+                <element signature="e#2658#2710#0" expanded="true" />
+                <element signature="e#3065#3117#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -4471,7 +4565,6 @@
         <option value="$PROJECT_DIR$/ApplicationFramework/src/main/java/com/app/framework/utilities/ShareUtils.java" />
         <option value="$PROJECT_DIR$/ApplicationFramework/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/ApplicationFramework/src/main/java/com/app/framework/model/GuideModel.java" />
-        <option value="$PROJECT_DIR$/ApplicationFramework/src/main/java/com/app/framework/utilities/AppRaterUtil.java" />
         <option value="$PROJECT_DIR$/ApplicationFramework/src/main/java/com/app/framework/utilities/map/GoogleServiceUtility.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/blog/ljtatum/tipcalculator/model/HistoryModel.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/blog/ljtatum/tipcalculator/adapter/HistoryAdapter.java" />
@@ -4508,10 +4601,11 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/blog/ljtatum/tipcalculator/constants/Durations.java" />
         <option value="$PROJECT_DIR$/app/build.gradle" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/blog/ljtatum/tipcalculator/activity/BaseActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_settings.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_settings.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/blog/ljtatum/tipcalculator/fragments/SettingsFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/blog/ljtatum/tipcalculator/activity/MainActivity.java" />
+        <option value="$PROJECT_DIR$/ApplicationFramework/src/main/java/com/app/framework/utilities/AppRaterUtil.java" />
       </list>
     </option>
   </component>
@@ -4547,14 +4641,7 @@
     </navigator>
     <panes>
       <pane id="ProjectPane">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tools-tip-calculator" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
+        <subPane />
       </pane>
       <pane id="Scratches" />
       <pane id="PackagesPane">
@@ -5176,7 +5263,14 @@
       <option name="project" value="LOCAL" />
       <updated>1506058320045</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="SettingsFragment part 1 of 2, default tip and shared by stored values">
+      <created>1506210524095</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1506210524095</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TodoView">
@@ -5199,14 +5293,14 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32182628" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.64208245" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25053304" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295325" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3040089" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295325" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1924307" sideWeight="0.46859083" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1924307" sideWeight="0.46859083" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34743875" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32892057" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -5311,7 +5405,8 @@
     <MESSAGE value="configured firebase database" />
     <MESSAGE value="added Durations class" />
     <MESSAGE value="added fix for keyboard and made updates to header" />
-    <option name="LAST_COMMIT_MESSAGE" value="added fix for keyboard and made updates to header" />
+    <MESSAGE value="SettingsFragment part 1 of 2, default tip and shared by stored values" />
+    <option name="LAST_COMMIT_MESSAGE" value="SettingsFragment part 1 of 2, default tip and shared by stored values" />
     <option name="PRESELECT_EXISTING_CHANGELIST" value="false" />
   </component>
   <component name="XDebuggerManager">
@@ -5321,20 +5416,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/ApplicationFramework/src/main/res/values/colors.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ApplicationFramework/src/main/res/drawable/custom_button.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="34" selection-start-line="8" selection-start-column="34" selection-end-line="8" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ApplicationFramework/src/main/java/com/app/framework/model/HistoryModel.java" />
     <entry file="file://$PROJECT_DIR$/ApplicationFramework/src/main/java/com/app/framework/utilities/map/GoogleServiceUtility.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -5354,13 +5435,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="8" column="22" selection-start-line="8" selection-start-column="22" selection-end-line="8" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ApplicationFramework/src/main/java/com/app/framework/utilities/AppRaterUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="229">
-          <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -5430,13 +5504,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="19" column="27" selection-start-line="18" selection-start-column="8" selection-end-line="19" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2856">
-          <caret line="168" column="72" selection-start-line="168" selection-start-column="72" selection-end-line="168" selection-end-column="72" />
         </state>
       </provider>
     </entry>
@@ -5656,6 +5723,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
           <caret line="3" column="33" selection-start-line="3" selection-start-column="33" selection-end-line="3" selection-end-column="33" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -5699,40 +5767,93 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-304">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_settings.xml">
       <provider editor-type-id="android-designer2">
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="202">
-          <caret line="87" column="12" selection-start-line="87" selection-start-column="12" selection-end-line="87" selection-end-column="12" />
+        <state relative-caret-position="299">
+          <caret line="193" column="48" selection-start-line="193" selection-start-column="34" selection-end-line="193" selection-end-column="52" />
           <folding>
-            <element signature="e#1894#1920#0" expanded="false" />
-            <element signature="e#3267#3293#0" expanded="false" />
+            <element signature="e#4300#4331#0" expanded="true" />
+            <element signature="e#5563#5587#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/blog/ljtatum/tipcalculator/fragments/SettingsFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="56">
-          <caret line="139" column="25" selection-start-line="139" selection-start-column="25" selection-end-line="139" selection-end-column="25" />
+        <state relative-caret-position="367">
+          <caret line="219" column="72" selection-start-line="219" selection-start-column="12" selection-end-line="219" selection-end-column="77" />
           <folding>
-            <element signature="e#2874#4552#0" expanded="true" />
-            <element signature="e#4551#4552#0" expanded="true" />
-            <element signature="e#4646#6350#0" expanded="true" />
-            <element signature="e#6349#6350#0" expanded="true" />
+            <element signature="e#6756#7405#0" expanded="true" />
+            <element signature="e#7084#7165#0" expanded="true" />
+            <element signature="e#7192#7274#0" expanded="true" />
+            <element signature="e#7404#7405#0" expanded="true" />
+            <element signature="e#7496#8131#0" expanded="true" />
+            <element signature="e#7824#7898#0" expanded="true" />
+            <element signature="e#7925#8000#0" expanded="true" />
+            <element signature="e#8130#8131#0" expanded="true" />
+            <element signature="e#8220#8859#0" expanded="true" />
+            <element signature="e#8544#8622#0" expanded="true" />
+            <element signature="e#8649#8728#0" expanded="true" />
+            <element signature="e#8858#8859#0" expanded="true" />
+            <element signature="e#10229#10310#0" expanded="true" />
+            <element signature="e#10329#10411#0" expanded="true" />
+            <element signature="e#10529#10603#0" expanded="true" />
+            <element signature="e#10622#10697#0" expanded="true" />
+            <element signature="e#10811#10889#0" expanded="true" />
+            <element signature="e#10908#10987#0" expanded="true" />
+            <marker date="1506223991458" expanded="false" signature="58:873" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/blog/ljtatum/tipcalculator/activity/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="762" column="49" selection-start-line="762" selection-start-column="49" selection-end-line="762" selection-end-column="49" />
+        <state relative-caret-position="180">
+          <caret line="158" column="26" selection-start-line="158" selection-start-column="12" selection-end-line="158" selection-end-column="26" />
           <folding>
-            <element signature="e#11060#11061#0" expanded="true" />
-            <element signature="e#11103#11104#0" expanded="true" />
+            <element signature="e#10370#10924#0" expanded="true" />
+            <element signature="e#10923#10924#0" expanded="true" />
+            <element signature="e#12392#12728#0" expanded="true" />
+            <element signature="e#12727#12728#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="187" column="55" selection-start-line="187" selection-start-column="48" selection-end-line="187" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ApplicationFramework/src/main/res/values/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="50" selection-start-line="11" selection-start-column="50" selection-end-line="11" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ApplicationFramework/src/main/java/com/app/framework/utilities/AppRaterUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="71" column="0" selection-start-line="71" selection-start-column="0" selection-end-line="71" selection-end-column="0" />
+          <folding>
+            <element signature="e#2402#2454#0" expanded="true" />
+            <element signature="e#2658#2710#0" expanded="true" />
+            <element signature="e#3065#3117#0" expanded="true" />
           </folding>
         </state>
       </provider>

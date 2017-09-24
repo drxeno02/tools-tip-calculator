@@ -152,6 +152,13 @@ public class MainActivity extends BaseActivity implements OnClickListener,
         btnDec = (Button) findViewById(R.id.btn_dec);
         tvSharedBy = (TextView) findViewById(R.id.tv_meta_shared_by);
 
+        // set default round-off value
+        if (mSharedPref.getBooleanPref(Constants.KEY_DEFAULT_ROUND_OFF, true)) {
+            switchRoundOff.setChecked(true);
+        } else {
+            switchRoundOff.setChecked(false);
+        }
+
         // set initial shared by value
         sharedNum = mSharedPref.getIntPref(Constants.KEY_DEFAULT_SHARED_BY, 1);
 
@@ -251,9 +258,13 @@ public class MainActivity extends BaseActivity implements OnClickListener,
         mSensorListener.setOnShakeListener(new ShakeEventListener.OnShakeListener() {
             @Override
             public void onShake() {
-                v.vibrate(Durations.DELAY_MS_500); //vibrate for 500 milliseconds
-                clear = true;
-                calculate();
+                if (mSharedPref.getBooleanPref(Constants.KEY_DEFAULT_SHAKE_RESET, true)) {
+                    v.vibrate(Durations.DELAY_MS_500); // vibrate for 500 milliseconds
+                    clear = true;
+                    calculate();
+                } else {
+                    Crouton.showText(MainActivity.this, "Shake to reset feature currently disabled. To enable, go to Settings", Style.ALERT);
+                }
             }
         });
 

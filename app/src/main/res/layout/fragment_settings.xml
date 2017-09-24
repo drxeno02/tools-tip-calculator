@@ -113,6 +113,7 @@
 
         <!-- 85% weight -->
         <TextView
+            android:id="@+id/tv_auto_history"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
@@ -148,6 +149,7 @@
 
         <!-- 85% weight -->
         <TextView
+            android:id="@+id/tv_shake_reset"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
@@ -183,6 +185,7 @@
 
         <!-- 85% weight -->
         <TextView
+            android:id="@+id/tv_round_off"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"

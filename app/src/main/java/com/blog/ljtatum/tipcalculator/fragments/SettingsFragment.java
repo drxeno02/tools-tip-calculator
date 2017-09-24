@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -30,7 +31,7 @@ public class SettingsFragment extends BaseFragment implements View.OnClickListen
 
     private Context mContext;
     private View mRootView;
-    private TextView tvFragmentHeader;
+    private TextView tvFragmentHeader, tvAutoHistory, tvShakeReset, tvRoundOff;
     private EditText edtTipPercent, edtSharedBy;
     private Switch switchAutoHistory, switchShakeReset, switchRoundOff;
     private SharedPref mSharedPref;
@@ -58,6 +59,9 @@ public class SettingsFragment extends BaseFragment implements View.OnClickListen
 
         // instantiate views
         tvFragmentHeader = (TextView) mRootView.findViewById(R.id.tv_fragment_header);
+        tvAutoHistory = (TextView) mRootView.findViewById(R.id.tv_auto_history);
+        tvShakeReset = (TextView) mRootView.findViewById(R.id.tv_shake_reset);
+        tvRoundOff = (TextView) mRootView.findViewById(R.id.tv_round_off);
         edtTipPercent = (EditText) mRootView.findViewById(R.id.edt_tip_percent);
         edtTipPercent.requestFocus();
         edtSharedBy = (EditText) mRootView.findViewById(R.id.edt_shared_by);
@@ -144,6 +148,45 @@ public class SettingsFragment extends BaseFragment implements View.OnClickListen
                 return false;
             }
         });
+
+        // OnCheckedChangeListener
+        switchAutoHistory.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                // update default auto history settings
+                mSharedPref.setPref(Constants.KEY_DEFAULT_AUTO_HISTORY, b);
+                tvAutoHistory.setText(b ? getActivity().getResources().getString(R.string.settings_auto_history, "Enabled") :
+                        getActivity().getResources().getString(R.string.settings_auto_history, "Disabled"));
+                // show banner
+                Crouton.showText(getActivity(), "Saved!", Style.CONFIRM);
+            }
+        });
+
+        // OnCheckedChangeListener
+        switchShakeReset.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                // update default shake to reset settings
+                mSharedPref.setPref(Constants.KEY_DEFAULT_SHAKE_RESET, b);
+                tvShakeReset.setText(b ? getActivity().getResources().getString(R.string.settings_shake, "Enabled") :
+                        getActivity().getResources().getString(R.string.settings_shake, "Disabled"));
+                // show banner
+                Crouton.showText(getActivity(), "Saved!", Style.CONFIRM);
+            }
+        });
+
+        // OnCheckedChangeListener
+        switchRoundOff.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                // update default auto round-off settings
+                mSharedPref.setPref(Constants.KEY_DEFAULT_ROUND_OFF, b);
+                tvRoundOff.setText(b ? getActivity().getResources().getString(R.string.settings_round_off, "Enabled") :
+                        getActivity().getResources().getString(R.string.settings_round_off, "Disabled"));
+                // show banner
+                Crouton.showText(getActivity(), "Saved!", Style.CONFIRM);
+            }
+        });
     }
 
     /**
@@ -181,6 +224,17 @@ public class SettingsFragment extends BaseFragment implements View.OnClickListen
             // disable
             switchRoundOff.setChecked(false);
         }
+
+        // update default label values
+        tvAutoHistory.setText(mSharedPref.getBooleanPref(Constants.KEY_DEFAULT_AUTO_HISTORY, true) ?
+                getActivity().getResources().getString(R.string.settings_auto_history, "Enabled") :
+                getActivity().getResources().getString(R.string.settings_auto_history, "Disabled"));
+        tvShakeReset.setText(mSharedPref.getBooleanPref(Constants.KEY_DEFAULT_SHAKE_RESET, true) ?
+                getActivity().getResources().getString(R.string.settings_shake, "Enabled") :
+                getActivity().getResources().getString(R.string.settings_shake, "Disabled"));
+        tvRoundOff.setText(mSharedPref.getBooleanPref(Constants.KEY_DEFAULT_ROUND_OFF, true) ?
+                getActivity().getResources().getString(R.string.settings_round_off, "Enabled") :
+                getActivity().getResources().getString(R.string.settings_round_off, "Disabled"));
     }
 
     @Override

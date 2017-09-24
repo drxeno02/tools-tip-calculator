@@ -56,6 +56,17 @@ public class AppRaterUtil {
     }
 
     private void showRateDialog() {
+//        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(mContext);
+//        LayoutInflater inflater = ((Activity) mContext).getLayoutInflater();
+//        View v = inflater.inflate(R.layout.alert_label_editor, null);
+//        dialogBuilder.setView(v);
+//
+//        EditText editText = (EditText) v.findViewById(R.id.label_field);
+//        editText.setText("test label");
+//        AlertDialog alertDialog = dialogBuilder.create();
+//        alertDialog.show();
+
+
         final Dialog dialog = new Dialog(mContext);
         dialog.setTitle("Rate ".concat(mContext.getResources().getString(R.string.app_name)));
 
