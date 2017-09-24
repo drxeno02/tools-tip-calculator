@@ -12,7 +12,7 @@ import com.blog.ljtatum.tipcalculator.utils.Utils;
 /**
  * Created by LJTat on 2/23/2017.
  */
-public class SplashActivity extends Activity {
+public class SplashActivity extends BaseActivity {
     private static final String TAG = SplashActivity.class.getSimpleName();
     private final int SPLASH_TIMER = 2000;
 
