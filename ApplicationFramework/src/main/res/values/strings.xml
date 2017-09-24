@@ -14,4 +14,12 @@
     <string name="share_desc">Enjoying the app? Tell your friends about it! And don\'t forget to
 		show your appreciation by rating this app. Thank you!</string>
 
+    <!-- rate app -->
+    <string name="rate_app">Rate this app!</string>
+    <string name="remind_me_later">Remind me later</string>
+    <string name="no_thanks">No thanks</string>
+    <string name="rate_app_desc">If you are enjoying using this app, please take a moment to rate it. Thanks for your support!</string>
+
+
+
 </resources>

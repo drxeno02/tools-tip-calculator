@@ -5,7 +5,7 @@
     android:id="@+id/frag_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/blue_teal"
+    android:background="@color/material_teal_400_color_code"
     tools:context=".activity.MainActivity">
 
     <LinearLayout
@@ -17,7 +17,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/blue_light"
+            android:background="@color/material_teal_a400_color_code"
             android:minHeight="?attr/actionBarSize"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
             app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
@@ -81,7 +81,7 @@
                 android:layout_toEndOf="@+id/tv_service"
                 android:layout_toRightOf="@id/tv_service"
                 android:text="@string/txt_good"
-                android:textColor="@color/green_normal"
+                android:textColor="@color/white"
                 android:textSize="@dimen/font_size_22"
                 android:textStyle="bold|italic" />
 
@@ -127,7 +127,7 @@
                 android:maxLength="10"
                 android:maxLines="1"
                 android:textColor="@color/black"
-                android:textColorHint="@color/grey_normal"
+                android:textColorHint="@color/black"
                 android:textSize="@dimen/font_size_18">
 
                 <requestFocus />
@@ -317,7 +317,7 @@
                 android:gravity="right|end"
                 android:maxLines="1"
                 android:text="@string/txt_hint_dollar"
-                android:textColor="@color/green_normal"
+                android:textColor="@color/white"
                 android:textSize="@dimen/font_size_18"
                 android:textStyle="bold" />
         </LinearLayout>

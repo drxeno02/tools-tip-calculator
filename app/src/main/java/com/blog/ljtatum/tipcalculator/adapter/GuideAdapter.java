@@ -43,11 +43,11 @@ public class GuideAdapter extends RecyclerView.Adapter<GuideAdapter.ViewHolder> 
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.ivFlag.setImageDrawable(ContextCompat.getDrawable(mContext, alGuide.get(position).countryFlagIcon));
         if (position % 2 == 0) {
-            holder.ivFlag.setBorderColor(ContextCompat.getColor(mContext, R.color.orange_light));
-            holder.ivFlag.setBorderWidth(8);
+            holder.ivFlag.setBorderColor(ContextCompat.getColor(mContext, R.color.material_deep_orange_300_color_code));
+            holder.ivFlag.setBorderWidth(10);
         } else {
-            holder.ivFlag.setBorderColor(ContextCompat.getColor(mContext, R.color.purple_light));
-            holder.ivFlag.setBorderWidth(8);
+            holder.ivFlag.setBorderColor(ContextCompat.getColor(mContext, R.color.material_purple_300_color_code));
+            holder.ivFlag.setBorderWidth(10);
         }
         holder.tvCountryName.setText(alGuide.get(position).countryName);
         holder.tvCountryReq.setText(alGuide.get(position).countryReq);

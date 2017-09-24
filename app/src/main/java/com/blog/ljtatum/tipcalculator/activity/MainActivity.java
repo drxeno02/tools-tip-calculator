@@ -136,7 +136,7 @@ public class MainActivity extends BaseActivity implements OnClickListener,
         mSharedPref = new SharedPref(mContext, com.app.framework.constants.Constants.PREF_FILE_NAME);
 
         // rate this app
-        new AppRaterUtil(mContext);
+        new AppRaterUtil(mContext, mContext.getPackageName());
         switchRoundOff = (Switch) findViewById(R.id.switch_round_off);
         ivStar1 = (ImageView) findViewById(R.id.iv_star_1);
         ivStar2 = (ImageView) findViewById(R.id.iv_star_2);
@@ -552,57 +552,57 @@ public class MainActivity extends BaseActivity implements OnClickListener,
                 if (intSelected >= 0 && intSelected <= 2) {
                     setRating(1, true);
                     tvService.setText("Poor");
-                    tvService.setTextColor(ContextCompat.getColor(mContext, R.color.red_shade));
+                    tvService.setTextColor(ContextCompat.getColor(mContext, R.color.material_red_400_color_code));
                     Crouton.showText(MainActivity.this, "Poor tip service percent", Style.ALERT);
                 } else if (intSelected >= 3 && intSelected <= 4) {
                     setRating(1, true);
                     tvService.setText("Poor");
-                    tvService.setTextColor(ContextCompat.getColor(mContext, R.color.red_shade));
+                    tvService.setTextColor(ContextCompat.getColor(mContext, R.color.material_red_400_color_code));
                     Crouton.showText(MainActivity.this, "Poor tip service percent", Style.ALERT);
                 } else if (intSelected >= 5 && intSelected <= 7) {
                     setRating(1, true);
                     tvService.setText("Poor");
-                    tvService.setTextColor(ContextCompat.getColor(mContext, R.color.red_shade));
+                    tvService.setTextColor(ContextCompat.getColor(mContext, R.color.material_red_400_color_code));
                     Crouton.showText(MainActivity.this, "Poor tip service percent", Style.ALERT);
                 } else if (intSelected >= 8 && intSelected <= 9) {
                     setRating(1, true);
                     tvService.setText("Poor");
-                    tvService.setTextColor(ContextCompat.getColor(mContext, R.color.red_shade));
+                    tvService.setTextColor(ContextCompat.getColor(mContext, R.color.material_red_400_color_code));
                     Crouton.showText(MainActivity.this, "Poor tip service percent", Style.ALERT);
                 } else if (intSelected >= 10 && intSelected <= 12) {
                     setRating(2, true);
                     tvService.setText("Fair");
-                    tvService.setTextColor(ContextCompat.getColor(mContext, R.color.green_dark));
+                    tvService.setTextColor(ContextCompat.getColor(mContext, R.color.white));
                     Crouton.showText(MainActivity.this, "Fair tip service percent", Style.CONFIRM);
                 } else if (intSelected >= 13 && intSelected <= 14) {
                     setRating(2, true);
                     tvService.setText("Fair");
-                    tvService.setTextColor(ContextCompat.getColor(mContext, R.color.green_dark));
+                    tvService.setTextColor(ContextCompat.getColor(mContext, R.color.white));
                     Crouton.showText(MainActivity.this, "Fair tip service percent", Style.CONFIRM);
                 } else if (intSelected >= 15 && intSelected <= 17) {
                     setRating(3, true);
                     tvService.setText("Good!");
-                    tvService.setTextColor(ContextCompat.getColor(mContext, R.color.green_dark));
+                    tvService.setTextColor(ContextCompat.getColor(mContext, R.color.white));
                     Crouton.showText(MainActivity.this, "Good tip service percent", Style.CONFIRM);
                 } else if (intSelected >= 18 && intSelected <= 19) {
                     setRating(3, true);
                     tvService.setText("Good!");
-                    tvService.setTextColor(ContextCompat.getColor(mContext, R.color.green_dark));
+                    tvService.setTextColor(ContextCompat.getColor(mContext, R.color.white));
                     Crouton.showText(MainActivity.this, "Good service percent", Style.CONFIRM);
                 } else if (intSelected >= 20 && intSelected <= 22) {
                     setRating(4, true);
                     tvService.setText("Great!");
-                    tvService.setTextColor(ContextCompat.getColor(mContext, R.color.green_dark));
+                    tvService.setTextColor(ContextCompat.getColor(mContext, R.color.white));
                     Crouton.showText(MainActivity.this, "Great tip service percent", Style.CONFIRM);
                 } else if (intSelected >= 23 && intSelected <= 24) {
                     setRating(4, true);
                     tvService.setText("Great!");
-                    tvService.setTextColor(ContextCompat.getColor(mContext, R.color.green_dark));
+                    tvService.setTextColor(ContextCompat.getColor(mContext, R.color.white));
                     Crouton.showText(MainActivity.this, "Great tip service percent", Style.CONFIRM);
                 } else if (intSelected >= 25) {
                     setRating(5, true);
                     tvService.setText("Royal!");
-                    tvService.setTextColor(ContextCompat.getColor(mContext, R.color.purple_shade));
+                    tvService.setTextColor(ContextCompat.getColor(mContext, R.color.material_purple_500_color_code));
                     Crouton.showText(MainActivity.this, "Royal tip service percent", Style.INFO);
 
                 }

@@ -1,14 +1,15 @@
 package com.app.framework.utilities;
 
-import android.app.Dialog;
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.app.framework.R;
@@ -22,31 +23,35 @@ public class AppRaterUtil {
 
     private static final int DAYS_UNTIL_PROMPT = 3;
     private static final int LAUNCHES_UNTIL_PROMPT = 7;
+    private String mPackageName;
     private Context mContext;
+    private SharedPref mSharedPref;
 
-    public AppRaterUtil(Context context) {
+    public AppRaterUtil(Context context, String packageName) {
         mContext = context;
+        mPackageName = packageName;
         recordAppLaunchDate();
     }
 
     private void recordAppLaunchDate() {
-        SharedPref prefs = new SharedPref(mContext, Constants.PREF_FILE_NAME);
-        if (prefs.getBooleanPref(Constants.KEY_APP_LAUNCH, false)) {
+        mSharedPref = new SharedPref(mContext, Constants.PREF_FILE_NAME);
+        if (mSharedPref.getBooleanPref(Constants.KEY_APP_RATED, false)) {
+            // return if app has already been rated
             return;
         }
 
-        // Increment launch counter
-        long launchCount = prefs.getLongPref(Constants.KEY_APP_LAUNCH_COUNT, 0) + 1;
-        prefs.setPref(Constants.KEY_APP_LAUNCH_COUNT, launchCount);
+        // increment launch counter
+        long launchCount = mSharedPref.getLongPref(Constants.KEY_APP_LAUNCH_COUNT, 0) + 1;
+        mSharedPref.setPref(Constants.KEY_APP_LAUNCH_COUNT, launchCount);
 
-        // Get date of first launch
-        Long dateFirstLaunch = prefs.getLongPref(Constants.KEY_APP_LAUNCH_DATE, 0);
+        // get date of first launch
+        Long dateFirstLaunch = mSharedPref.getLongPref(Constants.KEY_APP_LAUNCH_DATE, 0);
         if (dateFirstLaunch == 0) {
             dateFirstLaunch = System.currentTimeMillis();
-            prefs.setPref(Constants.KEY_APP_LAUNCH_DATE, dateFirstLaunch);
+            mSharedPref.setPref(Constants.KEY_APP_LAUNCH_DATE, dateFirstLaunch);
         }
 
-        // Wait at least n days before opening
+        // wait at least n days before opening
         if (launchCount >= LAUNCHES_UNTIL_PROMPT) {
             if (System.currentTimeMillis() >= dateFirstLaunch
                     + (DAYS_UNTIL_PROMPT * 24 * 60 * 60 * 1000)) {
@@ -55,63 +60,76 @@ public class AppRaterUtil {
         }
     }
 
+    /**
+     * Method is used to display dialog
+     */
     private void showRateDialog() {
-//        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(mContext);
-//        LayoutInflater inflater = ((Activity) mContext).getLayoutInflater();
-//        View v = inflater.inflate(R.layout.alert_label_editor, null);
-//        dialogBuilder.setView(v);
-//
-//        EditText editText = (EditText) v.findViewById(R.id.label_field);
-//        editText.setText("test label");
-//        AlertDialog alertDialog = dialogBuilder.create();
-//        alertDialog.show();
+        // instantiate dialog builder
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(mContext);
+        LayoutInflater inflater = ((Activity) mContext).getLayoutInflater();
+        View v = inflater.inflate(R.layout.rate_app, null);
+        dialogBuilder.setView(v);
+        dialogBuilder.setCancelable(false);
+        // instantiate alert dialog
+        final AlertDialog alertDialog = dialogBuilder.create();
+        alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
+        TextView tvRateApp = (TextView) v.findViewById(R.id.tv_rate_app);
+        TextView tvRemindLater = (TextView) v.findViewById(R.id.tv_remind_later);
+        TextView tvNoThanks = (TextView) v.findViewById(R.id.tv_no_thanks);
 
-        final Dialog dialog = new Dialog(mContext);
-        dialog.setTitle("Rate ".concat(mContext.getResources().getString(R.string.app_name)));
-
-        LinearLayout ll = new LinearLayout(mContext);
-        ll.setOrientation(LinearLayout.VERTICAL);
-
-        TextView tv = new TextView(mContext);
-        tv.setText("If you enjoy using ".concat(mContext.getResources().getString(R.string.app_name)).concat(
-                ", please take a moment to rate it. Thanks for your support!\n\n"));
-        Color.parseColor("#FFFFFF");
-        tv.setBackgroundColor(Color.parseColor("#FFFFFF"));
-        tv.setWidth(340);
-        tv.setPadding(6, 0, 6, 12);
-        ll.addView(tv);
-
-        Button b1 = new Button(mContext);
-        b1.setText("Rate ".concat(mContext.getResources().getString(R.string.app_name)));
-        b1.setBackgroundResource(R.drawable.custom_button);
-        b1.setOnClickListener(new OnClickListener() {
+        // set listeners
+        tvRateApp.setOnClickListener(new OnClickListener() {
+            @Override
             public void onClick(View v) {
-                mContext.startActivity(new Intent(Intent.ACTION_VIEW, Uri
-                        .parse("market://details?id=".concat(mContext.getPackageName()))));
-                dialog.dismiss();
+                // flag app rated (potentially)
+                mSharedPref.setPref(Constants.KEY_APP_RATED, true);
+
+                try {
+                    mContext.startActivity(new Intent(Intent.ACTION_VIEW,
+                            Uri.parse("market://details?id=".concat(mPackageName))));
+                } catch (android.content.ActivityNotFoundException e) {
+                    e.printStackTrace();
+                    // try to redirect with updated link
+                    mContext.startActivity(new Intent(Intent.ACTION_VIEW,
+                            Uri.parse("https://play.google.com/store/apps/details?id=".concat(mPackageName))));
+                }
+                // dismiss dialog
+                alertDialog.dismiss();
             }
         });
-        ll.addView(b1);
 
-        Button b2 = new Button(mContext);
-        b2.setText("Remind me later");
-        b2.setOnClickListener(new OnClickListener() {
+        tvRemindLater.setOnClickListener(new OnClickListener() {
+            @Override
             public void onClick(View v) {
-                dialog.dismiss();
+                // reset shared pref values
+                resetSharedPref();
+                // dismiss dialog
+                alertDialog.dismiss();
             }
         });
-        ll.addView(b2);
 
-        Button b3 = new Button(mContext);
-        b3.setText("No, thanks");
-        b3.setOnClickListener(new OnClickListener() {
+        tvNoThanks.setOnClickListener(new OnClickListener() {
+            @Override
             public void onClick(View v) {
-                dialog.dismiss();
+                // reset shared pref values
+                resetSharedPref();
+                // dismiss dialog
+                alertDialog.dismiss();
             }
         });
-        ll.addView(b3);
-        dialog.setContentView(ll);
-        dialog.show();
+
+        // display alert dialog
+        alertDialog.show();
+    }
+
+    /**
+     * Method is used to reset shared pref values
+     */
+    private void resetSharedPref() {
+        // reset
+        mSharedPref.setPref(Constants.KEY_APP_LAUNCH_COUNT, 0);
+        // update launch date
+        mSharedPref.setPref(Constants.KEY_APP_LAUNCH_DATE, System.currentTimeMillis());
     }
 }

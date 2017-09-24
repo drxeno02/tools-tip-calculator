@@ -9,7 +9,7 @@ public class Constants {
 
     // shared pref
     public static final String PREF_FILE_NAME = "prefFileName";
-    public static final String KEY_APP_LAUNCH = "appLaunch";
     public static final String KEY_APP_LAUNCH_COUNT = "appLaunchCount";
     public static final String KEY_APP_LAUNCH_DATE = "appLaunchDate";
+    public static final String KEY_APP_RATED = "appRated";
 }

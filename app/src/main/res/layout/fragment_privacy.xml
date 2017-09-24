@@ -3,7 +3,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:clickable="true"
-    android:background="@color/grey_light"
+    android:background="@color/material_grey_300_color_code"
     android:layout_height="match_parent">
 
     <include
