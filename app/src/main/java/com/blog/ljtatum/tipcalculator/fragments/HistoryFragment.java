@@ -27,7 +27,7 @@ public class HistoryFragment extends BaseFragment implements View.OnClickListene
 
     private Context mContext;
     private View mRootView;
-    private TextView tvFragmentHeader, tvTipWeek;
+    private TextView tvFragmentHeader, tvTipWeek, tvAvgPercWeek, tvAvgPercOverall;
     private RecyclerView rvHistory;
     private HistoryAdapter mHistoryAdapter;
     private ArrayList<HistoryModel> alTipHistory;
@@ -58,7 +58,9 @@ public class HistoryFragment extends BaseFragment implements View.OnClickListene
         // instantiate views
         rvHistory = (RecyclerView) mRootView.findViewById(R.id.rv_history);
         tvFragmentHeader = (TextView) mRootView.findViewById(R.id.tv_fragment_header);
-        tvTipWeek = (TextView) mRootView.findViewById(R.id.tv_tip_week);
+        tvTipWeek = (TextView) mRootView.findViewById(R.id.tv_total_tip_week);
+        tvAvgPercWeek = (TextView) mRootView.findViewById(R.id.tv_avg_tip_percentage_week);
+        tvAvgPercOverall = (TextView) mRootView.findViewById(R.id.tv_avg_tip_percentage_overall);
 
         // instantiate adapter
         LinearLayoutManager layoutManager = new LinearLayoutManager(mContext);

@@ -1,14 +1,26 @@
 package com.blog.ljtatum.tipcalculator.activity;
 
+import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.IntentFilter;
 import android.content.pm.ActivityInfo;
+import android.content.pm.PackageManager;
 import android.hardware.Sensor;
 import android.hardware.SensorManager;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
+import android.net.ConnectivityManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Vibrator;
+import android.provider.Settings;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
@@ -37,11 +49,16 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 
+import com.app.framework.entities.Address;
+import com.app.framework.listeners.AddressListener;
 import com.app.framework.sharedpref.SharedPref;
 import com.app.framework.utilities.AppRaterUtil;
 import com.app.framework.utilities.DeviceUtils;
 import com.app.framework.utilities.FrameworkUtils;
+import com.app.framework.utilities.NetworkReceiver;
 import com.app.framework.utilities.NetworkUtils;
+import com.app.framework.utilities.map.GoogleServiceUtility;
+import com.app.framework.utilities.map.model.PlaceModel;
 import com.blog.ljtatum.tipcalculator.R;
 import com.blog.ljtatum.tipcalculator.constants.Constants;
 import com.blog.ljtatum.tipcalculator.constants.Durations;
@@ -53,8 +70,16 @@ import com.blog.ljtatum.tipcalculator.fragments.SettingsFragment;
 import com.blog.ljtatum.tipcalculator.fragments.ShareFragment;
 import com.blog.ljtatum.tipcalculator.listeners.ShakeEventListener;
 import com.blog.ljtatum.tipcalculator.logger.Logger;
+import com.blog.ljtatum.tipcalculator.utils.DialogUtils;
+import com.blog.ljtatum.tipcalculator.utils.Utils;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.location.places.Places;
+import com.google.android.gms.maps.model.LatLng;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -67,10 +92,14 @@ import de.keyboardsurfer.android.widget.crouton.Style;
  * Created by LJTat on 2/23/2017.
  */
 public class MainActivity extends BaseActivity implements OnClickListener,
-        NavigationView.OnNavigationItemSelectedListener {
+        NavigationView.OnNavigationItemSelectedListener, GoogleApiClient.ConnectionCallbacks,
+        GoogleApiClient.OnConnectionFailedListener, LocationListener,
+        com.google.android.gms.location.LocationListener, NetworkReceiver.NetworkStatusObserver {
     public static String TAG = MainActivity.class.getSimpleName();
 
     private static final String AD_ID_TEST = "950036DB8197D296BE390357BD9A964E";
+    private static final int LOCATION_REQUEST_INTERVAL_DEFAULT = 30000;
+    private static final int LOCATION_REQUEST_INTERVAL_FASTEST = 15000;
     private static final int[] ARRY_DRAWER_ICONS = {R.drawable.food_01, R.drawable.food_02,
             R.drawable.food_03, R.drawable.food_04, R.drawable.food_05, R.drawable.food_06,
             R.drawable.food_07, R.drawable.food_08, R.drawable.food_09, R.drawable.food_10,
@@ -100,7 +129,7 @@ public class MainActivity extends BaseActivity implements OnClickListener,
 
     private EditText edtBill;
 
-    private String strFormatted;
+    private String strFormatted, strAddress;
 
     private Spinner spinner;
     private Switch switchRoundOff;
@@ -111,6 +140,15 @@ public class MainActivity extends BaseActivity implements OnClickListener,
     private ShakeEventListener mSensorListener;
     private Vibrator v;
     private SharedPref mSharedPref;
+
+    // google services
+    private GoogleApiClient mGoogleApiClient;
+    private LocationRequest mLocationRequest;
+    private LatLng mCurrentLocation;
+    private PlaceModel mPlace;
+
+    // network
+    private NetworkReceiver mNetworkReceiver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -132,8 +170,17 @@ public class MainActivity extends BaseActivity implements OnClickListener,
      */
     private void initializeViews() {
         mContext = MainActivity.this;
+        mNetworkReceiver = new NetworkReceiver();
         alSpinnerItems = new ArrayList<>();
         mSharedPref = new SharedPref(mContext, com.app.framework.constants.Constants.PREF_FILE_NAME);
+
+        // GoogleApiClient; location services API and places API
+        mGoogleApiClient = new GoogleApiClient.Builder(this)
+                .addConnectionCallbacks(this)
+                .addOnConnectionFailedListener(this)
+                .addApi(LocationServices.API)
+                .addApi(Places.GEO_DATA_API)
+                .build();
 
         // rate this app
         new AppRaterUtil(mContext, mContext.getPackageName());
@@ -276,6 +323,8 @@ public class MainActivity extends BaseActivity implements OnClickListener,
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
                     // hide keyboard
                     DeviceUtils.hideKeyboard(mContext, getWindow().getDecorView().getWindowToken());
+
+                    // store tip value to history
                 }
                 return false;
             }
@@ -313,6 +362,143 @@ public class MainActivity extends BaseActivity implements OnClickListener,
                 // hide keyboard
                 DeviceUtils.hideKeyboard(mContext, getWindow().getDecorView().getWindowToken());
                 calculate();
+            }
+        });
+    }
+
+    /**
+     * Method is used to begin location request updates using FusedLocationApi
+     */
+    @SuppressLint("MissingPermission")
+    private void startLocationUpdates() {
+        Logger.v("TEST", "startLocationUpdates called");
+        if (FrameworkUtils.checkAppPermissions(mContext, Manifest.permission.ACCESS_FINE_LOCATION,
+                Manifest.permission.ACCESS_COARSE_LOCATION) && !FrameworkUtils.checkIfNull(mGoogleApiClient) &&
+                mGoogleApiClient.isConnected()) {
+
+            if (!FrameworkUtils.checkIfNull(mLocationRequest)) {
+                LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient,
+                        mLocationRequest, this);
+            }
+        }
+    }
+
+    /**
+     * Method is used to refresh current location
+     */
+    @SuppressLint("MissingPermission")
+    private void initLocationRequest() {
+        Logger.v("TEST", "initLocationRequest called");
+        mLocationRequest = new LocationRequest();
+        mLocationRequest.setFastestInterval(LOCATION_REQUEST_INTERVAL_FASTEST);
+        mLocationRequest.setInterval(LOCATION_REQUEST_INTERVAL_DEFAULT);
+
+        int locationMode = -99;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            try {
+                locationMode = Settings.Secure.getInt(mContext.getContentResolver(), Settings.Secure.LOCATION_MODE);
+            } catch (Settings.SettingNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
+
+        if (locationMode != Settings.Secure.LOCATION_MODE_OFF &&
+                locationMode == Settings.Secure.LOCATION_MODE_HIGH_ACCURACY) {
+            // check if device has permissions for high accuracy
+            if (FrameworkUtils.checkAppPermissions(mContext, Manifest.permission.ACCESS_FINE_LOCATION,
+                    Manifest.permission.ACCESS_COARSE_LOCATION)) {
+                // set attributes of location request object
+                mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+            } else {
+                // set attributes of location request object
+                mLocationRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
+            }
+        } else {
+            // set attributes of location request object
+            mLocationRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
+
+            LocationManager locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+            LocationListener locationListener = new LocationListener() {
+                @Override
+                public void onLocationChanged(Location location) {
+                    Logger.v("TEST", "onLocationChanged called - 1, lat= " + location.getLatitude() + " //lng= " + location.getLongitude());
+                    // update the user's current location every time his/her location changes
+                    mCurrentLocation = new LatLng(location.getLatitude(), location.getLongitude());
+
+                    // process location change
+                    processOnLocationChanged();
+                }
+
+                @Override
+                public void onStatusChanged(String s, int i, Bundle bundle) {
+                    // do nothing
+                }
+
+                @Override
+                public void onProviderEnabled(String s) {
+                    // do nothing
+                }
+
+                @Override
+                public void onProviderDisabled(String s) {
+                    // do nothing
+                }
+            };
+
+            // create location provider
+            String locationProvider = LocationManager.PASSIVE_PROVIDER;
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) !=
+                    PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this,
+                    Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                return;
+            }
+
+            if (!FrameworkUtils.checkIfNull(locationManager)) {
+                // make request for location updates
+                locationManager.requestLocationUpdates(locationProvider, LOCATION_REQUEST_INTERVAL_FASTEST,
+                        0, locationListener);
+                // retrieve current location
+                Location lastLocation = locationManager.getLastKnownLocation(locationProvider);
+                if (!FrameworkUtils.checkIfNull(lastLocation)) {
+                    mCurrentLocation = new LatLng(lastLocation.getLatitude(), lastLocation.getLongitude());
+                }
+            }
+        }
+    }
+
+    /**
+     * Method is used to process onLoCationChanged
+     */
+    private void processOnLocationChanged() {
+        // retrieve address using user's current latlng
+        GoogleServiceUtility.getAddress(mContext, mCurrentLocation, new AddressListener() {
+
+            @Override
+            public void onAddressResponse(@NonNull Address address) {
+                // create Place object
+                if (!FrameworkUtils.checkIfNull(mPlace)) {
+                    mPlace = new PlaceModel();
+                }
+                mPlace.streetNo = address.streetNumber;
+                mPlace.streetName = address.addressLine1;
+                mPlace.city = address.city;
+                mPlace.state = address.stateCode;
+                mPlace.zipCode = address.postalCode;
+                mPlace.country = address.countryCode;
+
+                Logger.e("TEST", "1) address= " + mPlace.getShortFormattedAddress(false));
+                Logger.e("TEST", "2) address= " + mPlace.getShortFormattedAddress(true));
+                Logger.e("TEST", "3) address= " + mPlace.getFormattedAddress());
+            }
+
+            @Override
+            public void onAddressError() {
+                // do nothing
+            }
+
+            @Override
+            public void onZeroResults() {
+                // do nothing
             }
         });
     }
@@ -551,61 +737,51 @@ public class MainActivity extends BaseActivity implements OnClickListener,
                 intSelected = spinner.getSelectedItemPosition();
                 if (intSelected >= 0 && intSelected <= 2) {
                     setRating(1, true);
-                    tvService.setText("Poor");
                     tvService.setTextColor(ContextCompat.getColor(mContext, R.color.material_red_400_color_code));
                     Crouton.showText(MainActivity.this, "Poor tip service percent", Style.ALERT);
                 } else if (intSelected >= 3 && intSelected <= 4) {
                     setRating(1, true);
-                    tvService.setText("Poor");
                     tvService.setTextColor(ContextCompat.getColor(mContext, R.color.material_red_400_color_code));
                     Crouton.showText(MainActivity.this, "Poor tip service percent", Style.ALERT);
                 } else if (intSelected >= 5 && intSelected <= 7) {
                     setRating(1, true);
-                    tvService.setText("Poor");
                     tvService.setTextColor(ContextCompat.getColor(mContext, R.color.material_red_400_color_code));
                     Crouton.showText(MainActivity.this, "Poor tip service percent", Style.ALERT);
                 } else if (intSelected >= 8 && intSelected <= 9) {
                     setRating(1, true);
-                    tvService.setText("Poor");
                     tvService.setTextColor(ContextCompat.getColor(mContext, R.color.material_red_400_color_code));
                     Crouton.showText(MainActivity.this, "Poor tip service percent", Style.ALERT);
                 } else if (intSelected >= 10 && intSelected <= 12) {
                     setRating(2, true);
-                    tvService.setText("Fair");
                     tvService.setTextColor(ContextCompat.getColor(mContext, R.color.white));
                     Crouton.showText(MainActivity.this, "Fair tip service percent", Style.CONFIRM);
                 } else if (intSelected >= 13 && intSelected <= 14) {
                     setRating(2, true);
-                    tvService.setText("Fair");
                     tvService.setTextColor(ContextCompat.getColor(mContext, R.color.white));
                     Crouton.showText(MainActivity.this, "Fair tip service percent", Style.CONFIRM);
                 } else if (intSelected >= 15 && intSelected <= 17) {
                     setRating(3, true);
-                    tvService.setText("Good!");
                     tvService.setTextColor(ContextCompat.getColor(mContext, R.color.white));
                     Crouton.showText(MainActivity.this, "Good tip service percent", Style.CONFIRM);
                 } else if (intSelected >= 18 && intSelected <= 19) {
                     setRating(3, true);
-                    tvService.setText("Good!");
                     tvService.setTextColor(ContextCompat.getColor(mContext, R.color.white));
                     Crouton.showText(MainActivity.this, "Good service percent", Style.CONFIRM);
                 } else if (intSelected >= 20 && intSelected <= 22) {
                     setRating(4, true);
-                    tvService.setText("Great!");
                     tvService.setTextColor(ContextCompat.getColor(mContext, R.color.white));
                     Crouton.showText(MainActivity.this, "Great tip service percent", Style.CONFIRM);
                 } else if (intSelected >= 23 && intSelected <= 24) {
                     setRating(4, true);
-                    tvService.setText("Great!");
                     tvService.setTextColor(ContextCompat.getColor(mContext, R.color.white));
                     Crouton.showText(MainActivity.this, "Great tip service percent", Style.CONFIRM);
                 } else if (intSelected >= 25) {
                     setRating(5, true);
-                    tvService.setText("Royal!");
                     tvService.setTextColor(ContextCompat.getColor(mContext, R.color.material_purple_500_color_code));
                     Crouton.showText(MainActivity.this, "Royal tip service percent", Style.INFO);
 
                 }
+                tvService.setText(Utils.getTipQuality(mContext, intSelected));
                 tvPercent.setText(intSelected + "%");
                 calculate();
             }
@@ -629,8 +805,8 @@ public class MainActivity extends BaseActivity implements OnClickListener,
             clear = false;
 
             // spinner reset (resets rating as well)
-            tvService.setText(String.valueOf("Good"));
-            tvPercent.setText(String.valueOf("15%"));
+            tvService.setText(mContext.getResources().getString(R.string.txt_good));
+            tvPercent.setText(mContext.getResources().getString(R.string.txt_percent_default));
             spinner.setSelection(15);
 
             // meta and temp variable reset (resets textViews as well)
@@ -641,9 +817,9 @@ public class MainActivity extends BaseActivity implements OnClickListener,
             temp5 = 0.00;
 
             // reset tip and payment values
-            tvTip.setText(String.valueOf("$0.00"));
-            tvPerson.setText(String.valueOf("$0.00"));
-            tvTotal.setText(String.valueOf("$0.00"));
+            tvTip.setText(mContext.getResources().getString(R.string.txt_zero_dollar));
+            tvPerson.setText(mContext.getResources().getString(R.string.txt_zero_dollar));
+            tvTotal.setText(mContext.getResources().getString(R.string.txt_zero_dollar));
 
             // update shared by value
             tvSharedBy.setText(String.valueOf(mSharedPref.getIntPref(Constants.KEY_DEFAULT_SHARED_BY, 1)));
@@ -661,7 +837,7 @@ public class MainActivity extends BaseActivity implements OnClickListener,
 			 */
 
             if (edtBill.getText().toString().length() == 0) {
-                tvTip.setText(String.valueOf("$0.00")); // static
+                tvTip.setText(mContext.getResources().getString(R.string.txt_zero_dollar)); // static
             } else {
                 // calculate tip amount
                 temp1 = Double.parseDouble(strFormatted);
@@ -787,10 +963,39 @@ public class MainActivity extends BaseActivity implements OnClickListener,
     }
 
     @Override
+    protected void onStart() {
+        super.onStart();
+        if (!FrameworkUtils.checkIfNull(mGoogleApiClient)) {
+            mGoogleApiClient.connect();
+        }
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        // disconnect GoogleApiClient
+        if (!FrameworkUtils.checkIfNull(mGoogleApiClient) && mGoogleApiClient.isConnected()) {
+            mGoogleApiClient.disconnect();
+        }
+    }
+
+    @Override
     public void onPause() {
+        // pause adview
         adView.pause();
+        // unregister sensor manager
         if (!FrameworkUtils.checkIfNull(mSensorManager) && !FrameworkUtils.checkIfNull(mSensorListener)) {
             mSensorManager.unregisterListener(mSensorListener);
+        }
+        // unregister network receiver
+        if (mNetworkReceiver.getObserverSize() > 0 && mNetworkReceiver.contains(this)) {
+            try {
+                // unregister network receiver
+                unregisterReceiver(mNetworkReceiver);
+            } catch (IllegalArgumentException e) {
+                e.printStackTrace();
+            }
+            mNetworkReceiver.removeObserver(this);
         }
         super.onPause();
     }
@@ -798,16 +1003,36 @@ public class MainActivity extends BaseActivity implements OnClickListener,
     @Override
     public void onResume() {
         super.onResume();
+        // resume adview
         adView.resume();
+        // register sensor manager
         if (!FrameworkUtils.checkIfNull(mSensorManager) && !FrameworkUtils.checkIfNull(mSensorListener)) {
             mSensorManager.registerListener(mSensorListener,
                     mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
                     SensorManager.SENSOR_DELAY_UI);
         }
+        // only register receiver if it has not already been registered
+        if (!mNetworkReceiver.contains(this)) {
+            // register network receiver
+            mNetworkReceiver.addObserver(this);
+            registerReceiver(mNetworkReceiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
+            // print observer list
+            mNetworkReceiver.printObserverList();
+        }
     }
 
     @Override
     public void onDestroy() {
+        // unregister network receiver
+        if (mNetworkReceiver.getObserverSize() > 0 && mNetworkReceiver.contains(this)) {
+            try {
+                // unregister network receiver
+                unregisterReceiver(mNetworkReceiver);
+            } catch (IllegalArgumentException e) {
+                e.printStackTrace();
+            }
+            mNetworkReceiver.removeObserver(this);
+        }
         if (!FrameworkUtils.checkIfNull(adView)) {
             // destroy the adview
             adView.destroy();
@@ -823,6 +1048,69 @@ public class MainActivity extends BaseActivity implements OnClickListener,
         } else {
             super.onBackPressed();
         }
+    }
 
+    @Override
+    public void onConnected(@Nullable Bundle bundle) {
+        Logger.e("TEST", "onConnected");
+        // initialize LocationRequest object
+        if (FrameworkUtils.checkIfNull(mLocationRequest)) {
+            initLocationRequest();
+        }
+        // retrieve location from fusedLocationApi
+        @SuppressLint("MissingPermission") android.location.Location lastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
+        if (!FrameworkUtils.checkIfNull(lastLocation)) {
+            mCurrentLocation = new LatLng(lastLocation.getLatitude(), lastLocation.getLongitude());
+        }
+        // start location updates
+        startLocationUpdates();
+    }
+
+    @Override
+    public void onConnectionSuspended(int i) {
+        // connection was lost, re-attempt connecting to google services
+        mGoogleApiClient.connect();
+    }
+
+    @Override
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+        GoogleServiceUtility.checkGooglePlaySevices(this);
+    }
+
+    @Override
+    public void onLocationChanged(Location location) {
+        Logger.v("TEST", "onLocationChanged called - 2, lat= " + location.getLatitude() + " //lng= " + location.getLongitude());
+        // update the user's current location every time his/her location changes
+        mCurrentLocation = new LatLng(location.getLatitude(), location.getLongitude());
+
+        // process location change
+        processOnLocationChanged();
+    }
+
+    @Override
+    public void onStatusChanged(String provider, int status, Bundle extras) {
+        // do nothing
+    }
+
+    @Override
+    public void onProviderEnabled(String provider) {
+        // do nothing
+    }
+
+    @Override
+    public void onProviderDisabled(String provider) {
+        // do nothing
+    }
+
+    @Override
+    public void notifyConnectionChange(boolean isConnected) {
+        if (isConnected) {
+            // app is connected to network
+            DialogUtils.dismissNoNetworkDialog();
+        } else {
+            // app is not connected to network
+            DialogUtils.showDefaultNoNetworkAlert(mContext, null,
+                    mContext.getString(R.string.check_network));
+        }
     }
 }

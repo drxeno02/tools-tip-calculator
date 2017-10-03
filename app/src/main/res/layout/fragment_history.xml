@@ -13,14 +13,38 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <!-- tip amount for the week -->
+    <!-- total tip amount for week -->
     <TextView
-        android:id="@+id/tv_tip_week"
-        android:layout_width="wrap_content"
         android:layout_marginTop="20dp"
+        android:id="@+id/tv_total_tip_week"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:textSize="@dimen/font_size_16"
         android:textColor="@color/black"
-        android:text="@string/tip_amount_week"
-        android:layout_height="wrap_content" />
+        android:text="@string/history_item" />
+
+    <!-- avg tip percentage for week -->
+    <TextView
+        android:layout_marginTop="10dp"
+        android:id="@+id/tv_avg_tip_percentage_week"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:textSize="@dimen/font_size_16"
+        android:textColor="@color/black"
+        android:text="@string/history_item" />
+
+    <!-- avg tip percentage overall -->
+    <TextView
+        android:layout_marginTop="10dp"
+        android:id="@+id/tv_avg_tip_percentage_overall"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/font_size_16"
+        android:gravity="center_horizontal"
+        android:textColor="@color/black"
+        android:text="@string/history_item" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_history"

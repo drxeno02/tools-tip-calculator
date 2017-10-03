@@ -1,7 +1,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:background="@color/material_teal_400_color_code"
+                android:background="@color/material_teal_200_color_code"
                 android:orientation="vertical">
 
     <ImageView

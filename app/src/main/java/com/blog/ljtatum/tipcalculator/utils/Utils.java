@@ -6,13 +6,19 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
 import android.support.annotation.NonNull;
+import android.support.v4.content.ContextCompat;
 import android.telephony.TelephonyManager;
 import android.util.DisplayMetrics;
 
 import com.app.framework.utilities.FrameworkUtils;
 import com.blog.ljtatum.tipcalculator.BuildConfig;
+import com.blog.ljtatum.tipcalculator.R;
+import com.blog.ljtatum.tipcalculator.activity.MainActivity;
 import com.blog.ljtatum.tipcalculator.constants.Constants;
 import com.blog.ljtatum.tipcalculator.logger.Logger;
+
+import de.keyboardsurfer.android.widget.crouton.Crouton;
+import de.keyboardsurfer.android.widget.crouton.Style;
 
 /**
  * Created by LJTat on 9/13/2017.
@@ -122,5 +128,38 @@ public class Utils {
                 e.printStackTrace();
             }
         }
+    }
+
+    /**
+     * Method is used to retrieve quality of tip
+     *
+     * @return
+     */
+    public static String getTipQuality(@NonNull Context context, int tip) {
+        if (tip >= 0 && tip <= 2) {
+            return context.getResources().getString(R.string.txt_poor);
+        } else if (tip >= 3 && tip <= 4) {
+            return context.getResources().getString(R.string.txt_poor);
+        } else if (tip >= 5 && tip <= 7) {
+            return context.getResources().getString(R.string.txt_poor);
+        } else if (tip >= 8 && tip <= 9) {
+            return context.getResources().getString(R.string.txt_poor);
+        } else if (tip >= 10 && tip <= 12) {
+            return context.getResources().getString(R.string.txt_fair);
+        } else if (tip >= 13 && tip <= 14) {
+            return context.getResources().getString(R.string.txt_fair);
+        } else if (tip >= 15 && tip <= 17) {
+            return context.getResources().getString(R.string.txt_good);
+        } else if (tip >= 18 && tip <= 19) {
+            return context.getResources().getString(R.string.txt_good);
+        } else if (tip >= 20 && tip <= 22) {
+            return context.getResources().getString(R.string.txt_great);
+        } else if (tip >= 23 && tip <= 24) {
+            return context.getResources().getString(R.string.txt_great);
+        } else if (tip >= 25) {
+            return context.getResources().getString(R.string.txt_royal);
+        }
+        // default tip quality
+        return context.getResources().getString(R.string.txt_good);
     }
 }

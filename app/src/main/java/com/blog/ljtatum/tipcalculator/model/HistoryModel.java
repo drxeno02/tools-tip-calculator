@@ -6,5 +6,6 @@ package com.blog.ljtatum.tipcalculator.model;
 
 public class HistoryModel {
 
-    public String day, date, tipAmount, location;
+    public String day, date, tipAmount, tipPercent, address;
+    public double latitude, longitude;
 }
