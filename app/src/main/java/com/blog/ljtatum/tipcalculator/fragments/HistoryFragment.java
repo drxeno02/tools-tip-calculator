@@ -8,16 +8,25 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.app.framework.listeners.OnFirebaseValueListener;
+import com.app.framework.utilities.FirebaseUtils;
 import com.app.framework.utilities.FrameworkUtils;
 import com.blog.ljtatum.tipcalculator.R;
 import com.blog.ljtatum.tipcalculator.activity.MainActivity;
 import com.blog.ljtatum.tipcalculator.adapter.HistoryAdapter;
-import com.blog.ljtatum.tipcalculator.model.HistoryModel;
+import com.app.framework.model.HistoryModel;
+import com.blog.ljtatum.tipcalculator.logger.Logger;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.TimeZone;
 
 /**
  * Created by LJTat on 2/27/2017.
@@ -25,6 +34,8 @@ import java.util.ArrayList;
 
 public class HistoryFragment extends BaseFragment implements View.OnClickListener {
 
+    private static final int NUM_HISTORY_RESULTS = 3;
+    private static final int NUM_DAYS_TIP_HISTORY = 1; // last 30 days
     private Context mContext;
     private View mRootView;
     private TextView tvFragmentHeader, tvTipWeek, tvAvgPercWeek, tvAvgPercOverall;
@@ -82,13 +93,43 @@ public class HistoryFragment extends BaseFragment implements View.OnClickListene
 
 
     private void initializeListeners() {
+        FirebaseUtils.onFirebaseValueListener(new OnFirebaseValueListener() {
+            @Override
+            public void onUpdateDataChange(DataSnapshot dataSnapshot) {
+                // do nothing
+            }
 
+            @Override
+            public void onUpdateDatabaseError(DatabaseError databaseError) {
+                // do nothing
+            }
+
+            @Override
+            public void onRetrieveDataChangeWithFilter(HashMap<String, HistoryModel> map) {
+                alTipHistory = new ArrayList<>(map.values());
+                mHistoryAdapter.updateData(alTipHistory);
+            }
+
+            @Override
+            public void onRetrieveDataChange(DataSnapshot dataSnapshot) {
+                // do nothing
+            }
+
+            @Override
+            public void onRetrieveDataError(DatabaseError databaseError) {
+                // do nothing
+            }
+        });
     }
 
+    /**
+     *
+     */
     private void populateHistoryList() {
-        mHistoryAdapter = new HistoryAdapter(mContext, alTipHistory);
-        rvHistory.setAdapter(mHistoryAdapter);
-        mHistoryAdapter.notifyDataSetChanged();
+        // retrieve trip history for past 30 days
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.DATE, NUM_DAYS_TIP_HISTORY);
+        FirebaseUtils.retrieveValuesWithFilter(NUM_HISTORY_RESULTS, cal);
     }
 
     @Override

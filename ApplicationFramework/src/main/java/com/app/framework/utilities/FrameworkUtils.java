@@ -4,30 +4,25 @@
 
 package com.app.framework.utilities;
 
-import android.app.Activity;
+import android.annotation.SuppressLint;
 import android.app.ActivityManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Handler;
 import android.os.SystemClock;
+import android.provider.Settings;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
-import android.telephony.PhoneNumberUtils;
-import android.util.DisplayMetrics;
-import android.util.Patterns;
+import android.telephony.TelephonyManager;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.Transformation;
 
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Polygon;
-import com.google.maps.android.PolyUtil;
 import com.app.framework.constants.Constants;
+import com.app.framework.sharedpref.SharedPref;
+import com.google.android.gms.maps.model.LatLng;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -38,11 +33,11 @@ import java.net.URLEncoder;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.Random;
 import java.util.TimeZone;
 
 /**
@@ -235,6 +230,24 @@ public class FrameworkUtils {
         return calendarA.get(Calendar.YEAR) == calendarB.get(Calendar.YEAR) &&
                 calendarA.get(Calendar.DAY_OF_MONTH) == calendarB.get(Calendar.DAY_OF_MONTH) &&
                 calendarA.get(Calendar.DAY_OF_YEAR) == calendarB.get(Calendar.DAY_OF_YEAR);
+    }
+
+    /**
+     * Method is used to compare any date passed in as paramater to current date to see
+     * which date-time combination is sooner or later
+     *
+     * @param dateTime String value representation of date and time
+     * @return True if input date is after the current date
+     */
+    public static boolean isDateAfterCurrentDate(String dateTime) {
+        try {
+            Date parsedDate = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH).parse(dateTime);
+            Date currentDate = new Date();
+            return parsedDate.after(currentDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
     /**
@@ -524,5 +537,45 @@ public class FrameworkUtils {
             e.printStackTrace();
             throw new RuntimeException("URLEncoder.encode() failed for " + str);
         }
+    }
+
+    /**
+     * Return an unique UDID for the current android device. As with all UDIDs, this
+     * unique ID is likely to be unique across all devices. The UDID is generated
+     * using ANDROID_ID as the base key if appropriate, fallback on TelephoneManager.getDeviceId().
+     * If both of these fail, the hardcoded value of 'android' with concatenated random value.
+     * For example android_1723
+     *
+     * @param context Interface to global information about an application environment
+     * @return Unique identifier
+     */
+    @SuppressLint("MissingPermission")
+    @Nullable
+    public static String getAndroidId(@NonNull Context context) {
+        SharedPref sharedPref = new SharedPref(context, Constants.PREF_FILE_NAME);
+        if (isStringEmpty(sharedPref.getStringPref(Constants.KEY_ANDROID_ID, ""))) {
+            // check if android id is null
+            if (isStringEmpty(Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID))) {
+                // android id is null, try telephony device id
+                // @note this does not work for phones without data plan
+                if (isStringEmpty(((TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE)).getDeviceId())) {
+                    // return 'android' + random value 1-1000
+                    Random rand = new Random();
+                    String randValue = String.valueOf(rand.nextInt(1000) + 1);
+                    sharedPref.setPref(Constants.KEY_ANDROID_ID, Constants.ANDROID.concat("_").concat(randValue));
+                    return Constants.ANDROID.concat("_").concat(randValue);
+                } else {
+                    // return telephony device id
+                    sharedPref.setPref(Constants.KEY_ANDROID_ID, ((TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE)).getDeviceId());
+                    return ((TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE)).getDeviceId();
+                }
+            } else {
+                // return android id
+                sharedPref.setPref(Constants.KEY_ANDROID_ID, Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID));
+                return Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
+            }
+        }
+        // return shared id stored in shared prefs
+        return sharedPref.getStringPref(Constants.KEY_ANDROID_ID, "");
     }
 }

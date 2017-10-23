@@ -30,7 +30,7 @@ public class AppRaterUtil {
     public AppRaterUtil(Context context, String packageName) {
         mContext = context;
         mPackageName = packageName;
-        recordAppLaunchDate();
+//        recordAppLaunchDate();
     }
 
     private void recordAppLaunchDate() {

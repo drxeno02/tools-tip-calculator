@@ -22,7 +22,8 @@ public class Constants {
     // bundle keys
     public static final String KEY_DEFAULT_TIP = "defaultTip";
     public static final String KEY_DEFAULT_SHARED_BY = "defaultSharedBy";
-    public static final String KEY_DEFAULT_AUTO_HISTORY = "defaultAutoHistory";
+    public static final String KEY_DEFAULT_SAVE_HISTORY = "defaultSaveHistory";
+    public static final String KEY_DEFAULT_SAVE_LOCATION = "defaultSaveLocation";
     public static final String KEY_DEFAULT_SHAKE_RESET = "defaultShakeReset";
     public static final String KEY_DEFAULT_ROUND_OFF = "defaultRoundOff";
 

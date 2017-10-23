@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/material_grey_300_color_code"
     android:clickable="true"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:ignore="KeyboardInaccessibleWidget">
 
     <include
         layout="@layout/fragment_header"
@@ -57,7 +59,8 @@
             android:maxLines="1"
             android:textColor="@color/black"
             android:textColorHint="@color/black"
-            android:textSize="@dimen/font_size_18">
+            android:textSize="@dimen/font_size_18"
+            tools:ignore="RtlHardcoded">
 
             <requestFocus />
         </EditText>
@@ -97,11 +100,12 @@
             android:maxLines="1"
             android:textColor="@color/black"
             android:textColorHint="@color/black"
-            android:textSize="@dimen/font_size_18"></EditText>
+            android:textSize="@dimen/font_size_18"
+            tools:ignore="RtlHardcoded" />
 
     </LinearLayout>
 
-    <!-- enable auto history -->
+    <!-- enable save history -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -112,20 +116,92 @@
         android:weightSum="1">
 
         <!-- 85% weight -->
-        <TextView
-            android:id="@+id/tv_auto_history"
+        <RelativeLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginStart="5dp"
-            android:layout_weight="0.85"
-            android:text="@string/settings_auto_history"
-            android:textColor="@color/black"
-            android:textSize="@dimen/font_size_18" />
+            android:layout_weight="0.85">
+
+            <TextView
+                android:id="@+id/tv_save_history"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginStart="5dp"
+                android:text="@string/settings_save_history"
+                android:textColor="@color/black"
+                android:textSize="@dimen/font_size_18" />
+
+            <ImageView
+                android:id="@+id/iv_save_history"
+                android:layout_width="26dp"
+                android:layout_height="26dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_toEndOf="@+id/tv_save_history"
+                android:layout_toRightOf="@+id/tv_save_history"
+                android:src="@drawable/question_mark_a"
+                tools:ignore="ContentDescription" />
+
+        </RelativeLayout>
 
         <!-- 15% weight -->
         <Switch
-            android:id="@+id/switch_auto_history"
+            android:id="@+id/switch_save_history"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|right"
+            android:layout_marginLeft="5dp"
+            android:layout_marginStart="5dp"
+            android:layout_weight="0.15"
+            android:checked="true"
+            android:gravity="end|right" />
+
+    </LinearLayout>
+
+    <!-- enable save location -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="15dp"
+        android:orientation="horizontal"
+        android:weightSum="1">
+
+        <!-- 85% weight -->
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.85">
+
+            <TextView
+                android:id="@+id/tv_save_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginStart="5dp"
+                android:text="@string/settings_save_location"
+                android:textColor="@color/black"
+                android:textSize="@dimen/font_size_18" />
+
+            <ImageView
+                android:id="@+id/iv_save_location"
+                android:layout_width="26dp"
+                android:layout_height="26dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_toEndOf="@+id/tv_save_location"
+                android:layout_toRightOf="@+id/tv_save_location"
+                android:src="@drawable/question_mark_a"
+                tools:ignore="ContentDescription" />
+
+        </RelativeLayout>
+
+        <!-- 15% weight -->
+        <Switch
+            android:id="@+id/switch_save_location"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="end|right"

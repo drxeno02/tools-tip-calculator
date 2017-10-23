@@ -2,25 +2,27 @@ package com.blog.ljtatum.tipcalculator.activity;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.ActivityInfo;
-import android.content.pm.PackageManager;
 import android.hardware.Sensor;
 import android.hardware.SensorManager;
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
+import android.location.Address;
+import android.location.Geocoder;
 import android.net.ConnectivityManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.os.Vibrator;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
@@ -49,16 +51,15 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 
-import com.app.framework.entities.Address;
-import com.app.framework.listeners.AddressListener;
+import com.app.framework.listeners.OnFirebaseValueListener;
 import com.app.framework.sharedpref.SharedPref;
 import com.app.framework.utilities.AppRaterUtil;
 import com.app.framework.utilities.DeviceUtils;
+import com.app.framework.utilities.FirebaseUtils;
 import com.app.framework.utilities.FrameworkUtils;
 import com.app.framework.utilities.NetworkReceiver;
 import com.app.framework.utilities.NetworkUtils;
 import com.app.framework.utilities.map.GoogleServiceUtility;
-import com.app.framework.utilities.map.model.PlaceModel;
 import com.blog.ljtatum.tipcalculator.R;
 import com.blog.ljtatum.tipcalculator.constants.Constants;
 import com.blog.ljtatum.tipcalculator.constants.Durations;
@@ -70,19 +71,35 @@ import com.blog.ljtatum.tipcalculator.fragments.SettingsFragment;
 import com.blog.ljtatum.tipcalculator.fragments.ShareFragment;
 import com.blog.ljtatum.tipcalculator.listeners.ShakeEventListener;
 import com.blog.ljtatum.tipcalculator.logger.Logger;
+import com.app.framework.model.HistoryModel;
 import com.blog.ljtatum.tipcalculator.utils.DialogUtils;
 import com.blog.ljtatum.tipcalculator.utils.Utils;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.location.LocationSettingsRequest;
+import com.google.android.gms.location.LocationSettingsResponse;
+import com.google.android.gms.location.SettingsClient;
 import com.google.android.gms.location.places.Places;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 
+import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Calendar;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
 import java.util.Random;
 
 import de.keyboardsurfer.android.widget.crouton.Crouton;
@@ -93,13 +110,11 @@ import de.keyboardsurfer.android.widget.crouton.Style;
  */
 public class MainActivity extends BaseActivity implements OnClickListener,
         NavigationView.OnNavigationItemSelectedListener, GoogleApiClient.ConnectionCallbacks,
-        GoogleApiClient.OnConnectionFailedListener, LocationListener,
-        com.google.android.gms.location.LocationListener, NetworkReceiver.NetworkStatusObserver {
+        GoogleApiClient.OnConnectionFailedListener, NetworkReceiver.NetworkStatusObserver {
     public static String TAG = MainActivity.class.getSimpleName();
 
     private static final String AD_ID_TEST = "950036DB8197D296BE390357BD9A964E";
-    private static final int LOCATION_REQUEST_INTERVAL_DEFAULT = 30000;
-    private static final int LOCATION_REQUEST_INTERVAL_FASTEST = 15000;
+    private static final int PERMISSION_REQUEST_CODE_LOCATION = 100; // permissions
     private static final int[] ARRY_DRAWER_ICONS = {R.drawable.food_01, R.drawable.food_02,
             R.drawable.food_03, R.drawable.food_04, R.drawable.food_05, R.drawable.food_06,
             R.drawable.food_07, R.drawable.food_08, R.drawable.food_09, R.drawable.food_10,
@@ -109,8 +124,9 @@ public class MainActivity extends BaseActivity implements OnClickListener,
             R.drawable.food_23};
 
     private Context mContext;
-    private int sharedNum, intSelected, decimalPlaces;
-    private boolean clear, specialCase;
+    private Activity mActivity;
+    private int sharedNum, mTipPercent, decimalPlaces;
+    private boolean isClear, isSpecialCase;
 
     private ImageView ivStar1, ivStar2, ivStar3, ivStar4, ivStar5;
 
@@ -129,7 +145,7 @@ public class MainActivity extends BaseActivity implements OnClickListener,
 
     private EditText edtBill;
 
-    private String strFormatted, strAddress;
+    private String mTotalBill;
 
     private Spinner spinner;
     private Switch switchRoundOff;
@@ -142,10 +158,11 @@ public class MainActivity extends BaseActivity implements OnClickListener,
     private SharedPref mSharedPref;
 
     // google services
+    private FusedLocationProviderClient mFusedLocationClient;
+    private LocationCallback mLocationCallback;
     private GoogleApiClient mGoogleApiClient;
     private LocationRequest mLocationRequest;
     private LatLng mCurrentLocation;
-    private PlaceModel mPlace;
 
     // network
     private NetworkReceiver mNetworkReceiver;
@@ -170,9 +187,13 @@ public class MainActivity extends BaseActivity implements OnClickListener,
      */
     private void initializeViews() {
         mContext = MainActivity.this;
+        mActivity = MainActivity.this;
         mNetworkReceiver = new NetworkReceiver();
         alSpinnerItems = new ArrayList<>();
         mSharedPref = new SharedPref(mContext, com.app.framework.constants.Constants.PREF_FILE_NAME);
+
+        // initialize FusedLocationClient
+        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
         // GoogleApiClient; location services API and places API
         mGoogleApiClient = new GoogleApiClient.Builder(this)
@@ -269,7 +290,7 @@ public class MainActivity extends BaseActivity implements OnClickListener,
                         // load banner ads
                         adView.loadAd(adRequestBanner);
                     }
-                }, Durations.DELAY_MS_500);
+                }, Durations.DELAY_INTERVAL_MS_500);
             }
         } catch (RuntimeException e) {
             e.printStackTrace();
@@ -306,11 +327,11 @@ public class MainActivity extends BaseActivity implements OnClickListener,
             @Override
             public void onShake() {
                 if (mSharedPref.getBooleanPref(Constants.KEY_DEFAULT_SHAKE_RESET, true)) {
-                    v.vibrate(Durations.DELAY_MS_500); // vibrate for 500 milliseconds
-                    clear = true;
+                    v.vibrate(Durations.DELAY_INTERVAL_MS_500); // vibrate for 500 milliseconds
+                    isClear = true;
                     calculate();
                 } else {
-                    Crouton.showText(MainActivity.this, "Shake to reset feature currently disabled. To enable, go to Settings", Style.ALERT);
+                    Crouton.showText(MainActivity.this, getResources().getString(R.string.txt_shake), Style.ALERT);
                 }
             }
         });
@@ -324,7 +345,8 @@ public class MainActivity extends BaseActivity implements OnClickListener,
                     // hide keyboard
                     DeviceUtils.hideKeyboard(mContext, getWindow().getDecorView().getWindowToken());
 
-                    // store tip value to history
+                    // process location change
+                    saveHistoryData();
                 }
                 return false;
             }
@@ -364,6 +386,39 @@ public class MainActivity extends BaseActivity implements OnClickListener,
                 calculate();
             }
         });
+
+        // onLocationChanged listener
+        mLocationCallback = new LocationCallback() {
+            @Override
+            public void onLocationResult(LocationResult locationResult) {
+                // set current location
+                mCurrentLocation = new LatLng(locationResult.getLastLocation().getLatitude(), locationResult.getLastLocation().getLongitude());
+                Logger.v("TEST", "LISTENER onLocationResult called , lat= " + locationResult.getLastLocation().getLatitude() + " //lng= " + locationResult.getLastLocation().getLongitude());
+            }
+        };
+    }
+
+    /**
+     * Method is used to initialize GoogleApiClient
+     */
+    public void connectGoogleClient() {
+        // only track location if save location setting is true
+        if (!FrameworkUtils.checkIfNull(mGoogleApiClient) &&
+                mSharedPref.getBooleanPref(Constants.KEY_DEFAULT_SAVE_LOCATION, false)) {
+//            Logger.e("TEST", "initializeViews starting google api client");
+//            // initialize FusedLocationClient
+//            mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+//
+//            // GoogleApiClient; location services API and places API
+//            mGoogleApiClient = new GoogleApiClient.Builder(this)
+//                    .addConnectionCallbacks(this)
+//                    .addOnConnectionFailedListener(this)
+//                    .addApi(LocationServices.API)
+//                    .addApi(Places.GEO_DATA_API)
+//                    .build();
+            // connect GoogleApiClient
+            mGoogleApiClient.connect();
+        }
     }
 
     /**
@@ -377,8 +432,10 @@ public class MainActivity extends BaseActivity implements OnClickListener,
                 mGoogleApiClient.isConnected()) {
 
             if (!FrameworkUtils.checkIfNull(mLocationRequest)) {
-                LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient,
-                        mLocationRequest, this);
+                Logger.v("TEST", "startLocationUpdates called :: request location updates");
+
+                // request location updates
+                mFusedLocationClient.requestLocationUpdates(mLocationRequest, mLocationCallback, Looper.myLooper());
             }
         }
     }
@@ -390,8 +447,8 @@ public class MainActivity extends BaseActivity implements OnClickListener,
     private void initLocationRequest() {
         Logger.v("TEST", "initLocationRequest called");
         mLocationRequest = new LocationRequest();
-        mLocationRequest.setFastestInterval(LOCATION_REQUEST_INTERVAL_FASTEST);
-        mLocationRequest.setInterval(LOCATION_REQUEST_INTERVAL_DEFAULT);
+        mLocationRequest.setFastestInterval(Durations.DELAY_INTERVAL_MS_30000);
+        mLocationRequest.setInterval(Durations.DELAY_INTERVAL_MS_60000);
 
         int locationMode = -99;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
@@ -416,91 +473,74 @@ public class MainActivity extends BaseActivity implements OnClickListener,
         } else {
             // set attributes of location request object
             mLocationRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
-
-            LocationManager locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
-            LocationListener locationListener = new LocationListener() {
-                @Override
-                public void onLocationChanged(Location location) {
-                    Logger.v("TEST", "onLocationChanged called - 1, lat= " + location.getLatitude() + " //lng= " + location.getLongitude());
-                    // update the user's current location every time his/her location changes
-                    mCurrentLocation = new LatLng(location.getLatitude(), location.getLongitude());
-
-                    // process location change
-                    processOnLocationChanged();
-                }
-
-                @Override
-                public void onStatusChanged(String s, int i, Bundle bundle) {
-                    // do nothing
-                }
-
-                @Override
-                public void onProviderEnabled(String s) {
-                    // do nothing
-                }
-
-                @Override
-                public void onProviderDisabled(String s) {
-                    // do nothing
-                }
-            };
-
-            // create location provider
-            String locationProvider = LocationManager.PASSIVE_PROVIDER;
-            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) !=
-                    PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this,
-                    Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                return;
-            }
-
-            if (!FrameworkUtils.checkIfNull(locationManager)) {
-                // make request for location updates
-                locationManager.requestLocationUpdates(locationProvider, LOCATION_REQUEST_INTERVAL_FASTEST,
-                        0, locationListener);
-                // retrieve current location
-                Location lastLocation = locationManager.getLastKnownLocation(locationProvider);
-                if (!FrameworkUtils.checkIfNull(lastLocation)) {
-                    mCurrentLocation = new LatLng(lastLocation.getLatitude(), lastLocation.getLongitude());
-                }
-            }
         }
+
+        // create LocationSettingsRequest object using location request
+        LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder();
+        builder.addLocationRequest(mLocationRequest);
+        LocationSettingsRequest locationSettingsRequest = builder.build();
+
+        // check whether location settings are satisfied
+        // https://developers.google.com/android/reference/com/google/android/gms/location/SettingsClient
+        SettingsClient settingsClient = LocationServices.getSettingsClient(this);
+        settingsClient.checkLocationSettings(locationSettingsRequest).addOnSuccessListener(mActivity, new OnSuccessListener<LocationSettingsResponse>() {
+            @Override
+            public void onSuccess(LocationSettingsResponse locationSettingsResponse) {
+                if (!FrameworkUtils.checkIfNull(locationSettingsResponse) &&
+                        locationSettingsResponse.getLocationSettingsStates().isLocationPresent() &&
+                        locationSettingsResponse.getLocationSettingsStates().isGpsPresent()) {
+
+                    Logger.v("TEST", "about to call getlastknown lcoation and start location updates");
+                    // start location updates
+                    startLocationUpdates();
+                }
+            }
+        });
     }
 
     /**
-     * Method is used to process onLoCationChanged
+     * Method is used to retrieve address with reverse geolocation
      */
-    private void processOnLocationChanged() {
-        // retrieve address using user's current latlng
-        GoogleServiceUtility.getAddress(mContext, mCurrentLocation, new AddressListener() {
+    private void saveHistoryData() {
+        // instantiate history model
+        final HistoryModel historyModel = new HistoryModel();
 
-            @Override
-            public void onAddressResponse(@NonNull Address address) {
-                // create Place object
-                if (!FrameworkUtils.checkIfNull(mPlace)) {
-                    mPlace = new PlaceModel();
+        // only track location if save location setting is true
+        if (mSharedPref.getBooleanPref(Constants.KEY_DEFAULT_SAVE_LOCATION, true) &&
+                !FrameworkUtils.checkIfNull(mCurrentLocation)) {
+            Geocoder geocoder = new Geocoder(this, Locale.getDefault());
+            List<Address> addresses = new ArrayList<>();
+            try {
+                addresses = geocoder.getFromLocation(mCurrentLocation.latitude, mCurrentLocation.longitude, 1);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            // store address information
+            if (!FrameworkUtils.checkIfNull(addresses)) {
+                  // populate history model
+                historyModel.address = addresses.get(0).getAddressLine(0);
+                // feature name
+                if (!FrameworkUtils.isStringEmpty(addresses.get(0).getFeatureName())) {
+                    historyModel.featureName = addresses.get(0).getFeatureName();
                 }
-                mPlace.streetNo = address.streetNumber;
-                mPlace.streetName = address.addressLine1;
-                mPlace.city = address.city;
-                mPlace.state = address.stateCode;
-                mPlace.zipCode = address.postalCode;
-                mPlace.country = address.countryCode;
-
-                Logger.e("TEST", "1) address= " + mPlace.getShortFormattedAddress(false));
-                Logger.e("TEST", "2) address= " + mPlace.getShortFormattedAddress(true));
-                Logger.e("TEST", "3) address= " + mPlace.getFormattedAddress());
             }
+        }
 
-            @Override
-            public void onAddressError() {
-                // do nothing
-            }
+        DecimalFormat format = new DecimalFormat("0.00");
+        historyModel.latitude = !FrameworkUtils.checkIfNull(mCurrentLocation) ? mCurrentLocation.latitude : 0;
+        historyModel.longitude = !FrameworkUtils.checkIfNull(mCurrentLocation) ? mCurrentLocation.longitude : 0;
+        historyModel.day = FrameworkUtils.parseDayOfTheWeek(Calendar.getInstance());
+        historyModel.date = FrameworkUtils.parseDate(Calendar.getInstance());
+        historyModel.totalBill = tvTotal.getText().toString().replaceAll("[$,]", "");
+        historyModel.tipPercent = String.valueOf(mTipPercent);
+        // tip amount
+        double temp = Double.parseDouble(tvTotal.getText().toString().replaceAll("[$,]", "")) -
+                Double.parseDouble(edtBill.getText().toString().replaceAll("[$,]", ""));
+        historyModel.tipAmount = String.valueOf(format.format(temp));
 
-            @Override
-            public void onZeroResults() {
-                // do nothing
-            }
-        });
+        // save data to Firebase
+        FirebaseUtils.addValueContinuous(historyModel);
     }
 
     /**
@@ -591,8 +631,8 @@ public class MainActivity extends BaseActivity implements OnClickListener,
         if (edtBill.getText().toString().contains(".") && decimalPlaces >= 1) {
 
             // handle special case
-            if (specialCase) {
-                specialCase = false;
+            if (isSpecialCase) {
+                isSpecialCase = false;
                 decimalPlaces = 2; // prevents loop
             } else {
                 decimalPlaces = strParse.length() - integerPlaces - 1;
@@ -601,26 +641,24 @@ public class MainActivity extends BaseActivity implements OnClickListener,
             decimalPlaces = strParse.length() - integerPlaces - 2;
         }
 
-        strFormatted = format.format(doubleBill);
+        mTotalBill = format.format(doubleBill);
 
         // handle special case
         if (decimalPlaces >= 3) {
-            Crouton.showText(MainActivity.this,
-                    "Please maintain proper dollar format ex- 'xxx.xx')",
-                    Style.ALERT);
-            edtBill.setText(strFormatted);
+            Crouton.showText(MainActivity.this,"Please maintain proper dollar format ex- 'xxx.xx')", Style.ALERT);
+            edtBill.setText(mTotalBill);
         }
 
         // handle special case
         if (integerPlaces == 7 && !edtBill.getText().toString().contains(".")) {
-            edtBill.setText(strFormatted);
+            edtBill.setText(mTotalBill);
         }
 
         // handle special case
         if (integerPlaces == 7 && decimalPlaces <= 1 && edtBill.getText().toString().contains(".")) {
-            specialCase = true;
+            isSpecialCase = true;
             decimalPlaces = 2; // prevents loop
-            edtBill.setText(strFormatted);
+            edtBill.setText(mTotalBill);
         }
     }
 
@@ -734,55 +772,54 @@ public class MainActivity extends BaseActivity implements OnClickListener,
             public void onItemSelected(AdapterView<?> parent, View view,
                                        int pos, long id) {
                 Logger.e("TEST", "<onItemSelected>");
-                intSelected = spinner.getSelectedItemPosition();
-                if (intSelected >= 0 && intSelected <= 2) {
+                mTipPercent = spinner.getSelectedItemPosition();
+                if (mTipPercent >= 0 && mTipPercent <= 2) {
                     setRating(1, true);
                     tvService.setTextColor(ContextCompat.getColor(mContext, R.color.material_red_400_color_code));
                     Crouton.showText(MainActivity.this, "Poor tip service percent", Style.ALERT);
-                } else if (intSelected >= 3 && intSelected <= 4) {
+                } else if (mTipPercent >= 3 && mTipPercent <= 4) {
                     setRating(1, true);
                     tvService.setTextColor(ContextCompat.getColor(mContext, R.color.material_red_400_color_code));
                     Crouton.showText(MainActivity.this, "Poor tip service percent", Style.ALERT);
-                } else if (intSelected >= 5 && intSelected <= 7) {
+                } else if (mTipPercent >= 5 && mTipPercent <= 7) {
                     setRating(1, true);
                     tvService.setTextColor(ContextCompat.getColor(mContext, R.color.material_red_400_color_code));
                     Crouton.showText(MainActivity.this, "Poor tip service percent", Style.ALERT);
-                } else if (intSelected >= 8 && intSelected <= 9) {
+                } else if (mTipPercent >= 8 && mTipPercent <= 9) {
                     setRating(1, true);
                     tvService.setTextColor(ContextCompat.getColor(mContext, R.color.material_red_400_color_code));
                     Crouton.showText(MainActivity.this, "Poor tip service percent", Style.ALERT);
-                } else if (intSelected >= 10 && intSelected <= 12) {
+                } else if (mTipPercent >= 10 && mTipPercent <= 12) {
                     setRating(2, true);
                     tvService.setTextColor(ContextCompat.getColor(mContext, R.color.white));
                     Crouton.showText(MainActivity.this, "Fair tip service percent", Style.CONFIRM);
-                } else if (intSelected >= 13 && intSelected <= 14) {
+                } else if (mTipPercent >= 13 && mTipPercent <= 14) {
                     setRating(2, true);
                     tvService.setTextColor(ContextCompat.getColor(mContext, R.color.white));
                     Crouton.showText(MainActivity.this, "Fair tip service percent", Style.CONFIRM);
-                } else if (intSelected >= 15 && intSelected <= 17) {
+                } else if (mTipPercent >= 15 && mTipPercent <= 17) {
                     setRating(3, true);
                     tvService.setTextColor(ContextCompat.getColor(mContext, R.color.white));
                     Crouton.showText(MainActivity.this, "Good tip service percent", Style.CONFIRM);
-                } else if (intSelected >= 18 && intSelected <= 19) {
+                } else if (mTipPercent >= 18 && mTipPercent <= 19) {
                     setRating(3, true);
                     tvService.setTextColor(ContextCompat.getColor(mContext, R.color.white));
                     Crouton.showText(MainActivity.this, "Good service percent", Style.CONFIRM);
-                } else if (intSelected >= 20 && intSelected <= 22) {
+                } else if (mTipPercent >= 20 && mTipPercent <= 22) {
                     setRating(4, true);
                     tvService.setTextColor(ContextCompat.getColor(mContext, R.color.white));
                     Crouton.showText(MainActivity.this, "Great tip service percent", Style.CONFIRM);
-                } else if (intSelected >= 23 && intSelected <= 24) {
+                } else if (mTipPercent >= 23 && mTipPercent <= 24) {
                     setRating(4, true);
                     tvService.setTextColor(ContextCompat.getColor(mContext, R.color.white));
                     Crouton.showText(MainActivity.this, "Great tip service percent", Style.CONFIRM);
-                } else if (intSelected >= 25) {
+                } else if (mTipPercent >= 25) {
                     setRating(5, true);
                     tvService.setTextColor(ContextCompat.getColor(mContext, R.color.material_purple_500_color_code));
                     Crouton.showText(MainActivity.this, "Royal tip service percent", Style.INFO);
-
                 }
-                tvService.setText(Utils.getTipQuality(mContext, intSelected));
-                tvPercent.setText(intSelected + "%");
+                tvService.setText(Utils.getTipQuality(mContext, mTipPercent));
+                tvPercent.setText(mTipPercent + "%");
                 calculate();
             }
 
@@ -800,9 +837,9 @@ public class MainActivity extends BaseActivity implements OnClickListener,
         // temp values
         double temp1, temp2, temp3, temp4, temp5;
 
-        if (clear) {
+        if (isClear) {
             Crouton.showText(MainActivity.this, "All fields reset", Style.CONFIRM);
-            clear = false;
+            isClear = false;
 
             // spinner reset (resets rating as well)
             tvService.setText(mContext.getResources().getString(R.string.txt_good));
@@ -840,40 +877,61 @@ public class MainActivity extends BaseActivity implements OnClickListener,
                 tvTip.setText(mContext.getResources().getString(R.string.txt_zero_dollar)); // static
             } else {
                 // calculate tip amount
-                temp1 = Double.parseDouble(strFormatted);
-                temp2 = intSelected * temp1 / 100;
-                DecimalFormat formatTip = new DecimalFormat("0.00");
-                String strTip = formatTip.format(temp2);
+                temp1 = Double.parseDouble(mTotalBill);
+                temp2 = mTipPercent * temp1 / 100;
+                DecimalFormat format = new DecimalFormat("0.00");
 
                 String strTotal;
                 if (switchRoundOff.isChecked()) {
                     // round ON; update calculations
                     temp3 = (int) Math.round(temp2);
-                    tvTip.setText(String.valueOf("$" + temp3 + "0"));
+                    tvTip.setText(String.valueOf("$" + format.format(temp3)));
 
                     // calculate total bill amount
                     temp4 = temp1 + temp3;
-                    strTotal = formatTip.format(temp4);
+                    strTotal = format.format(temp4);
                     tvTotal.setText(String.valueOf("$" + strTotal));
                 } else {
                     // round OFF; update calculations
-                    tvTip.setText(String.valueOf("$" + strTip));
+                    tvTip.setText(String.valueOf("$" + format.format(temp2)));
 
                     // calculate total bill amount
                     temp4 = temp1 + temp2;
-                    strTotal = formatTip.format(temp4);
+                    strTotal = format.format(temp4);
                     tvTotal.setText(String.valueOf("$" + strTotal));
                 }
 
                 // calculate each person pays amount
                 temp5 = temp4 / sharedNum;
-                String strPerson = formatTip.format(temp5);
+                String strPerson = format.format(temp5);
                 tvPerson.setText(String.valueOf("$" + strPerson));
             }
 
             // update shared by value
             tvSharedBy.setText(String.valueOf(sharedNum));
         }
+    }
+
+    /**
+     * Method is used to show dialog that location services is not enabled
+     */
+    private void showLocationServiceDisabledDialog() {
+        DialogUtils.showYesNoAlert(mContext, getResources().getString(R.string.settings),
+                getString(R.string.enable_location_services_message, mContext.getResources().getString(R.string.app_name)),
+                mContext.getResources().getString(R.string.ok), mContext.getResources().getString(R.string.cancel),
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        DialogUtils.dismissDialog();
+                        String action = Settings.ACTION_LOCATION_SOURCE_SETTINGS;
+                        startActivity(new Intent(action));
+                    }
+                }, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        DialogUtils.dismissDialog();
+                    }
+                });
     }
 
     @Override
@@ -904,7 +962,7 @@ public class MainActivity extends BaseActivity implements OnClickListener,
                 }
                 break;
             case R.id.btn_clear:
-                clear = true;
+                isClear = true;
                 calculate();
                 break;
             case R.id.iv_star_1:
@@ -965,9 +1023,27 @@ public class MainActivity extends BaseActivity implements OnClickListener,
     @Override
     protected void onStart() {
         super.onStart();
-        if (!FrameworkUtils.checkIfNull(mGoogleApiClient)) {
+        if (!FrameworkUtils.checkIfNull(mGoogleApiClient) &&
+                mSharedPref.getBooleanPref(Constants.KEY_DEFAULT_SAVE_LOCATION, false)) {
             mGoogleApiClient.connect();
         }
+
+
+//        // only track location if save location setting is true
+//        connectGoogleClient();
+//        if (mSharedPref.getBooleanPref(Constants.KEY_DEFAULT_SAVE_LOCATION, false)) {
+//            Logger.e("TEST", "initializeViews starting google api client");
+//            // initialize FusedLocationClient
+//            mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+//
+//            // GoogleApiClient; location services API and places API
+//            mGoogleApiClient = new GoogleApiClient.Builder(this)
+//                    .addConnectionCallbacks(this)
+//                    .addOnConnectionFailedListener(this)
+//                    .addApi(LocationServices.API)
+//                    .addApi(Places.GEO_DATA_API)
+//                    .build();
+//        }
     }
 
     @Override
@@ -983,6 +1059,11 @@ public class MainActivity extends BaseActivity implements OnClickListener,
     public void onPause() {
         // pause adview
         adView.pause();
+
+        if (!FrameworkUtils.checkIfNull(mFusedLocationClient) && !FrameworkUtils.checkIfNull(mLocationCallback)) {
+            // remove location updates
+            mFusedLocationClient.removeLocationUpdates(mLocationCallback);
+        }
         // unregister sensor manager
         if (!FrameworkUtils.checkIfNull(mSensorManager) && !FrameworkUtils.checkIfNull(mSensorListener)) {
             mSensorManager.unregisterListener(mSensorListener);
@@ -1003,6 +1084,7 @@ public class MainActivity extends BaseActivity implements OnClickListener,
     @Override
     public void onResume() {
         super.onResume();
+        Logger.e("TEST", "onResume Main");
         // resume adview
         adView.resume();
         // register sensor manager
@@ -1023,6 +1105,10 @@ public class MainActivity extends BaseActivity implements OnClickListener,
 
     @Override
     public void onDestroy() {
+        if (!FrameworkUtils.checkIfNull(mFusedLocationClient) && !FrameworkUtils.checkIfNull(mLocationCallback)) {
+            // remove location updates
+            mFusedLocationClient.removeLocationUpdates(mLocationCallback);
+        }
         // unregister network receiver
         if (mNetworkReceiver.getObserverSize() > 0 && mNetworkReceiver.contains(this)) {
             try {
@@ -1050,20 +1136,46 @@ public class MainActivity extends BaseActivity implements OnClickListener,
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void onConnected(@Nullable Bundle bundle) {
         Logger.e("TEST", "onConnected");
-        // initialize LocationRequest object
-        if (FrameworkUtils.checkIfNull(mLocationRequest)) {
-            initLocationRequest();
+        // request location permission if permission is not enabled
+        if (!FrameworkUtils.checkAppPermissions(mContext, Manifest.permission.ACCESS_FINE_LOCATION,
+                Manifest.permission.ACCESS_COARSE_LOCATION)) {
+            String[] permissions = {Manifest.permission.ACCESS_FINE_LOCATION,
+                    Manifest.permission.ACCESS_COARSE_LOCATION};
+            requestPermissions(permissions, PERMISSION_REQUEST_CODE_LOCATION);
+        } else if (!DeviceUtils.isLocationServiceEnabled(mContext)) {
+            showLocationServiceDisabledDialog();
+        } else {
+            // initialize LocationRequest object
+            if (FrameworkUtils.checkIfNull(mLocationRequest)) {
+                initLocationRequest();
+            } else {
+                // create LocationSettingsRequest object using location request
+                LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder();
+                builder.addLocationRequest(mLocationRequest);
+                LocationSettingsRequest locationSettingsRequest = builder.build();
+
+                // check whether location settings are satisfied
+                // https://developers.google.com/android/reference/com/google/android/gms/location/SettingsClient
+                SettingsClient settingsClient = LocationServices.getSettingsClient(this);
+                settingsClient.checkLocationSettings(locationSettingsRequest).addOnSuccessListener(mActivity, new OnSuccessListener<LocationSettingsResponse>() {
+                    @Override
+                    public void onSuccess(LocationSettingsResponse locationSettingsResponse) {
+                        if (!FrameworkUtils.checkIfNull(locationSettingsResponse) &&
+                                locationSettingsResponse.getLocationSettingsStates().isLocationPresent() &&
+                                locationSettingsResponse.getLocationSettingsStates().isGpsPresent()) {
+
+                            Logger.e("TEST", "<onConnected> about to call getLastKnownLocation and startLocation updates");
+                            // start location updates
+                            startLocationUpdates();
+                        }
+                    }
+                });
+            }
         }
-        // retrieve location from fusedLocationApi
-        @SuppressLint("MissingPermission") android.location.Location lastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
-        if (!FrameworkUtils.checkIfNull(lastLocation)) {
-            mCurrentLocation = new LatLng(lastLocation.getLatitude(), lastLocation.getLongitude());
-        }
-        // start location updates
-        startLocationUpdates();
     }
 
     @Override
@@ -1078,31 +1190,6 @@ public class MainActivity extends BaseActivity implements OnClickListener,
     }
 
     @Override
-    public void onLocationChanged(Location location) {
-        Logger.v("TEST", "onLocationChanged called - 2, lat= " + location.getLatitude() + " //lng= " + location.getLongitude());
-        // update the user's current location every time his/her location changes
-        mCurrentLocation = new LatLng(location.getLatitude(), location.getLongitude());
-
-        // process location change
-        processOnLocationChanged();
-    }
-
-    @Override
-    public void onStatusChanged(String provider, int status, Bundle extras) {
-        // do nothing
-    }
-
-    @Override
-    public void onProviderEnabled(String provider) {
-        // do nothing
-    }
-
-    @Override
-    public void onProviderDisabled(String provider) {
-        // do nothing
-    }
-
-    @Override
     public void notifyConnectionChange(boolean isConnected) {
         if (isConnected) {
             // app is connected to network
@@ -1111,6 +1198,54 @@ public class MainActivity extends BaseActivity implements OnClickListener,
             // app is not connected to network
             DialogUtils.showDefaultNoNetworkAlert(mContext, null,
                     mContext.getString(R.string.check_network));
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch (requestCode) {
+            case PERMISSION_REQUEST_CODE_LOCATION:
+                new Handler().post(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (!DeviceUtils.isLocationServiceEnabled(mContext)) {
+                            showLocationServiceDisabledDialog();
+                        } else if (FrameworkUtils.checkAppPermissions(mContext, Manifest.permission.ACCESS_FINE_LOCATION,
+                                Manifest.permission.ACCESS_COARSE_LOCATION)) {
+                            Logger.e("TEST", "going to call initLocationRequest OR SettingsClient");
+                            // initialize LocationRequest object
+                            if (FrameworkUtils.checkIfNull(mLocationRequest)) {
+                                Logger.e("TEST", "going to call initLocationRequest OR SettingsClient - 1");
+                                initLocationRequest();
+                            } else {
+                                Logger.e("TEST", "going to call initLocationRequest OR SettingsClient - 2");
+                                // create LocationSettingsRequest object using location request
+                                LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder();
+                                builder.addLocationRequest(mLocationRequest);
+                                LocationSettingsRequest locationSettingsRequest = builder.build();
+
+                                // check whether location settings are satisfied
+                                // https://developers.google.com/android/reference/com/google/android/gms/location/SettingsClient
+                                SettingsClient settingsClient = LocationServices.getSettingsClient(mContext);
+                                settingsClient.checkLocationSettings(locationSettingsRequest).addOnSuccessListener(mActivity, new OnSuccessListener<LocationSettingsResponse>() {
+                                    @Override
+                                    public void onSuccess(LocationSettingsResponse locationSettingsResponse) {
+                                        if (!FrameworkUtils.checkIfNull(locationSettingsResponse) &&
+                                                locationSettingsResponse.getLocationSettingsStates().isLocationPresent() &&
+                                                locationSettingsResponse.getLocationSettingsStates().isGpsPresent()) {
+                                            Logger.e("TEST", "going to call initLocationRequest OR SettingsClient - 3 SUCCESS");
+                                            // start location updates
+                                            startLocationUpdates();
+                                        }
+                                    }
+                                });
+                            }
+                        }
+                    }
+
+                });
+                break;
         }
     }
 }

@@ -1,7 +1,10 @@
 package com.app.framework.listeners;
 
+import com.app.framework.model.HistoryModel;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+
+import java.util.HashMap;
 
 /**
  * Created by LJTat on 6/3/2017.
@@ -9,7 +12,13 @@ import com.google.firebase.database.DatabaseError;
 
 public interface OnFirebaseValueListener {
 
-    void onDataChange(DataSnapshot dataSnapshot);
+    void onUpdateDataChange(DataSnapshot dataSnapshot);
 
-    void onCancelled(DatabaseError databaseError);
+    void onUpdateDatabaseError(DatabaseError databaseError);
+
+    void onRetrieveDataChangeWithFilter(HashMap<String, HistoryModel> map);
+
+    void onRetrieveDataChange(DataSnapshot dataSnapshot);
+
+    void onRetrieveDataError(DatabaseError databaseError);
 }

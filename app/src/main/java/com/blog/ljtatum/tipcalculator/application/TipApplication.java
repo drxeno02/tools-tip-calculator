@@ -20,7 +20,7 @@ public class TipApplication extends Application {
         // instantiate FireBase
         FirebaseApp.initializeApp(this);
         // instantiate FirebaseUtils
-        new FirebaseUtils();
+        new FirebaseUtils(getApplicationContext());
         // instantiate crashlytics
         Crashlytics crashlyticsKit = new Crashlytics.Builder()
                 .core(new CrashlyticsCore.Builder().disabled(BuildConfig.DEBUG).build()).build();

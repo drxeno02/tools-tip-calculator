@@ -29,6 +29,13 @@
     <string name="btn_guide">Tip Guide</string>
     <string name="btn_inc">+</string>
     <string name="btn_dec">-</string>
+	<string name="txt_shake">Shake to reset feature currently disabled. To enable, go to Settings</string>
+
+	<!-- location services -->
+	<string name="settings">Settings</string>
+	<string name="cancel">Cancel</string>
+	<string name="enable_location_services_message">%s needs access to your location to better
+		track your history. Please turn on location services.</string>
 
     <!-- headers -->
     <string name="share">Share</string>
@@ -38,14 +45,13 @@
     <string name="history">History</string>
 	<string name="setting">Settings</string>
 
-	<!-- history -->
-	<string name="tip_percent">Tip Percent %1$s</string>
-	<string name="tip_amount">Tip Amount %1$s</string>
+	<!-- history &#37; -->
+	<string name="tip_percent">Tip Percent %1$s\%%</string>
+	<string name="tip_amount">Tip Amount $%1$s</string>
 	<string name="tip_amount_week">Tip Amount For the Week: %1$s</string>
 	<string name="avg_tip_percentage_week">Average Tip Percentage For the Week: %1$s</string>
 	<string name="avg_tip_percentage_overall">Average Tip Percentage Overall: %1$s</string>
-	<string name="history_item">%1$s - %2$s</string>
-	<string name="view_location">View Location</string>
+	<string name="day_date">%1$s - %2$s</string>
 	<string name="location">%1$s</string>
 	<string name="tip_quality">Tip Quality: %1$s</string>
 
@@ -168,13 +174,17 @@
 
 	<!-- settings -->
 	<string name="customize_preferences">Customize Your Preferences</string>
-	<string name="settings_auto_history">Auto History: %s</string>
+	<string name="settings_save_history">Save History: %s</string>
+	<string name="settings_save_location">Save Location: %s</string>
 	<string name="settings_shake">Shake To Reset: %s</string>
 	<string name="settings_round_off">Default Round Off: %s</string>
 	<string name="settings_set_default_tip">Set Default Tip%:</string>
 	<string name="settings_set_default_shared_by">Set Default Shared By:</string>
 	<string name="settings_enabled">Enabled</string>
 	<string name="settings_disabled">Disabled</string>
+	<string name="settings_save_history_info">Enabling this feature will track your tipping history</string>
+	<string name="settings_save_location_info">Enabling this feature will track where you are tipping!
+		Save History and Location Services must both be enabled</string>
 
     <!-- guide text -->
     <string name="txt_guide">Q1: Where don’t you tip? 

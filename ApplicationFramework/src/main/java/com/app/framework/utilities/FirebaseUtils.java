@@ -3,19 +3,20 @@ package com.app.framework.utilities;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.Log;
 
 import com.app.framework.listeners.OnFirebaseValueListener;
-import com.google.firebase.FirebaseApp;
-import com.google.firebase.FirebaseOptions;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
+import com.app.framework.model.HistoryModel;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -25,7 +26,9 @@ import java.util.List;
 public class FirebaseUtils {
     private static final String TAG = FirebaseUtils.class.getSimpleName();
 
-    private static DatabaseReference mDbReference;
+    private static Context mContext;
+    private static DatabaseReference mWriteDbReference;
+    private static DatabaseReference mQueryDbReference;
 
     // listeners
     private static OnFirebaseValueListener mFirebaseValueListener;
@@ -33,7 +36,7 @@ public class FirebaseUtils {
     /**
      * Method is used to set callback to listen to value changes in Firebase DB
      *
-     * @param listener
+     * @param listener Callback to listen to value changes in Firebase DB
      */
     public static void onFirebaseValueListener(OnFirebaseValueListener listener) {
         mFirebaseValueListener = listener;
@@ -42,34 +45,163 @@ public class FirebaseUtils {
     /**
      * Constructor
      */
-    public FirebaseUtils() {
-        mDbReference = FirebaseDatabase.getInstance().getReference();
+    public FirebaseUtils(Context context) {
+        mContext = context;
+        mWriteDbReference = FirebaseDatabase.getInstance().getReference();
+        mQueryDbReference = FirebaseDatabase.getInstance().getReference(FrameworkUtils.getAndroidId(mContext));
     }
 
     /**
-     * Method is used to add a list of values to Firebase DB
+     * Method is used to add values to Firebase DB. All data will be wiped and replaced with
+     * the data object content
      *
-     * @param alHistory
+     * @param data Data to store to Firebase
      */
-    public static void addValues(List<?> alHistory) {
-        if (!FrameworkUtils.checkIfNull(mDbReference)) {
+    public static void addValueReplace(Object data) {
+        if (!FrameworkUtils.checkIfNull(mWriteDbReference)) {
             // set value
-            mDbReference.setValue(alHistory);
-            mDbReference.addValueEventListener(new ValueEventListener() {
+            mWriteDbReference.child(FrameworkUtils.getAndroidId(mContext)).setValue(data);
+            mWriteDbReference.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
-                    Log.i(TAG, "<onDataChange> successful!");
                     if (!FrameworkUtils.checkIfNull(mFirebaseValueListener)) {
-                        mFirebaseValueListener.onDataChange(dataSnapshot);
+                        mFirebaseValueListener.onUpdateDataChange(dataSnapshot);
                     }
                 }
 
                 @Override
                 public void onCancelled(DatabaseError databaseError) {
                     if (!FrameworkUtils.checkIfNull(databaseError) && !FrameworkUtils.isStringEmpty(databaseError.getMessage())) {
-                        Log.i(TAG, "<onCancelled> error: " + databaseError.getMessage());
                         if (!FrameworkUtils.checkIfNull(mFirebaseValueListener)) {
-                            mFirebaseValueListener.onCancelled(databaseError);
+                            mFirebaseValueListener.onUpdateDatabaseError(databaseError);
+                        }
+                    }
+                }
+            });
+        }
+    }
+
+    /**
+     * Method is used to add values to Firebase DB. All data will be retained and updated
+     *
+     * @param data Data to store to Firebase
+     */
+    public static void addValueContinuous(final Object data) {
+        if (!FrameworkUtils.checkIfNull(mQueryDbReference)) {
+            mQueryDbReference.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    HashMap<String, HistoryModel> map = new HashMap<>();
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                        HistoryModel historyModel = snapshot.getValue(HistoryModel.class);
+                        map.put(snapshot.getKey(), historyModel);
+                    }
+                    // add final data
+                    map.put(String.valueOf(map.size()), (HistoryModel) data);
+                    addValues(new ArrayList<>(map.values()));
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                    if (!FrameworkUtils.checkIfNull(databaseError) && !FrameworkUtils.isStringEmpty(databaseError.getMessage())) {
+                        if (!FrameworkUtils.checkIfNull(mFirebaseValueListener)) {
+                            mFirebaseValueListener.onUpdateDatabaseError(databaseError);
+                        }
+                    }
+                }
+            });
+        }
+    }
+
+    /**
+     * Method is usd to add values to Firebase DB. All data will be retained and updated. The data
+     * can be filtered hy max number of items and timestamp
+     *
+     * @param data        Data to store to Firebase
+     * @param maxItems    Maximum number of items allowed to store to Firebase DB
+     * @param maxCalendar The latest date to allow history of data to store to Firebase DB
+     */
+    public static void addValueContinuousWithFilter(final Object data, @Nullable final Integer maxItems, @Nullable final Calendar maxCalendar) {
+        if (!FrameworkUtils.checkIfNull(mQueryDbReference)) {
+            mQueryDbReference.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    HashMap<String, HistoryModel> map = new HashMap<>();
+                    if (!FrameworkUtils.checkIfNull(maxItems) || !FrameworkUtils.checkIfNull(maxCalendar)) {
+                        map = filterData(dataSnapshot, maxItems, maxCalendar);
+                    } else {
+                        for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                            HistoryModel historyModel = snapshot.getValue(HistoryModel.class);
+                            map.put(snapshot.getKey(), historyModel);
+                        }
+                        // add final data
+                        map.put(String.valueOf(map.size()), (HistoryModel) data);
+                    }
+                    addValues(new ArrayList<>(map.values()));
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                    if (!FrameworkUtils.checkIfNull(databaseError) && !FrameworkUtils.isStringEmpty(databaseError.getMessage())) {
+                        if (!FrameworkUtils.checkIfNull(mFirebaseValueListener)) {
+                            mFirebaseValueListener.onUpdateDatabaseError(databaseError);
+                        }
+                    }
+                }
+            });
+        }
+    }
+
+    /**
+     * Method is used to add a list of values to Firebase DB
+     *
+     * @param alData Data to store to Firebase
+     */
+    private static void addValues(List<?> alData) {
+        if (!FrameworkUtils.checkIfNull(mWriteDbReference)) {
+            // set value
+            mWriteDbReference.child(FrameworkUtils.getAndroidId(mContext)).setValue(alData);
+            mWriteDbReference.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    if (!FrameworkUtils.checkIfNull(mFirebaseValueListener)) {
+                        mFirebaseValueListener.onUpdateDataChange(dataSnapshot);
+                    }
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                    if (!FrameworkUtils.checkIfNull(databaseError) && !FrameworkUtils.isStringEmpty(databaseError.getMessage())) {
+                        if (!FrameworkUtils.checkIfNull(mFirebaseValueListener)) {
+                            mFirebaseValueListener.onUpdateDatabaseError(databaseError);
+                        }
+                    }
+                }
+            });
+        }
+    }
+
+    /**
+     * Method is used to retrieve a list of values from Firebase DB
+     *
+     * @param maxItems    Maximum number of items allowed to store to Firebase DB
+     * @param maxCalendar The latest date to allow history of data to store to Firebase DB
+     */
+    public static void retrieveValuesWithFilter(@Nullable final Integer maxItems, @Nullable final Calendar maxCalendar) {
+        if (!FrameworkUtils.checkIfNull(mQueryDbReference)) {
+            mQueryDbReference.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    if (!FrameworkUtils.checkIfNull(mFirebaseValueListener)) {
+                        mFirebaseValueListener.onRetrieveDataChangeWithFilter(filterData(dataSnapshot, maxItems, maxCalendar));
+                    }
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                    if (!FrameworkUtils.checkIfNull(databaseError) && !FrameworkUtils.isStringEmpty(databaseError.getMessage())) {
+                        if (!FrameworkUtils.checkIfNull(mFirebaseValueListener)) {
+                            mFirebaseValueListener.onRetrieveDataError(databaseError);
                         }
                     }
                 }
@@ -81,24 +213,60 @@ public class FirebaseUtils {
      * Method is used to retrieve a list of values from Firebase DB
      */
     public static void retrieveValues() {
-        mDbReference.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                Log.i(TAG, "<onDataChange> successful!");
-                if (!FrameworkUtils.checkIfNull(mFirebaseValueListener)) {
-                    mFirebaseValueListener.onDataChange(dataSnapshot);
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                if (!FrameworkUtils.checkIfNull(databaseError) && !FrameworkUtils.isStringEmpty(databaseError.getMessage())) {
-                    Log.i(TAG, "<onCancelled> error: " + databaseError.getMessage());
+        if (!FrameworkUtils.checkIfNull(mQueryDbReference)) {
+            mQueryDbReference.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    Log.i(TAG, "retrieveValues <onDataChange> successful!");
                     if (!FrameworkUtils.checkIfNull(mFirebaseValueListener)) {
-                        mFirebaseValueListener.onCancelled(databaseError);
+                        mFirebaseValueListener.onRetrieveDataChange(dataSnapshot);
                     }
                 }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                    if (!FrameworkUtils.checkIfNull(databaseError) && !FrameworkUtils.isStringEmpty(databaseError.getMessage())) {
+                        Log.i(TAG, "retrieveValues <onCancelled> error: " + databaseError.getMessage());
+                        if (!FrameworkUtils.checkIfNull(mFirebaseValueListener)) {
+                            mFirebaseValueListener.onRetrieveDataError(databaseError);
+                        }
+                    }
+                }
+            });
+        }
+    }
+
+    /**
+     * @param dataSnapshot Retrieved data from Firebase DB
+     * @param maxItems     Maximum number of items allowed to store to Firebase DB
+     * @param maxCalendar  The latest date to allow history of data to store to Firebase DB
+     * @return Hashmap of filtered data
+     */
+    private static HashMap<String, HistoryModel> filterData(@NonNull DataSnapshot dataSnapshot, @Nullable final Integer maxItems, @Nullable final Calendar maxCalendar) {
+        HashMap<String, HistoryModel> map = new HashMap<>();
+        for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+            HistoryModel historyModel = snapshot.getValue(HistoryModel.class);
+
+            if (!FrameworkUtils.checkIfNull(maxItems) && !FrameworkUtils.checkIfNull(maxCalendar)) {
+                // check size and calendar date
+                if (map.size() < maxItems && !FrameworkUtils.isDateAfterCurrentDate(historyModel.date)) {
+                    map.put(snapshot.getKey(), historyModel);
+                }
+            } else if (!FrameworkUtils.checkIfNull(maxItems)) {
+                // check size
+                if (map.size() < maxItems) {
+                    map.put(snapshot.getKey(), historyModel);
+                }
+            } else if (!FrameworkUtils.checkIfNull(maxCalendar)) {
+                // check calendar date
+                if (!FrameworkUtils.isDateAfterCurrentDate(historyModel.date)) {
+                    map.put(snapshot.getKey(), historyModel);
+                }
+            } else {
+                // no filter
+                map.put(snapshot.getKey(), historyModel);
             }
-        });
+        }
+        return map;
     }
 }

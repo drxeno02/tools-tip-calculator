@@ -19,18 +19,18 @@
 
         <!-- tip history date e.g. Monday - Mar 12 2017 -->
         <TextView
-            android:id="@+id/tv_day_date"
+            android:id="@+id/tv_item_day_date"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_weight="0.5"
             android:textSize="@dimen/font_size_16"
             android:textColor="@color/black"
-            android:text="@string/history_item" />
+            android:text="@string/day_date" />
 
         <!-- tip quality -->
         <TextView
-            android:id="@+id/tv_quality"
+            android:id="@+id/tv_item_quality"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -56,7 +56,7 @@
 
     <!-- tip percent -->
     <TextView
-        android:id="@+id/tv_tip_item_tip_percentage"
+        android:id="@+id/tv_item_tip_percentage"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginStart="10dp"
@@ -69,13 +69,13 @@
 
     <!-- view location where tipped -->
     <TextView
-        android:id="@+id/tv_view_location"
+        android:id="@+id/tv_item_location"
         android:layout_width="match_parent"
         android:layout_marginTop="10dp"
         android:textSize="@dimen/font_size_16"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:textColor="@color/material_orange_300_color_code"
-        android:text="@string/view_location" />
+        android:text="@string/location" />
 
 </LinearLayout>
