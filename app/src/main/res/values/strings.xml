@@ -45,18 +45,19 @@
     <string name="history">History</string>
 	<string name="setting">Settings</string>
 
-	<!-- history &#37; -->
+	<!-- history -->
+	<string name="not_applicable">N/A</string>
+	<string name="bill_amount">Total Bill Amount $%1$s</string>
 	<string name="tip_percent">Tip Percent %1$s\%%</string>
 	<string name="tip_amount">Tip Amount $%1$s</string>
 	<string name="tip_amount_week">Tip Amount For the Week: %1$s</string>
-	<string name="avg_tip_percentage_week">Average Tip Percentage For the Week: %1$s</string>
-	<string name="avg_tip_percentage_overall">Average Tip Percentage Overall: %1$s</string>
+	<string name="avg_tip_percentage_week">Average Tip Percentage For the Week: %1$s\%%</string>
+	<string name="avg_tip_percentage_overall">Average Tip Percentage Overall: %1$s\%% (%2$s)</string>
 	<string name="day_date">%1$s - %2$s</string>
 	<string name="location">%1$s</string>
 	<string name="tip_quality">Tip Quality: %1$s</string>
 
     <!-- guide -->
-    <string name="tip_req">Local currency: %1$s | Tipping Required: %2$s</string>
     <string name="required">Required</string>
     <string name="not_required">Not Required</string>
 

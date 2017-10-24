@@ -11,22 +11,20 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.app.framework.listeners.OnFirebaseValueListener;
+import com.app.framework.model.HistoryModel;
 import com.app.framework.utilities.FirebaseUtils;
 import com.app.framework.utilities.FrameworkUtils;
 import com.blog.ljtatum.tipcalculator.R;
 import com.blog.ljtatum.tipcalculator.activity.MainActivity;
 import com.blog.ljtatum.tipcalculator.adapter.HistoryAdapter;
-import com.app.framework.model.HistoryModel;
 import com.blog.ljtatum.tipcalculator.logger.Logger;
+import com.blog.ljtatum.tipcalculator.utils.Utils;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
-import java.util.Locale;
-import java.util.TimeZone;
 
 /**
  * Created by LJTat on 2/27/2017.
@@ -34,7 +32,7 @@ import java.util.TimeZone;
 
 public class HistoryFragment extends BaseFragment implements View.OnClickListener {
 
-    private static final int NUM_HISTORY_RESULTS = 3;
+    private static final int NUM_HISTORY_RESULTS = 50;
     private static final int NUM_DAYS_TIP_HISTORY = 1; // last 30 days
     private Context mContext;
     private View mRootView;
@@ -106,8 +104,20 @@ public class HistoryFragment extends BaseFragment implements View.OnClickListene
 
             @Override
             public void onRetrieveDataChangeWithFilter(HashMap<String, HistoryModel> map) {
+                // update adapter
                 alTipHistory = new ArrayList<>(map.values());
                 mHistoryAdapter.updateData(alTipHistory);
+
+                int avgPercOverall = 0;
+                for (int i = 0; i < alTipHistory.size(); i++) {
+                    Logger.e("TEST", "tip percent= " + alTipHistory.get(i).tipPercent);
+                    avgPercOverall = avgPercOverall + Integer.parseInt(alTipHistory.get(i).tipPercent);
+                }
+
+                tvAvgPercOverall.setText(avgPercOverall == 0 ? getResources().getString(R.string.not_applicable) :
+                        getResources().getString(R.string.avg_tip_percentage_overall,
+                        String.valueOf(avgPercOverall / alTipHistory.size()),
+                        Utils.getTipQuality(mContext, avgPercOverall / alTipHistory.size())));
             }
 
             @Override

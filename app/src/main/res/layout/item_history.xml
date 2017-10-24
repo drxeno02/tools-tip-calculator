@@ -9,11 +9,11 @@
         android:id="@+id/ll_wrapper"
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
+        android:paddingLeft="10dp"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:paddingRight="10dp"
         android:orientation="horizontal"
         android:weightSum="1">
 
@@ -24,9 +24,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_weight="0.5"
-            android:textSize="@dimen/font_size_16"
+            android:text="@string/day_date"
             android:textColor="@color/black"
-            android:text="@string/day_date" />
+            android:textSize="@dimen/font_size_16" />
 
         <!-- tip quality -->
         <TextView
@@ -38,44 +38,57 @@
             android:gravity="right|end"
             android:text="@string/tip_quality"
             android:textColor="@color/black"
-            android:textSize="@dimen/font_size_16"/>
+            android:textSize="@dimen/font_size_16" />
 
     </LinearLayout>
+
+    <!-- tip percent -->
+    <TextView
+        android:id="@+id/tv_item_tip_percentage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        android:text="@string/tip_percent"
+        android:textColor="@color/black"
+        android:textSize="@dimen/font_size_16" />
 
     <!-- tip amount -->
     <TextView
         android:id="@+id/tv_item_tip_amount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginStart="10dp"
         android:layout_gravity="center_vertical"
-        android:textSize="@dimen/font_size_16"
-        android:textColor="@color/black"
-        android:text="@string/tip_amount" />
-
-    <!-- tip percent -->
-    <TextView
-        android:id="@+id/tv_item_tip_percentage"
-        android:layout_marginTop="10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/tip_amount"
+        android:textColor="@color/black"
+        android:textSize="@dimen/font_size_16" />
+
+    <!-- bill amount -->
+    <TextView
+        android:id="@+id/tv_item_bill_amount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        android:textSize="@dimen/font_size_16"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/bill_amount"
         android:textColor="@color/black"
-        android:text="@string/tip_percent" />
+        android:textSize="@dimen/font_size_16" />
 
     <!-- view location where tipped -->
     <TextView
         android:id="@+id/tv_item_location"
         android:layout_width="match_parent"
-        android:layout_marginTop="10dp"
-        android:textSize="@dimen/font_size_16"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:gravity="center_horizontal"
+        android:text="@string/location"
         android:textColor="@color/material_orange_300_color_code"
-        android:text="@string/location" />
+        android:textSize="@dimen/font_size_16" />
 
 </LinearLayout>

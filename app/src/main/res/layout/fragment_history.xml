@@ -24,7 +24,7 @@
         android:gravity="center_horizontal"
         android:textSize="@dimen/font_size_16"
         android:textColor="@color/black"
-        android:text="@string/day_date" />
+        android:text="@string/tip_amount_week" />
 
     <!-- avg tip percentage for week -->
     <TextView
@@ -35,7 +35,7 @@
         android:gravity="center_horizontal"
         android:textSize="@dimen/font_size_16"
         android:textColor="@color/black"
-        android:text="@string/day_date" />
+        android:text="@string/avg_tip_percentage_week" />
 
     <!-- avg tip percentage overall -->
     <TextView
@@ -46,7 +46,7 @@
         android:textSize="@dimen/font_size_16"
         android:gravity="center_horizontal"
         android:textColor="@color/black"
-        android:text="@string/day_date" />
+        android:text="@string/avg_tip_percentage_overall" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_history"
