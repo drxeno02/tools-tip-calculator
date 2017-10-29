@@ -1,85 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="horizontal"
-    android:weightSum="1"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:weightSum="1">
 
     <!-- rating stars -->
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:weightSum="1"
         android:layout_weight="0.5"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:weightSum="1">
 
+        <!-- star pos 1 -->
         <ImageView
             android:id="@+id/iv_star_1"
             android:layout_width="0dp"
             android:layout_height="35dp"
-            android:layout_weight="0.2"
-            android:layout_marginRight="4dp"
             android:layout_marginEnd="4dp"
+            android:layout_marginRight="4dp"
+            android:layout_weight="0.2"
             android:scaleType="fitXY"
             android:src="@drawable/star_filled"
             tools:ignore="NestedWeights" />
 
+        <!-- star pos 2 -->
         <ImageView
             android:id="@+id/iv_star_2"
             android:layout_width="0dp"
             android:layout_height="35dp"
-            android:layout_weight="0.2"
-            android:layout_marginLeft="4dp"
-            android:layout_marginStart="4dp"
-            android:layout_marginRight="4dp"
             android:layout_marginEnd="4dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="4dp"
+            android:layout_marginStart="4dp"
+            android:layout_weight="0.2"
             android:scaleType="fitXY"
-            android:src="@drawable/star_filled"/>
+            android:src="@drawable/star_filled" />
 
+        <!-- star pos 3 -->
         <ImageView
             android:id="@+id/iv_star_3"
             android:layout_width="0dp"
             android:layout_height="35dp"
-            android:layout_weight="0.2"
-            android:layout_marginLeft="4dp"
-            android:layout_marginStart="4dp"
-            android:layout_marginRight="4dp"
             android:layout_marginEnd="4dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="4dp"
+            android:layout_marginStart="4dp"
+            android:layout_weight="0.2"
             android:scaleType="fitXY"
-            android:src="@drawable/star_filled"/>
+            android:src="@drawable/star_filled" />
 
+        <!-- star pos 4 -->
         <ImageView
             android:id="@+id/iv_star_4"
             android:layout_width="0dp"
             android:layout_height="35dp"
-            android:layout_weight="0.2"
-            android:layout_marginLeft="4dp"
-            android:layout_marginStart="4dp"
-            android:layout_marginRight="4dp"
             android:layout_marginEnd="4dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="4dp"
+            android:layout_marginStart="4dp"
+            android:layout_weight="0.2"
             android:scaleType="fitXY"
-            android:src="@drawable/star_empty"/>
+            android:src="@drawable/star_empty" />
 
+        <!-- star pos 5 -->
         <ImageView
             android:id="@+id/iv_star_5"
             android:layout_width="0dp"
             android:layout_height="35dp"
-            android:layout_weight="0.2"
             android:layout_marginLeft="4dp"
             android:layout_marginStart="4dp"
+            android:layout_weight="0.2"
             android:scaleType="fitXY"
-            android:src="@drawable/star_empty"/>
+            android:src="@drawable/star_empty" />
 
     </LinearLayout>
 
+    <!-- tip percent dropdown -->
     <Spinner
         android:id="@+id/spinner"
-        android:layout_weight="0.5"
         android:layout_width="0dp"
         android:layout_height="35dp"
+        android:layout_weight="0.5"
         android:drawSelectorOnTop="true"
-        android:prompt="@string/txt_spinner_default"/>
+        android:prompt="@string/txt_spinner_default" />
 
 </LinearLayout>

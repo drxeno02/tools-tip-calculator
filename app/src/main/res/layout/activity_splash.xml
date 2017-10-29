@@ -1,38 +1,42 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:background="@color/material_teal_200_color_code"
-                android:orientation="vertical">
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/material_teal_200_color_code"
+    android:orientation="vertical">
 
+    <!-- splash screen visual -->
     <ImageView
-        android:id="@+id/splashImage"
+        android:id="@+id/iv_splash"
         android:layout_width="120dp"
         android:layout_height="120dp"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:contentDescription="@string/app_name"
-        android:src="@drawable/ic_launcher"/>
+        android:src="@drawable/ic_launcher" />
 
+    <!-- app name -->
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/tv_app_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/splashImage"
+        android:layout_below="@+id/iv_splash"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="5dp"
         android:text="@string/txt_title"
-        android:textSize="@dimen/font_size_26"/>
+        android:textSize="@dimen/font_size_26" />
 
+    <!-- creator of app -->
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/tv_creators"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView1"
+        android:layout_below="@+id/tv_app_name"
         android:layout_centerHorizontal="true"
         android:gravity="center"
         android:text="@string/txt_creators"
-        android:textSize="@dimen/font_size_20"/>
+        android:textSize="@dimen/font_size_20" />
 
+    <!-- progress bar -->
     <ProgressBar
         android:id="@+id/progressBar"
         style="?android:attr/progressBarStyleLarge"
@@ -40,6 +44,6 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="20dp"/>
+        android:layout_marginBottom="20dp" />
 
 </RelativeLayout>

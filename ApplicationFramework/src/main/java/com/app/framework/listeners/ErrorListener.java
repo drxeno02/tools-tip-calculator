@@ -8,10 +8,19 @@ import com.android.volley.VolleyError;
  */
 public interface ErrorListener extends Response.ErrorListener {
 
-    // google error management
+    /**
+     * Interface for when Google requests fail
+     *
+     * @param googleError Google error
+     * @param resultCode  ResultCode for the failed request
+     */
     void onErrorResponse(VolleyError googleError, int resultCode);
 
-    @Override
+    /**
+     * Interface for when Volley requests fail
+     *
+     * @param volleyError Volley error
+     */
     void onErrorResponse(VolleyError volleyError);
 
 }

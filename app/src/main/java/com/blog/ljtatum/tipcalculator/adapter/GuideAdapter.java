@@ -26,8 +26,8 @@ public class GuideAdapter extends RecyclerView.Adapter<GuideAdapter.ViewHolder> 
     /**
      * Constructor
      *
-     * @param context
-     * @param guideModel
+     * @param context    Interface to global information about an application environment
+     * @param guideModel List of GuideModels {@link com.blog.ljtatum.tipcalculator.model.GuideModel}
      */
     public GuideAdapter(Context context, ArrayList<GuideModel> guideModel) {
         mContext = context;
@@ -59,6 +59,10 @@ public class GuideAdapter extends RecyclerView.Adapter<GuideAdapter.ViewHolder> 
         return alGuide.size();
     }
 
+    /**
+     * View holder class
+     * <p>A ViewHolder describes an item view and metadata about its place within the RecyclerView</p>
+     */
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         private CircleImageView ivFlag;

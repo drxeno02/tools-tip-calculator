@@ -2,11 +2,12 @@ package com.blog.ljtatum.tipcalculator.application;
 
 import android.app.Application;
 
-import com.blog.ljtatum.tipcalculator.BuildConfig;
 import com.app.framework.utilities.FirebaseUtils;
+import com.blog.ljtatum.tipcalculator.BuildConfig;
+import com.crashlytics.android.Crashlytics;
 import com.crashlytics.android.core.CrashlyticsCore;
 import com.google.firebase.FirebaseApp;
-import com.crashlytics.android.Crashlytics;
+
 import io.fabric.sdk.android.Fabric;
 
 /**

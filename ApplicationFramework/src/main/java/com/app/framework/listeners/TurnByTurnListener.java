@@ -9,7 +9,16 @@ import java.util.List;
  */
 
 public interface TurnByTurnListener {
+
+    /**
+     * Interface for when Google Directions API has successfully provided turn by turn directions
+     *
+     * @param turnByTurnList List of turn by turn directions
+     */
     void onSuccess(List<TurnByTurnModel> turnByTurnList);
 
+    /**
+     * Interface for when Google turn by turn directions fails
+     */
     void onFailure();
 }

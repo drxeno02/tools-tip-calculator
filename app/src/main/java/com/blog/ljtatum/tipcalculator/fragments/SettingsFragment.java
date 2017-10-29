@@ -347,17 +347,14 @@ public class SettingsFragment extends BaseFragment implements View.OnClickListen
                     @Override
                     public void run() {
                         if (!DeviceUtils.isLocationServiceEnabled(mContext)) {
-                            Logger.e("TEST", "<REQUEST PERMISSION> NEED TO SHOW LOCATION DIALOG");
                             isLocationServicePending = true;
                             showLocationServiceDisabledDialog();
                         } else if (FrameworkUtils.checkAppPermissions(mContext, Manifest.permission.ACCESS_FINE_LOCATION,
                                 Manifest.permission.ACCESS_COARSE_LOCATION)) {
-                            Logger.e("TEST", "<REQUEST PERMISSION> All is good, enable location + history");
                             // update default save location settings
                             mSharedPref.setPref(Constants.KEY_DEFAULT_SAVE_LOCATION, true);
                             tvSaveLocation.setText(getActivity().getResources().getString(R.string.settings_save_location, "Enabled"));
                             // show banner
-                            Logger.d("TEST", "save 1");
                             Crouton.showText(getActivity(), "Saved!", Style.CONFIRM);
                             // only track location if save location setting is true
                             ((MainActivity) mContext).connectGoogleClient();
@@ -395,13 +392,10 @@ public class SettingsFragment extends BaseFragment implements View.OnClickListen
     @Override
     public void onResume() {
         super.onResume();
-        Logger.e("TEST", "onResume called");
 
         if (isLocationServicePending) {
 //            isLocationServicePending = false; // reset
             if (!DeviceUtils.isLocationServiceEnabled(mContext)) {
-                Logger.v("TEST", "location services still turned off");
-
                 // update default save location settings
                 mSharedPref.setPref(Constants.KEY_DEFAULT_SAVE_LOCATION, false);
                 tvSaveLocation.setText(getActivity().getResources().getString(R.string.settings_save_location, "Disabled"));
@@ -409,7 +403,6 @@ public class SettingsFragment extends BaseFragment implements View.OnClickListen
                 Crouton.showText(getActivity(), "Location services not enabled", Style.ALERT);
 
             } else {
-                Logger.v("TEST", "location services turned on");
                 // update default save location settings
                 mSharedPref.setPref(Constants.KEY_DEFAULT_SAVE_LOCATION, true);
                 tvSaveLocation.setText(getActivity().getResources().getString(R.string.settings_save_location, "Enabled"));

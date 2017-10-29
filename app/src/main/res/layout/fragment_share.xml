@@ -5,9 +5,10 @@
     android:layout_height="match_parent"
     android:background="@color/material_grey_300_color_code"
     android:clickable="true"
-    tools:ignore="KeyboardInaccessibleWidget"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:ignore="KeyboardInaccessibleWidget">
 
+    <!-- header -->
     <include
         layout="@layout/fragment_header"
         android:layout_width="match_parent"
@@ -18,8 +19,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
         android:gravity="center"
         android:orientation="vertical">
 
@@ -67,6 +68,7 @@
         android:orientation="horizontal"
         android:weightSum="1">
 
+        <!-- facebook -->
         <ImageView
             android:id="@+id/iv_fb"
             android:layout_width="60dp"
@@ -74,6 +76,7 @@
             android:layout_weight="0.25"
             android:src="@drawable/fb_02" />
 
+        <!-- twitter -->
         <ImageView
             android:id="@+id/iv_twitter"
             android:layout_width="60dp"
@@ -81,6 +84,7 @@
             android:layout_weight="0.25"
             android:src="@drawable/twitter_02" />
 
+        <!--  linkedin -->
         <ImageView
             android:id="@+id/iv_linkedin"
             android:layout_width="wrap_content"

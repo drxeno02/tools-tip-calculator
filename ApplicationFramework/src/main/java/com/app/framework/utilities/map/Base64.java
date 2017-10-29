@@ -1,9 +1,5 @@
 package com.app.framework.utilities.map;
 
-/**
- * Created by al-weeam on 7/29/15.
- */
-
 import org.apache.commons.codec.binary.StringUtils;
 
 /**

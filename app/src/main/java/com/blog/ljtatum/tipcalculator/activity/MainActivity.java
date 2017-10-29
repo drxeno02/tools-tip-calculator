@@ -51,7 +51,7 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 
-import com.app.framework.listeners.OnFirebaseValueListener;
+import com.app.framework.model.HistoryModel;
 import com.app.framework.sharedpref.SharedPref;
 import com.app.framework.utilities.AppRaterUtil;
 import com.app.framework.utilities.DeviceUtils;
@@ -70,8 +70,6 @@ import com.blog.ljtatum.tipcalculator.fragments.PrivacyFragment;
 import com.blog.ljtatum.tipcalculator.fragments.SettingsFragment;
 import com.blog.ljtatum.tipcalculator.fragments.ShareFragment;
 import com.blog.ljtatum.tipcalculator.listeners.ShakeEventListener;
-import com.blog.ljtatum.tipcalculator.logger.Logger;
-import com.app.framework.model.HistoryModel;
 import com.blog.ljtatum.tipcalculator.utils.DialogUtils;
 import com.blog.ljtatum.tipcalculator.utils.Utils;
 import com.google.android.gms.ads.AdRequest;
@@ -89,15 +87,11 @@ import com.google.android.gms.location.SettingsClient;
 import com.google.android.gms.location.places.Places;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Random;
@@ -111,8 +105,6 @@ import de.keyboardsurfer.android.widget.crouton.Style;
 public class MainActivity extends BaseActivity implements OnClickListener,
         NavigationView.OnNavigationItemSelectedListener, GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener, NetworkReceiver.NetworkStatusObserver {
-    public static String TAG = MainActivity.class.getSimpleName();
-
     private static final String AD_ID_TEST = "950036DB8197D296BE390357BD9A964E";
     private static final int PERMISSION_REQUEST_CODE_LOCATION = 100; // permissions
     private static final int[] ARRY_DRAWER_ICONS = {R.drawable.food_01, R.drawable.food_02,
@@ -122,7 +114,7 @@ public class MainActivity extends BaseActivity implements OnClickListener,
             R.drawable.food_15, R.drawable.food_16, R.drawable.food_17, R.drawable.food_18,
             R.drawable.food_19, R.drawable.food_20, R.drawable.food_21, R.drawable.food_22,
             R.drawable.food_23};
-
+    public static String TAG = MainActivity.class.getSimpleName();
     private Context mContext;
     private Activity mActivity;
     private int sharedNum, mTipPercent, decimalPlaces;
@@ -369,7 +361,7 @@ public class MainActivity extends BaseActivity implements OnClickListener,
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (edtBill.getText().toString().contentEquals(".")) {
                     // handle special case
-                    edtBill.setText("0.00");
+                    edtBill.setText(getResources().getString(R.string.txt_zero_dollar));
                 } else if (!FrameworkUtils.isStringEmpty(edtBill.getText().toString())
                         && edtBill.getText().toString().length() > 0) {
                     editTextUpdate();
@@ -392,8 +384,8 @@ public class MainActivity extends BaseActivity implements OnClickListener,
             @Override
             public void onLocationResult(LocationResult locationResult) {
                 // set current location
-                mCurrentLocation = new LatLng(locationResult.getLastLocation().getLatitude(), locationResult.getLastLocation().getLongitude());
-                Logger.v("TEST", "LISTENER onLocationResult called , lat= " + locationResult.getLastLocation().getLatitude() + " //lng= " + locationResult.getLastLocation().getLongitude());
+                mCurrentLocation = new LatLng(locationResult.getLastLocation().getLatitude(),
+                        locationResult.getLastLocation().getLongitude());
             }
         };
     }
@@ -405,17 +397,6 @@ public class MainActivity extends BaseActivity implements OnClickListener,
         // only track location if save location setting is true
         if (!FrameworkUtils.checkIfNull(mGoogleApiClient) &&
                 mSharedPref.getBooleanPref(Constants.KEY_DEFAULT_SAVE_LOCATION, false)) {
-//            Logger.e("TEST", "initializeViews starting google api client");
-//            // initialize FusedLocationClient
-//            mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
-//
-//            // GoogleApiClient; location services API and places API
-//            mGoogleApiClient = new GoogleApiClient.Builder(this)
-//                    .addConnectionCallbacks(this)
-//                    .addOnConnectionFailedListener(this)
-//                    .addApi(LocationServices.API)
-//                    .addApi(Places.GEO_DATA_API)
-//                    .build();
             // connect GoogleApiClient
             mGoogleApiClient.connect();
         }
@@ -426,14 +407,11 @@ public class MainActivity extends BaseActivity implements OnClickListener,
      */
     @SuppressLint("MissingPermission")
     private void startLocationUpdates() {
-        Logger.v("TEST", "startLocationUpdates called");
         if (FrameworkUtils.checkAppPermissions(mContext, Manifest.permission.ACCESS_FINE_LOCATION,
                 Manifest.permission.ACCESS_COARSE_LOCATION) && !FrameworkUtils.checkIfNull(mGoogleApiClient) &&
                 mGoogleApiClient.isConnected()) {
 
             if (!FrameworkUtils.checkIfNull(mLocationRequest)) {
-                Logger.v("TEST", "startLocationUpdates called :: request location updates");
-
                 // request location updates
                 mFusedLocationClient.requestLocationUpdates(mLocationRequest, mLocationCallback, Looper.myLooper());
             }
@@ -445,7 +423,6 @@ public class MainActivity extends BaseActivity implements OnClickListener,
      */
     @SuppressLint("MissingPermission")
     private void initLocationRequest() {
-        Logger.v("TEST", "initLocationRequest called");
         mLocationRequest = new LocationRequest();
         mLocationRequest.setFastestInterval(Durations.DELAY_INTERVAL_MS_30000);
         mLocationRequest.setInterval(Durations.DELAY_INTERVAL_MS_60000);
@@ -483,19 +460,18 @@ public class MainActivity extends BaseActivity implements OnClickListener,
         // check whether location settings are satisfied
         // https://developers.google.com/android/reference/com/google/android/gms/location/SettingsClient
         SettingsClient settingsClient = LocationServices.getSettingsClient(this);
-        settingsClient.checkLocationSettings(locationSettingsRequest).addOnSuccessListener(mActivity, new OnSuccessListener<LocationSettingsResponse>() {
-            @Override
-            public void onSuccess(LocationSettingsResponse locationSettingsResponse) {
-                if (!FrameworkUtils.checkIfNull(locationSettingsResponse) &&
-                        locationSettingsResponse.getLocationSettingsStates().isLocationPresent() &&
-                        locationSettingsResponse.getLocationSettingsStates().isGpsPresent()) {
-
-                    Logger.v("TEST", "about to call getlastknown lcoation and start location updates");
-                    // start location updates
-                    startLocationUpdates();
-                }
-            }
-        });
+        settingsClient.checkLocationSettings(locationSettingsRequest).addOnSuccessListener(mActivity,
+                new OnSuccessListener<LocationSettingsResponse>() {
+                    @Override
+                    public void onSuccess(LocationSettingsResponse locationSettingsResponse) {
+                        if (!FrameworkUtils.checkIfNull(locationSettingsResponse) &&
+                                locationSettingsResponse.getLocationSettingsStates().isLocationPresent() &&
+                                locationSettingsResponse.getLocationSettingsStates().isGpsPresent()) {
+                            // start location updates
+                            startLocationUpdates();
+                        }
+                    }
+                });
     }
 
     /**
@@ -518,7 +494,7 @@ public class MainActivity extends BaseActivity implements OnClickListener,
 
             // store address information
             if (!FrameworkUtils.checkIfNull(addresses)) {
-                  // populate history model
+                // populate history model
                 historyModel.address = addresses.get(0).getAddressLine(0);
                 // feature name
                 if (!FrameworkUtils.isStringEmpty(addresses.get(0).getFeatureName())) {
@@ -527,17 +503,16 @@ public class MainActivity extends BaseActivity implements OnClickListener,
             }
         }
 
-        DecimalFormat format = new DecimalFormat("0.00");
         historyModel.latitude = !FrameworkUtils.checkIfNull(mCurrentLocation) ? mCurrentLocation.latitude : 0;
         historyModel.longitude = !FrameworkUtils.checkIfNull(mCurrentLocation) ? mCurrentLocation.longitude : 0;
         historyModel.day = FrameworkUtils.parseDayOfTheWeek(Calendar.getInstance());
-        historyModel.date = FrameworkUtils.parseDate(Calendar.getInstance());
+        historyModel.date = FrameworkUtils.parseDateTime(Calendar.getInstance(), "MM/dd/yyyy hh:mm:ss a");
         historyModel.totalBill = tvTotal.getText().toString().replaceAll("[$,]", "");
         historyModel.tipPercent = String.valueOf(mTipPercent);
         // tip amount
         double temp = Double.parseDouble(tvTotal.getText().toString().replaceAll("[$,]", "")) -
                 Double.parseDouble(edtBill.getText().toString().replaceAll("[$,]", ""));
-        historyModel.tipAmount = String.valueOf(format.format(temp));
+        historyModel.tipAmount = String.valueOf(FrameworkUtils.convertToDollarFormat(temp));
 
         // save data to Firebase
         FirebaseUtils.addValueContinuous(historyModel);
@@ -546,7 +521,7 @@ public class MainActivity extends BaseActivity implements OnClickListener,
     /**
      * Method is used to enable/disable drawer
      *
-     * @param isEnabled
+     * @param isEnabled True to enable drawer interaction, otherwise disable interaction
      */
     public void toggleDrawerState(boolean isEnabled) {
         if (!FrameworkUtils.checkIfNull(mDrawerLayout)) {
@@ -564,6 +539,8 @@ public class MainActivity extends BaseActivity implements OnClickListener,
 
     /**
      * Method is used to setup drawer icons
+     *
+     * @param navigationView Represents a standard navigation menu for application
      */
     private void setupDrawerIcons(NavigationView navigationView) {
         Menu menu = navigationView.getMenu();
@@ -621,8 +598,6 @@ public class MainActivity extends BaseActivity implements OnClickListener,
      * Method is used to update bill amount
      */
     private void editTextUpdate() {
-        DecimalFormat format = new DecimalFormat("0.00");
-
         // parse, convert and update appropriate values
         double doubleBill = Double.parseDouble(edtBill.getText().toString());
 
@@ -640,12 +615,12 @@ public class MainActivity extends BaseActivity implements OnClickListener,
         } else {
             decimalPlaces = strParse.length() - integerPlaces - 2;
         }
-
-        mTotalBill = format.format(doubleBill);
+        // total bill amount
+        mTotalBill = FrameworkUtils.convertToDollarFormat(doubleBill);
 
         // handle special case
         if (decimalPlaces >= 3) {
-            Crouton.showText(MainActivity.this,"Please maintain proper dollar format ex- 'xxx.xx')", Style.ALERT);
+            Crouton.showText(MainActivity.this, "Please maintain proper dollar format ex- 'xxx.xx')", Style.ALERT);
             edtBill.setText(mTotalBill);
         }
 
@@ -665,7 +640,8 @@ public class MainActivity extends BaseActivity implements OnClickListener,
     /**
      * Method is used to set rating from stars
      *
-     * @param num
+     * @param num              The number of star ratings
+     * @param isSetFromSpinner True if the star rating was derived from Spinner
      */
     private void setRating(int num, boolean isSetFromSpinner) {
         if (num == 1) {
@@ -769,9 +745,7 @@ public class MainActivity extends BaseActivity implements OnClickListener,
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view,
-                                       int pos, long id) {
-                Logger.e("TEST", "<onItemSelected>");
+            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
                 mTipPercent = spinner.getSelectedItemPosition();
                 if (mTipPercent >= 0 && mTipPercent <= 2) {
                     setRating(1, true);
@@ -819,7 +793,7 @@ public class MainActivity extends BaseActivity implements OnClickListener,
                     Crouton.showText(MainActivity.this, "Royal tip service percent", Style.INFO);
                 }
                 tvService.setText(Utils.getTipQuality(mContext, mTipPercent));
-                tvPercent.setText(mTipPercent + "%");
+                tvPercent.setText(getResources().getString(R.string.txt_percent, mTipPercent));
                 calculate();
             }
 
@@ -845,13 +819,6 @@ public class MainActivity extends BaseActivity implements OnClickListener,
             tvService.setText(mContext.getResources().getString(R.string.txt_good));
             tvPercent.setText(mContext.getResources().getString(R.string.txt_percent_default));
             spinner.setSelection(15);
-
-            // meta and temp variable reset (resets textViews as well)
-            temp1 = 0.00;
-            temp2 = 0.00;
-            temp3 = 0.00;
-            temp4 = 0.00;
-            temp5 = 0.00;
 
             // reset tip and payment values
             tvTip.setText(mContext.getResources().getString(R.string.txt_zero_dollar));
@@ -1025,25 +992,9 @@ public class MainActivity extends BaseActivity implements OnClickListener,
         super.onStart();
         if (!FrameworkUtils.checkIfNull(mGoogleApiClient) &&
                 mSharedPref.getBooleanPref(Constants.KEY_DEFAULT_SAVE_LOCATION, false)) {
+            // connect GoogleApiClient
             mGoogleApiClient.connect();
         }
-
-
-//        // only track location if save location setting is true
-//        connectGoogleClient();
-//        if (mSharedPref.getBooleanPref(Constants.KEY_DEFAULT_SAVE_LOCATION, false)) {
-//            Logger.e("TEST", "initializeViews starting google api client");
-//            // initialize FusedLocationClient
-//            mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
-//
-//            // GoogleApiClient; location services API and places API
-//            mGoogleApiClient = new GoogleApiClient.Builder(this)
-//                    .addConnectionCallbacks(this)
-//                    .addOnConnectionFailedListener(this)
-//                    .addApi(LocationServices.API)
-//                    .addApi(Places.GEO_DATA_API)
-//                    .build();
-//        }
     }
 
     @Override
@@ -1084,7 +1035,7 @@ public class MainActivity extends BaseActivity implements OnClickListener,
     @Override
     public void onResume() {
         super.onResume();
-        Logger.e("TEST", "onResume Main");
+
         // resume adview
         adView.resume();
         // register sensor manager
@@ -1139,7 +1090,6 @@ public class MainActivity extends BaseActivity implements OnClickListener,
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void onConnected(@Nullable Bundle bundle) {
-        Logger.e("TEST", "onConnected");
         // request location permission if permission is not enabled
         if (!FrameworkUtils.checkAppPermissions(mContext, Manifest.permission.ACCESS_FINE_LOCATION,
                 Manifest.permission.ACCESS_COARSE_LOCATION)) {
@@ -1167,8 +1117,6 @@ public class MainActivity extends BaseActivity implements OnClickListener,
                         if (!FrameworkUtils.checkIfNull(locationSettingsResponse) &&
                                 locationSettingsResponse.getLocationSettingsStates().isLocationPresent() &&
                                 locationSettingsResponse.getLocationSettingsStates().isGpsPresent()) {
-
-                            Logger.e("TEST", "<onConnected> about to call getLastKnownLocation and startLocation updates");
                             // start location updates
                             startLocationUpdates();
                         }
@@ -1213,13 +1161,11 @@ public class MainActivity extends BaseActivity implements OnClickListener,
                             showLocationServiceDisabledDialog();
                         } else if (FrameworkUtils.checkAppPermissions(mContext, Manifest.permission.ACCESS_FINE_LOCATION,
                                 Manifest.permission.ACCESS_COARSE_LOCATION)) {
-                            Logger.e("TEST", "going to call initLocationRequest OR SettingsClient");
+
                             // initialize LocationRequest object
                             if (FrameworkUtils.checkIfNull(mLocationRequest)) {
-                                Logger.e("TEST", "going to call initLocationRequest OR SettingsClient - 1");
                                 initLocationRequest();
                             } else {
-                                Logger.e("TEST", "going to call initLocationRequest OR SettingsClient - 2");
                                 // create LocationSettingsRequest object using location request
                                 LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder();
                                 builder.addLocationRequest(mLocationRequest);
@@ -1234,7 +1180,6 @@ public class MainActivity extends BaseActivity implements OnClickListener,
                                         if (!FrameworkUtils.checkIfNull(locationSettingsResponse) &&
                                                 locationSettingsResponse.getLocationSettingsStates().isLocationPresent() &&
                                                 locationSettingsResponse.getLocationSettingsStates().isGpsPresent()) {
-                                            Logger.e("TEST", "going to call initLocationRequest OR SettingsClient - 3 SUCCESS");
                                             // start location updates
                                             startLocationUpdates();
                                         }

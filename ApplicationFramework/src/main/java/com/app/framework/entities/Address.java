@@ -2,36 +2,44 @@ package com.app.framework.entities;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 
 public class Address implements Parcelable {
+
+    /**
+     * Create a new instance of the Parcelable class, instantiating it from the given Parcel
+     * whose data had previously been written
+     */
     @SuppressWarnings("rawtypes")
     public static final Parcelable.Creator CREATOR = new Parcelable.Creator() {
 
+        @NonNull
         @Override
-        public Object createFromParcel(Parcel parcel) {
+        public Object createFromParcel(@NonNull Parcel parcel) {
             return new Address(parcel);
         }
 
+        @NonNull
         @Override
         public Object[] newArray(int size) {
             return new Address[size];
         }
     };
+    public String placeId, addressLine1, addressLine2, streetNumber, city, state,
+            stateCode, postalCode, country, countryCode, formattedAddress;
+    public double latitude, longitude;
 
-    public String placeId;
-    public String addressLine1;
-    public String addressLine2;
-    public String streetNumber;
-    public String city;
-    public String state;
-    public String stateCode;
-    public String postalCode;
-    public String country;
-    public String countryCode;
-    public String formattedAddress;
-    public double latitude;
-    public double longitude;
+    /**
+     * Constructor
+     */
+    public Address() {
+    }
 
+    /**
+     * Set parsable data
+     *
+     * @param parcel Container for a message (data and object references) that can be sent through an IBinder
+     */
     public Address(Parcel parcel) {
         placeId = parcel.readString();
         addressLine1 = parcel.readString();
@@ -46,9 +54,6 @@ public class Address implements Parcelable {
         formattedAddress = parcel.readString();
         latitude = parcel.readDouble();
         longitude = parcel.readDouble();
-    }
-
-    public Address() {
     }
 
     @Override

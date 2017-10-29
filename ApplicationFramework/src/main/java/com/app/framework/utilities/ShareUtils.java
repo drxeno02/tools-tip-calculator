@@ -8,9 +8,9 @@ import android.content.pm.ResolveInfo;
 import android.net.Uri;
 
 import com.app.framework.R;
+import com.app.framework.enums.Enum;
 import com.facebook.share.model.ShareLinkContent;
 import com.facebook.share.widget.ShareDialog;
-import com.app.framework.enums.Enum;
 
 import java.util.List;
 
@@ -41,11 +41,11 @@ public class ShareUtils {
 
     /**
      * Method is used to open social media via intents
-     *
+     * <p>
      * Facebook/Twitter profile id: drxeno02
      * Linkedin profile id: leonard-tatum-768850105
      *
-     * @param socialMedia
+     * @param socialMedia Social media type
      */
     public static void openSocialMediaViaIntent(Context context, Enum.SocialMedia socialMedia, boolean isPersonalSocialMedia) {
         // create intent object

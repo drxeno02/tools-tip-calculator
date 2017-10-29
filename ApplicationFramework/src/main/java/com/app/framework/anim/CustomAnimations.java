@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.view.animation.DecelerateInterpolator;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.RotateAnimation;
 import android.view.animation.ScaleAnimation;
@@ -27,39 +28,12 @@ public class CustomAnimations {
     private static OnAnimationUpdateListener mOnAnimationUpdateListener;
 
     /**
-     * Method is used to set callback for when translate animation is complete
-     *
-     * @param listener
-     */
-    public static void onAnimationTranslateListener(OnAnimationTranslateListener listener) {
-        mOnAnimationTranslateListener = listener;
-    }
-
-    /**
-     * Method is used to set callback for when padding animation is complete
-     *
-     * @param listener
-     */
-    public static void onAnimationPaddingListener(OnAnimationPaddingListener listener) {
-        mOnAnimationPaddingListener = listener;
-    }
-
-    /**
-     * Method is used to set callback for when value animator updates
-     *
-     * @param listener
-     */
-    public static void onAnimationUpdateListener(OnAnimationUpdateListener listener) {
-        mOnAnimationUpdateListener = listener;
-    }
-
-    /**
      * Method is used to fade in/out views. Has no start offset time interval
      *
-     * @param context   context
-     * @param view      the views to fade
-     * @param animation the animation type
-     * @param isFadeIn  toggle true to fade in, otherwise false
+     * @param context   Interface to global information about an application environment
+     * @param view      The views to fade
+     * @param animation The animation type
+     * @param isFadeIn  Toggle true to fade in, otherwise false
      */
     public static void fadeAnimation(Context context, View view, int animation, boolean isFadeIn) {
         fadeAnim(context, view, animation, isFadeIn, 0);
@@ -68,11 +42,11 @@ public class CustomAnimations {
     /**
      * Method is used to fade in/out views. Has start offset time interval
      *
-     * @param context    context
-     * @param view       the views to fade
-     * @param animation  the animation type
-     * @param isFadeIn   toggle true to fade in, otherwise false
-     * @param startDelay set animation start offset (ms)
+     * @param context    Interface to global information about an application environment
+     * @param view       The views to fade
+     * @param animation  The animation type
+     * @param isFadeIn   Toggle true to fade in, otherwise false
+     * @param startDelay Set animation start offset (ms)
      */
     public static void fadeAnimation(Context context, View view, int animation, boolean isFadeIn, long startDelay) {
         fadeAnim(context, view, animation, isFadeIn, startDelay);
@@ -81,10 +55,10 @@ public class CustomAnimations {
     /**
      * Method is used to fade in/out views. Has no start offset time interval and accepts var args
      *
-     * @param context   context
-     * @param animation the animation type
-     * @param isFadeIn  toggle true to fade in, otherwise false
-     * @param view      the views to fade
+     * @param context   Interface to global information about an application environment
+     * @param animation The animation type
+     * @param isFadeIn  Toggle true to fade in, otherwise false
+     * @param view      The views to fade
      */
     public static void fadeAnimation(Context context, int animation, boolean isFadeIn, View... view) {
         for (View v : view) {
@@ -97,11 +71,11 @@ public class CustomAnimations {
     /**
      * Method is used to fade in/out views. Has start offset time interval and accepts var args
      *
-     * @param context    context
-     * @param view       the views to fade
-     * @param animation  the animation type
-     * @param isFadeIn   toggle true to fade in, otherwise false
-     * @param startDelay set animation start offset (ms)
+     * @param context    Interface to global information about an application environment
+     * @param view       The views to fade
+     * @param animation  The animation type
+     * @param isFadeIn   Toggle true to fade in, otherwise false
+     * @param startDelay Set animation start offset (ms)
      */
     public static void fadeAnimation(Context context, int animation, boolean isFadeIn, long startDelay, View... view) {
         for (View v : view) {
@@ -112,14 +86,13 @@ public class CustomAnimations {
     }
 
     /**
-     * @param context    context
-     * @param view       the views to fade
-     * @param animation  the animation type
-     * @param isFadeIn   toggle true to fade in, otherwise false
-     * @param startDelay set animation start offset (ms)
+     * @param context    Interface to global information about an application environment
+     * @param view       The views to fade
+     * @param animation  The animation type
+     * @param isFadeIn   Toggle true to fade in, otherwise false
+     * @param startDelay Set animation start offset (ms)
      */
-    private static void fadeAnim(@NonNull Context context, @NonNull final View view, int animation, final boolean isFadeIn, long startDelay) {
-        FrameworkUtils.setViewVisible(view);
+    private static void fadeAnim(Context context, final View view, int animation, final boolean isFadeIn, long startDelay) {
         final Animation fade = AnimationUtils.loadAnimation(context, animation);
         fade.setStartOffset(startDelay);
         fade.setAnimationListener(new Animation.AnimationListener() {
@@ -149,18 +122,18 @@ public class CustomAnimations {
     /**
      * Method is used to translate a view by given pixel values for X and Y
      *
-     * @param toX        the x-coordinate the view will translate to
-     * @param toY        the y-coordinate the view will translate to
-     * @param duration   how long the animation will last (milliseconds)
-     * @param startDelay set animation start offset (ms)
-     * @param isCallback toggle for setting callback or not
-     * @param view       the view to translate
+     * @param toX        The x-coordinate the view will translate to
+     * @param toY        The y-coordinate the view will translate to
+     * @param duration   How long the animation will last (milliseconds)
+     * @param startDelay Set animation start offset (ms)
+     * @param isCallback Toggle for setting callback or not
+     * @param view       The view to translate
      */
     public static void translateAnimation(float toX, float toY, long duration, long startDelay, final boolean isCallback, View... view) {
         for (View v : view) {
             if (!FrameworkUtils.checkIfNull(v)) {
-                v.animate().setStartDelay(startDelay).x(toX).y(toY)
-                        .setDuration(duration).withEndAction(new Runnable() {
+                v.animate().setStartDelay(startDelay).x(toX).y(toY).setDuration(duration)
+                        .setInterpolator(new DecelerateInterpolator()).withEndAction(new Runnable() {
                     @Override
                     public void run() {
                         // set listener
@@ -174,32 +147,28 @@ public class CustomAnimations {
     }
 
     /**
-     * @param fromX      the x-coordinate the view will translate from
-     * @param toX        the x-coordinate the view will translate to
-     * @param fromY      the y-coordinate the view will translate from
-     * @param toY        the y-coordinate the view will translate to
-     * @param duration   how long the animation will last (milliseconds)
-     * @param startDelay set animation start offset (ms)
-     * @param isCallback toggle for setting callback or not
-     * @param view       the view to translate
+     * @param fromX      The x-coordinate the view will translate from
+     * @param toX        The x-coordinate the view will translate to
+     * @param fromY      The y-coordinate the view will translate from
+     * @param toY        The y-coordinate the view will translate to
+     * @param duration   How long the animation will last (milliseconds)
+     * @param startDelay Set animation start offset (ms)
+     * @param isCallback Toggle for setting callback or not
+     * @param view       The view to translate
      */
     public static void translateAnimation(float fromX, final float toX, float fromY, final float toY, final long duration, final long startDelay, final boolean isCallback, View... view) {
         for (final View v : view) {
             if (!FrameworkUtils.checkIfNull(v)) {
-                v.animate().setStartDelay(0).x(fromX).y(fromY)
-                        .setDuration(0).withEndAction(new Runnable() {
+                v.setX(fromX);
+                v.setY(fromY);
+                v.animate().setStartDelay(startDelay).x(toX).y(toY).setDuration(duration)
+                        .setInterpolator(new DecelerateInterpolator()).withEndAction(new Runnable() {
                     @Override
                     public void run() {
-                        v.animate().setStartDelay(startDelay).x(toX).y(toY)
-                                .setDuration(duration).withEndAction(new Runnable() {
-                            @Override
-                            public void run() {
-                                // set listener
-                                if (isCallback && !FrameworkUtils.checkIfNull(mOnAnimationTranslateListener)) {
-                                    mOnAnimationTranslateListener.onAnimationComplete();
-                                }
-                            }
-                        });
+                        // set listener
+                        if (isCallback && !FrameworkUtils.checkIfNull(mOnAnimationTranslateListener)) {
+                            mOnAnimationTranslateListener.onAnimationComplete();
+                        }
                     }
                 });
             }
@@ -209,24 +178,24 @@ public class CustomAnimations {
     /**
      * Method is used to apply a scale animation
      *
-     * @param fromX    the x-coordinate to scale from
-     * @param toX      the x-coordinate to scale to
-     * @param fromY    the y-coordinate to scale from
-     * @param toY      the y-cordinate to scale to
-     * @param duration how long the animation will last (milliseconds)
-     * @param view     the view to translate
+     * @param fromX    The x-coordinate to scale from
+     * @param toX      The x-coordinate to scale to
+     * @param fromY    The y-coordinate to scale from
+     * @param toY      The y-cordinate to scale to
+     * @param duration How long the animation will last (milliseconds)
+     * @param view     The view to translate
      */
     public static void scaleAnimation(float fromX, float toX, float fromY, float toY, long duration, View... view) {
         scaleAnim(fromX, toX, fromY, toY, duration, view);
     }
 
     /**
-     * @param fromX    the x-coordinate to scale from
-     * @param toX      the x-coordinate to scale to
-     * @param fromY    the y-coordinate to scale from
-     * @param toY      the y-cordinate to scale to
-     * @param duration how long the animation will last (milliseconds)
-     * @param view     the view to translate
+     * @param fromX    The x-coordinate to scale from
+     * @param toX      The x-coordinate to scale to
+     * @param fromY    The y-coordinate to scale from
+     * @param toY      The y-cordinate to scale to
+     * @param duration How long the animation will last (milliseconds)
+     * @param view     The view to translate
      */
     private static void scaleAnim(float fromX, float toX, float fromY, float toY, long duration, View... view) {
         final ScaleAnimation scaleAnim = new ScaleAnimation(fromX, toX, fromY, toY);
@@ -241,13 +210,15 @@ public class CustomAnimations {
     /**
      * Method is used to rotate views
      *
-     * @param fromDegrees
-     * @param toDegrees
-     * @param pivotXValue
-     * @param pivotYValue
-     * @param duration
-     * @param isInfinite
-     * @param view
+     * @param fromDegrees The degree from which to rotate
+     * @param toDegrees   The degree to rotate to
+     * @param pivotXValue Specifies how pivotXValue should be interpreted. One of
+     *                    Animation.ABSOLUTE, Animation.RELATIVE_TO_SELF, or Animation.RELATIVE_TO_PARENT
+     * @param pivotYValue Specifies how pivotYValue should be interpreted. One of
+     *                    Animation.ABSOLUTE, Animation.RELATIVE_TO_SELF, or Animation.RELATIVE_TO_PARENT
+     * @param duration    How long the animation will last (milliseconds)
+     * @param isInfinite  True to rotate endlessly, otherwise false
+     * @param view        The view to translate
      */
     public static void rotateAnimation(float fromDegrees, float toDegrees, float pivotXValue, float pivotYValue,
                                        long duration, boolean isInfinite, View... view) {
@@ -255,13 +226,15 @@ public class CustomAnimations {
     }
 
     /**
-     * @param fromDegrees
-     * @param toDegrees
-     * @param pivotXValue
-     * @param pivotYValue
-     * @param duration
-     * @param isInfinite
-     * @param view
+     * @param fromDegrees The degree from which to rotate
+     * @param toDegrees   The degree to rotate to
+     * @param pivotXValue Specifies how pivotXValue should be interpreted. One of
+     *                    Animation.ABSOLUTE, Animation.RELATIVE_TO_SELF, or Animation.RELATIVE_TO_PARENT
+     * @param pivotYValue Specifies how pivotYValue should be interpreted. One of
+     *                    Animation.ABSOLUTE, Animation.RELATIVE_TO_SELF, or Animation.RELATIVE_TO_PARENT
+     * @param duration    How long the animation will last (milliseconds)
+     * @param isInfinite  True to rotate endlessly, otherwise false
+     * @param view        The view to translate
      */
     private static void rotateAnim(float fromDegrees, float toDegrees, float pivotXValue, float pivotYValue,
                                    long duration, boolean isInfinite, View... view) {
@@ -281,11 +254,20 @@ public class CustomAnimations {
     }
 
     /**
-     * @param fromPadding the amount of padding the view should have in the beginning of the animation (pixels)
-     * @param toPadding   the amount of padding the view will have at the end of the animation (pixels)
-     * @param duration    how long the animation will last (milliseconds)
-     * @param isCallback  toggle for setting callback or not
-     * @param view        the view whose padding will be modified
+     * Method is used to set callback for when translate animation is complete
+     *
+     * @param listener Callback for when translate animation is complete
+     */
+    public static void onAnimationTranslateListener(OnAnimationTranslateListener listener) {
+        mOnAnimationTranslateListener = listener;
+    }
+
+    /**
+     * @param fromPadding The amount of padding the view should have in the beginning of the animation (pixels)
+     * @param toPadding   The amount of padding the view will have at the end of the animation (pixels)
+     * @param duration    How long the animation will last (milliseconds)
+     * @param isCallback  Toggle for setting callback or not
+     * @param view        The view whose padding will be modified
      */
     public static void animPadding(int fromPadding, int toPadding, long duration, final boolean isCallback, final View... view) {
         ValueAnimator animator = ValueAnimator.ofInt(fromPadding, toPadding);
@@ -343,5 +325,23 @@ public class CustomAnimations {
         });
         animator.setDuration(duration);
         animator.start();
+    }
+
+    /**
+     * Method is used to set callback for when padding animation is complete
+     *
+     * @param listener Callback for when padding animation is complete
+     */
+    public static void onAnimationPaddingListener(OnAnimationPaddingListener listener) {
+        mOnAnimationPaddingListener = listener;
+    }
+
+    /**
+     * Method is used to set callback for when value animator updates
+     *
+     * @param listener Callback for when value animator updates
+     */
+    public static void onAnimationUpdateListener(OnAnimationUpdateListener listener) {
+        mOnAnimationUpdateListener = listener;
     }
 }

@@ -4,21 +4,10 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.graphics.Color;
 import android.support.v4.content.ContextCompat;
 
 import com.android.volley.Request.Method;
 import com.android.volley.VolleyError;
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.GooglePlayServicesUtil;
-import com.google.android.gms.maps.model.Dash;
-import com.google.android.gms.maps.model.Gap;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
-import com.google.android.gms.maps.model.PatternItem;
-import com.google.android.gms.maps.model.Polygon;
-import com.google.android.gms.maps.model.PolygonOptions;
-import com.google.maps.android.SphericalUtil;
 import com.app.framework.entities.Address;
 import com.app.framework.entities.Place;
 import com.app.framework.listeners.AddressListener;
@@ -32,6 +21,14 @@ import com.app.framework.net.JsonResponseListener;
 import com.app.framework.net.VolleyClient;
 import com.app.framework.utilities.FrameworkUtils;
 import com.app.framework.utilities.map.model.TurnByTurnModel;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesUtil;
+import com.google.android.gms.maps.model.Dash;
+import com.google.android.gms.maps.model.Gap;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.PatternItem;
+import com.google.android.gms.maps.model.Polygon;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -703,8 +700,8 @@ public class GoogleServiceUtility {
     /**
      * Method is used to populate a JSONArray of address component keys
      *
-     * @param arr A dense indexed sequence of values.
-     * @return
+     * @param arr A dense indexed sequence of values
+     * @return A dense indexed sequence of values
      */
     private static JSONArray getAddressComponents(JSONArray arr, boolean isLatLng) {
         if (!FrameworkUtils.checkIfNull(mStreetAddress)) {
@@ -732,8 +729,8 @@ public class GoogleServiceUtility {
     /**
      * Method is used to get formatted address
      *
-     * @param arr A dense indexed sequence of values.
-     * @return
+     * @param arr A dense indexed sequence of values
+     * @return A dense indexed sequence of values
      */
     private static String getFormattedAddress(JSONArray arr, boolean isLatLng) {
         if (!FrameworkUtils.checkIfNull(mStreetAddress)) {
@@ -761,8 +758,8 @@ public class GoogleServiceUtility {
     /**
      * Utility method to check if the types are either a street address, a route, or a premise
      *
-     * @param arr A dense indexed sequence of values.
-     * @return
+     * @param arr A dense indexed sequence of values
+     * @return True of type is either a street address, a route, or a premise
      */
     private static boolean isCompatibleType(JSONArray arr) {
         int length = arr.length();
@@ -779,8 +776,8 @@ public class GoogleServiceUtility {
     /**
      * Utility method to check if street address
      *
-     * @param arr A dense indexed sequence of values.
-     * @return
+     * @param arr A dense indexed sequence of values
+     * @return True if street address
      */
     private static boolean isStreetAddress(JSONArray arr) {
         int length = arr.length();
@@ -794,8 +791,8 @@ public class GoogleServiceUtility {
     /**
      * Method is used to parse street address
      *
-     * @param arr A dense indexed sequence of values.
-     * @return
+     * @param arr A dense indexed sequence of values
+     * @return Address {@link com.app.framework.entities.Address}
      */
     private static Address parseAddress(JSONArray arr, boolean isLatLng) {
         Address address = new Address();

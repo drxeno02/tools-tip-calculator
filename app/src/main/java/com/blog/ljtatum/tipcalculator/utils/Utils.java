@@ -33,7 +33,7 @@ public class Utils {
      * Method is used for printing the memory usage. This is used
      * only for verbosity mode
      *
-     * @param name  fragment or class simple name
+     * @param name Fragment or class simple name
      */
     @SuppressWarnings({"ConstantConditions", "PointlessBooleanExpression"})
     public static void printMemory(@NonNull String name) {
@@ -65,8 +65,8 @@ public class Utils {
      * Method is used to print device and application information. This is
      * used only for verbosity mode
      *
-     * @param context
-     * @param activity
+     * @param context  Interface to global information about an application environment
+     * @param activity An activity is a single, focused thing that the user can do
      */
     @SuppressWarnings("PointlessBooleanExpression")
     public static void printInfo(@NonNull Context context, @NonNull Activity activity) {
@@ -128,7 +128,7 @@ public class Utils {
     /**
      * Method is used to retrieve quality of tip
      *
-     * @return
+     * @return The tip quality, e.g. Poor, Fair, Good, Great or Royal
      */
     public static String getTipQuality(@NonNull Context context, int tip) {
         if (tip >= 0 && tip <= 2) {
@@ -157,6 +157,5 @@ public class Utils {
         // default tip quality
         return context.getResources().getString(R.string.txt_good);
     }
-
 
 }

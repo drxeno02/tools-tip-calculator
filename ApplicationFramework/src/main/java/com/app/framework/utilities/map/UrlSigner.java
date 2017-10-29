@@ -16,11 +16,12 @@ import javax.crypto.spec.SecretKeySpec;
 
 public class UrlSigner {
 
-    // The URL shown in these examples is a static URL which should already
-    // be URL-encoded. In practice, you will likely have code
-    // which assembles your URL from user or web service input
-    // and plugs those values into its parameters.
-    // This variable stores the binary key, which is computed from the string (Base64) key
+    /**
+     * The URL is a static which should already be URL-encoded. In practice,
+     * you will likely have code which assembles your URL from user or web service input
+     * and plugs those values into its parameters. This variable stores the binary key,
+     * which is computed from the string (Base64) key
+     */
     private static byte[] key;
 
     public UrlSigner(String keyString) throws IOException {
@@ -33,12 +34,13 @@ public class UrlSigner {
     /**
      * Method is used to sign google url
      *
-     * @param inputUrl
-     * @return
-     * @throws IOException
-     * @throws InvalidKeyException
-     * @throws NoSuchAlgorithmException
-     * @throws URISyntaxException
+     * @param inputUrl The URL to sign
+     * @return The signed URL
+     * @throws IOException              Signals a general, I/O-related error
+     * @throws InvalidKeyException      Indicates exceptional conditions, caused by an invalid key
+     * @throws NoSuchAlgorithmException Indicates that a requested algorithm could not be found
+     * @throws URISyntaxException       Will be thrown if some information could not be parsed
+     *                                  while creating a URI
      */
     public static String signURL(String inputUrl) throws IOException, InvalidKeyException, NoSuchAlgorithmException, URISyntaxException {
         URL url = new URL(inputUrl);
@@ -51,13 +53,15 @@ public class UrlSigner {
     /**
      * Method is used to create signature
      *
-     * @param path
-     * @param query
-     * @return
-     * @throws NoSuchAlgorithmException
-     * @throws InvalidKeyException
-     * @throws UnsupportedEncodingException
-     * @throws URISyntaxException
+     * @param path  The path used to query the proper URL components to sign
+     * @param query The query string
+     * @return The signed request
+     * @throws NoSuchAlgorithmException     Indicates that a requested algorithm could not be found
+     * @throws InvalidKeyException          Indicates exceptional conditions, caused by an invalid key
+     * @throws UnsupportedEncodingException Thrown when a program asks for a particular character
+     *                                      converter that is unavailable
+     * @throws URISyntaxException           Will be thrown if some information could not be parsed
+     *                                      while creating a URI
      */
     private String signRequest(String path, String query) throws NoSuchAlgorithmException,
             InvalidKeyException, UnsupportedEncodingException, URISyntaxException {

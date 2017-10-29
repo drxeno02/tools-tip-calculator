@@ -8,7 +8,15 @@ import org.json.JSONObject;
 
 public interface OnWeatherRetrievedListener {
 
+    /**
+     * Interface for when Open Weather API has successfully provided weather information
+     *
+     * @param weatherObj A modifiable set of name/value mappings
+     */
     void onSuccess(JSONObject weatherObj);
 
+    /**
+     * Interface for when Open Weather API fails
+     */
     void onFailure();
 }

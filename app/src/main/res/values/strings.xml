@@ -5,7 +5,8 @@
     <string name="app_name">Tip Calculator</string>
     <string name="action_settings">Settings</string>
     <string name="txt_num">1</string>
-	<string name="txt_zero_dollar">$0.00</string>
+    <string name="txt_zero_dollar">$0.00</string>
+    <string name="txt_percent">%1$s\%%</string>
     <string name="txt_percent_default">15\%%</string>
     <string name="txt_poor">Poor</string>
     <string name="txt_fair">Fair</string>
@@ -21,7 +22,7 @@
     <string name="txt_person">Each Person Pays:</string>
     <string name="txt_total">Total Bill Amount:</string>
     <string name="txt_hint_dollar">0.00</string>
-	<string name="txt_hint_integer">0</string>
+    <string name="txt_hint_integer">0</string>
     <string name="txt_round_on">Round On:</string>
     <string name="txt_round_off">Round Off:</string>
     <string name="txt_spinner_default">Select Tip Percent</string>
@@ -29,12 +30,12 @@
     <string name="btn_guide">Tip Guide</string>
     <string name="btn_inc">+</string>
     <string name="btn_dec">-</string>
-	<string name="txt_shake">Shake to reset feature currently disabled. To enable, go to Settings</string>
+    <string name="txt_shake">Shake to reset feature currently disabled. To enable, go to Settings</string>
 
-	<!-- location services -->
-	<string name="settings">Settings</string>
-	<string name="cancel">Cancel</string>
-	<string name="enable_location_services_message">%s needs access to your location to better
+    <!-- location services -->
+    <string name="settings">Settings</string>
+    <string name="cancel">Cancel</string>
+    <string name="enable_location_services_message">%s needs access to your location to better
 		track your history. Please turn on location services.</string>
 
     <!-- headers -->
@@ -43,19 +44,20 @@
     <string name="privacy">Privacy</string>
     <string name="guide">Guide</string>
     <string name="history">History</string>
-	<string name="setting">Settings</string>
+    <string name="setting">Settings</string>
 
-	<!-- history -->
-	<string name="not_applicable">N/A</string>
-	<string name="bill_amount">Total Bill Amount $%1$s</string>
-	<string name="tip_percent">Tip Percent %1$s\%%</string>
-	<string name="tip_amount">Tip Amount $%1$s</string>
-	<string name="tip_amount_week">Tip Amount For the Week: %1$s</string>
-	<string name="avg_tip_percentage_week">Average Tip Percentage For the Week: %1$s\%%</string>
-	<string name="avg_tip_percentage_overall">Average Tip Percentage Overall: %1$s\%% (%2$s)</string>
-	<string name="day_date">%1$s - %2$s</string>
-	<string name="location">%1$s</string>
-	<string name="tip_quality">Tip Quality: %1$s</string>
+    <!-- history -->
+    <string name="not_applicable">N/A</string>
+    <string name="bill_amount">Total Bill Amount $%1$s</string>
+    <string name="no_history">No history found. Make sure \'Save History\' is enabled in Settings</string>
+    <string name="tip_percent">Tip Percent %1$s\%%</string>
+    <string name="tip_amount">Tip Amount $%1$s</string>
+    <string name="tip_amount_week">Tip Amount For the Week: $%1$s</string>
+    <string name="avg_tip_percentage_week">Average Tip Percentage For the Week: %1$s\%%</string>
+    <string name="avg_tip_percentage_overall">Average Tip Percentage Overall: %1$s\%% (%2$s)</string>
+    <string name="day_date">%1$s - %2$s</string>
+    <string name="location">%1$s</string>
+    <string name="tip_quality">Tip Quality: %1$s</string>
 
     <!-- guide -->
     <string name="required">Required</string>
@@ -173,18 +175,18 @@
 	effectiveness of our Service (iv) develop and test new products and features (v) diagnose or
 	fix bugs and issues.</string>
 
-	<!-- settings -->
-	<string name="customize_preferences">Customize Your Preferences</string>
-	<string name="settings_save_history">Save History: %s</string>
-	<string name="settings_save_location">Save Location: %s</string>
-	<string name="settings_shake">Shake To Reset: %s</string>
-	<string name="settings_round_off">Default Round Off: %s</string>
-	<string name="settings_set_default_tip">Set Default Tip%:</string>
-	<string name="settings_set_default_shared_by">Set Default Shared By:</string>
-	<string name="settings_enabled">Enabled</string>
-	<string name="settings_disabled">Disabled</string>
-	<string name="settings_save_history_info">Enabling this feature will track your tipping history</string>
-	<string name="settings_save_location_info">Enabling this feature will track where you are tipping!
+    <!-- settings -->
+    <string name="customize_preferences">Customize Your Preferences</string>
+    <string name="settings_save_history">Save History: %s</string>
+    <string name="settings_save_location">Save Location: %s</string>
+    <string name="settings_shake">Shake To Reset: %s</string>
+    <string name="settings_round_off">Default Round Off: %s</string>
+    <string name="settings_set_default_tip">Set Default Tip%:</string>
+    <string name="settings_set_default_shared_by">Set Default Shared By:</string>
+    <string name="settings_enabled">Enabled</string>
+    <string name="settings_disabled">Disabled</string>
+    <string name="settings_save_history_info">Enabling this feature will track your tipping history</string>
+    <string name="settings_save_location_info">Enabling this feature will track where you are tipping!
 		Save History and Location Services must both be enabled</string>
 
     <!-- guide text -->
@@ -251,15 +253,15 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
-	<!-- network -->
-	<string name="check_network">Sorry for the delay. We\'re having trouble connecting.
+    <!-- network -->
+    <string name="check_network">Sorry for the delay. We\'re having trouble connecting.
         Check your internet connection and we\'ll have you tipping shortly</string>
 
-	<!-- dialog options -->
-	<string name="retry">Retry</string>
-	<string name="ok">OK</string>
-	<string name="okay">Okay</string>
-	<string name="yes">Yes</string>
-	<string name="no">No</string>
+    <!-- dialog options -->
+    <string name="retry">Retry</string>
+    <string name="ok">OK</string>
+    <string name="okay">Okay</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 
 </resources>

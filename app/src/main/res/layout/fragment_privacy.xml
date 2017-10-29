@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:clickable="true"
-    tools:ignore="KeyboardInaccessibleWidget"
+    android:layout_height="match_parent"
     android:background="@color/material_grey_300_color_code"
-    android:layout_height="match_parent">
+    android:clickable="true"
+    android:orientation="vertical"
+    tools:ignore="KeyboardInaccessibleWidget">
 
+    <!-- header -->
     <include
-        android:layout_marginTop="20dp"
         layout="@layout/fragment_header"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp" />
 
     <!-- description text -->
     <TextView

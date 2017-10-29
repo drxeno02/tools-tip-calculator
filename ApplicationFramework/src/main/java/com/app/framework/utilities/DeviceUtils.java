@@ -25,7 +25,7 @@ public class DeviceUtils {
     /**
      * Method is used to show virtual keyboard
      *
-     * @param context
+     * @param context Interface to global information about an application environment
      */
     public static void showKeyboard(Context context) {
         InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -35,8 +35,10 @@ public class DeviceUtils {
     /**
      * Method is used to hide virtual keyboard
      *
-     * @param context
-     * @param binder
+     * @param context Interface to global information about an application environment
+     * @param binder  Base interface for a remotable object, the core part of a lightweight remote
+     *                procedure call mechanism designed for high performance when performing
+     *                in-process and cross-process calls
      */
     public static void hideKeyboard(Context context, IBinder binder) {
         InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -46,8 +48,8 @@ public class DeviceUtils {
     /**
      * Method is used to check if device has location services enabled
      *
-     * @param context
-     * @return true if location services enable
+     * @param context Interface to global information about an application environment
+     * @return True if location services enable
      */
     @SuppressWarnings("BooleanMethodIsAlwaysInverted")
     public static boolean isLocationServiceEnabled(Context context) {
@@ -71,9 +73,9 @@ public class DeviceUtils {
     /**
      * Method is used to convert dp to px
      *
-     * @param px
-     * @param context
-     * @return float value
+     * @param px      The pixel value to convert to dp
+     * @param context Interface to global information about an application environment
+     * @return Converted dp value
      */
     public static float convertPixelToDp(Context context, final float px) {
         return !FrameworkUtils.checkIfNull(px / context.getResources().getDisplayMetrics().density) ?
@@ -83,9 +85,9 @@ public class DeviceUtils {
     /**
      * Method is used to convert pixels to dp
      *
-     * @param dp
-     * @param context
-     * @return float value
+     * @param dp      The dp value to convert to pixel
+     * @param context Interface to global information about an application environment
+     * @return Converted pixel value
      */
     public static float convertDpToPixels(Context context, final float dp) {
         return !FrameworkUtils.checkIfNull(dp * context.getResources().getDisplayMetrics().density) ?
@@ -95,7 +97,7 @@ public class DeviceUtils {
     /**
      * Method is used to get the device width in pixels
      *
-     * @return
+     * @return Return the current display metrics (Width) that are in effect for this resource object
      */
     public static int getDeviceWidthPx() {
         DisplayMetrics metrics = Resources.getSystem().getDisplayMetrics();
@@ -105,10 +107,11 @@ public class DeviceUtils {
     /**
      * Method is used to get the device height in pixels
      *
-     * @return
+     * @return Return the current display metrics (Height) that are in effect for this resource object
      */
     public static int getDeviceHeightPx() {
         DisplayMetrics metrics = Resources.getSystem().getDisplayMetrics();
         return metrics.heightPixels;
     }
+
 }

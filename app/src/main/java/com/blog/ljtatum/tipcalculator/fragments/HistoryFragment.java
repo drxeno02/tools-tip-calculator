@@ -1,5 +1,6 @@
 package com.blog.ljtatum.tipcalculator.fragments;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -8,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.app.framework.listeners.OnFirebaseValueListener;
@@ -17,14 +19,15 @@ import com.app.framework.utilities.FrameworkUtils;
 import com.blog.ljtatum.tipcalculator.R;
 import com.blog.ljtatum.tipcalculator.activity.MainActivity;
 import com.blog.ljtatum.tipcalculator.adapter.HistoryAdapter;
-import com.blog.ljtatum.tipcalculator.logger.Logger;
+import com.blog.ljtatum.tipcalculator.utils.DialogUtils;
 import com.blog.ljtatum.tipcalculator.utils.Utils;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 
 import java.util.ArrayList;
-import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by LJTat on 2/27/2017.
@@ -33,10 +36,11 @@ import java.util.HashMap;
 public class HistoryFragment extends BaseFragment implements View.OnClickListener {
 
     private static final int NUM_HISTORY_RESULTS = 50;
-    private static final int NUM_DAYS_TIP_HISTORY = 1; // last 30 days
+    private static final int NUM_DAYS_TIP_HISTORY = 30; // last 30 days
     private Context mContext;
     private View mRootView;
-    private TextView tvFragmentHeader, tvTipWeek, tvAvgPercWeek, tvAvgPercOverall;
+    private TextView tvFragmentHeader, tvTipWeek, tvAvgPercWeek, tvAvgPercOverall, tvNoHistory;
+    private LinearLayout llWrapper;
     private RecyclerView rvHistory;
     private HistoryAdapter mHistoryAdapter;
     private ArrayList<HistoryModel> alTipHistory;
@@ -65,11 +69,13 @@ public class HistoryFragment extends BaseFragment implements View.OnClickListene
         alTipHistory = new ArrayList<>();
 
         // instantiate views
+        llWrapper = (LinearLayout) mRootView.findViewById(R.id.ll_wrapper);
         rvHistory = (RecyclerView) mRootView.findViewById(R.id.rv_history);
         tvFragmentHeader = (TextView) mRootView.findViewById(R.id.tv_fragment_header);
         tvTipWeek = (TextView) mRootView.findViewById(R.id.tv_total_tip_week);
         tvAvgPercWeek = (TextView) mRootView.findViewById(R.id.tv_avg_tip_percentage_week);
         tvAvgPercOverall = (TextView) mRootView.findViewById(R.id.tv_avg_tip_percentage_overall);
+        tvNoHistory = (TextView) mRootView.findViewById(R.id.tv_no_history);
 
         // instantiate adapter
         LinearLayoutManager layoutManager = new LinearLayoutManager(mContext);
@@ -89,7 +95,9 @@ public class HistoryFragment extends BaseFragment implements View.OnClickListene
         tvFragmentHeader.setOnClickListener(this);
     }
 
-
+    /**
+     * Method is used to initialize listeners and callbacks
+     */
     private void initializeListeners() {
         FirebaseUtils.onFirebaseValueListener(new OnFirebaseValueListener() {
             @Override
@@ -102,22 +110,55 @@ public class HistoryFragment extends BaseFragment implements View.OnClickListene
                 // do nothing
             }
 
+            @SuppressLint("StringFormatInvalid")
             @Override
             public void onRetrieveDataChangeWithFilter(HashMap<String, HistoryModel> map) {
+                // dismiss progress dialog
+                DialogUtils.dismissProgressDialog();
+                if (map.size() > 0 && !map.isEmpty()) {
+                    FrameworkUtils.setViewVisible(llWrapper);
+                    FrameworkUtils.setViewGone(tvNoHistory);
+                } else {
+                    FrameworkUtils.setViewVisible(tvNoHistory);
+                    FrameworkUtils.setViewGone(llWrapper);
+                }
+
                 // update adapter
                 alTipHistory = new ArrayList<>(map.values());
                 mHistoryAdapter.updateData(alTipHistory);
 
+                int counter = 0;
+                int tipPercWeek = 0;
+                double tipAmountWeek = 0;
+                for (int i = 0; i < alTipHistory.size(); i++) {
+                    if (FrameworkUtils.isDateAfterCurrentDate(
+                            new Date(System.currentTimeMillis() - NUM_DAYS_TIP_HISTORY * TimeUnit.DAYS.toMillis(1)),
+                            alTipHistory.get(i).date, "MM/dd/yyyy hh:mm:ss a")) {
+
+                        counter++;
+                        tipAmountWeek = tipAmountWeek + Double.parseDouble(alTipHistory.get(i).tipAmount);
+                        tipPercWeek = tipPercWeek + Integer.parseInt(alTipHistory.get(i).tipPercent);
+                    }
+                }
+                // tip amount for the week
+                tvTipWeek.setText(tipAmountWeek == 0 ? getResources().getString(R.string.tip_amount_week,
+                        getResources().getString(R.string.not_applicable)) :
+                        getResources().getString(R.string.tip_amount_week,
+                                String.valueOf(FrameworkUtils.convertToDollarFormat(tipAmountWeek))));
+                // average tip percent for week
+                tvAvgPercWeek.setText(tipPercWeek == 0 ? getResources().getString(R.string.tip_amount_week,
+                        getResources().getString(R.string.not_applicable)) :
+                        getResources().getString(R.string.avg_tip_percentage_week, String.valueOf(tipPercWeek / counter)));
+                // average tip percent overall
                 int avgPercOverall = 0;
                 for (int i = 0; i < alTipHistory.size(); i++) {
-                    Logger.e("TEST", "tip percent= " + alTipHistory.get(i).tipPercent);
                     avgPercOverall = avgPercOverall + Integer.parseInt(alTipHistory.get(i).tipPercent);
                 }
-
-                tvAvgPercOverall.setText(avgPercOverall == 0 ? getResources().getString(R.string.not_applicable) :
+                tvAvgPercOverall.setText(avgPercOverall == 0 ? getResources().getString(R.string.tip_amount_week,
+                        getResources().getString(R.string.not_applicable)) :
                         getResources().getString(R.string.avg_tip_percentage_overall,
-                        String.valueOf(avgPercOverall / alTipHistory.size()),
-                        Utils.getTipQuality(mContext, avgPercOverall / alTipHistory.size())));
+                                String.valueOf(avgPercOverall / alTipHistory.size()),
+                                Utils.getTipQuality(mContext, avgPercOverall / alTipHistory.size())));
             }
 
             @Override
@@ -133,13 +174,14 @@ public class HistoryFragment extends BaseFragment implements View.OnClickListene
     }
 
     /**
-     *
+     * Method is used to populate list of tipping history
      */
     private void populateHistoryList() {
-        // retrieve trip history for past 30 days
-        Calendar cal = Calendar.getInstance();
-        cal.add(Calendar.DATE, NUM_DAYS_TIP_HISTORY);
-        FirebaseUtils.retrieveValuesWithFilter(NUM_HISTORY_RESULTS, cal);
+        // show progress dialog
+        DialogUtils.showProgressDialog(mContext);
+        // retrieve trip history for past x-number of days
+        FirebaseUtils.retrieveValuesWithFilter(NUM_HISTORY_RESULTS,
+                new Date(System.currentTimeMillis() - NUM_DAYS_TIP_HISTORY * TimeUnit.DAYS.toMillis(1)));
     }
 
     @Override

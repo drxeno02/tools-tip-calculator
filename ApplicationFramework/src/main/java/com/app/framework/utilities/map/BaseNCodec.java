@@ -1,8 +1,5 @@
 package com.app.framework.utilities.map;
 
-/**
- * Created by al-weeam on 7/29/15.
- */
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more
  * contributor license agreements.  See the NOTICE file distributed with
@@ -283,7 +280,6 @@ public abstract class BaseNCodec implements BinaryEncoder, BinaryDecoder {
      * @return {@code true} if the value is defined in the current alphabet, {@code false} otherwise.
      */
     protected abstract boolean isInAlphabet(byte value);
-
 
     /**
      * Tests a given byte array to see if it contains any characters within the alphabet or PAD.

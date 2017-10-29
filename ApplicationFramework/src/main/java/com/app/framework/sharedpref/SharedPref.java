@@ -12,7 +12,7 @@ public class SharedPref {
     private SharedPreferences.Editor prefsEditor;
 
     /**
-     * @param context
+     * @param context  Interface to global information about an application environment
      * @param prefName : Name of Preference
      */
     public SharedPref(Context context, String prefName) {
@@ -29,7 +29,9 @@ public class SharedPref {
     }
 
     /**
-     * Method for remove data of preference.
+     * Method for remove data of preference
+     *
+     * @param key Key for value retrieval
      */
     public void removePreference(String key) {
         prefsEditor.remove(key);
@@ -37,7 +39,7 @@ public class SharedPref {
     }
 
     /**
-     * @param key
+     * @param key   Key for value retrieval
      * @param value : String Value
      */
     public void setPref(String key, String value) {
@@ -46,7 +48,7 @@ public class SharedPref {
     }
 
     /**
-     * @param key
+     * @param key   Key for value retrieval
      * @param value : int Value
      */
     public void setPref(String key, int value) {
@@ -55,7 +57,7 @@ public class SharedPref {
     }
 
     /**
-     * @param key
+     * @param key   Key for value retrieval
      * @param value : long value
      */
     public void setPref(String key, long value) {
@@ -64,7 +66,7 @@ public class SharedPref {
     }
 
     /**
-     * @param key
+     * @param key   Key for value retrieval
      * @param value : boolean value
      */
     public void setPref(String key, boolean value) {
@@ -73,8 +75,8 @@ public class SharedPref {
     }
 
     /**
-     * @param key
-     * @param defValue
+     * @param key      Key for value retrieval
+     * @param defValue The default value
      * @return String Type
      */
     public String getStringPref(String key, String defValue) {
@@ -82,8 +84,8 @@ public class SharedPref {
     }
 
     /**
-     * @param key
-     * @param defValue
+     * @param key      Key for value retrieval
+     * @param defValue The default value
      * @return int Type
      */
     public int getIntPref(String key, int defValue) {
@@ -91,7 +93,7 @@ public class SharedPref {
     }
 
     /**
-     * @param key
+     * @param key Key for value retrieval
      * @return boolean type
      */
     public boolean getBooleanPref(String key, boolean defValue) {
@@ -99,8 +101,8 @@ public class SharedPref {
     }
 
     /**
-     * @param key
-     * @param defValue
+     * @param key      Key for value retrieval
+     * @param defValue The default value
      * @return long Type
      */
     public long getLongPref(String key, long defValue) {

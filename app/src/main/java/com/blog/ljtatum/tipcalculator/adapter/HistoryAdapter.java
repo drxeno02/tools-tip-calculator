@@ -10,9 +10,9 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.app.framework.model.HistoryModel;
 import com.app.framework.utilities.FrameworkUtils;
 import com.blog.ljtatum.tipcalculator.R;
-import com.app.framework.model.HistoryModel;
 import com.blog.ljtatum.tipcalculator.utils.Utils;
 
 import java.util.ArrayList;
@@ -29,8 +29,8 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
     /**
      * Constructor
      *
-     * @param context
-     * @param historyModel
+     * @param context      Interface to global information about an application environment
+     * @param historyModel List of GuideModels {@link com.app.framework.model.HistoryModel}
      */
     public HistoryAdapter(Context context, ArrayList<HistoryModel> historyModel) {
         mContext = context;
@@ -46,15 +46,15 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
     @Override
     public void onBindViewHolder(HistoryAdapter.ViewHolder holder, int position) {
         // set background color
-        if (position %2 == 0) {
+        if (position % 2 == 0) {
             holder.llWrapper.setBackgroundColor(FrameworkUtils.getColor(mContext, R.color.material_light_blue_200_color_code));
         } else {
             holder.llWrapper.setBackgroundColor(FrameworkUtils.getColor(mContext, R.color.material_light_green_200_color_code));
         }
 
         // set values
-        holder.tvItemDayDate.setText(mContext.getResources().getString(R.string.day_date,
-                alTipHistory.get(position).day, alTipHistory.get(position).date));
+        holder.tvItemDayDate.setText(mContext.getResources().getString(R.string.day_date, alTipHistory.get(position).day,
+                FrameworkUtils.convertDateFormat(alTipHistory.get(position).date, "MM/dd/yyyy")));
         holder.tvItemQuality.setText(mContext.getResources().getString(R.string.tip_quality,
                 Utils.getTipQuality(mContext, Integer.parseInt(alTipHistory.get(position).tipPercent))));
         holder.tvItemTipAmount.setText(mContext.getResources().getString(R.string.tip_amount,
@@ -73,7 +73,21 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
     }
 
     /**
+     * Method is used to update return trip data
      *
+     * @param historyModel List of return trips. Populated from model class
+     *                     {@link com.app.framework.model}
+     */
+    public void updateData(@NonNull ArrayList<HistoryModel> historyModel) {
+        if (historyModel.size() > 0 && !historyModel.isEmpty()) {
+            alTipHistory = historyModel;
+            notifyDataSetChanged();
+        }
+    }
+
+    /**
+     * View holder class
+     * <p>A ViewHolder describes an item view and metadata about its place within the RecyclerView</p>
      */
     public class ViewHolder extends RecyclerView.ViewHolder {
 
@@ -91,19 +105,6 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
             tvItemTipPercentage = (TextView) itemView.findViewById(R.id.tv_item_tip_percentage);
             tvItemLocation = (TextView) itemView.findViewById(R.id.tv_item_location);
             tvItemBillAmount = (TextView) itemView.findViewById(R.id.tv_item_bill_amount);
-        }
-    }
-
-    /**
-     * Method is used to update return trip data
-     *
-     * @param historyModel List of return trips. Populated from model class
-     *              {@link com.app.framework.model}
-     */
-    public void updateData(@NonNull ArrayList<HistoryModel> historyModel) {
-        if (historyModel.size() > 0 && !historyModel.isEmpty()) {
-            alTipHistory = historyModel;
-            notifyDataSetChanged();
         }
     }
 

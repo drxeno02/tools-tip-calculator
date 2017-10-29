@@ -1,5 +1,6 @@
 package com.app.framework.utilities;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -18,6 +19,14 @@ import java.util.Locale;
 public class NetworkUtils {
     private static String TAG = NetworkUtils.class.getSimpleName();
 
+    /**
+     * Method {@link com.app.framework.utilities.NetworkUtils#isNetworkAvailable(Context)}
+     * is used to check is network is available e.g. both connected and available
+     *
+     * @param context Interface to global information about an application environment
+     * @return True if network is available otherwise false
+     */
+    @SuppressLint("MissingPermission")
     public static boolean isNetworkAvailable(Context context) {
         //check general connectivity
         ConnectivityManager conMgr = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -33,6 +42,13 @@ public class NetworkUtils {
         return false;
     }
 
+    /**
+     * Method {@link com.app.framework.utilities.NetworkUtils#getIPAddr(Context)}
+     * is used to retrieve network IP Address
+     *
+     * @param context Interface to global information about an application environment
+     * @return
+     */
     public static String getIPAddr(Context context) {
         WifiManager wifiManager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
         WifiInfo wifiInfo = wifiManager.getConnectionInfo();
@@ -48,21 +64,24 @@ public class NetworkUtils {
     }
 
     /**
-     * Get the network info
+     * Method {@link com.app.framework.utilities.NetworkUtils#getNetworkInfo(Context)}
+     * is used to get the network info
      *
-     * @param context
-     * @return
+     * @param context Interface to global information about an application environment
+     * @return Details about the currently active default data network
      */
+    @SuppressLint("MissingPermission")
     public static NetworkInfo getNetworkInfo(Context context) {
         ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         return cm.getActiveNetworkInfo();
     }
 
     /**
-     * Gets the state of Airplane Mode.
+     * Method {@link com.app.framework.utilities.NetworkUtils#isAirplaneModeOn(Context)}
+     * is used to get the state of Airplane Mode
      *
-     * @param context
-     * @return true if enabled.
+     * @param context Interface to global information about an application environment
+     * @return True if airplane mode is enabled, otherwise false
      */
     public static boolean isAirplaneModeOn(Context context) {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN_MR1) {
@@ -73,57 +92,62 @@ public class NetworkUtils {
     }
 
     /**
-     * Check if there is any connectivity
+     * Check {@link com.app.framework.utilities.NetworkUtils#isConnected(Context)}
+     * if there is any connectivity
      *
-     * @param context
-     * @return
+     * @param context Interface to global information about an application environment
+     * @return True if network is active otherwise false
      */
     public static boolean isConnected(Context context) {
         NetworkInfo info = NetworkUtils.getNetworkInfo(context);
-        return (info != null && info.isConnected());
+        return (info != null && info.isConnectedOrConnecting());
     }
 
     /**
-     * Check if there is any connectivity to a WIFI network
+     * Check {@link com.app.framework.utilities.NetworkUtils#isConnectedWifi(Context)}
+     * if there is any connectivity to a WIFI network
      *
-     * @param context
-     * @return
+     * @param context Interface to global information about an application environment
+     * @return True if network is active otherwise false
      */
     public static boolean isConnectedWifi(Context context) {
         NetworkInfo info = NetworkUtils.getNetworkInfo(context);
-        return (info != null && info.isConnected() && info.getType() == ConnectivityManager.TYPE_WIFI);
+        return (info != null && info.isConnectedOrConnecting() && info.getType() == ConnectivityManager.TYPE_WIFI);
     }
 
     /**
-     * Check if there is any connectivity to a mobile network
+     * Check {@link com.app.framework.utilities.NetworkUtils#isConnectedMobile(Context)}
+     * if there is any connectivity to a mobile network
      *
-     * @param context
-     * @return
+     * @param context Interface to global information about an application environment
+     * @return True if network is active otherwise false
      */
     public static boolean isConnectedMobile(Context context) {
         NetworkInfo info = NetworkUtils.getNetworkInfo(context);
-        return (info != null && info.isConnected() && info.getType() == ConnectivityManager.TYPE_MOBILE);
+        return (info != null && info.isConnectedOrConnecting() && info.getType() == ConnectivityManager.TYPE_MOBILE);
     }
 
     /**
-     * Check if there is fast connectivity
+     * Check {@link com.app.framework.utilities.NetworkUtils#isConnectedFast(Context)}
+     * if there is fast connectivity
      *
-     * @param context
-     * @return
+     * @param context Interface to global information about an application environment
+     * @return True if network is active otherwise false
      */
     public static boolean isConnectedFast(Context context) {
         NetworkInfo info = NetworkUtils.getNetworkInfo(context);
-        return (info != null && info.isConnected() && NetworkUtils.isConnectionFast(info.getType(), info.getSubtype()));
+        return (info != null && info.isConnectedOrConnecting() && NetworkUtils.isConnectionFast(info.getType(), info.getSubtype()));
     }
 
     /**
-     * Check if there is fast connectivity
+     * Check {@link com.app.framework.utilities.NetworkUtils#isConnectionFast(int, int)}
+     * if there is fast connectivity. Used for {@see com.udi.app.framework.utilities.NetworkUtils#isConnectedFast(Context)}
      *
-     * @param type
-     * @param subType
-     * @return
+     * @param type    Mobile data type
+     * @param subType Network-type-specific integer describing the subtype of the network
+     * @return True if connection is fast
      */
-    public static boolean isConnectionFast(int type, int subType) {
+    private static boolean isConnectionFast(int type, int subType) {
         if (type == ConnectivityManager.TYPE_WIFI) {
             Log.i(TAG, "WIFI Connection");
             return true;
@@ -159,10 +183,10 @@ public class NetworkUtils {
                 case TelephonyManager.NETWORK_TYPE_UMTS:
                     Log.v(TAG, "STRONG: ~ 400-7000 kbps");
                     return true; // ~ 400-7000 kbps
-            /*
-             * Above API level 7, make sure to set android:targetSdkVersion
-			 * to appropriate level to use these
-			 */
+                /*
+                 * Above API level 7, make sure to set android:targetSdkVersion
+			     * to appropriate level to use these
+			     */
                 case TelephonyManager.NETWORK_TYPE_EHRPD: // API level 11
                     Log.v(TAG, "STRONG: ~ 1-2 Mbps");
                     return true; // ~ 1-2 Mbps

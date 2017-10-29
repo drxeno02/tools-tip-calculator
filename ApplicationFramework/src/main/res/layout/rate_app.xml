@@ -2,59 +2,52 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:background="@drawable/rate_app_bg"
+    android:orientation="vertical"
+    android:padding="20dp">
 
-    <LinearLayout
+    <!-- rate this app description-->
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="20dp"
-        android:background="@drawable/rate_app_bg"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:text="@string/rate_app_desc"
+        android:textColor="@color/white"
+        android:textSize="@dimen/font_size_20" />
 
-        <!-- rate this app description-->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/rate_app_desc"
-            android:textColor="@color/white"
-            android:textSize="@dimen/font_size_20" />
+    <!-- rate this app -->
+    <TextView
+        android:id="@+id/tv_rate_app"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/custom_button"
+        android:gravity="center"
+        android:text="@string/rate_app"
+        android:textColor="@color/black"
+        android:textSize="@dimen/font_size_18" />
 
-        <!-- rate this app -->
-        <TextView
-            android:id="@+id/tv_rate_app"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginTop="40dp"
-            android:background="@drawable/custom_button"
-            android:gravity="center"
-            android:text="@string/rate_app"
-            android:textColor="@color/black"
-            android:textSize="@dimen/font_size_18" />
+    <!-- remind me later -->
+    <TextView
+        android:id="@+id/tv_remind_later"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/white"
+        android:gravity="center"
+        android:text="@string/remind_me_later"
+        android:textColor="@color/black"
+        android:textSize="@dimen/font_size_18" />
 
-        <!-- remind me later -->
-        <TextView
-            android:id="@+id/tv_remind_later"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginTop="10dp"
-            android:background="@color/white"
-            android:gravity="center"
-            android:text="@string/remind_me_later"
-            android:textColor="@color/black"
-            android:textSize="@dimen/font_size_18" />
-
-        <!-- no thanks -->
-        <TextView
-            android:id="@+id/tv_no_thanks"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginTop="10dp"
-            android:background="@color/white"
-            android:gravity="center"
-            android:text="@string/no_thanks"
-            android:textColor="@color/black"
-            android:textSize="@dimen/font_size_18" />
-
-    </LinearLayout>
+    <!-- no thanks -->
+    <TextView
+        android:id="@+id/tv_no_thanks"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/white"
+        android:gravity="center"
+        android:text="@string/no_thanks"
+        android:textColor="@color/black"
+        android:textSize="@dimen/font_size_18" />
 
 </LinearLayout>

@@ -4,6 +4,7 @@
 
 package com.blog.ljtatum.tipcalculator.activity;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -83,6 +84,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     /**
      * Method is used to remove all fragments
      */
+    @SuppressLint("RestrictedApi")
     public void removeAllFragments() {
         try {
             for (Fragment fragment : mFragmentManager.getFragments()) {
@@ -102,6 +104,7 @@ public abstract class BaseActivity extends AppCompatActivity {
      *
      * @return Returns the TopFragment if there is one, otherwise returns null
      */
+    @SuppressLint("RestrictedApi")
     @Nullable
     public Fragment getTopFragment() {
         if (mFragmentManager.getBackStackEntryCount() > 0) {

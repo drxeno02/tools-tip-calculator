@@ -4,7 +4,6 @@ package com.app.framework.utilities;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.util.Log;
 
 import com.app.framework.listeners.OnFirebaseValueListener;
 import com.app.framework.model.HistoryModel;
@@ -15,7 +14,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -117,18 +116,18 @@ public class FirebaseUtils {
      * Method is usd to add values to Firebase DB. All data will be retained and updated. The data
      * can be filtered hy max number of items and timestamp
      *
-     * @param data        Data to store to Firebase
-     * @param maxItems    Maximum number of items allowed to store to Firebase DB
-     * @param maxCalendar The latest date to allow history of data to store to Firebase DB
+     * @param data     Data to store to Firebase
+     * @param maxItems Maximum number of items allowed to store to Firebase DB
+     * @param minDate  The latest date to allow history of data to store to Firebase DB
      */
-    public static void addValueContinuousWithFilter(final Object data, @Nullable final Integer maxItems, @Nullable final Calendar maxCalendar) {
+    public static void addValueContinuousWithFilter(final Object data, @Nullable final Integer maxItems, @Nullable final Date minDate) {
         if (!FrameworkUtils.checkIfNull(mQueryDbReference)) {
             mQueryDbReference.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     HashMap<String, HistoryModel> map = new HashMap<>();
-                    if (!FrameworkUtils.checkIfNull(maxItems) || !FrameworkUtils.checkIfNull(maxCalendar)) {
-                        map = filterData(dataSnapshot, maxItems, maxCalendar);
+                    if (!FrameworkUtils.checkIfNull(maxItems) || !FrameworkUtils.checkIfNull(minDate)) {
+                        map = filterData(dataSnapshot, maxItems, minDate);
                     } else {
                         for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                             HistoryModel historyModel = snapshot.getValue(HistoryModel.class);
@@ -184,16 +183,16 @@ public class FirebaseUtils {
     /**
      * Method is used to retrieve a list of values from Firebase DB
      *
-     * @param maxItems    Maximum number of items allowed to store to Firebase DB
-     * @param maxCalendar The latest date to allow history of data to store to Firebase DB
+     * @param maxItems Maximum number of items allowed to store to Firebase DB
+     * @param minDate  The latest date to allow history of data to store to Firebase DB
      */
-    public static void retrieveValuesWithFilter(@Nullable final Integer maxItems, @Nullable final Calendar maxCalendar) {
+    public static void retrieveValuesWithFilter(@Nullable final Integer maxItems, @Nullable final Date minDate) {
         if (!FrameworkUtils.checkIfNull(mQueryDbReference)) {
             mQueryDbReference.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     if (!FrameworkUtils.checkIfNull(mFirebaseValueListener)) {
-                        mFirebaseValueListener.onRetrieveDataChangeWithFilter(filterData(dataSnapshot, maxItems, maxCalendar));
+                        mFirebaseValueListener.onRetrieveDataChangeWithFilter(filterData(dataSnapshot, maxItems, minDate));
                     }
                 }
 
@@ -217,7 +216,6 @@ public class FirebaseUtils {
             mQueryDbReference.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
-                    Log.i(TAG, "retrieveValues <onDataChange> successful!");
                     if (!FrameworkUtils.checkIfNull(mFirebaseValueListener)) {
                         mFirebaseValueListener.onRetrieveDataChange(dataSnapshot);
                     }
@@ -226,7 +224,6 @@ public class FirebaseUtils {
                 @Override
                 public void onCancelled(DatabaseError databaseError) {
                     if (!FrameworkUtils.checkIfNull(databaseError) && !FrameworkUtils.isStringEmpty(databaseError.getMessage())) {
-                        Log.i(TAG, "retrieveValues <onCancelled> error: " + databaseError.getMessage());
                         if (!FrameworkUtils.checkIfNull(mFirebaseValueListener)) {
                             mFirebaseValueListener.onRetrieveDataError(databaseError);
                         }
@@ -239,17 +236,22 @@ public class FirebaseUtils {
     /**
      * @param dataSnapshot Retrieved data from Firebase DB
      * @param maxItems     Maximum number of items allowed to store to Firebase DB
-     * @param maxCalendar  The latest date to allow history of data to store to Firebase DB
+     * @param minDate      The latest date to allow history of data to store to Firebase DB
      * @return Hashmap of filtered data
      */
-    private static HashMap<String, HistoryModel> filterData(@NonNull DataSnapshot dataSnapshot, @Nullable final Integer maxItems, @Nullable final Calendar maxCalendar) {
+    private static HashMap<String, HistoryModel> filterData(@NonNull DataSnapshot dataSnapshot, @Nullable final Integer maxItems, @Nullable final Date minDate) {
         HashMap<String, HistoryModel> map = new HashMap<>();
         for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
             HistoryModel historyModel = snapshot.getValue(HistoryModel.class);
+            // break loop if no history data
+            if (FrameworkUtils.checkIfNull(historyModel)) {
+                break;
+            }
 
-            if (!FrameworkUtils.checkIfNull(maxItems) && !FrameworkUtils.checkIfNull(maxCalendar)) {
+            if (!FrameworkUtils.checkIfNull(maxItems) && !FrameworkUtils.checkIfNull(minDate)) {
                 // check size and calendar date
-                if (map.size() < maxItems && !FrameworkUtils.isDateAfterCurrentDate(historyModel.date)) {
+                if (map.size() < maxItems && FrameworkUtils.isDateAfterCurrentDate(minDate,
+                        historyModel.date, "MM/dd/yyyy hh:mm:ss a")) {
                     map.put(snapshot.getKey(), historyModel);
                 }
             } else if (!FrameworkUtils.checkIfNull(maxItems)) {
@@ -257,9 +259,10 @@ public class FirebaseUtils {
                 if (map.size() < maxItems) {
                     map.put(snapshot.getKey(), historyModel);
                 }
-            } else if (!FrameworkUtils.checkIfNull(maxCalendar)) {
+            } else if (!FrameworkUtils.checkIfNull(minDate)) {
                 // check calendar date
-                if (!FrameworkUtils.isDateAfterCurrentDate(historyModel.date)) {
+                if (FrameworkUtils.isDateAfterCurrentDate(minDate, historyModel.date,
+                        "MM/dd/yyyy hh:mm:ss a")) {
                     map.put(snapshot.getKey(), historyModel);
                 }
             } else {

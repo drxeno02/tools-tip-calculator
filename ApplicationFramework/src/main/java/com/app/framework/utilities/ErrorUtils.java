@@ -15,11 +15,11 @@ public class ErrorUtils {
     /**
      * Method to show the error message
      *
-     * @param context
-     * @param code
-     * @param defaultMessage
-     * @param packageName
-     * @return message
+     * @param context        Interface to global information about an application environment
+     * @param code           Unique code representing a specific error
+     * @param defaultMessage Generic error message
+     * @param packageName    The path to specific classes or interfaces
+     * @return The error message to be displayed
      */
     public static String getErrorMessage(Context context, int code, String defaultMessage, String packageName) {
         int resourceId = context.getResources().getIdentifier("err_code_" + code, "string", packageName);

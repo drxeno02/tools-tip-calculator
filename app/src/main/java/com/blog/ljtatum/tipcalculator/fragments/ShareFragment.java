@@ -11,8 +11,8 @@ import android.widget.TextView;
 
 import com.app.framework.enums.Enum;
 import com.app.framework.utilities.FrameworkUtils;
-import com.blog.ljtatum.tipcalculator.R;
 import com.app.framework.utilities.ShareUtils;
+import com.blog.ljtatum.tipcalculator.R;
 import com.blog.ljtatum.tipcalculator.activity.MainActivity;
 
 /**

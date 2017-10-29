@@ -3,8 +3,8 @@ package com.blog.ljtatum.tipcalculator.fragments;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 
-import com.blog.ljtatum.tipcalculator.R;
 import com.app.framework.utilities.FrameworkUtils;
+import com.blog.ljtatum.tipcalculator.R;
 
 /**
  * Created by LJTat on 3/3/2017.

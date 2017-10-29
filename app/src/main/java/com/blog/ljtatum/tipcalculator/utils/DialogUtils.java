@@ -75,8 +75,8 @@ public class DialogUtils {
 
     /**
      * @param context Interface to global information about an application environment
-     * @param title Title of the Dialog
-     * @param msg Message of the Dialog
+     * @param title   The displayed title
+     * @param msg     The displayed message
      */
     public static void showDefaultNoNetworkAlert(@NonNull final Context context, String title, String msg) {
         if (((Activity) context).isFinishing() || (!FrameworkUtils.checkIfNull(mNetworkDialog) && mNetworkDialog.isShowing())) {
@@ -90,19 +90,22 @@ public class DialogUtils {
                 .setPositiveButton(context.getResources().getString(R.string.retry), null);
         // create builder and set equal to dialog
         mNetworkDialog = builder.create();
-        if (!((Activity) context).isFinishing()) {
-            // show dialog
-            mNetworkDialog.show();
-        }
 
-        mNetworkDialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (NetworkUtils.isNetworkAvailable(context) && NetworkUtils.isConnected(context)) {
-                    dismissNoNetworkDialog();
-                }
+        if (!FrameworkUtils.checkIfNull(mNetworkDialog)) {
+            if (!((Activity) context).isFinishing()) {
+                // show dialog
+                mNetworkDialog.show();
             }
-        });
+
+            mNetworkDialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (NetworkUtils.isNetworkAvailable(context) && NetworkUtils.isConnected(context)) {
+                        dismissNoNetworkDialog();
+                    }
+                }
+            });
+        }
     }
 
 
@@ -110,8 +113,8 @@ public class DialogUtils {
      * Dialog constructor
      *
      * @param context Interface to global information about an application environment
-     * @param title Title of the Dialog
-     * @param msg Message of the Dialog
+     * @param title   The displayed title
+     * @param msg     The displayed message
      */
     public static void showDefaultOKAlert(@NonNull Context context, String title, String msg) {
         showDefaultOKAlert(context, title, msg, null);
@@ -120,10 +123,11 @@ public class DialogUtils {
     /**
      * Dialog constructor
      *
-     * @param context Interface to global information about an application environment
-     * @param title Title of the Dialog
-     * @param msg Message of the Dialog
-     * @param listener
+     * @param context  Interface to global information about an application environment
+     * @param title    The displayed title
+     * @param msg      The displayed message
+     * @param listener Interface used to allow the creator of a dialog to run some code
+     *                 when an item on the dialog is clicked
      */
     public static void showDefaultOKAlert(@NonNull Context context, String title, String msg, DialogInterface.OnClickListener listener) {
         if (((Activity) context).isFinishing() || (!FrameworkUtils.checkIfNull(mDialog) && mDialog.isShowing())) {
@@ -140,7 +144,7 @@ public class DialogUtils {
                 .setPositiveButton(context.getResources().getString(R.string.ok), listener);
         // create builder and set equal to dialog
         mDialog = builder.create();
-        if (!((Activity) context).isFinishing()) {
+        if (!((Activity) context).isFinishing() && !FrameworkUtils.checkIfNull(mDialog)) {
             // show dialog
             mDialog.show();
         }
@@ -149,10 +153,12 @@ public class DialogUtils {
     /**
      * Method is used to construct dialog with a message, and both negative and positive buttons
      *
-     * @param context Interface to global information about an application environment
-     * @param msg Message of the Dialog
-     * @param yesListener
-     * @param noListener
+     * @param context     Interface to global information about an application environment
+     * @param msg         The displayed message
+     * @param yesListener Interface used to allow the creator of a dialog to run some code
+     *                    when an item on the dialog is clicked
+     * @param noListener  Interface used to allow the creator of a dialog to run some code
+     *                    when an item on the dialog is clicked
      */
     public static void showYesNoAlert(@NonNull Context context, String title, String msg, String yesText, String noText,
                                       DialogInterface.OnClickListener yesListener, DialogInterface.OnClickListener noListener) {
@@ -180,7 +186,7 @@ public class DialogUtils {
                 .setNegativeButton(no, noListener);
         // create builder and set equal to dialog
         mDialog = builder.create();
-        if (!((Activity) context).isFinishing()) {
+        if (!((Activity) context).isFinishing() && !FrameworkUtils.checkIfNull(mDialog)) {
             // show dialog
             mDialog.show();
         }
@@ -198,8 +204,10 @@ public class DialogUtils {
 
         try {
             mProgressDialog = ProgressDialog.show(context, null, null, true, false);
-            mProgressDialog.getWindow().setBackgroundDrawable(FrameworkUtils.getDrawable(context, R.color.transparent));
-            mProgressDialog.setContentView(R.layout.dialog_progress);
+            if (!FrameworkUtils.checkIfNull(mProgressDialog.getWindow())) {
+                mProgressDialog.getWindow().setBackgroundDrawable(FrameworkUtils.getDrawable(context, R.color.transparent));
+                mProgressDialog.setContentView(R.layout.dialog_progress);
+            }
         } catch (IllegalStateException e) {
             e.printStackTrace();
         }

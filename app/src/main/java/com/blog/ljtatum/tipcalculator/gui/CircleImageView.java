@@ -19,10 +19,10 @@ import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
-import android.widget.ImageView;
 
-import com.blog.ljtatum.tipcalculator.R;
+import com.android.volley.toolbox.NetworkImageView;
 import com.app.framework.utilities.FrameworkUtils;
+import com.blog.ljtatum.tipcalculator.R;
 
 
 /**
@@ -31,9 +31,9 @@ import com.app.framework.utilities.FrameworkUtils;
  *
  * @author Tatum
  */
-public class CircleImageView extends android.support.v7.widget.AppCompatImageView {
+public class CircleImageView extends NetworkImageView {
 
-    private static final ImageView.ScaleType SCALE_TYPE = ScaleType.CENTER_CROP;
+    private static final ScaleType SCALE_TYPE = ScaleType.CENTER_CROP;
     private static final Bitmap.Config BITMAP_CONFIG = Bitmap.Config.ARGB_8888;
     private static final int COLOR_DRAWABLE_DIMENSION = 2;
     private static final int DEFAULT_BORDER_WIDTH = 0;
@@ -64,7 +64,7 @@ public class CircleImageView extends android.support.v7.widget.AppCompatImageVie
     /**
      * Constructor
      *
-     * @param context
+     * @param context Interface to global information about an application environment
      */
     public CircleImageView(Context context) {
         super(context);
@@ -74,8 +74,8 @@ public class CircleImageView extends android.support.v7.widget.AppCompatImageVie
     /**
      * Constructor
      *
-     * @param context
-     * @param attrs
+     * @param context Interface to global information about an application environment
+     * @param attrs   A collection of attributes, as found associated with a tag in an XML document
      */
     public CircleImageView(@NonNull Context context, AttributeSet attrs) {
         this(context, attrs, 0);
@@ -84,9 +84,9 @@ public class CircleImageView extends android.support.v7.widget.AppCompatImageVie
     /**
      * Constructor
      *
-     * @param context
-     * @param attrs
-     * @param defStyle
+     * @param context  Interface to global information about an application environment
+     * @param attrs    A collection of attributes, as found associated with a tag in an XML document
+     * @param defStyle The defined style
      */
     public CircleImageView(@NonNull Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
@@ -134,12 +134,6 @@ public class CircleImageView extends android.support.v7.widget.AppCompatImageVie
         setup();
     }
 
-    @NonNull
-    @Override
-    public ScaleType getScaleType() {
-        return SCALE_TYPE;
-    }
-
     @Override
     public void setImageDrawable(Drawable drawable) {
         super.setImageDrawable(drawable);
@@ -160,17 +154,10 @@ public class CircleImageView extends android.support.v7.widget.AppCompatImageVie
         setup();
     }
 
-    @Override
-    public void setScaleType(ScaleType scaleType) {
-        if (scaleType != SCALE_TYPE) {
-            throw new IllegalArgumentException(String.format("ScaleType %s not supported.", scaleType));
-        }
-    }
-
     /**
      * Method is used to set the border color
      *
-     * @param borderColor
+     * @param borderColor The color of the border
      */
     public void setBorderColor(int borderColor) {
         if (borderColor == mBorderColor) {
@@ -181,10 +168,23 @@ public class CircleImageView extends android.support.v7.widget.AppCompatImageVie
         invalidate();
     }
 
+    @NonNull
+    @Override
+    public ScaleType getScaleType() {
+        return SCALE_TYPE;
+    }
+
+    @Override
+    public void setScaleType(ScaleType scaleType) {
+        if (scaleType != SCALE_TYPE) {
+            throw new IllegalArgumentException(String.format("ScaleType %s not supported.", scaleType));
+        }
+    }
+
     /**
      * Method is used to set the border width
      *
-     * @param borderWidth
+     * @param borderWidth The width of the border
      */
     public void setBorderWidth(int borderWidth) {
         if (borderWidth == mBorderWidth) {
@@ -197,8 +197,8 @@ public class CircleImageView extends android.support.v7.widget.AppCompatImageVie
     /**
      * Method is used to retrieve a bitmap from drawable
      *
-     * @param drawable
-     * @return bitmap
+     * @param drawable A Drawable is a general abstraction for "something that can be drawn."
+     * @return bitmap A mutable bitmap with the specified width and height
      */
     private Bitmap getBitmapFromDrawable(Drawable drawable) {
         if (FrameworkUtils.checkIfNull(drawable)) {
@@ -227,6 +227,9 @@ public class CircleImageView extends android.support.v7.widget.AppCompatImageVie
 
     /**
      * Method is used to setup the bitmap (image) with style, color, and other attributes
+     * <p>It is necessary invalidate the whole view. If the view is visible,
+     * {@link #onDraw(android.graphics.Canvas)} will be called at some point in
+     * the future<p/>
      */
     private void setup() {
         if (!mReady) {
@@ -257,17 +260,6 @@ public class CircleImageView extends android.support.v7.widget.AppCompatImageVie
         invalidate();
     }
 
-    @Override
-    protected void onDraw(@NonNull Canvas canvas) {
-        if (FrameworkUtils.checkIfNull(getDrawable())) {
-            return;
-        }
-        canvas.drawCircle(getWidth() / 2, getHeight() / 2, mDrawableRadius, mBitmapPaint);
-        if (mBorderWidth != 0) {
-            canvas.drawCircle(getWidth() / 2, getHeight() / 2, mBorderRadius, mBorderPaint);
-        }
-    }
-
     /**
      * Method is used to update shader properties
      */
@@ -285,7 +277,21 @@ public class CircleImageView extends android.support.v7.widget.AppCompatImageVie
         }
         mShaderMatrix.setScale(scale, scale);
         mShaderMatrix.postTranslate((int) (dx + 0.5f) + mDrawableRect.left, (int) (dy + 0.5f) + mDrawableRect.top);
-        mBitmapShader.setLocalMatrix(mShaderMatrix);
+
+        if (!FrameworkUtils.checkIfNull(mBitmapShader)) {
+            mBitmapShader.setLocalMatrix(mShaderMatrix);
+        }
+    }
+
+    @Override
+    protected void onDraw(@NonNull Canvas canvas) {
+        if (FrameworkUtils.checkIfNull(getDrawable())) {
+            return;
+        }
+        canvas.drawCircle(getWidth() / 2, getHeight() / 2, mDrawableRadius, mBitmapPaint);
+        if (mBorderWidth != 0) {
+            canvas.drawCircle(getWidth() / 2, getHeight() / 2, mBorderRadius, mBorderPaint);
+        }
     }
 
     @Override

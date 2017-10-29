@@ -1,7 +1,5 @@
 package com.blog.ljtatum.tipcalculator.model;
 
-import com.blog.ljtatum.tipcalculator.R;
-
 /**
  * Created by LJTat on 3/19/2017.
  */

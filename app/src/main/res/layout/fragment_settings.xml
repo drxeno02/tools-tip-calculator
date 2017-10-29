@@ -8,6 +8,7 @@
     android:orientation="vertical"
     tools:ignore="KeyboardInaccessibleWidget">
 
+    <!-- header -->
     <include
         layout="@layout/fragment_header"
         android:layout_width="match_parent"

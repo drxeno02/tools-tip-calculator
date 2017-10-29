@@ -3,55 +3,81 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center_horizontal"
     android:background="@color/material_grey_300_color_code"
     android:clickable="true"
-    tools:ignore="KeyboardInaccessibleWidget"
-    android:orientation="vertical">
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    tools:ignore="KeyboardInaccessibleWidget">
 
+    <!-- header -->
     <include
-        android:layout_marginTop="20dp"
         layout="@layout/fragment_header"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <!-- total tip amount for week -->
-    <TextView
-        android:layout_marginTop="20dp"
-        android:id="@+id/tv_total_tip_week"
-        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:textSize="@dimen/font_size_16"
-        android:textColor="@color/black"
-        android:text="@string/tip_amount_week" />
+        android:layout_marginTop="20dp" />
 
-    <!-- avg tip percentage for week -->
+    <LinearLayout
+        android:id="@+id/ll_wrapper"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:visibility="invisible">
+
+        <!-- total tip amount for week -->
+        <TextView
+            android:id="@+id/tv_total_tip_week"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center_horizontal"
+            android:text="@string/tip_amount_week"
+            android:textColor="@color/black"
+            android:textSize="@dimen/font_size_16" />
+
+        <!-- avg tip percentage for week -->
+        <TextView
+            android:id="@+id/tv_avg_tip_percentage_week"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center_horizontal"
+            android:text="@string/avg_tip_percentage_week"
+            android:textColor="@color/black"
+            android:textSize="@dimen/font_size_16" />
+
+        <!-- avg tip percentage overall -->
+        <TextView
+            android:id="@+id/tv_avg_tip_percentage_overall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center_horizontal"
+            android:text="@string/avg_tip_percentage_overall"
+            android:textColor="@color/black"
+            android:textSize="@dimen/font_size_16" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_history"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp" />
+
+    </LinearLayout>
+
+    <!-- no tip history -->
     <TextView
-        android:layout_marginTop="10dp"
-        android:id="@+id/tv_avg_tip_percentage_week"
+        android:id="@+id/tv_no_history"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:textSize="@dimen/font_size_16"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:paddingEnd="10dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingStart="10dp"
+        android:text="@string/no_history"
         android:textColor="@color/black"
-        android:text="@string/avg_tip_percentage_week" />
-
-    <!-- avg tip percentage overall -->
-    <TextView
-        android:layout_marginTop="10dp"
-        android:id="@+id/tv_avg_tip_percentage_overall"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="@dimen/font_size_16"
-        android:gravity="center_horizontal"
-        android:textColor="@color/black"
-        android:text="@string/avg_tip_percentage_overall" />
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_history"
-        android:layout_marginTop="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:textSize="@dimen/font_size_20"
+        android:visibility="gone" />
 
 </LinearLayout>

@@ -5,6 +5,7 @@
     android:orientation="horizontal"
     android:padding="5dp">
 
+    <!-- back arrow and title-->
     <TextView
         android:id="@+id/tv_fragment_header"
         android:layout_width="wrap_content"

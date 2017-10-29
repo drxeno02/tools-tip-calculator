@@ -5,19 +5,20 @@
     android:layout_height="match_parent"
     android:background="@color/material_grey_300_color_code"
     android:clickable="true"
-    tools:ignore="KeyboardInaccessibleWidget"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:ignore="KeyboardInaccessibleWidget">
 
+    <!-- header -->
     <include
-        android:layout_marginTop="20dp"
         layout="@layout/fragment_header"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_guide"
-        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp" />
 
 </LinearLayout>

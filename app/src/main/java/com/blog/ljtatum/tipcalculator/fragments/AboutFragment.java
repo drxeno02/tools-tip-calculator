@@ -14,9 +14,9 @@ import android.widget.TextView;
 
 import com.app.framework.enums.Enum;
 import com.app.framework.utilities.FrameworkUtils;
+import com.app.framework.utilities.ShareUtils;
 import com.blog.ljtatum.tipcalculator.BuildConfig;
 import com.blog.ljtatum.tipcalculator.R;
-import com.app.framework.utilities.ShareUtils;
 import com.blog.ljtatum.tipcalculator.activity.MainActivity;
 
 import java.util.Calendar;
