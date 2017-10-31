@@ -31,7 +31,7 @@ android {
     def versionMajor = 2
     def versionMinor = 0
     def versionPatch = 0
-    def code = 6;
+    def code = 7;
 
     defaultConfig {
         applicationId "com.blog.ljtatum.tipcalculator"
@@ -56,7 +56,6 @@ android {
             debuggable true
         }
         release {
-            applicationIdSuffix '.prod'
             buildConfigField "String", "ENVIRONMENT", "\"production\""
             buildConfigField "boolean", "DEBUG_MODE", "false"
             manifestPlaceholders = [build_version: "${versionMajor}.${versionMinor}.${versionPatch}"]
