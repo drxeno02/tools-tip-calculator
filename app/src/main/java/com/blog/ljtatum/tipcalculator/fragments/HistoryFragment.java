@@ -131,7 +131,7 @@ public class HistoryFragment extends BaseFragment implements View.OnClickListene
                 int tipPercWeek = 0;
                 double tipAmountWeek = 0;
                 for (int i = 0; i < alTipHistory.size(); i++) {
-                    if (FrameworkUtils.isDateAfterCurrentDate(
+                    if (!FrameworkUtils.isStringEmpty(alTipHistory.get(i).date) && FrameworkUtils.isDateAfterCurrentDate(
                             new Date(System.currentTimeMillis() - NUM_DAYS_TIP_HISTORY * TimeUnit.DAYS.toMillis(1)),
                             alTipHistory.get(i).date, "MM/dd/yyyy hh:mm:ss a")) {
 

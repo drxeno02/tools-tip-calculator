@@ -194,7 +194,7 @@ public class FrameworkUtils {
      * @param dateFormat Method is used to parse formatted date
      * @return True if input date is after the current date
      */
-    public static boolean isDateAfterCurrentDate(Date minDate, String dateTime, String dateFormat) {
+    public static boolean isDateAfterCurrentDate(@NonNull Date minDate, @NonNull String dateTime, String dateFormat) {
         SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss a", Locale.ENGLISH);
         formatter.format(minDate.getTime());
         try {
