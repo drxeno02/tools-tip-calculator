@@ -21,8 +21,8 @@ import com.app.framework.sharedpref.SharedPref;
  */
 public class AppRaterUtil {
 
-    private static final int DAYS_UNTIL_PROMPT = 3;
-    private static final int LAUNCHES_UNTIL_PROMPT = 2;
+    private static final int DAYS_UNTIL_PROMPT = 4;
+    private static final int LAUNCHES_UNTIL_PROMPT = 8;
     private String mPackageName;
     private Context mContext;
     private SharedPref mSharedPref;
