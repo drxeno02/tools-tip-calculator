@@ -22,17 +22,26 @@ import com.app.framework.sharedpref.SharedPref;
 public class AppRaterUtil {
 
     private static final int DAYS_UNTIL_PROMPT = 3;
-    private static final int LAUNCHES_UNTIL_PROMPT = 7;
+    private static final int LAUNCHES_UNTIL_PROMPT = 2;
     private String mPackageName;
     private Context mContext;
     private SharedPref mSharedPref;
 
+    /**
+     * Constructor
+     *
+     * @param context     Interface to global information about an application environment
+     * @param packageName Namespace because Intents are used globally in the system
+     */
     public AppRaterUtil(Context context, String packageName) {
         mContext = context;
         mPackageName = packageName;
-//        recordAppLaunchDate();
+        recordAppLaunchDate();
     }
 
+    /**
+     * Method is used to record when app is first launched
+     */
     private void recordAppLaunchDate() {
         mSharedPref = new SharedPref(mContext, Constants.PREF_FILE_NAME);
         if (mSharedPref.getBooleanPref(Constants.KEY_APP_RATED, false)) {
@@ -41,22 +50,21 @@ public class AppRaterUtil {
         }
 
         // increment launch counter
-        long launchCount = mSharedPref.getLongPref(Constants.KEY_APP_LAUNCH_COUNT, 0) + 1;
+        Long launchCount = mSharedPref.getLongPref(Constants.KEY_APP_LAUNCH_COUNT, 0L) + 1;
         mSharedPref.setPref(Constants.KEY_APP_LAUNCH_COUNT, launchCount);
 
         // get date of first launch
-        Long dateFirstLaunch = mSharedPref.getLongPref(Constants.KEY_APP_LAUNCH_DATE, 0);
+        Long dateFirstLaunch = mSharedPref.getLongPref(Constants.KEY_APP_LAUNCH_DATE, 0L);
         if (dateFirstLaunch == 0) {
             dateFirstLaunch = System.currentTimeMillis();
             mSharedPref.setPref(Constants.KEY_APP_LAUNCH_DATE, dateFirstLaunch);
         }
 
         // wait at least n days before opening
-        if (launchCount >= LAUNCHES_UNTIL_PROMPT) {
-            if (System.currentTimeMillis() >= dateFirstLaunch
-                    + (DAYS_UNTIL_PROMPT * 24 * 60 * 60 * 1000)) {
-                showRateDialog();
-            }
+        if (launchCount >= LAUNCHES_UNTIL_PROMPT && System.currentTimeMillis() >=
+                dateFirstLaunch + (DAYS_UNTIL_PROMPT * 24 * 60 * 60 * 1000)) {
+            // show rate dialog
+            showRateDialog();
         }
     }
 
@@ -128,7 +136,7 @@ public class AppRaterUtil {
      */
     private void resetSharedPref() {
         // reset
-        mSharedPref.setPref(Constants.KEY_APP_LAUNCH_COUNT, 0);
+        mSharedPref.setPref(Constants.KEY_APP_LAUNCH_COUNT, 0L);
         // update launch date
         mSharedPref.setPref(Constants.KEY_APP_LAUNCH_DATE, System.currentTimeMillis());
     }

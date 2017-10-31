@@ -63,8 +63,14 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
                 alTipHistory.get(position).tipPercent));
         holder.tvItemBillAmount.setText(mContext.getResources().getString(R.string.bill_amount,
                 alTipHistory.get(position).totalBill));
-        holder.tvItemLocation.setText(mContext.getResources().getString(R.string.location,
-                alTipHistory.get(position).address));
+        if (FrameworkUtils.checkIfNull(alTipHistory.get(position).address)) {
+            // set visibility
+            FrameworkUtils.setViewGone(holder.tvItemLocation);
+        } else {
+            holder.tvItemLocation.setText(mContext.getResources().getString(R.string.location,
+                    alTipHistory.get(position).address));
+        }
+
     }
 
     @Override

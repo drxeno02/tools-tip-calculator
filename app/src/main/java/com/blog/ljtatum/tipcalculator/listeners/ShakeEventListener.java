@@ -10,43 +10,42 @@ import android.hardware.SensorEventListener;
 public class ShakeEventListener implements SensorEventListener {
 
     /**
-     * Minimum movement force to consider.
+     * Minimum movement force to consider
      */
     private static final int MIN_FORCE = 13;
 
     /**
-     * Minimum times in a shake gesture that the direction of movement needs to
-     * change.
+     * Minimum times in a shake gesture that the direction of movement needs to change
      */
     private static final int MIN_DIRECTION_CHANGE = 5;
 
     /**
-     * Maximum pause between movements.
+     * Maximum pause between movements
      */
     private static final int MAX_PAUSE_BETHWEEN_DIRECTION_CHANGE = 200;
 
     /**
-     * Maximum allowed time for shake gesture.
+     * Maximum allowed time for shake gesture
      */
     private static final int MAX_TOTAL_DURATION_OF_SHAKE = 400;
 
     /**
-     * Time when the gesture started.
+     * Time when the gesture started
      */
     private long mFirstDirectionChangeTime = 0;
 
     /**
-     * Time when the last movement started.
+     * Time when the last movement started
      */
     private long mLastDirectionChangeTime;
 
     /**
-     * How many movements are considered so far.
+     * How many movements are considered so far
      */
     private int mDirectionChangeCount = 0;
 
     /**
-     * The last x position.
+     * The last x position
      */
     private float lastX = 0;
 
@@ -56,15 +55,20 @@ public class ShakeEventListener implements SensorEventListener {
     private float lastY = 0;
 
     /**
-     * The last z position.
+     * The last z position
      */
     private float lastZ = 0;
 
     /**
-     * OnShakeListener that is called when shake is detected.
+     * OnShakeListener that is called when shake is detected
      */
     private OnShakeListener mShakeListener;
 
+    /**
+     * Method is used to set callback for when phone is shaken by user
+     *
+     * @param listener Callback for when phone is shaken by user
+     */
     public void setOnShakeListener(OnShakeListener listener) {
         mShakeListener = listener;
     }
@@ -138,12 +142,12 @@ public class ShakeEventListener implements SensorEventListener {
     }
 
     /**
-     * Interface for shake gesture.
+     * Interface for shake gesture
      */
     public interface OnShakeListener {
 
         /**
-         * Called when shake gesture is detected.
+         * Called when shake gesture is detected
          */
         void onShake();
     }

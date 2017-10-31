@@ -125,6 +125,7 @@
                 android:layout_weight="0.5"
                 android:gravity="right|end"
                 android:hint="@string/txt_hint_dollar"
+                android:imeOptions="actionDone"
                 android:inputType="numberDecimal"
                 android:maxLength="10"
                 android:maxLines="1"

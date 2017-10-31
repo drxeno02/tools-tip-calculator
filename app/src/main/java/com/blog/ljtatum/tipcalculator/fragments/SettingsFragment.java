@@ -186,7 +186,6 @@ public class SettingsFragment extends BaseFragment implements View.OnClickListen
         switchSaveLocation.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                Logger.v("TEST", "onCheckedChanged called!");
                 // check location services
                 if (b) {
                     // request location permission if permission is not enabled
@@ -195,18 +194,14 @@ public class SettingsFragment extends BaseFragment implements View.OnClickListen
                         String[] permissions = {Manifest.permission.ACCESS_FINE_LOCATION,
                                 Manifest.permission.ACCESS_COARSE_LOCATION};
                         requestPermissions(permissions, PERMISSION_REQUEST_CODE_LOCATION);
-                        Logger.e("TEST", "NEW STUFF requesting permission");
                     } else if (!DeviceUtils.isLocationServiceEnabled(mContext)) {
                         isLocationServicePending = true;
                         showLocationServiceDisabledDialog();
                     } else {
-                        Logger.e("TEST", "Been down this rodeo already");
-
                         // update default save location settings
                         mSharedPref.setPref(Constants.KEY_DEFAULT_SAVE_LOCATION, b);
                         tvSaveLocation.setText(b ? getActivity().getResources().getString(R.string.settings_save_location, "Enabled") :
                                 getActivity().getResources().getString(R.string.settings_save_location, "Disabled"));
-                        Logger.d("TEST", "save 3");
                         // show banner
                         Crouton.showText(getActivity(), "Saved!", Style.CONFIRM);
 
@@ -216,11 +211,9 @@ public class SettingsFragment extends BaseFragment implements View.OnClickListen
                         isLocationServicePending = false; // reset
                     } else {
                         // update default save location settings
-                        Logger.e("TEST", "what is b? " + b);
                         mSharedPref.setPref(Constants.KEY_DEFAULT_SAVE_LOCATION, b);
                         tvSaveLocation.setText(b ? getActivity().getResources().getString(R.string.settings_save_location, "Enabled") :
                                 getActivity().getResources().getString(R.string.settings_save_location, "Disabled"));
-                        Logger.d("TEST", "save 2");
                         // show banner
                         Crouton.showText(getActivity(), "Saved!", Style.CONFIRM);
                     }
@@ -432,6 +425,10 @@ public class SettingsFragment extends BaseFragment implements View.OnClickListen
     @Override
     public void onDetach() {
         super.onDetach();
+        if (!FrameworkUtils.checkIfNull(mOnFragmentRemovedListener)) {
+            // set listener
+            mOnFragmentRemovedListener.onFragmentRemoved();
+        }
         // hide keyboard
         DeviceUtils.hideKeyboard(mContext, getActivity().getWindow().getDecorView().getWindowToken());
         // enable drawer

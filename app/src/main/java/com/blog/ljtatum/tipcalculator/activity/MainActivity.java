@@ -64,12 +64,15 @@ import com.blog.ljtatum.tipcalculator.R;
 import com.blog.ljtatum.tipcalculator.constants.Constants;
 import com.blog.ljtatum.tipcalculator.constants.Durations;
 import com.blog.ljtatum.tipcalculator.fragments.AboutFragment;
+import com.blog.ljtatum.tipcalculator.fragments.BaseFragment;
 import com.blog.ljtatum.tipcalculator.fragments.GuideFragment;
 import com.blog.ljtatum.tipcalculator.fragments.HistoryFragment;
 import com.blog.ljtatum.tipcalculator.fragments.PrivacyFragment;
 import com.blog.ljtatum.tipcalculator.fragments.SettingsFragment;
 import com.blog.ljtatum.tipcalculator.fragments.ShareFragment;
+import com.blog.ljtatum.tipcalculator.listeners.OnFragmentRemoved;
 import com.blog.ljtatum.tipcalculator.listeners.ShakeEventListener;
+import com.blog.ljtatum.tipcalculator.logger.Logger;
 import com.blog.ljtatum.tipcalculator.utils.DialogUtils;
 import com.blog.ljtatum.tipcalculator.utils.Utils;
 import com.google.android.gms.ads.AdRequest;
@@ -255,7 +258,6 @@ public class MainActivity extends BaseActivity implements OnClickListener,
         mDrawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
-
         // instantiate vibrator
         v = (Vibrator) MainActivity.this.getSystemService(Context.VIBRATOR_SERVICE);
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
@@ -337,8 +339,10 @@ public class MainActivity extends BaseActivity implements OnClickListener,
                     // hide keyboard
                     DeviceUtils.hideKeyboard(mContext, getWindow().getDecorView().getWindowToken());
 
-                    // process location change
-                    saveHistoryData();
+                    if (Double.parseDouble(tvTotal.getText().toString().replaceAll("[$,]", "")) > 0) {
+                        // process location change
+                        saveHistoryData();
+                    }
                 }
                 return false;
             }
@@ -388,6 +392,18 @@ public class MainActivity extends BaseActivity implements OnClickListener,
                         locationResult.getLastLocation().getLongitude());
             }
         };
+
+        // onFragmentRemoved listener
+        BaseFragment.onFragmentRemoved(new OnFragmentRemoved() {
+            @Override
+            public void onFragmentRemoved() {
+                if (FrameworkUtils.checkIfNull(getTopFragment())) {
+                    edtBill.requestFocus();
+                    // show keyboard
+                    DeviceUtils.showKeyboard(mContext);
+                }
+            }
+        });
     }
 
     /**
@@ -478,44 +494,48 @@ public class MainActivity extends BaseActivity implements OnClickListener,
      * Method is used to retrieve address with reverse geolocation
      */
     private void saveHistoryData() {
-        // instantiate history model
-        final HistoryModel historyModel = new HistoryModel();
+        try {
+            // instantiate history model
+            final HistoryModel historyModel = new HistoryModel();
 
-        // only track location if save location setting is true
-        if (mSharedPref.getBooleanPref(Constants.KEY_DEFAULT_SAVE_LOCATION, true) &&
-                !FrameworkUtils.checkIfNull(mCurrentLocation)) {
-            Geocoder geocoder = new Geocoder(this, Locale.getDefault());
-            List<Address> addresses = new ArrayList<>();
-            try {
-                addresses = geocoder.getFromLocation(mCurrentLocation.latitude, mCurrentLocation.longitude, 1);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            // only track location if save location setting is true
+            if (mSharedPref.getBooleanPref(Constants.KEY_DEFAULT_SAVE_LOCATION, true) &&
+                    !FrameworkUtils.checkIfNull(mCurrentLocation)) {
+                Geocoder geocoder = new Geocoder(this, Locale.getDefault());
+                List<Address> addresses = new ArrayList<>();
+                try {
+                    addresses = geocoder.getFromLocation(mCurrentLocation.latitude, mCurrentLocation.longitude, 1);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
 
-            // store address information
-            if (!FrameworkUtils.checkIfNull(addresses)) {
-                // populate history model
-                historyModel.address = addresses.get(0).getAddressLine(0);
-                // feature name
-                if (!FrameworkUtils.isStringEmpty(addresses.get(0).getFeatureName())) {
-                    historyModel.featureName = addresses.get(0).getFeatureName();
+                // store address information
+                if (!FrameworkUtils.checkIfNull(addresses)) {
+                    // populate history model
+                    historyModel.address = addresses.get(0).getAddressLine(0);
+                    // feature name
+                    if (!FrameworkUtils.isStringEmpty(addresses.get(0).getFeatureName())) {
+                        historyModel.featureName = addresses.get(0).getFeatureName();
+                    }
                 }
             }
+
+            historyModel.latitude = !FrameworkUtils.checkIfNull(mCurrentLocation) ? mCurrentLocation.latitude : 0;
+            historyModel.longitude = !FrameworkUtils.checkIfNull(mCurrentLocation) ? mCurrentLocation.longitude : 0;
+            historyModel.day = FrameworkUtils.parseDayOfTheWeek(Calendar.getInstance());
+            historyModel.date = FrameworkUtils.parseDateTime(Calendar.getInstance(), "MM/dd/yyyy hh:mm:ss a");
+            historyModel.totalBill = tvTotal.getText().toString().replaceAll("[$,]", "");
+            historyModel.tipPercent = String.valueOf(mTipPercent);
+            // tip amount
+            double temp = Double.parseDouble(tvTotal.getText().toString().replaceAll("[$,]", "")) -
+                    Double.parseDouble(edtBill.getText().toString().replaceAll("[$,]", ""));
+            historyModel.tipAmount = String.valueOf(FrameworkUtils.convertToDollarFormat(temp));
+
+            // save data to Firebase
+            FirebaseUtils.addValueContinuous(historyModel);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-
-        historyModel.latitude = !FrameworkUtils.checkIfNull(mCurrentLocation) ? mCurrentLocation.latitude : 0;
-        historyModel.longitude = !FrameworkUtils.checkIfNull(mCurrentLocation) ? mCurrentLocation.longitude : 0;
-        historyModel.day = FrameworkUtils.parseDayOfTheWeek(Calendar.getInstance());
-        historyModel.date = FrameworkUtils.parseDateTime(Calendar.getInstance(), "MM/dd/yyyy hh:mm:ss a");
-        historyModel.totalBill = tvTotal.getText().toString().replaceAll("[$,]", "");
-        historyModel.tipPercent = String.valueOf(mTipPercent);
-        // tip amount
-        double temp = Double.parseDouble(tvTotal.getText().toString().replaceAll("[$,]", "")) -
-                Double.parseDouble(edtBill.getText().toString().replaceAll("[$,]", ""));
-        historyModel.tipAmount = String.valueOf(FrameworkUtils.convertToDollarFormat(temp));
-
-        // save data to Firebase
-        FirebaseUtils.addValueContinuous(historyModel);
     }
 
     /**
@@ -744,6 +764,7 @@ public class MainActivity extends BaseActivity implements OnClickListener,
         spinner.setSelection(mSharedPref.getIntPref(Constants.KEY_DEFAULT_TIP, 15));
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
+            @SuppressLint("StringFormatInvalid")
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
                 mTipPercent = spinner.getSelectedItemPosition();
@@ -1010,6 +1031,8 @@ public class MainActivity extends BaseActivity implements OnClickListener,
     public void onPause() {
         // pause adview
         adView.pause();
+        // hide keyboard
+        DeviceUtils.hideKeyboard(mContext, getWindow().getDecorView().getWindowToken());
 
         if (!FrameworkUtils.checkIfNull(mFusedLocationClient) && !FrameworkUtils.checkIfNull(mLocationCallback)) {
             // remove location updates
@@ -1035,6 +1058,11 @@ public class MainActivity extends BaseActivity implements OnClickListener,
     @Override
     public void onResume() {
         super.onResume();
+        if (FrameworkUtils.checkIfNull(getTopFragment())) {
+            edtBill.requestFocus();
+            // show keyboard
+            DeviceUtils.showKeyboard(mContext);
+        }
 
         // resume adview
         adView.resume();
