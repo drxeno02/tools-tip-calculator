@@ -7,7 +7,7 @@
     <string name="txt_num">1</string>
     <string name="txt_zero_dollar">$0.00</string>
     <string name="txt_percent">%1$s\%%</string>
-    <string name="txt_percent_default">15\%%</string>
+    <string name="txt_percent_default">15&#37;</string>
     <string name="txt_poor">Poor</string>
     <string name="txt_fair">Fair</string>
     <string name="txt_good">Good!</string>
@@ -87,16 +87,16 @@
 		Traditionally, tourism industry employees get paid enough that they don\'t need a tip.
 		\n\nLocals will tell you not to tip, but it has become more common as a result of Americans
 		traveling to the country.\n\nIf you are in a really nice restaurant or bar or any tourist
-		spot, you can tip 10\%%-15\%%.</string>
+		spot, you can tip 10&#37;-15&#37;.</string>
     <string name="guide_bahamas">Tipping is expected in these islands, and you should tip
 		according to the quality of service.\n\nBellboys and porters usually receive $1-$2 per bag,
-		while most other servers, e.g. waiters, taxis, ect receive 15\%%.</string>
+		while most other servers, e.g. waiters, taxis, ect receive 15&#37;.</string>
     <string name="guide_canada">Gratuities are seldom included in Canadian restaurants, so it is
-		up to you to provide the tip.\n\nIt\'s customary to tip approximately 15-20\%% on the total
+		up to you to provide the tip.\n\nIt\'s customary to tip approximately 15-20&#37; on the total
 		bill before tax, less for poor service, more for truly exceptional service.\n\nMany restaurants,
-		may charge an automatic 15\%%-18\%% gratuity for larger groups.</string>
+		may charge an automatic 15&#37;-18&#37; gratuity for larger groups.</string>
     <string name="guide_china">If you are dining or drinking somewhere local, there is no need to tip.\n\n
-		If you are at a nicer establishment, you might notice a 10\%%-15\%% service charge added to your
+		If you are at a nicer establishment, you might notice a 10&#37;-15&#37; service charge added to your
 		bill. There is no need to tip anything in addition to that.\n\nBe careful how you use your
 		chopsticks. For example, it is rude to stand them upright in your rice bowl or point them
 		at someone else.</string>
@@ -108,13 +108,13 @@
 		as wages are extremely low. A dollar to them goes a long way. Guests can leave small items
 		and usually $1 to $2 each morning on the pillows for the maids and just add a little note to
 		let them know that it is for them.</string>
-    <string name="guide_france">Your bill will include a 15\%% service charge, but locals usually tip 10\%%
+    <string name="guide_france">Your bill will include a 15&#37; service charge, but locals usually tip 10&#37;
 		on top of that.\n\nLooking to save some coin? Just remember there is no need to tip at bars!
 		\n\nSplitting the bill is considered unsophisticated in France, so always offer to pay the
 		whole bill.</string>
     <string name="guide_germany">Round up to the nearest euro and consider this their tip, especially
 		when ordering only one item, like a drink.\n\nIf you want to leave a more substantial tip
-		(for a larger meal), leave 10\%%-15\%%, and let your service know what you are tipping before you
+		(for a larger meal), leave 10&#37;-15&#37;, and let your service know what you are tipping before you
 		pay.\n\nWater or bread served at restaurants is not free. Asking for tap water is uncommon and
 		frowned upon; the service will often turn down your request.</string>
     <string name="guide_ghana">The way money is used and talked about in Ghana may be very different
@@ -135,30 +135,30 @@
 		be fair enough. At hotels, porters can be tipped anything from 50 shillings to 100 shillings.
 		\n\nYou may give your housekeeper anything from 200 shillings to 500 shillings per week to
 		ensure motivation and good service by her.</string>
-    <string name="guide_mexico">At restaurants, it is customary to leave a 10\%%-15\%% tip.\n\nIf there is
-        an amount listed as "IVA" on your bill, that\'s 16\%% of your bill, so you can also tip that
+    <string name="guide_mexico">At restaurants, it is customary to leave a 10&#37;-15&#37; tip.\n\nIf there is
+        an amount listed as "IVA" on your bill, that\'s 16&#37; of your bill, so you can also tip that
         instead.\n\nSometimes the tip will be included in your restaurant bill, so there will be no
         need to leave any additional tip.\n\nIt\'s completely acceptable to eat with your hands here.</string>
     <string name="guide_niger">Tipping is appreciated in Niger and, while a service charge is
         generally added to restaurant bills, extra tips are still appreciated. Taxi drivers, tour
-        guides, barmen and porters all take tips.\n\n10\%% tip is customary. Be careful with
+        guides, barmen and porters all take tips.\n\n10&#37; tip is customary. Be careful with
         over tipping as you may draw unwanted, and even dangerous, attention to yourself.</string>
     <string name="guide_spain">Locals tip very modestly, leaving behind small change or rounding up
 		to the nearest Euro is common. However, if you are happy with your service, you should tip
-		between 7\%%-15\%% in cash.</string>
+		between 7&#37;-15&#37; in cash.</string>
     <string name="guide_united_kingdom">Tipping is not expected in the UK in the way it is in other
-		countries. However, a small tip is still considered a nice gesture. If you tip between 10\%%
-		and 12\%% you are too kind. This is enough to display your generosity and satisfaction with
+		countries. However, a small tip is still considered a nice gesture. If you tip between 10&#37;
+		and 12&#37; you are too kind. This is enough to display your generosity and satisfaction with
 		the service.</string>
     <string name="guide_united_states">For waiters at sit-down restaurants, bartenders, barbers,
 		hair-dressers, taxi drivers, tour guides, and food delivery, the tip should be calculated
-		as a percentage of your total bill. Tip 10\%% if you are not completely happy. 15\%% indicates
-		that the service was acceptable. And 20\%% means the service was really good.</string>
+		as a percentage of your total bill. Tip 10&#37; if you are not completely happy. 15&#37; indicates
+		that the service was acceptable. And 20&#37; means the service was really good.</string>
 
     <!-- about -->
     <string name="follow_me">Follow Me:</string>
     <string name="copyright_year">Copyright %s, Leonard Tatum. All Rights Reserved.</string>
-    <string name="about_desc">This app is 100\%% free, created for the education, convenience
+    <string name="about_desc">This app is 100&#37; free, created for the education, convenience
 		and use of the public. There will never be in-app purchases or alternative paid versions
 		of the app. To learn about other apps Leonard Tatum is working on, connect with him on social
 		media or send him an email with your questions or comments. Cheers!</string>
@@ -232,11 +232,11 @@
 			\n\nQ5: How much to tip? 
 			\n\nA5: It’s great that you have an application in your hands to 
 			help you determine this! No matter how poor the quality of services 
-			was, leaving a tip of less than 10\%% will not be looked upon
+			was, leaving a tip of less than 10&#37; will not be looked upon
 			favorably nor will it paint you in a very good light, in case of 
-			future visits. Tips amounting to 18-20\%% of the total bill amount
+			future visits. Tips amounting to 18-20&#37; of the total bill amount
 			are interpreted to mean the service was satisfactory. Anything 
-			above 25\%% means that the services were excellent! Use this
+			above 25&#37; means that the services were excellent! Use this
 			application, and share it with your friends to spread the practice 
 			of giving your waiters the royal tipping treatment!</string>
 

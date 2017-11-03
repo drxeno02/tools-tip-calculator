@@ -618,42 +618,46 @@ public class MainActivity extends BaseActivity implements OnClickListener,
      * Method is used to update bill amount
      */
     private void editTextUpdate() {
-        // parse, convert and update appropriate values
-        double doubleBill = Double.parseDouble(edtBill.getText().toString());
+        try {
+            // parse, convert and update appropriate values
+            double doubleBill = Double.parseDouble(edtBill.getText().toString());
 
-        String strParse = String.valueOf(doubleBill);
-        int integerPlaces = strParse.indexOf('.');
-        if (edtBill.getText().toString().contains(".") && decimalPlaces >= 1) {
+            String strParse = String.valueOf(doubleBill);
+            int integerPlaces = strParse.indexOf('.');
+            if (edtBill.getText().toString().contains(".") && decimalPlaces >= 1) {
+
+                // handle special case
+                if (isSpecialCase) {
+                    isSpecialCase = false;
+                    decimalPlaces = 2; // prevents loop
+                } else {
+                    decimalPlaces = strParse.length() - integerPlaces - 1;
+                }
+            } else {
+                decimalPlaces = strParse.length() - integerPlaces - 2;
+            }
+            // total bill amount
+            mTotalBill = FrameworkUtils.convertToDollarFormat(doubleBill);
 
             // handle special case
-            if (isSpecialCase) {
-                isSpecialCase = false;
-                decimalPlaces = 2; // prevents loop
-            } else {
-                decimalPlaces = strParse.length() - integerPlaces - 1;
+            if (decimalPlaces >= 3) {
+                Crouton.showText(MainActivity.this, "Please maintain proper dollar format ex- 'xxx.xx')", Style.ALERT);
+                edtBill.setText(mTotalBill);
             }
-        } else {
-            decimalPlaces = strParse.length() - integerPlaces - 2;
-        }
-        // total bill amount
-        mTotalBill = FrameworkUtils.convertToDollarFormat(doubleBill);
 
-        // handle special case
-        if (decimalPlaces >= 3) {
-            Crouton.showText(MainActivity.this, "Please maintain proper dollar format ex- 'xxx.xx')", Style.ALERT);
-            edtBill.setText(mTotalBill);
-        }
+            // handle special case
+            if (integerPlaces == 7 && !edtBill.getText().toString().contains(".")) {
+                edtBill.setText(mTotalBill);
+            }
 
-        // handle special case
-        if (integerPlaces == 7 && !edtBill.getText().toString().contains(".")) {
-            edtBill.setText(mTotalBill);
-        }
-
-        // handle special case
-        if (integerPlaces == 7 && decimalPlaces <= 1 && edtBill.getText().toString().contains(".")) {
-            isSpecialCase = true;
-            decimalPlaces = 2; // prevents loop
-            edtBill.setText(mTotalBill);
+            // handle special case
+            if (integerPlaces == 7 && decimalPlaces <= 1 && edtBill.getText().toString().contains(".")) {
+                isSpecialCase = true;
+                decimalPlaces = 2; // prevents loop
+                edtBill.setText(mTotalBill);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
