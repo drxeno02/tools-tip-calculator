@@ -156,7 +156,7 @@ public class FirebaseUtils {
      *
      * @param alData Data to store to Firebase
      */
-    private static void addValues(List<?> alData) {
+    private static void addValues(@NonNull List<?> alData) {
         if (!FrameworkUtils.checkIfNull(mWriteDbReference)) {
             // set value
             mWriteDbReference.child(FrameworkUtils.getAndroidId(mContext)).setValue(alData);

@@ -171,7 +171,7 @@
 	or traded to others. \n\nInformation collected may be used to (i) remember information so
 	you will not have to re-enter it during your session or the next sessions you are using the
 	Service (ii) provide personalize content and information to you and others, which could
-	include online ads or other forms or marketing (iii) provide, improve, test and monitor the
+	include online ads or other forms of marketing (iii) provide, improve, test and monitor the
 	effectiveness of our Service (iv) develop and test new products and features (v) diagnose or
 	fix bugs and issues.</string>
 
@@ -181,7 +181,7 @@
     <string name="settings_save_location">Save Location: %s</string>
     <string name="settings_shake">Shake To Reset: %s</string>
     <string name="settings_round_off">Default Round Off: %s</string>
-    <string name="settings_set_default_tip">Set Default Tip%:</string>
+    <string name="settings_set_default_tip">Set Default Tip&#37;:</string>
     <string name="settings_set_default_shared_by">Set Default Shared By:</string>
     <string name="settings_enabled">Enabled</string>
     <string name="settings_disabled">Disabled</string>

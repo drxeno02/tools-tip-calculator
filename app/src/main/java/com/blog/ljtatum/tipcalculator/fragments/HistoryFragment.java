@@ -124,7 +124,8 @@ public class HistoryFragment extends BaseFragment implements View.OnClickListene
                 }
 
                 // update adapter
-                alTipHistory = new ArrayList<>(map.values());
+                alTipHistory = new ArrayList<>(map.size() > 0 && !map.isEmpty() ? map.values() :
+                        new HashMap<String, HistoryModel>().values());
                 mHistoryAdapter.updateData(alTipHistory);
 
                 int counter = 0;
