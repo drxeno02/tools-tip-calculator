@@ -63,9 +63,10 @@ public class ShareUtils {
                     // see if official Facebook is found
                     boolean resolved = false;
                     List<ResolveInfo> matches = context.getPackageManager().queryIntentActivities(intent, 0);
-                    for (ResolveInfo info : matches) {
-                        if (info.activityInfo.packageName.toLowerCase().startsWith(FACEBOOK_PACKAGE)) {
-                            intent.setPackage(info.activityInfo.packageName);
+                    for (ResolveInfo resolveInfo : matches) {
+                        if (!FrameworkUtils.isStringEmpty(resolveInfo.activityInfo.packageName) &&
+                                resolveInfo.activityInfo.packageName.toLowerCase().startsWith(FACEBOOK_PACKAGE)) {
+                            intent.setPackage(resolveInfo.activityInfo.packageName);
                             resolved = true;
                             break;
                         }
@@ -87,8 +88,9 @@ public class ShareUtils {
                     List<ResolveInfo> matches = packageManager.queryIntentActivities(intent,
                             PackageManager.MATCH_DEFAULT_ONLY);
                     for (ResolveInfo resolveInfo : matches) {
-                        if (resolveInfo.activityInfo.packageName.toLowerCase().startsWith(TWITTER_PACKAGE) ||
-                                resolveInfo.activityInfo.packageName.toLowerCase().startsWith(TWITTER_PACKAGE_ANDROID)) {
+                        if (!FrameworkUtils.isStringEmpty(resolveInfo.activityInfo.packageName) &&
+                                (resolveInfo.activityInfo.packageName.toLowerCase().startsWith(TWITTER_PACKAGE) ||
+                                resolveInfo.activityInfo.packageName.toLowerCase().startsWith(TWITTER_PACKAGE_ANDROID))) {
                             intent.setClassName(resolveInfo.activityInfo.packageName,
                                     resolveInfo.activityInfo.name);
                             resolved = true;
@@ -114,8 +116,9 @@ public class ShareUtils {
                     // see if official Linkedin is found
                     List<ResolveInfo> matches = packageManager.queryIntentActivities(intent, 0);
                     for (ResolveInfo resolveInfo : matches) {
-                        if (resolveInfo.activityInfo.packageName.toLowerCase().startsWith(LINKEDIN_PACKAGE) ||
-                                resolveInfo.activityInfo.packageName.toLowerCase().startsWith(LINKEDIN_PACKAGE_ANDROID)) {
+                        if (!FrameworkUtils.isStringEmpty(resolveInfo.activityInfo.packageName) &&
+                                (resolveInfo.activityInfo.packageName.toLowerCase().startsWith(LINKEDIN_PACKAGE) ||
+                                resolveInfo.activityInfo.packageName.toLowerCase().startsWith(LINKEDIN_PACKAGE_ANDROID))) {
                             intent.setPackage(resolveInfo.activityInfo.packageName);
                             break;
                         }
@@ -131,9 +134,10 @@ public class ShareUtils {
                     // see if official Facebook is found
                     boolean resolved = false;
                     List<ResolveInfo> matches = context.getPackageManager().queryIntentActivities(intent, 0);
-                    for (ResolveInfo info : matches) {
-                        if (info.activityInfo.packageName.toLowerCase().startsWith(FACEBOOK_PACKAGE)) {
-                            intent.setPackage(info.activityInfo.packageName);
+                    for (ResolveInfo resolveInfo : matches) {
+                        if (!FrameworkUtils.isStringEmpty(resolveInfo.activityInfo.packageName) &&
+                                resolveInfo.activityInfo.packageName.toLowerCase().startsWith(FACEBOOK_PACKAGE)) {
+                            intent.setPackage(resolveInfo.activityInfo.packageName);
                             resolved = true;
                             break;
                         }
@@ -154,8 +158,9 @@ public class ShareUtils {
                     List<ResolveInfo> matches = packageManager.queryIntentActivities(intent,
                             PackageManager.MATCH_DEFAULT_ONLY);
                     for (ResolveInfo resolveInfo : matches) {
-                        if (resolveInfo.activityInfo.packageName.toLowerCase().startsWith(TWITTER_PACKAGE) ||
-                                resolveInfo.activityInfo.packageName.toLowerCase().startsWith(TWITTER_PACKAGE_ANDROID)) {
+                        if (!FrameworkUtils.isStringEmpty(resolveInfo.activityInfo.packageName) &&
+                                (resolveInfo.activityInfo.packageName.toLowerCase().startsWith(TWITTER_PACKAGE) ||
+                                resolveInfo.activityInfo.packageName.toLowerCase().startsWith(TWITTER_PACKAGE_ANDROID))) {
                             intent.setClassName(resolveInfo.activityInfo.packageName,
                                     resolveInfo.activityInfo.name);
                             resolved = true;
@@ -180,8 +185,9 @@ public class ShareUtils {
                     // see if official Linkedin is found
                     List<ResolveInfo> matches = packageManager.queryIntentActivities(intent, 0);
                     for (ResolveInfo resolveInfo : matches) {
-                        if (resolveInfo.activityInfo.packageName.toLowerCase().startsWith(LINKEDIN_PACKAGE) ||
-                                resolveInfo.activityInfo.packageName.toLowerCase().startsWith(LINKEDIN_PACKAGE_ANDROID)) {
+                        if (!FrameworkUtils.isStringEmpty(resolveInfo.activityInfo.packageName) &&
+                                (resolveInfo.activityInfo.packageName.toLowerCase().startsWith(LINKEDIN_PACKAGE) ||
+                                resolveInfo.activityInfo.packageName.toLowerCase().startsWith(LINKEDIN_PACKAGE_ANDROID))) {
                             intent.setPackage(resolveInfo.activityInfo.packageName);
                             break;
                         }

@@ -24,20 +24,19 @@ ext {
 }
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion '26.0.2'
+    compileSdkVersion 26
 
     // construct version name
     def versionMajor = 2
     def versionMinor = 0
-    def versionPatch = 10
-    def code = 11;
+    def versionPatch = 11
+    def code = 12;
 
     defaultConfig {
         applicationId "com.blog.ljtatum.tipcalculator"
         versionName "${versionMajor}.${versionMinor}.${versionPatch}"
         minSdkVersion 16
-        targetSdkVersion 25
+        targetSdkVersion 26
         versionCode code
 
         //noinspection GroovyAssignabilityCheck
@@ -79,8 +78,11 @@ android {
 }
 
 dependencies {
-    compile project(path: ':ApplicationFramework')
-    compile('com.crashlytics.sdk.android:crashlytics:2.6.7@aar') {
+    api project(path: ':ApplicationFramework')
+    api('com.crashlytics.sdk.android:crashlytics:2.6.7@aar') {
         transitive = true;
     }
 }
+
+// THIS IS REQUIRED FOR FIREBASE (KEEP HERE)
+apply plugin: 'com.google.gms.google-services'

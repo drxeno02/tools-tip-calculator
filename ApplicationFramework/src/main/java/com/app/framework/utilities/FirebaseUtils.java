@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 
 import com.app.framework.listeners.OnFirebaseValueListener;
 import com.app.framework.model.HistoryModel;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -44,7 +45,7 @@ public class FirebaseUtils {
     /**
      * Constructor
      */
-    public FirebaseUtils(Context context) {
+    public FirebaseUtils(@NonNull Context context) {
         mContext = context;
         mWriteDbReference = FirebaseDatabase.getInstance().getReference();
         mQueryDbReference = FirebaseDatabase.getInstance().getReference(FrameworkUtils.getAndroidId(mContext));
@@ -57,7 +58,7 @@ public class FirebaseUtils {
      * @param data Data to store to Firebase
      */
     public static void addValueReplace(Object data) {
-        if (!FrameworkUtils.checkIfNull(mWriteDbReference)) {
+        if (!FrameworkUtils.checkIfNull(mContext) && !FrameworkUtils.checkIfNull(mWriteDbReference)) {
             // set value
             mWriteDbReference.child(FrameworkUtils.getAndroidId(mContext)).setValue(data);
             mWriteDbReference.addValueEventListener(new ValueEventListener() {
@@ -157,7 +158,7 @@ public class FirebaseUtils {
      * @param alData Data to store to Firebase
      */
     private static void addValues(@NonNull List<?> alData) {
-        if (!FrameworkUtils.checkIfNull(mWriteDbReference)) {
+        if (!FrameworkUtils.checkIfNull(mContext) && !FrameworkUtils.checkIfNull(mWriteDbReference)) {
             // set value
             mWriteDbReference.child(FrameworkUtils.getAndroidId(mContext)).setValue(alData);
             mWriteDbReference.addValueEventListener(new ValueEventListener() {

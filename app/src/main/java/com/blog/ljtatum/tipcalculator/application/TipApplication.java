@@ -18,10 +18,14 @@ public class TipApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        // instantiate FireBase
-        FirebaseApp.initializeApp(this);
-        // instantiate FirebaseUtils
-        new FirebaseUtils(getApplicationContext());
+        try {
+            // instantiate FireBase
+            FirebaseApp.initializeApp(this);
+            // instantiate FirebaseUtils
+            new FirebaseUtils(getApplicationContext());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         // instantiate crashlytics
         Crashlytics crashlyticsKit = new Crashlytics.Builder()
                 .core(new CrashlyticsCore.Builder().disabled(BuildConfig.DEBUG).build()).build();

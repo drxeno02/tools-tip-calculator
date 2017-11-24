@@ -72,7 +72,6 @@ import com.blog.ljtatum.tipcalculator.fragments.SettingsFragment;
 import com.blog.ljtatum.tipcalculator.fragments.ShareFragment;
 import com.blog.ljtatum.tipcalculator.listeners.OnFragmentRemoved;
 import com.blog.ljtatum.tipcalculator.listeners.ShakeEventListener;
-import com.blog.ljtatum.tipcalculator.logger.Logger;
 import com.blog.ljtatum.tipcalculator.utils.DialogUtils;
 import com.blog.ljtatum.tipcalculator.utils.Utils;
 import com.google.android.gms.ads.AdRequest;
