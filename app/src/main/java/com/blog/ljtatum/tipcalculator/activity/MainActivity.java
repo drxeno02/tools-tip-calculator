@@ -767,7 +767,7 @@ public class MainActivity extends BaseActivity implements OnClickListener,
         spinner.setSelection(mSharedPref.getIntPref(Constants.KEY_DEFAULT_TIP, 15));
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
-            @SuppressLint("StringFormatInvalid")
+            @SuppressLint({"StringFormatInvalid", "StringFormatMatches"})
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
                 mTipPercent = spinner.getSelectedItemPosition();
