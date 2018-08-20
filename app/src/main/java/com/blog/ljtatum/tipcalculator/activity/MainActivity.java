@@ -199,20 +199,20 @@ public class MainActivity extends BaseActivity implements OnClickListener,
 
         // rate this app
         new AppRaterUtil(mContext, mContext.getPackageName());
-        switchRoundOff = (Switch) findViewById(R.id.switch_round_off);
-        ivStar1 = (ImageView) findViewById(R.id.iv_star_1);
-        ivStar2 = (ImageView) findViewById(R.id.iv_star_2);
-        ivStar3 = (ImageView) findViewById(R.id.iv_star_3);
-        ivStar4 = (ImageView) findViewById(R.id.iv_star_4);
-        ivStar5 = (ImageView) findViewById(R.id.iv_star_5);
-        tvTip = (TextView) findViewById(R.id.tv_meta_tip);
-        tvPerson = (TextView) findViewById(R.id.tv_meta_person);
-        tvTotal = (TextView) findViewById(R.id.tv_meta_total);
-        edtBill = (EditText) findViewById(R.id.edt_bill);
-        btnClear = (Button) findViewById(R.id.btn_clear);
-        btnInc = (Button) findViewById(R.id.btn_inc);
-        btnDec = (Button) findViewById(R.id.btn_dec);
-        tvSharedBy = (TextView) findViewById(R.id.tv_meta_shared_by);
+        switchRoundOff = findViewById(R.id.switch_round_off);
+        ivStar1 = findViewById(R.id.iv_star_1);
+        ivStar2 = findViewById(R.id.iv_star_2);
+        ivStar3 = findViewById(R.id.iv_star_3);
+        ivStar4 = findViewById(R.id.iv_star_4);
+        ivStar5 = findViewById(R.id.iv_star_5);
+        tvTip = findViewById(R.id.tv_meta_tip);
+        tvPerson = findViewById(R.id.tv_meta_person);
+        tvTotal = findViewById(R.id.tv_meta_total);
+        edtBill = findViewById(R.id.edt_bill);
+        btnClear = findViewById(R.id.btn_clear);
+        btnInc = findViewById(R.id.btn_inc);
+        btnDec = findViewById(R.id.btn_dec);
+        tvSharedBy = findViewById(R.id.tv_meta_shared_by);
 
         // set default round-off value
         if (mSharedPref.getBooleanPref(Constants.KEY_DEFAULT_ROUND_OFF, true)) {
@@ -225,14 +225,14 @@ public class MainActivity extends BaseActivity implements OnClickListener,
         sharedNum = mSharedPref.getIntPref(Constants.KEY_DEFAULT_SHARED_BY, 1);
 
         // spinner
-        tvService = (TextView) findViewById(R.id.tv_meta_rating);
-        tvPercent = (TextView) findViewById(R.id.tv_meta_percent);
-        spinner = (Spinner) findViewById(R.id.spinner);
+        tvService = findViewById(R.id.tv_meta_rating);
+        tvPercent = findViewById(R.id.tv_meta_percent);
+        spinner = findViewById(R.id.spinner);
         populateSpinner();
 
         // drawer
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        mDrawerLayout = findViewById(R.id.drawer_layout);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, mDrawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close) {
@@ -258,12 +258,12 @@ public class MainActivity extends BaseActivity implements OnClickListener,
         toggle.syncState();
 
         // instantiate vibrator
-        v = (Vibrator) MainActivity.this.getSystemService(Context.VIBRATOR_SERVICE);
+        v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         mSensorListener = new ShakeEventListener();
 
         // ad banner
-        adView = (AdView) this.findViewById(R.id.ad_view);
+        adView = findViewById(R.id.ad_view);
         try {
             if (NetworkUtils.isNetworkAvailable(mContext)
                     && NetworkUtils.isConnected(mContext)) {

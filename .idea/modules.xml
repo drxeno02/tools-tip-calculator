@@ -3,9 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/ApplicationFramework/ApplicationFramework.iml" filepath="$PROJECT_DIR$/ApplicationFramework/ApplicationFramework.iml" />
-      <module fileurl="file://C:\AndroidStudio\Publish Workspace\tools-tip-calculator\TipCalculator.iml" filepath="C:\AndroidStudio\Publish Workspace\tools-tip-calculator\TipCalculator.iml" />
+      <module fileurl="file://$PROJECT_DIR$/TipCalculator.iml" filepath="$PROJECT_DIR$/TipCalculator.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://C:\AndroidStudio\Publish Workspace\tools-tip-calculator\TIPCALCULATOR-android\app\src\main\main.iml" filepath="C:\AndroidStudio\Publish Workspace\tools-tip-calculator\TIPCALCULATOR-android\app\src\main\main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/TIPCALCULATOR-android/app/src/main/main.iml" filepath="$PROJECT_DIR$/TIPCALCULATOR-android/app/src/main/main.iml" />
       <module fileurl="file://$PROJECT_DIR$/tools-tip-calculator.iml" filepath="$PROJECT_DIR$/tools-tip-calculator.iml" />
     </modules>
   </component>
