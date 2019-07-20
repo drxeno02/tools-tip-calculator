@@ -1,3 +1,6 @@
+apply plugin: 'com.android.application'
+apply plugin: 'io.fabric'
+
 buildscript {
     repositories {
         maven { url 'https://maven.fabric.io/public' }
@@ -7,8 +10,6 @@ buildscript {
         classpath 'io.fabric.tools:gradle:1.30.0'
     }
 }
-apply plugin: 'com.android.application'
-apply plugin: 'io.fabric'
 
 repositories {
     maven { url 'https://maven.fabric.io/public' }
@@ -24,7 +25,7 @@ ext {
 }
 
 android {
-    compileSdkVersion 26
+    compileSdkVersion 28
 
     // construct version name
     def versionMajor = 2
@@ -36,7 +37,7 @@ android {
         applicationId "com.blog.ljtatum.tipcalculator"
         versionName "${versionMajor}.${versionMinor}.${versionPatch}"
         minSdkVersion 16
-        targetSdkVersion 26
+        targetSdkVersion 28
         versionCode code
 
         //noinspection GroovyAssignabilityCheck
