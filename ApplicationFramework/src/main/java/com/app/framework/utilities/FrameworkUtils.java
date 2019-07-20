@@ -46,6 +46,8 @@ import java.util.Random;
  * strings and setting margins for different screens.
  */
 public class FrameworkUtils {
+    private static final String DATE_FORMAT = "MM/dd/yyyy hh:mm:ss a";
+
     private static final String EMPTY = "";
     private static final String NULL = "null";
 
@@ -195,10 +197,10 @@ public class FrameworkUtils {
      * @return True if input date is after the current date
      */
     public static boolean isDateAfterCurrentDate(@NonNull Date minDate, @NonNull String dateTime, String dateFormat) {
-        SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss a", Locale.ENGLISH);
+        SimpleDateFormat formatter = new SimpleDateFormat(DATE_FORMAT, Locale.ENGLISH);
         formatter.format(minDate.getTime());
         try {
-            Date parsedDate = parseDateTime(dateTime, "MM/dd/yyyy hh:mm:ss a");
+            Date parsedDate = parseDateTime(dateTime, DATE_FORMAT);
             return parsedDate.after(minDate);
         } catch (ParseException e) {
             e.printStackTrace();

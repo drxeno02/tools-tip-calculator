@@ -2,6 +2,7 @@ package com.blog.ljtatum.tipcalculator.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,14 +22,13 @@ import com.blog.ljtatum.tipcalculator.activity.MainActivity;
 
 public class ShareFragment extends BaseFragment implements View.OnClickListener {
 
-    private Context mContext;
     private View mRootView;
     private TextView tvFragmentHeader;
     private ImageView ivFb, ivTwitter, ivLinkedin;
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mRootView = inflater.inflate(R.layout.fragment_share, container, false);
 
         // instantiate views
@@ -43,10 +43,10 @@ public class ShareFragment extends BaseFragment implements View.OnClickListener 
      */
     private void initializeViews() {
         mContext = getActivity();
-        tvFragmentHeader = (TextView) mRootView.findViewById(R.id.tv_fragment_header);
-        ivFb = (ImageView) mRootView.findViewById(R.id.iv_fb);
-        ivTwitter = (ImageView) mRootView.findViewById(R.id.iv_twitter);
-        ivLinkedin = (ImageView) mRootView.findViewById(R.id.iv_linkedin);
+        tvFragmentHeader = mRootView.findViewById(R.id.tv_fragment_header);
+        ivFb = mRootView.findViewById(R.id.iv_fb);
+        ivTwitter = mRootView.findViewById(R.id.iv_twitter);
+        ivLinkedin = mRootView.findViewById(R.id.iv_linkedin);
 
         // set fragment header
         tvFragmentHeader.setText(getResources().getString(R.string.share));

@@ -1,8 +1,8 @@
 package com.blog.ljtatum.tipcalculator.fragments;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -37,18 +37,17 @@ public class HistoryFragment extends BaseFragment implements View.OnClickListene
 
     private static final int NUM_HISTORY_RESULTS = 50;
     private static final int NUM_DAYS_TIP_HISTORY = 30; // last 30 days
-    private Context mContext;
+
     private View mRootView;
     private TextView tvFragmentHeader, tvTipWeek, tvAvgPercWeek, tvAvgPercOverall, tvNoHistory;
     private LinearLayout llWrapper;
-    private RecyclerView rvHistory;
     private HistoryAdapter mHistoryAdapter;
     private ArrayList<HistoryModel> alTipHistory;
 
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mRootView = inflater.inflate(R.layout.fragment_history, container, false);
 
         // instantiate views
@@ -65,17 +64,16 @@ public class HistoryFragment extends BaseFragment implements View.OnClickListene
      * Method is used to instantiate views
      */
     private void initializeViews() {
-        mContext = getActivity();
         alTipHistory = new ArrayList<>();
 
         // instantiate views
-        llWrapper = (LinearLayout) mRootView.findViewById(R.id.ll_wrapper);
-        rvHistory = (RecyclerView) mRootView.findViewById(R.id.rv_history);
-        tvFragmentHeader = (TextView) mRootView.findViewById(R.id.tv_fragment_header);
-        tvTipWeek = (TextView) mRootView.findViewById(R.id.tv_total_tip_week);
-        tvAvgPercWeek = (TextView) mRootView.findViewById(R.id.tv_avg_tip_percentage_week);
-        tvAvgPercOverall = (TextView) mRootView.findViewById(R.id.tv_avg_tip_percentage_overall);
-        tvNoHistory = (TextView) mRootView.findViewById(R.id.tv_no_history);
+        llWrapper = mRootView.findViewById(R.id.ll_wrapper);
+        RecyclerView rvHistory = mRootView.findViewById(R.id.rv_history);
+        tvFragmentHeader = mRootView.findViewById(R.id.tv_fragment_header);
+        tvTipWeek = mRootView.findViewById(R.id.tv_total_tip_week);
+        tvAvgPercWeek = mRootView.findViewById(R.id.tv_avg_tip_percentage_week);
+        tvAvgPercOverall = mRootView.findViewById(R.id.tv_avg_tip_percentage_overall);
+        tvNoHistory = mRootView.findViewById(R.id.tv_no_history);
 
         // instantiate adapter
         LinearLayoutManager layoutManager = new LinearLayoutManager(mContext);
@@ -115,7 +113,7 @@ public class HistoryFragment extends BaseFragment implements View.OnClickListene
             public void onRetrieveDataChangeWithFilter(HashMap<String, HistoryModel> map) {
                 // dismiss progress dialog
                 DialogUtils.dismissProgressDialog();
-                if (map.size() > 0 && !map.isEmpty()) {
+                if (map.size() > 0) {
                     FrameworkUtils.setViewVisible(llWrapper);
                     FrameworkUtils.setViewGone(tvNoHistory);
                 } else {
@@ -124,7 +122,7 @@ public class HistoryFragment extends BaseFragment implements View.OnClickListene
                 }
 
                 // update adapter
-                alTipHistory = new ArrayList<>(map.size() > 0 && !map.isEmpty() ? map.values() :
+                alTipHistory = new ArrayList<>(map.size() > 0 ? map.values() :
                         new HashMap<String, HistoryModel>().values());
                 mHistoryAdapter.updateData(alTipHistory);
 
