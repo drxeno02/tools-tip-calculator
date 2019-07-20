@@ -1,7 +1,5 @@
 package com.app.framework.model;
 
-import java.io.Serializable;
-
 /**
  * Created by LJTat on 5/7/2017.
  */

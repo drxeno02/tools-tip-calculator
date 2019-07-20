@@ -1,7 +1,3 @@
-/*
- * Copyright (c) 2014-present, ZTRIP. All rights reserved.
- */
-
 package com.blog.ljtatum.tipcalculator.activity;
 
 import android.annotation.SuppressLint;
@@ -22,6 +18,7 @@ import com.blog.ljtatum.tipcalculator.R;
  * BaseActivity is extended by all Activities. It provides useful functions such as
  * adding and removing fragments, as well as showing and hiding network and deprecation dialogs.
  */
+@SuppressLint("RestrictedApi")
 public abstract class BaseActivity extends AppCompatActivity {
     private FragmentManager mFragmentManager;
 
@@ -84,7 +81,6 @@ public abstract class BaseActivity extends AppCompatActivity {
     /**
      * Method is used to remove all fragments
      */
-    @SuppressLint("RestrictedApi")
     public void removeAllFragments() {
         try {
             for (Fragment fragment : mFragmentManager.getFragments()) {
@@ -104,7 +100,6 @@ public abstract class BaseActivity extends AppCompatActivity {
      *
      * @return Returns the TopFragment if there is one, otherwise returns null
      */
-    @SuppressLint("RestrictedApi")
     @Nullable
     public Fragment getTopFragment() {
         if (mFragmentManager.getBackStackEntryCount() > 0) {

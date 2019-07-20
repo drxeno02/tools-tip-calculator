@@ -36,7 +36,6 @@ public class PrivacyFragment extends BaseFragment implements View.OnClickListene
      * Method is used to instantiate views
      */
     private void initializeViews() {
-        mContext = getActivity();
         tvFragmentHeader = mRootView.findViewById(R.id.tv_fragment_header);
 
         // set fragment header

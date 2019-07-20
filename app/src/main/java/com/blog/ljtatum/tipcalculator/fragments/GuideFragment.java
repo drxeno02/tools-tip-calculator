@@ -23,7 +23,6 @@ import java.util.ArrayList;
  */
 
 public class GuideFragment extends BaseFragment implements View.OnClickListener {
-    private static final String TAG = GuideFragment.class.getSimpleName();
 
     // array of flag icons
     private static final int[] ARRY_COUNTRY_FLAG_ICONS = {R.drawable.flag_australia, R.drawable.flag_bahamas,

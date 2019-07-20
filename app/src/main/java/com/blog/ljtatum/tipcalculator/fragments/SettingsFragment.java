@@ -1,7 +1,6 @@
 package com.blog.ljtatum.tipcalculator.fragments;
 
 import android.Manifest;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -26,7 +26,6 @@ import com.app.framework.utilities.FrameworkUtils;
 import com.blog.ljtatum.tipcalculator.R;
 import com.blog.ljtatum.tipcalculator.activity.MainActivity;
 import com.blog.ljtatum.tipcalculator.constants.Constants;
-import com.blog.ljtatum.tipcalculator.logger.Logger;
 import com.blog.ljtatum.tipcalculator.utils.DialogUtils;
 
 import de.keyboardsurfer.android.widget.crouton.Crouton;
@@ -37,15 +36,17 @@ import de.keyboardsurfer.android.widget.crouton.Style;
  */
 
 public class SettingsFragment extends BaseFragment implements View.OnClickListener {
-    private static final String TAG = SettingsFragment.class.getSimpleName();
+    // permission code
+    private static final int PERMISSION_REQUEST_CODE_LOCATION = 100;
 
-    private static final int PERMISSION_REQUEST_CODE_LOCATION = 100; // permissions
-
+    // views
     private View mRootView;
     private TextView tvFragmentHeader, tvSaveHistory, tvSaveLocation, tvShakeReset, tvRoundOff;
     private ImageView ivSaveHistory, ivSaveLocation;
     private EditText edtTipPercent, edtSharedBy;
     private Switch switchSaveHistory, switchSaveLocation, switchShakeReset, switchRoundOff;
+    private Button btnSave;
+
     private SharedPref mSharedPref;
     private boolean isLocationServicePending;
 
@@ -83,6 +84,7 @@ public class SettingsFragment extends BaseFragment implements View.OnClickListen
         switchSaveLocation = mRootView.findViewById(R.id.switch_save_location);
         switchShakeReset = mRootView.findViewById(R.id.switch_shake_reset);
         switchRoundOff = mRootView.findViewById(R.id.switch_round_off);
+        btnSave = mRootView.findViewById(R.id.btn_save);
 
         // set fragment header
         tvFragmentHeader.setText(getResources().getString(R.string.setting));
@@ -98,6 +100,7 @@ public class SettingsFragment extends BaseFragment implements View.OnClickListen
         tvFragmentHeader.setOnClickListener(this);
         ivSaveHistory.setOnClickListener(this);
         ivSaveLocation.setOnClickListener(this);
+        btnSave.setOnClickListener(this);
     }
 
     /**
@@ -105,31 +108,13 @@ public class SettingsFragment extends BaseFragment implements View.OnClickListen
      */
     private void initializeListeners() {
         // OnEditorActionListener tip percent
-        edtTipPercent.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+        edtTipPercent.setOnEditorActionListener(new EditText.OnEditorActionListener() {
 
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
-                    if (!FrameworkUtils.isStringEmpty(v.getText().toString()) &&
-                            Integer.parseInt(v.getText().toString()) != mSharedPref.getIntPref(Constants.KEY_DEFAULT_TIP, 26)) {
-
-                        if (Integer.parseInt(v.getText().toString()) > 25) {
-                            // if value is greater than 25
-                            mSharedPref.setPref(Constants.KEY_DEFAULT_TIP, 25);
-                            // show banner
-                            Crouton.showText(mActivity, "Maximum tip value is 25%. Information saved!", Style.CONFIRM);
-                        } else if (Integer.parseInt(v.getText().toString()) < 0) {
-                            // if value is less than 0
-                            mSharedPref.setPref(Constants.KEY_DEFAULT_TIP, 0);
-                            // show banner
-                            Crouton.showText(mActivity, "Minimum tip value is 0%. Information saved!", Style.CONFIRM);
-                        } else {
-                            // if value is between [0-25)
-                            mSharedPref.setPref(Constants.KEY_DEFAULT_TIP, Integer.parseInt(v.getText().toString()));
-                            // show banner
-                            Crouton.showText(mActivity, "Saved!", Style.CONFIRM);
-                        }
-                    }
+                    // update tip percent
+                    updateTipPercent();
                     return true;
                 }
                 return false;
@@ -137,31 +122,13 @@ public class SettingsFragment extends BaseFragment implements View.OnClickListen
         });
 
         // OnEditorActionListener shared by
-        edtSharedBy.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+        edtSharedBy.setOnEditorActionListener(new EditText.OnEditorActionListener() {
 
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
-                    if (!FrameworkUtils.isStringEmpty(v.getText().toString()) &&
-                            Integer.parseInt(v.getText().toString()) != mSharedPref.getIntPref(Constants.KEY_DEFAULT_SHARED_BY, 100)) {
-
-                        if (Integer.parseInt(v.getText().toString()) > 99) {
-                            // if value is greater than 99
-                            mSharedPref.setPref(Constants.KEY_DEFAULT_SHARED_BY, 99);
-                            // show banner
-                            Crouton.showText(mActivity, "Maximum value is 99. Information saved!", Style.CONFIRM);
-                        } else if (Integer.parseInt(v.getText().toString()) <= 0) {
-                            // if value is less than equal to 0
-                            mSharedPref.setPref(Constants.KEY_DEFAULT_SHARED_BY, 1);
-                            // show banner
-                            Crouton.showText(mActivity, "Minimum value is 1. Information saved!", Style.CONFIRM);
-                        } else {
-                            // if value is between (0-100)
-                            mSharedPref.setPref(Constants.KEY_DEFAULT_SHARED_BY, Integer.parseInt(v.getText().toString()));
-                            // show banner
-                            Crouton.showText(mActivity, "Saved!", Style.CONFIRM);
-                        }
-                    }
+                    // update shared by
+                    updateSharedBy();
                     return true;
                 }
                 return false;
@@ -210,7 +177,7 @@ public class SettingsFragment extends BaseFragment implements View.OnClickListen
                     } else {
                         // update default save location settings
                         mSharedPref.setPref(Constants.KEY_DEFAULT_SAVE_LOCATION, b);
-                        tvSaveLocation.setText(getResources().getString(R.string.settings_save_location, "Enabled"));
+                        tvSaveLocation.setText(getResources().getString(R.string.settings_save_location, "Disabled"));
                         // show banner
                         Crouton.showText(mActivity, "Saved!", Style.CONFIRM);
                     }
@@ -246,12 +213,66 @@ public class SettingsFragment extends BaseFragment implements View.OnClickListen
     }
 
     /**
+     * Method is used to update tip percent
+     */
+    private void updateTipPercent() {
+        if (!FrameworkUtils.isStringEmpty(edtTipPercent.getText().toString()) &&
+                Integer.parseInt(edtTipPercent.getText().toString()) !=
+                        mSharedPref.getIntPref(Constants.KEY_DEFAULT_TIP, 26)) {
+
+            if (Integer.parseInt(edtTipPercent.getText().toString()) > 25) {
+                // if value is greater than 25
+                mSharedPref.setPref(Constants.KEY_DEFAULT_TIP, 25);
+                // show banner
+                Crouton.showText(mActivity, "Maximum tip value is 25%. Information saved!", Style.CONFIRM);
+            } else if (Integer.parseInt(edtTipPercent.getText().toString()) < 0) {
+                // if value is less than 0
+                mSharedPref.setPref(Constants.KEY_DEFAULT_TIP, 0);
+                // show banner
+                Crouton.showText(mActivity, "Minimum tip value is 0%. Information saved!", Style.CONFIRM);
+            } else {
+                // if value is between [0-25)
+                mSharedPref.setPref(Constants.KEY_DEFAULT_TIP, Integer.parseInt(edtTipPercent.getText().toString()));
+                // show banner
+                Crouton.showText(mActivity, "Saved!", Style.CONFIRM);
+            }
+        }
+    }
+
+    /**
+     * Method is used to update shared by
+     */
+    private void updateSharedBy() {
+        if (!FrameworkUtils.isStringEmpty(edtSharedBy.getText().toString()) &&
+                Integer.parseInt(edtSharedBy.getText().toString()) !=
+                        mSharedPref.getIntPref(Constants.KEY_DEFAULT_SHARED_BY, 100)) {
+
+            if (Integer.parseInt(edtSharedBy.getText().toString()) > 99) {
+                // if value is greater than 99
+                mSharedPref.setPref(Constants.KEY_DEFAULT_SHARED_BY, 99);
+                // show banner
+                Crouton.showText(mActivity, "Maximum value is 99. Information saved!", Style.CONFIRM);
+            } else if (Integer.parseInt(edtSharedBy.getText().toString()) <= 0) {
+                // if value is less than equal to 0
+                mSharedPref.setPref(Constants.KEY_DEFAULT_SHARED_BY, 1);
+                // show banner
+                Crouton.showText(mActivity, "Minimum value is 1. Information saved!", Style.CONFIRM);
+            } else {
+                // if value is between (0-100)
+                mSharedPref.setPref(Constants.KEY_DEFAULT_SHARED_BY, Integer.parseInt(edtSharedBy.getText().toString()));
+                // show banner
+                Crouton.showText(mActivity, "Saved!", Style.CONFIRM);
+            }
+        }
+    }
+
+    /**
      * Method is used to show dialog that location services is not enabled
      */
     private void showLocationServiceDisabledDialog() {
         DialogUtils.showYesNoAlert(mContext, getResources().getString(R.string.settings),
-                getString(R.string.enable_location_services_message, mContext.getResources().getString(R.string.app_name)),
-                mContext.getResources().getString(R.string.ok), mContext.getResources().getString(R.string.cancel),
+                getString(R.string.enable_location_services_message, getResources().getString(R.string.app_name)),
+                getResources().getString(R.string.ok), getResources().getString(R.string.cancel),
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -331,29 +352,27 @@ public class SettingsFragment extends BaseFragment implements View.OnClickListen
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        switch (requestCode) {
-            case PERMISSION_REQUEST_CODE_LOCATION:
-                new Handler().post(new Runnable() {
-                    @Override
-                    public void run() {
-                        if (!DeviceUtils.isLocationServiceEnabled(mContext)) {
-                            isLocationServicePending = true;
-                            showLocationServiceDisabledDialog();
-                        } else if (FrameworkUtils.checkAppPermissions(mContext, Manifest.permission.ACCESS_FINE_LOCATION,
-                                Manifest.permission.ACCESS_COARSE_LOCATION)) {
-                            // update default save location settings
-                            mSharedPref.setPref(Constants.KEY_DEFAULT_SAVE_LOCATION, true);
-                            tvSaveLocation.setText(getResources().getString(R.string.settings_save_location, "Enabled"));
-                            // show banner
-                            Crouton.showText(mActivity, "Saved!", Style.CONFIRM);
-                            // only track location if save location setting is true
-                            ((MainActivity) mContext).connectGoogleClient();
+        if (requestCode == PERMISSION_REQUEST_CODE_LOCATION) {
+            new Handler().post(new Runnable() {
+                @Override
+                public void run() {
+                    if (!DeviceUtils.isLocationServiceEnabled(mContext)) {
+                        isLocationServicePending = true;
+                        showLocationServiceDisabledDialog();
+                    } else if (FrameworkUtils.checkAppPermissions(mContext, Manifest.permission.ACCESS_FINE_LOCATION,
+                            Manifest.permission.ACCESS_COARSE_LOCATION)) {
+                        // update default save location settings
+                        mSharedPref.setPref(Constants.KEY_DEFAULT_SAVE_LOCATION, true);
+                        tvSaveLocation.setText(getResources().getString(R.string.settings_save_location, "Enabled"));
+                        // show banner
+                        Crouton.showText(mActivity, "Saved!", Style.CONFIRM);
+                        // only track location if save location setting is true
+                        ((MainActivity) mContext).connectGoogleClient();
 
-                        }
                     }
+                }
 
-                });
-                break;
+            });
         }
     }
 
@@ -373,6 +392,11 @@ public class SettingsFragment extends BaseFragment implements View.OnClickListen
                 break;
             case R.id.iv_save_location:
                 Crouton.showText(mActivity, getResources().getString(R.string.settings_save_location_info), Style.INFO);
+                break;
+            case R.id.btn_save:
+                // save updated values
+                updateTipPercent();
+                updateSharedBy();
                 break;
             default:
                 break;

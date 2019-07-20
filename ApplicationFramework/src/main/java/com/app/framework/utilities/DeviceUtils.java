@@ -4,7 +4,6 @@
 
 package com.app.framework.utilities;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
 import android.os.Build;
@@ -12,8 +11,6 @@ import android.os.IBinder;
 import android.provider.Settings;
 import android.util.DisplayMetrics;
 import android.view.inputmethod.InputMethodManager;
-
-import com.app.framework.constants.Constants;
 
 /**
  * Created by leonard on 9/29/2015.

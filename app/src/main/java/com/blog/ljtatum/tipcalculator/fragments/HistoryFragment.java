@@ -113,7 +113,7 @@ public class HistoryFragment extends BaseFragment implements View.OnClickListene
             public void onRetrieveDataChangeWithFilter(HashMap<String, HistoryModel> map) {
                 // dismiss progress dialog
                 DialogUtils.dismissProgressDialog();
-                if (map.size() > 0) {
+                if (!map.isEmpty()) {
                     FrameworkUtils.setViewVisible(llWrapper);
                     FrameworkUtils.setViewGone(tvNoHistory);
                 } else {
@@ -122,7 +122,7 @@ public class HistoryFragment extends BaseFragment implements View.OnClickListene
                 }
 
                 // update adapter
-                alTipHistory = new ArrayList<>(map.size() > 0 ? map.values() :
+                alTipHistory = new ArrayList<>(!map.isEmpty() ? map.values() :
                         new HashMap<String, HistoryModel>().values());
                 mHistoryAdapter.updateData(alTipHistory);
 
@@ -143,7 +143,7 @@ public class HistoryFragment extends BaseFragment implements View.OnClickListene
                 tvTipWeek.setText(tipAmountWeek == 0 ? getResources().getString(R.string.tip_amount_week,
                         getResources().getString(R.string.not_applicable)) :
                         getResources().getString(R.string.tip_amount_week,
-                                String.valueOf(FrameworkUtils.convertToDollarFormat(tipAmountWeek))));
+                                FrameworkUtils.convertToDollarFormat(tipAmountWeek)));
                 // average tip percent for week
                 tvAvgPercWeek.setText(tipPercWeek == 0 ? getResources().getString(R.string.tip_amount_week,
                         getResources().getString(R.string.not_applicable)) :

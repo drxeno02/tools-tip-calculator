@@ -2,7 +2,6 @@ package com.blog.ljtatum.tipcalculator.activity;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -104,11 +103,16 @@ import de.keyboardsurfer.android.widget.crouton.Style;
 /**
  * Created by LJTat on 2/23/2017.
  */
+@SuppressLint("MissingPermission")
 public class MainActivity extends BaseActivity implements OnClickListener,
         NavigationView.OnNavigationItemSelectedListener, GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener, NetworkReceiver.NetworkStatusObserver {
+
+    // add unit id
     private static final String AD_ID_TEST = "950036DB8197D296BE390357BD9A964E";
-    private static final int PERMISSION_REQUEST_CODE_LOCATION = 100; // permissions
+    // permission code
+    private static final int PERMISSION_REQUEST_CODE_LOCATION = 100;
+    // drawer icons
     private static final int[] ARRY_DRAWER_ICONS = {R.drawable.food_01, R.drawable.food_02,
             R.drawable.food_03, R.drawable.food_04, R.drawable.food_05, R.drawable.food_06,
             R.drawable.food_07, R.drawable.food_08, R.drawable.food_09, R.drawable.food_10,
@@ -116,9 +120,8 @@ public class MainActivity extends BaseActivity implements OnClickListener,
             R.drawable.food_15, R.drawable.food_16, R.drawable.food_17, R.drawable.food_18,
             R.drawable.food_19, R.drawable.food_20, R.drawable.food_21, R.drawable.food_22,
             R.drawable.food_23};
-    public static String TAG = MainActivity.class.getSimpleName();
-    private Context mContext;
-    private Activity mActivity;
+
+    private String mTotalBill;
     private int sharedNum, mTipPercent, decimalPlaces;
     private boolean isClear, isSpecialCase;
 
@@ -136,10 +139,7 @@ public class MainActivity extends BaseActivity implements OnClickListener,
     private TextView tvTip; // container for tip amount
     private TextView tvPerson; // container for person pay amount
     private TextView tvTotal; // container for total bill amount
-
     private EditText edtBill;
-
-    private String mTotalBill;
 
     private Spinner spinner;
     private Switch switchRoundOff;
@@ -179,12 +179,11 @@ public class MainActivity extends BaseActivity implements OnClickListener,
     /**
      * Method is used to initialize views
      */
+    @SuppressWarnings("deprecation")
     private void initializeViews() {
-        mContext = MainActivity.this;
-        mActivity = MainActivity.this;
         mNetworkReceiver = new NetworkReceiver();
         alSpinnerItems = new ArrayList<>();
-        mSharedPref = new SharedPref(mContext, com.app.framework.constants.Constants.PREF_FILE_NAME);
+        mSharedPref = new SharedPref(this, com.app.framework.constants.Constants.PREF_FILE_NAME);
 
         // initialize FusedLocationClient
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
@@ -198,7 +197,7 @@ public class MainActivity extends BaseActivity implements OnClickListener,
                 .build();
 
         // rate this app
-        new AppRaterUtil(mContext, mContext.getPackageName());
+        new AppRaterUtil(this, getPackageName());
         switchRoundOff = findViewById(R.id.switch_round_off);
         ivStar1 = findViewById(R.id.iv_star_1);
         ivStar2 = findViewById(R.id.iv_star_2);
@@ -243,7 +242,7 @@ public class MainActivity extends BaseActivity implements OnClickListener,
                 if (FrameworkUtils.checkIfNull(getTopFragment())) {
                     edtBill.requestFocus();
                     // show keyboard
-                    DeviceUtils.showKeyboard(mContext);
+                    DeviceUtils.showKeyboard(MainActivity.this);
                 }
             }
 
@@ -251,7 +250,7 @@ public class MainActivity extends BaseActivity implements OnClickListener,
             public void onDrawerOpened(View drawerView) {
                 super.onDrawerOpened(drawerView);
                 // hide keyboard
-                DeviceUtils.hideKeyboard(mContext, getWindow().getDecorView().getWindowToken());
+                DeviceUtils.hideKeyboard(MainActivity.this, getWindow().getDecorView().getWindowToken());
             }
         };
         mDrawerLayout.addDrawerListener(toggle);
@@ -265,9 +264,7 @@ public class MainActivity extends BaseActivity implements OnClickListener,
         // ad banner
         adView = findViewById(R.id.ad_view);
         try {
-            if (NetworkUtils.isNetworkAvailable(mContext)
-                    && NetworkUtils.isConnected(mContext)) {
-
+            if (NetworkUtils.isNetworkAvailable(this) && NetworkUtils.isConnected(this)) {
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -305,7 +302,7 @@ public class MainActivity extends BaseActivity implements OnClickListener,
         ivStar5.setOnClickListener(this);
 
         // navigation drawer
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.setItemIconTintList(null);
         setupDrawerIcons(navigationView);
@@ -336,7 +333,7 @@ public class MainActivity extends BaseActivity implements OnClickListener,
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
                     // hide keyboard
-                    DeviceUtils.hideKeyboard(mContext, getWindow().getDecorView().getWindowToken());
+                    DeviceUtils.hideKeyboard(MainActivity.this, getWindow().getDecorView().getWindowToken());
 
                     if (Double.parseDouble(tvTotal.getText().toString().replaceAll("[$,]", "")) > 0) {
                         // process location change
@@ -377,7 +374,7 @@ public class MainActivity extends BaseActivity implements OnClickListener,
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 // hide keyboard
-                DeviceUtils.hideKeyboard(mContext, getWindow().getDecorView().getWindowToken());
+                DeviceUtils.hideKeyboard(MainActivity.this, getWindow().getDecorView().getWindowToken());
                 calculate();
             }
         });
@@ -399,7 +396,7 @@ public class MainActivity extends BaseActivity implements OnClickListener,
                 if (FrameworkUtils.checkIfNull(getTopFragment())) {
                     edtBill.requestFocus();
                     // show keyboard
-                    DeviceUtils.showKeyboard(mContext);
+                    DeviceUtils.showKeyboard(MainActivity.this);
                 }
             }
         });
@@ -420,9 +417,8 @@ public class MainActivity extends BaseActivity implements OnClickListener,
     /**
      * Method is used to begin location request updates using FusedLocationApi
      */
-    @SuppressLint("MissingPermission")
     private void startLocationUpdates() {
-        if (FrameworkUtils.checkAppPermissions(mContext, Manifest.permission.ACCESS_FINE_LOCATION,
+        if (FrameworkUtils.checkAppPermissions(this, Manifest.permission.ACCESS_FINE_LOCATION,
                 Manifest.permission.ACCESS_COARSE_LOCATION) && !FrameworkUtils.checkIfNull(mGoogleApiClient) &&
                 mGoogleApiClient.isConnected()) {
 
@@ -436,7 +432,6 @@ public class MainActivity extends BaseActivity implements OnClickListener,
     /**
      * Method is used to refresh current location
      */
-    @SuppressLint("MissingPermission")
     private void initLocationRequest() {
         mLocationRequest = new LocationRequest();
         mLocationRequest.setFastestInterval(Durations.DELAY_INTERVAL_MS_30000);
@@ -445,16 +440,15 @@ public class MainActivity extends BaseActivity implements OnClickListener,
         int locationMode = -99;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             try {
-                locationMode = Settings.Secure.getInt(mContext.getContentResolver(), Settings.Secure.LOCATION_MODE);
+                locationMode = Settings.Secure.getInt(getContentResolver(), Settings.Secure.LOCATION_MODE);
             } catch (Settings.SettingNotFoundException e) {
                 e.printStackTrace();
             }
         }
 
-        if (locationMode != Settings.Secure.LOCATION_MODE_OFF &&
-                locationMode == Settings.Secure.LOCATION_MODE_HIGH_ACCURACY) {
+        if (locationMode == Settings.Secure.LOCATION_MODE_HIGH_ACCURACY) {
             // check if device has permissions for high accuracy
-            if (FrameworkUtils.checkAppPermissions(mContext, Manifest.permission.ACCESS_FINE_LOCATION,
+            if (FrameworkUtils.checkAppPermissions(this, Manifest.permission.ACCESS_FINE_LOCATION,
                     Manifest.permission.ACCESS_COARSE_LOCATION)) {
                 // set attributes of location request object
                 mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
@@ -475,7 +469,7 @@ public class MainActivity extends BaseActivity implements OnClickListener,
         // check whether location settings are satisfied
         // https://developers.google.com/android/reference/com/google/android/gms/location/SettingsClient
         SettingsClient settingsClient = LocationServices.getSettingsClient(this);
-        settingsClient.checkLocationSettings(locationSettingsRequest).addOnSuccessListener(mActivity,
+        settingsClient.checkLocationSettings(locationSettingsRequest).addOnSuccessListener(this,
                 new OnSuccessListener<LocationSettingsResponse>() {
                     @Override
                     public void onSuccess(LocationSettingsResponse locationSettingsResponse) {
@@ -528,7 +522,7 @@ public class MainActivity extends BaseActivity implements OnClickListener,
             // tip amount
             double temp = Double.parseDouble(tvTotal.getText().toString().replaceAll("[$,]", "")) -
                     Double.parseDouble(edtBill.getText().toString().replaceAll("[$,]", ""));
-            historyModel.tipAmount = String.valueOf(FrameworkUtils.convertToDollarFormat(temp));
+            historyModel.tipAmount = FrameworkUtils.convertToDollarFormat(temp);
 
             // save data to Firebase
             FirebaseUtils.addValueContinuous(historyModel);
@@ -640,7 +634,7 @@ public class MainActivity extends BaseActivity implements OnClickListener,
 
             // handle special case
             if (decimalPlaces >= 3) {
-                Crouton.showText(MainActivity.this, "Please maintain proper dollar format ex- 'xxx.xx')", Style.ALERT);
+                Crouton.showText(MainActivity.this, getResources().getString(R.string.txt_proper_dollar_format), Style.ALERT);
                 edtBill.setText(mTotalBill);
             }
 
@@ -756,7 +750,7 @@ public class MainActivity extends BaseActivity implements OnClickListener,
         alSpinnerItems.add("30%");
 
         // create ArrayAdapter
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(
                 MainActivity.this, android.R.layout.simple_spinner_item,
                 alSpinnerItems);
         // set array adapter
@@ -773,50 +767,50 @@ public class MainActivity extends BaseActivity implements OnClickListener,
                 mTipPercent = spinner.getSelectedItemPosition();
                 if (mTipPercent >= 0 && mTipPercent <= 2) {
                     setRating(1, true);
-                    tvService.setTextColor(ContextCompat.getColor(mContext, R.color.material_red_400_color_code));
-                    Crouton.showText(MainActivity.this, "Poor tip service percent", Style.ALERT);
+                    tvService.setTextColor(ContextCompat.getColor(MainActivity.this, R.color.material_red_400_color_code));
+                    Crouton.showText(MainActivity.this, getResources().getString(R.string.txt_poor_tip_service), Style.ALERT);
                 } else if (mTipPercent >= 3 && mTipPercent <= 4) {
                     setRating(1, true);
-                    tvService.setTextColor(ContextCompat.getColor(mContext, R.color.material_red_400_color_code));
-                    Crouton.showText(MainActivity.this, "Poor tip service percent", Style.ALERT);
+                    tvService.setTextColor(ContextCompat.getColor(MainActivity.this, R.color.material_red_400_color_code));
+                    Crouton.showText(MainActivity.this, getResources().getString(R.string.txt_poor_tip_service), Style.ALERT);
                 } else if (mTipPercent >= 5 && mTipPercent <= 7) {
                     setRating(1, true);
-                    tvService.setTextColor(ContextCompat.getColor(mContext, R.color.material_red_400_color_code));
-                    Crouton.showText(MainActivity.this, "Poor tip service percent", Style.ALERT);
+                    tvService.setTextColor(ContextCompat.getColor(MainActivity.this, R.color.material_red_400_color_code));
+                    Crouton.showText(MainActivity.this, getResources().getString(R.string.txt_poor_tip_service), Style.ALERT);
                 } else if (mTipPercent >= 8 && mTipPercent <= 9) {
                     setRating(1, true);
-                    tvService.setTextColor(ContextCompat.getColor(mContext, R.color.material_red_400_color_code));
-                    Crouton.showText(MainActivity.this, "Poor tip service percent", Style.ALERT);
+                    tvService.setTextColor(ContextCompat.getColor(MainActivity.this, R.color.material_red_400_color_code));
+                    Crouton.showText(MainActivity.this, getResources().getString(R.string.txt_poor_tip_service), Style.ALERT);
                 } else if (mTipPercent >= 10 && mTipPercent <= 12) {
                     setRating(2, true);
-                    tvService.setTextColor(ContextCompat.getColor(mContext, R.color.white));
-                    Crouton.showText(MainActivity.this, "Fair tip service percent", Style.CONFIRM);
+                    tvService.setTextColor(ContextCompat.getColor(MainActivity.this, R.color.white));
+                    Crouton.showText(MainActivity.this, getResources().getString(R.string.txt_fair_tip_service), Style.CONFIRM);
                 } else if (mTipPercent >= 13 && mTipPercent <= 14) {
                     setRating(2, true);
-                    tvService.setTextColor(ContextCompat.getColor(mContext, R.color.white));
-                    Crouton.showText(MainActivity.this, "Fair tip service percent", Style.CONFIRM);
+                    tvService.setTextColor(ContextCompat.getColor(MainActivity.this, R.color.white));
+                    Crouton.showText(MainActivity.this, getResources().getString(R.string.txt_fair_tip_service), Style.CONFIRM);
                 } else if (mTipPercent >= 15 && mTipPercent <= 17) {
                     setRating(3, true);
-                    tvService.setTextColor(ContextCompat.getColor(mContext, R.color.white));
-                    Crouton.showText(MainActivity.this, "Good tip service percent", Style.CONFIRM);
+                    tvService.setTextColor(ContextCompat.getColor(MainActivity.this, R.color.white));
+                    Crouton.showText(MainActivity.this, getResources().getString(R.string.txt_good_tip_service), Style.CONFIRM);
                 } else if (mTipPercent >= 18 && mTipPercent <= 19) {
                     setRating(3, true);
-                    tvService.setTextColor(ContextCompat.getColor(mContext, R.color.white));
-                    Crouton.showText(MainActivity.this, "Good service percent", Style.CONFIRM);
+                    tvService.setTextColor(ContextCompat.getColor(MainActivity.this, R.color.white));
+                    Crouton.showText(MainActivity.this, getResources().getString(R.string.txt_good_tip_service), Style.CONFIRM);
                 } else if (mTipPercent >= 20 && mTipPercent <= 22) {
                     setRating(4, true);
-                    tvService.setTextColor(ContextCompat.getColor(mContext, R.color.white));
-                    Crouton.showText(MainActivity.this, "Great tip service percent", Style.CONFIRM);
+                    tvService.setTextColor(ContextCompat.getColor(MainActivity.this, R.color.white));
+                    Crouton.showText(MainActivity.this, getResources().getString(R.string.txt_great_tip_service), Style.CONFIRM);
                 } else if (mTipPercent >= 23 && mTipPercent <= 24) {
                     setRating(4, true);
-                    tvService.setTextColor(ContextCompat.getColor(mContext, R.color.white));
-                    Crouton.showText(MainActivity.this, "Great tip service percent", Style.CONFIRM);
+                    tvService.setTextColor(ContextCompat.getColor(MainActivity.this, R.color.white));
+                    Crouton.showText(MainActivity.this, getResources().getString(R.string.txt_great_tip_service), Style.CONFIRM);
                 } else if (mTipPercent >= 25) {
                     setRating(5, true);
-                    tvService.setTextColor(ContextCompat.getColor(mContext, R.color.material_purple_500_color_code));
-                    Crouton.showText(MainActivity.this, "Royal tip service percent", Style.INFO);
+                    tvService.setTextColor(ContextCompat.getColor(MainActivity.this, R.color.material_purple_500_color_code));
+                    Crouton.showText(MainActivity.this, getResources().getString(R.string.txt_royal_tip_service), Style.INFO);
                 }
-                tvService.setText(Utils.getTipQuality(mContext, mTipPercent));
+                tvService.setText(Utils.getTipQuality(MainActivity.this, mTipPercent));
                 tvPercent.setText(getResources().getString(R.string.txt_percent, mTipPercent));
                 calculate();
             }
@@ -836,18 +830,18 @@ public class MainActivity extends BaseActivity implements OnClickListener,
         double temp1, temp2, temp3, temp4, temp5;
 
         if (isClear) {
-            Crouton.showText(MainActivity.this, "All fields reset", Style.CONFIRM);
+            Crouton.showText(MainActivity.this, getResources().getString(R.string.txt_fields_reset), Style.CONFIRM);
             isClear = false;
 
             // spinner reset (resets rating as well)
-            tvService.setText(mContext.getResources().getString(R.string.txt_good));
-            tvPercent.setText(mContext.getResources().getString(R.string.txt_percent_default));
+            tvService.setText(getResources().getString(R.string.txt_good));
+            tvPercent.setText(getResources().getString(R.string.txt_percent_default));
             spinner.setSelection(15);
 
             // reset tip and payment values
-            tvTip.setText(mContext.getResources().getString(R.string.txt_zero_dollar));
-            tvPerson.setText(mContext.getResources().getString(R.string.txt_zero_dollar));
-            tvTotal.setText(mContext.getResources().getString(R.string.txt_zero_dollar));
+            tvTip.setText(getResources().getString(R.string.txt_zero_dollar));
+            tvPerson.setText(getResources().getString(R.string.txt_zero_dollar));
+            tvTotal.setText(getResources().getString(R.string.txt_zero_dollar));
 
             // update shared by value
             tvSharedBy.setText(String.valueOf(mSharedPref.getIntPref(Constants.KEY_DEFAULT_SHARED_BY, 1)));
@@ -855,20 +849,21 @@ public class MainActivity extends BaseActivity implements OnClickListener,
             // reset bill amount
             edtBill.setText("");
         } else {
+
             /*
              * Legend:
-			 * temp1-amount of the bill
-			 * temp2-tip w/o round
-			 * temp3-tip w/round
-			 * temp4-total amount of bill
-			 * temp5-total amount each person pays
-			 */
-
+             * temp1-amount of the bill
+             * temp2-tip w/o round
+             * temp3-tip w/round
+             * temp4-total amount of bill
+             * temp5-total amount each person pays
+             */
             if (edtBill.getText().toString().length() == 0) {
-                tvTip.setText(mContext.getResources().getString(R.string.txt_zero_dollar)); // static
+                tvTip.setText(getResources().getString(R.string.txt_zero_dollar));
             } else {
                 // calculate tip amount
-                temp1 = Double.parseDouble(mTotalBill);
+                temp1 = Double.parseDouble(!FrameworkUtils.isStringEmpty(mTotalBill) ? mTotalBill :
+                        getResources().getString(R.string.txt_zero_dollar));
                 temp2 = mTipPercent * temp1 / 100;
                 DecimalFormat format = new DecimalFormat("0.00");
 
@@ -876,26 +871,31 @@ public class MainActivity extends BaseActivity implements OnClickListener,
                 if (switchRoundOff.isChecked()) {
                     // round ON; update calculations
                     temp3 = (int) Math.round(temp2);
-                    tvTip.setText(String.valueOf("$" + format.format(temp3)));
+                    tvTip.setText(getResources().getString(R.string.txt_dollar_placeholder,
+                            format.format(temp3)));
 
                     // calculate total bill amount
                     temp4 = temp1 + temp3;
                     strTotal = format.format(temp4);
-                    tvTotal.setText(String.valueOf("$" + strTotal));
+                    tvTotal.setText(getResources().getString(R.string.txt_dollar_placeholder,
+                            strTotal));
                 } else {
                     // round OFF; update calculations
-                    tvTip.setText(String.valueOf("$" + format.format(temp2)));
+                    tvTip.setText(getResources().getString(R.string.txt_dollar_placeholder,
+                            format.format(temp2)));
 
                     // calculate total bill amount
                     temp4 = temp1 + temp2;
                     strTotal = format.format(temp4);
-                    tvTotal.setText(String.valueOf("$" + strTotal));
+                    tvTotal.setText(getResources().getString(R.string.txt_dollar_placeholder,
+                            strTotal));
                 }
 
                 // calculate each person pays amount
                 temp5 = temp4 / sharedNum;
                 String strPerson = format.format(temp5);
-                tvPerson.setText(String.valueOf("$" + strPerson));
+                tvPerson.setText(getResources().getString(R.string.txt_dollar_placeholder,
+                        strPerson));
             }
 
             // update shared by value
@@ -907,9 +907,9 @@ public class MainActivity extends BaseActivity implements OnClickListener,
      * Method is used to show dialog that location services is not enabled
      */
     private void showLocationServiceDisabledDialog() {
-        DialogUtils.showYesNoAlert(mContext, getResources().getString(R.string.settings),
-                getString(R.string.enable_location_services_message, mContext.getResources().getString(R.string.app_name)),
-                mContext.getResources().getString(R.string.ok), mContext.getResources().getString(R.string.cancel),
+        DialogUtils.showYesNoAlert(this, getResources().getString(R.string.settings),
+                getString(R.string.enable_location_services_message, getResources().getString(R.string.app_name)),
+                getResources().getString(R.string.ok), getResources().getString(R.string.cancel),
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -934,7 +934,7 @@ public class MainActivity extends BaseActivity implements OnClickListener,
         switch (view.getId()) {
             case R.id.btn_inc:
                 // hide keyboard
-                DeviceUtils.hideKeyboard(mContext, getWindow().getDecorView().getWindowToken());
+                DeviceUtils.hideKeyboard(MainActivity.this, getWindow().getDecorView().getWindowToken());
                 // maximum shared by is 99
                 if (sharedNum < 99) {
                     sharedNum++; // increment # of shared values
@@ -944,7 +944,7 @@ public class MainActivity extends BaseActivity implements OnClickListener,
                 break;
             case R.id.btn_dec:
                 // hide keyboard
-                DeviceUtils.hideKeyboard(mContext, getWindow().getDecorView().getWindowToken());
+                DeviceUtils.hideKeyboard(MainActivity.this, getWindow().getDecorView().getWindowToken());
                 // least shared by is 1
                 if (sharedNum > 1) {
                     sharedNum--; // decrement # of shared values
@@ -1035,7 +1035,7 @@ public class MainActivity extends BaseActivity implements OnClickListener,
         // pause adview
         adView.pause();
         // hide keyboard
-        DeviceUtils.hideKeyboard(mContext, getWindow().getDecorView().getWindowToken());
+        DeviceUtils.hideKeyboard(MainActivity.this, getWindow().getDecorView().getWindowToken());
 
         if (!FrameworkUtils.checkIfNull(mFusedLocationClient) && !FrameworkUtils.checkIfNull(mLocationCallback)) {
             // remove location updates
@@ -1064,7 +1064,7 @@ public class MainActivity extends BaseActivity implements OnClickListener,
         if (FrameworkUtils.checkIfNull(getTopFragment())) {
             edtBill.requestFocus();
             // show keyboard
-            DeviceUtils.showKeyboard(mContext);
+            DeviceUtils.showKeyboard(MainActivity.this);
         }
 
         // resume adview
@@ -1122,12 +1122,12 @@ public class MainActivity extends BaseActivity implements OnClickListener,
     @Override
     public void onConnected(@Nullable Bundle bundle) {
         // request location permission if permission is not enabled
-        if (!FrameworkUtils.checkAppPermissions(mContext, Manifest.permission.ACCESS_FINE_LOCATION,
+        if (!FrameworkUtils.checkAppPermissions(this, Manifest.permission.ACCESS_FINE_LOCATION,
                 Manifest.permission.ACCESS_COARSE_LOCATION)) {
             String[] permissions = {Manifest.permission.ACCESS_FINE_LOCATION,
                     Manifest.permission.ACCESS_COARSE_LOCATION};
             requestPermissions(permissions, PERMISSION_REQUEST_CODE_LOCATION);
-        } else if (!DeviceUtils.isLocationServiceEnabled(mContext)) {
+        } else if (!DeviceUtils.isLocationServiceEnabled(this)) {
             showLocationServiceDisabledDialog();
         } else {
             // initialize LocationRequest object
@@ -1142,17 +1142,18 @@ public class MainActivity extends BaseActivity implements OnClickListener,
                 // check whether location settings are satisfied
                 // https://developers.google.com/android/reference/com/google/android/gms/location/SettingsClient
                 SettingsClient settingsClient = LocationServices.getSettingsClient(this);
-                settingsClient.checkLocationSettings(locationSettingsRequest).addOnSuccessListener(mActivity, new OnSuccessListener<LocationSettingsResponse>() {
-                    @Override
-                    public void onSuccess(LocationSettingsResponse locationSettingsResponse) {
-                        if (!FrameworkUtils.checkIfNull(locationSettingsResponse) &&
-                                locationSettingsResponse.getLocationSettingsStates().isLocationPresent() &&
-                                locationSettingsResponse.getLocationSettingsStates().isGpsPresent()) {
-                            // start location updates
-                            startLocationUpdates();
-                        }
-                    }
-                });
+                settingsClient.checkLocationSettings(locationSettingsRequest).addOnSuccessListener(this,
+                        new OnSuccessListener<LocationSettingsResponse>() {
+                            @Override
+                            public void onSuccess(LocationSettingsResponse locationSettingsResponse) {
+                                if (!FrameworkUtils.checkIfNull(locationSettingsResponse) &&
+                                        locationSettingsResponse.getLocationSettingsStates().isLocationPresent() &&
+                                        locationSettingsResponse.getLocationSettingsStates().isGpsPresent()) {
+                                    // start location updates
+                                    startLocationUpdates();
+                                }
+                            }
+                        });
             }
         }
     }
@@ -1175,53 +1176,51 @@ public class MainActivity extends BaseActivity implements OnClickListener,
             DialogUtils.dismissNoNetworkDialog();
         } else {
             // app is not connected to network
-            DialogUtils.showDefaultNoNetworkAlert(mContext, null,
-                    mContext.getString(R.string.check_network));
+            DialogUtils.showDefaultNoNetworkAlert(this, null,
+                    getString(R.string.check_network));
         }
     }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        switch (requestCode) {
-            case PERMISSION_REQUEST_CODE_LOCATION:
-                new Handler().post(new Runnable() {
-                    @Override
-                    public void run() {
-                        if (!DeviceUtils.isLocationServiceEnabled(mContext)) {
-                            showLocationServiceDisabledDialog();
-                        } else if (FrameworkUtils.checkAppPermissions(mContext, Manifest.permission.ACCESS_FINE_LOCATION,
-                                Manifest.permission.ACCESS_COARSE_LOCATION)) {
+        if (requestCode == PERMISSION_REQUEST_CODE_LOCATION) {
+            new Handler().post(new Runnable() {
+                @Override
+                public void run() {
+                    if (!DeviceUtils.isLocationServiceEnabled(MainActivity.this)) {
+                        showLocationServiceDisabledDialog();
+                    } else if (FrameworkUtils.checkAppPermissions(MainActivity.this, Manifest.permission.ACCESS_FINE_LOCATION,
+                            Manifest.permission.ACCESS_COARSE_LOCATION)) {
 
-                            // initialize LocationRequest object
-                            if (FrameworkUtils.checkIfNull(mLocationRequest)) {
-                                initLocationRequest();
-                            } else {
-                                // create LocationSettingsRequest object using location request
-                                LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder();
-                                builder.addLocationRequest(mLocationRequest);
-                                LocationSettingsRequest locationSettingsRequest = builder.build();
+                        // initialize LocationRequest object
+                        if (FrameworkUtils.checkIfNull(mLocationRequest)) {
+                            initLocationRequest();
+                        } else {
+                            // create LocationSettingsRequest object using location request
+                            LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder();
+                            builder.addLocationRequest(mLocationRequest);
+                            LocationSettingsRequest locationSettingsRequest = builder.build();
 
-                                // check whether location settings are satisfied
-                                // https://developers.google.com/android/reference/com/google/android/gms/location/SettingsClient
-                                SettingsClient settingsClient = LocationServices.getSettingsClient(mContext);
-                                settingsClient.checkLocationSettings(locationSettingsRequest).addOnSuccessListener(mActivity, new OnSuccessListener<LocationSettingsResponse>() {
-                                    @Override
-                                    public void onSuccess(LocationSettingsResponse locationSettingsResponse) {
-                                        if (!FrameworkUtils.checkIfNull(locationSettingsResponse) &&
-                                                locationSettingsResponse.getLocationSettingsStates().isLocationPresent() &&
-                                                locationSettingsResponse.getLocationSettingsStates().isGpsPresent()) {
-                                            // start location updates
-                                            startLocationUpdates();
+                            // check whether location settings are satisfied
+                            // https://developers.google.com/android/reference/com/google/android/gms/location/SettingsClient
+                            SettingsClient settingsClient = LocationServices.getSettingsClient(MainActivity.this);
+                            settingsClient.checkLocationSettings(locationSettingsRequest).addOnSuccessListener(MainActivity.this,
+                                    new OnSuccessListener<LocationSettingsResponse>() {
+                                        @Override
+                                        public void onSuccess(LocationSettingsResponse locationSettingsResponse) {
+                                            if (!FrameworkUtils.checkIfNull(locationSettingsResponse) &&
+                                                    locationSettingsResponse.getLocationSettingsStates().isLocationPresent() &&
+                                                    locationSettingsResponse.getLocationSettingsStates().isGpsPresent()) {
+                                                // start location updates
+                                                startLocationUpdates();
+                                            }
                                         }
-                                    }
-                                });
-                            }
+                                    });
                         }
                     }
-
-                });
-                break;
+                }
+            });
         }
     }
 }

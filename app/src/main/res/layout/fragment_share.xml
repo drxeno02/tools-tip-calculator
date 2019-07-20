@@ -6,7 +6,7 @@
     android:background="@color/material_grey_300_color_code"
     android:clickable="true"
     android:orientation="vertical"
-    tools:ignore="KeyboardInaccessibleWidget">
+    tools:ignore="KeyboardInaccessibleWidget, ContentDescription">
 
     <!-- header -->
     <include

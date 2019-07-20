@@ -1,25 +1,16 @@
 # gitignore - Leonard Tatum
 ###########################
 
-# built application files
-*.apk
-*.ap_
-
 # files for the dex VM
 *.dex
-
-# Java class files
-*.class
 
 # general folders
 bin/
 gen/
 
 # Gradle files
-.gradle/
 build/
 /*/build/
-*.gradle
 
 # Windows thumbnail db
 Thumbs.db

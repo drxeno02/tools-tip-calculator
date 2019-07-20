@@ -6,7 +6,7 @@
     android:background="@color/material_grey_300_color_code"
     android:clickable="true"
     android:orientation="vertical"
-    tools:ignore="KeyboardInaccessibleWidget">
+    tools:ignore="KeyboardInaccessibleWidget, ContentDescription">
 
     <!-- header -->
     <include
@@ -67,11 +67,11 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
         android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
         android:layout_marginTop="20dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
         android:text="@string/follow_me"
         android:textColor="@color/black"
         android:textSize="@dimen/font_size_18" />
@@ -80,11 +80,11 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
         android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
         android:gravity="center"
         android:orientation="horizontal"
         android:weightSum="1">
@@ -120,11 +120,11 @@
         android:id="@+id/tv_feedback_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
         android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
         android:layout_marginTop="20dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
         android:gravity="center"
         android:text="@string/feedback_email"
         android:textColor="@color/black"

@@ -1,6 +1,5 @@
 package com.blog.ljtatum.tipcalculator.fragments;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -42,7 +41,6 @@ public class ShareFragment extends BaseFragment implements View.OnClickListener 
      * Method is used to instantiate views
      */
     private void initializeViews() {
-        mContext = getActivity();
         tvFragmentHeader = mRootView.findViewById(R.id.tv_fragment_header);
         ivFb = mRootView.findViewById(R.id.iv_fb);
         ivTwitter = mRootView.findViewById(R.id.iv_twitter);

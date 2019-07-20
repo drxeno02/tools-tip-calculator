@@ -7,7 +7,6 @@ import android.support.annotation.Nullable;
 
 import com.app.framework.listeners.OnFirebaseValueListener;
 import com.app.framework.model.HistoryModel;
-import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -24,8 +23,6 @@ import java.util.List;
  */
 
 public class FirebaseUtils {
-    private static final String TAG = FirebaseUtils.class.getSimpleName();
-
     private static Context mContext;
     private static DatabaseReference mWriteDbReference;
     private static DatabaseReference mQueryDbReference;
@@ -46,7 +43,7 @@ public class FirebaseUtils {
      * Constructor
      */
     public FirebaseUtils(@NonNull Context context) {
-        mContext = context;
+        mContext = context.getApplicationContext();
         mWriteDbReference = FirebaseDatabase.getInstance().getReference();
         mQueryDbReference = FirebaseDatabase.getInstance().getReference(FrameworkUtils.getAndroidId(mContext));
     }
@@ -63,15 +60,15 @@ public class FirebaseUtils {
             mWriteDbReference.child(FrameworkUtils.getAndroidId(mContext)).setValue(data);
             mWriteDbReference.addValueEventListener(new ValueEventListener() {
                 @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     if (!FrameworkUtils.checkIfNull(mFirebaseValueListener)) {
                         mFirebaseValueListener.onUpdateDataChange(dataSnapshot);
                     }
                 }
 
                 @Override
-                public void onCancelled(DatabaseError databaseError) {
-                    if (!FrameworkUtils.checkIfNull(databaseError) && !FrameworkUtils.isStringEmpty(databaseError.getMessage())) {
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    if (!FrameworkUtils.isStringEmpty(databaseError.getMessage())) {
                         if (!FrameworkUtils.checkIfNull(mFirebaseValueListener)) {
                             mFirebaseValueListener.onUpdateDatabaseError(databaseError);
                         }
@@ -90,7 +87,7 @@ public class FirebaseUtils {
         if (!FrameworkUtils.checkIfNull(mQueryDbReference)) {
             mQueryDbReference.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     HashMap<String, HistoryModel> map = new HashMap<>();
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                         HistoryModel historyModel = snapshot.getValue(HistoryModel.class);
@@ -102,8 +99,8 @@ public class FirebaseUtils {
                 }
 
                 @Override
-                public void onCancelled(DatabaseError databaseError) {
-                    if (!FrameworkUtils.checkIfNull(databaseError) && !FrameworkUtils.isStringEmpty(databaseError.getMessage())) {
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    if (!FrameworkUtils.isStringEmpty(databaseError.getMessage())) {
                         if (!FrameworkUtils.checkIfNull(mFirebaseValueListener)) {
                             mFirebaseValueListener.onUpdateDatabaseError(databaseError);
                         }
@@ -125,7 +122,7 @@ public class FirebaseUtils {
         if (!FrameworkUtils.checkIfNull(mQueryDbReference)) {
             mQueryDbReference.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     HashMap<String, HistoryModel> map = new HashMap<>();
                     if (!FrameworkUtils.checkIfNull(maxItems) || !FrameworkUtils.checkIfNull(minDate)) {
                         map = filterData(dataSnapshot, maxItems, minDate);
@@ -141,11 +138,11 @@ public class FirebaseUtils {
                 }
 
                 @Override
-                public void onCancelled(DatabaseError databaseError) {
-                    if (!FrameworkUtils.checkIfNull(databaseError) && !FrameworkUtils.isStringEmpty(databaseError.getMessage())) {
-                        if (!FrameworkUtils.checkIfNull(mFirebaseValueListener)) {
-                            mFirebaseValueListener.onUpdateDatabaseError(databaseError);
-                        }
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    if (!FrameworkUtils.isStringEmpty(databaseError.getMessage()) &&
+                            !FrameworkUtils.checkIfNull(mFirebaseValueListener)) {
+                        // set listener
+                        mFirebaseValueListener.onUpdateDatabaseError(databaseError);
                     }
                 }
             });
@@ -163,18 +160,18 @@ public class FirebaseUtils {
             mWriteDbReference.child(FrameworkUtils.getAndroidId(mContext)).setValue(alData);
             mWriteDbReference.addValueEventListener(new ValueEventListener() {
                 @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     if (!FrameworkUtils.checkIfNull(mFirebaseValueListener)) {
                         mFirebaseValueListener.onUpdateDataChange(dataSnapshot);
                     }
                 }
 
                 @Override
-                public void onCancelled(DatabaseError databaseError) {
-                    if (!FrameworkUtils.checkIfNull(databaseError) && !FrameworkUtils.isStringEmpty(databaseError.getMessage())) {
-                        if (!FrameworkUtils.checkIfNull(mFirebaseValueListener)) {
-                            mFirebaseValueListener.onUpdateDatabaseError(databaseError);
-                        }
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    if (!FrameworkUtils.isStringEmpty(databaseError.getMessage()) &&
+                            !FrameworkUtils.checkIfNull(mFirebaseValueListener)) {
+                        // set listener
+                        mFirebaseValueListener.onUpdateDatabaseError(databaseError);
                     }
                 }
             });
@@ -191,18 +188,18 @@ public class FirebaseUtils {
         if (!FrameworkUtils.checkIfNull(mQueryDbReference)) {
             mQueryDbReference.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     if (!FrameworkUtils.checkIfNull(mFirebaseValueListener)) {
                         mFirebaseValueListener.onRetrieveDataChangeWithFilter(filterData(dataSnapshot, maxItems, minDate));
                     }
                 }
 
                 @Override
-                public void onCancelled(DatabaseError databaseError) {
-                    if (!FrameworkUtils.checkIfNull(databaseError) && !FrameworkUtils.isStringEmpty(databaseError.getMessage())) {
-                        if (!FrameworkUtils.checkIfNull(mFirebaseValueListener)) {
-                            mFirebaseValueListener.onRetrieveDataError(databaseError);
-                        }
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    if (!FrameworkUtils.isStringEmpty(databaseError.getMessage()) &&
+                            !FrameworkUtils.checkIfNull(mFirebaseValueListener)) {
+                        // set listener
+                        mFirebaseValueListener.onRetrieveDataError(databaseError);
                     }
                 }
             });
@@ -216,18 +213,18 @@ public class FirebaseUtils {
         if (!FrameworkUtils.checkIfNull(mQueryDbReference)) {
             mQueryDbReference.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     if (!FrameworkUtils.checkIfNull(mFirebaseValueListener)) {
                         mFirebaseValueListener.onRetrieveDataChange(dataSnapshot);
                     }
                 }
 
                 @Override
-                public void onCancelled(DatabaseError databaseError) {
-                    if (!FrameworkUtils.checkIfNull(databaseError) && !FrameworkUtils.isStringEmpty(databaseError.getMessage())) {
-                        if (!FrameworkUtils.checkIfNull(mFirebaseValueListener)) {
-                            mFirebaseValueListener.onRetrieveDataError(databaseError);
-                        }
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    if (!FrameworkUtils.isStringEmpty(databaseError.getMessage()) &&
+                            !FrameworkUtils.checkIfNull(mFirebaseValueListener)) {
+                        // set listener
+                        mFirebaseValueListener.onRetrieveDataError(databaseError);
                     }
                 }
             });

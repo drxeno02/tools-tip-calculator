@@ -9,6 +9,7 @@
     android:layout_marginRight="30dp"
     android:layout_marginStart="30dp"
     android:clickable="true"
+    android:focusable="true"
     android:clipChildren="false"
     android:clipToPadding="false">
 

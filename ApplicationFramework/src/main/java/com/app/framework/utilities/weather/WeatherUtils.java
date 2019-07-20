@@ -4,9 +4,9 @@ import android.annotation.SuppressLint;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import com.google.android.gms.maps.model.LatLng;
 import com.app.framework.listeners.OnWeatherRetrievedListener;
 import com.app.framework.utilities.FrameworkUtils;
+import com.google.android.gms.maps.model.LatLng;
 
 import org.json.JSONObject;
 
