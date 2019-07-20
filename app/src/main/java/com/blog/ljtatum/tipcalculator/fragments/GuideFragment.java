@@ -1,7 +1,7 @@
 package com.blog.ljtatum.tipcalculator.fragments;
 
-import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -14,7 +14,6 @@ import com.app.framework.utilities.FrameworkUtils;
 import com.blog.ljtatum.tipcalculator.R;
 import com.blog.ljtatum.tipcalculator.activity.MainActivity;
 import com.blog.ljtatum.tipcalculator.adapter.GuideAdapter;
-import com.blog.ljtatum.tipcalculator.logger.Logger;
 import com.blog.ljtatum.tipcalculator.model.GuideModel;
 
 import java.util.ArrayList;
@@ -58,7 +57,6 @@ public class GuideFragment extends BaseFragment implements View.OnClickListener 
             R.string.required, R.string.required, R.string.not_required,
             R.string.required, R.string.required, R.string.required};
 
-    private Context mContext;
     private View mRootView;
     private RecyclerView rvGuide;
     private GuideAdapter mGuideAdapter;
@@ -67,7 +65,7 @@ public class GuideFragment extends BaseFragment implements View.OnClickListener 
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mRootView = inflater.inflate(R.layout.fragment_guide, container, false);
 
         // instantiate views
@@ -83,12 +81,11 @@ public class GuideFragment extends BaseFragment implements View.OnClickListener 
      * Method is used to instantiate views
      */
     private void initializeViews() {
-        mContext = getActivity();
         alGuideModel = new ArrayList<>();
 
         // instantiate views
-        rvGuide = (RecyclerView) mRootView.findViewById(R.id.rv_guide);
-        tvFragmentHeader = (TextView) mRootView.findViewById(R.id.tv_fragment_header);
+        rvGuide = mRootView.findViewById(R.id.rv_guide);
+        tvFragmentHeader = mRootView.findViewById(R.id.tv_fragment_header);
 
         // instantiate adapter
         LinearLayoutManager layoutManager = new LinearLayoutManager(mContext);
@@ -112,25 +109,18 @@ public class GuideFragment extends BaseFragment implements View.OnClickListener 
      * Method is used to populate guide model list
      */
     private void populateGuideModelList() {
-        int size = ARRY_COUNTRY_FLAG_ICONS.length;
-        if (ARRY_COUNTRY_NAMES.length == size && ARRY_COUNTRY_DESCRIPTIONS.length == size &&
-                ARRY_COUNTRY_TIP_REQUIREMENTS.length == size) {
-            for (int i = 0; i < size; i++) {
-                GuideModel guideModel = new GuideModel();
-                guideModel.countryFlagIcon = ARRY_COUNTRY_FLAG_ICONS[i];
-                guideModel.countryName = getResources().getString(ARRY_COUNTRY_NAMES[i]);
-                guideModel.countryReq = getResources().getString(ARRY_COUNTRY_TIP_REQUIREMENTS[i]);
-                guideModel.ccountryDesc = getResources().getString(ARRY_COUNTRY_DESCRIPTIONS[i]);
-                alGuideModel.add(guideModel);
-            }
-
-            mGuideAdapter = new GuideAdapter(mContext, alGuideModel);
-            rvGuide.setAdapter(mGuideAdapter);
-            mGuideAdapter.notifyDataSetChanged();
-        } else {
-            // log error
-            Logger.e(TAG, "country array sizes are not equal");
+        for (int i = 0; i < ARRY_COUNTRY_FLAG_ICONS.length; i++) {
+            GuideModel guideModel = new GuideModel();
+            guideModel.countryFlagIcon = ARRY_COUNTRY_FLAG_ICONS[i];
+            guideModel.countryName = getResources().getString(ARRY_COUNTRY_NAMES[i]);
+            guideModel.countryReq = getResources().getString(ARRY_COUNTRY_TIP_REQUIREMENTS[i]);
+            guideModel.ccountryDesc = getResources().getString(ARRY_COUNTRY_DESCRIPTIONS[i]);
+            alGuideModel.add(guideModel);
         }
+
+        mGuideAdapter = new GuideAdapter(mContext, alGuideModel);
+        rvGuide.setAdapter(mGuideAdapter);
+        mGuideAdapter.notifyDataSetChanged();
     }
 
     @Override
