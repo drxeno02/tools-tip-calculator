@@ -14,12 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-/**
- * Created by LJTat on 10/2/2017.
- * Class used to monitor network connection strength, when the network is having issues a broadcast
- * message is sent to and used to display the network dialog msg
- */
-
 public class NetworkReceiver extends BroadcastReceiver {
     private static final String TAG = NetworkReceiver.class.getSimpleName();
 
@@ -59,9 +53,9 @@ public class NetworkReceiver extends BroadcastReceiver {
     /**
      * Lets all {@link NetworkStatusObserver}s know if the DEVICE is connected to a network.
      *
-     * @param isNetworkConnectedCurrent
+     * @param isNetworkConnectedCurrent True if network connection is current, otherwise false
      */
-    private void notifyObservers(Boolean isNetworkConnectedCurrent) {
+    private void notifyObservers(@NonNull Boolean isNetworkConnectedCurrent) {
         for (NetworkStatusObserver networkStatusObserver : mObserverList) {
             networkStatusObserver.notifyConnectionChange(isNetworkConnectedCurrent);
         }
@@ -70,25 +64,25 @@ public class NetworkReceiver extends BroadcastReceiver {
     /**
      * Add observer to observer list
      *
-     * @param observer
+     * @param observer Network observer that monitors changes in network activity
      */
-    public void addObserver(NetworkStatusObserver observer) {
+    public void addObserver(@NonNull NetworkStatusObserver observer) {
         mObserverList.add(observer);
     }
 
     /**
      * Remove observer from observer list
      *
-     * @param observer
+     * @param observer Network observer that monitors changes in network activity
      */
-    public void removeObserver(NetworkStatusObserver observer) {
+    public void removeObserver(@NonNull NetworkStatusObserver observer) {
         mObserverList.remove(observer);
     }
 
     /**
      * Retrieve observer list size
      *
-     * @return
+     * @return List of network observers
      */
     public int getObserverSize() {
         return mObserverList.size();
@@ -97,10 +91,10 @@ public class NetworkReceiver extends BroadcastReceiver {
     /**
      * Check if receiver is added to observer list
      *
-     * @param observer
-     * @return
+     * @param observer Network observer that monitors changes in network activity
+     * @return True if observer is already on observer list
      */
-    public boolean contains(NetworkStatusObserver observer) {
+    public boolean contains(@NonNull NetworkStatusObserver observer) {
         return mObserverList.contains(observer);
     }
 

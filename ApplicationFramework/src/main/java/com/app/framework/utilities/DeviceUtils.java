@@ -12,11 +12,6 @@ import android.provider.Settings;
 import android.util.DisplayMetrics;
 import android.view.inputmethod.InputMethodManager;
 
-/**
- * Created by leonard on 9/29/2015.
- * Utility class used to perform device operations. These include hiding keyboards, retrieving network
- * status, checking if location services are enabled, and converting pixels to Density pixels.
- */
 public class DeviceUtils {
 
     /**

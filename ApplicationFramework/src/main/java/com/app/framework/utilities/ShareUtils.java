@@ -12,10 +12,6 @@ import com.app.framework.enums.Enum;
 
 import java.util.List;
 
-/**
- * Created by LJTat on 3/4/2017.
- */
-
 public class ShareUtils {
 
     // social media packages
@@ -39,7 +35,7 @@ public class ShareUtils {
 
     /**
      * Method is used to open social media via intents
-     * <p>
+     *
      * Facebook/Twitter profile id: drxeno02
      * Linkedin profile id: leonard-tatum-768850105
      *

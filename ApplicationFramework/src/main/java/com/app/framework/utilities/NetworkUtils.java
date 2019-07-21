@@ -4,23 +4,14 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.net.wifi.WifiInfo;
-import android.net.wifi.WifiManager;
-import android.os.Build;
-import android.provider.Settings;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 
-import java.util.Locale;
-
-/**
- * Created by leonard on 3/14/2016.
- */
 public class NetworkUtils {
     private static String TAG = NetworkUtils.class.getSimpleName();
 
     /**
-     * Method {@link com.app.framework.utilities.NetworkUtils#isNetworkAvailable(Context)}
+     * Method {@see com.app.framework.utilities.NetworkUtils#isNetworkAvailable(Context)}
      * is used to check is network is available e.g. both connected and available
      *
      * @param context Interface to global information about an application environment
@@ -30,69 +21,32 @@ public class NetworkUtils {
     public static boolean isNetworkAvailable(Context context) {
         //check general connectivity
         ConnectivityManager conMgr = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        if (!FrameworkUtils.checkIfNull(conMgr)) {
-            if (!FrameworkUtils.checkIfNull(conMgr.getActiveNetworkInfo()) &&
-                    conMgr.getActiveNetworkInfo().isConnected() &&
-                    conMgr.getActiveNetworkInfo().isAvailable()) {
-                Log.i(TAG, "Active Connection");
-                return true;
-            }
+        if (!FrameworkUtils.checkIfNull(conMgr) &&
+                !FrameworkUtils.checkIfNull(conMgr.getActiveNetworkInfo()) &&
+                conMgr.getActiveNetworkInfo().isConnected() &&
+                conMgr.getActiveNetworkInfo().isAvailable()) {
+            Log.i(TAG, "Active Connection");
+            return true;
         }
         Log.i(TAG, "No Connection");
         return false;
     }
 
     /**
-     * Method {@link com.app.framework.utilities.NetworkUtils#getIPAddr(Context)}
-     * is used to retrieve network IP Address
-     *
-     * @param context Interface to global information about an application environment
-     * @return
-     */
-    public static String getIPAddr(Context context) {
-        WifiManager wifiManager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
-        WifiInfo wifiInfo = wifiManager.getConnectionInfo();
-        int ip = wifiInfo.getIpAddress();
-
-        String strIPAddr = String.format(Locale.US, "%d.%d.%d.%d",
-                (ip & 0xff),
-                (ip >> 8 & 0xff),
-                (ip >> 16 & 0xff),
-                (ip >> 24 & 0xff));
-        Log.d(TAG, strIPAddr);
-        return strIPAddr;
-    }
-
-    /**
-     * Method {@link com.app.framework.utilities.NetworkUtils#getNetworkInfo(Context)}
+     * Method {@see com.app.framework.utilities.NetworkUtils#getNetworkInfo(Context)}
      * is used to get the network info
      *
      * @param context Interface to global information about an application environment
      * @return Details about the currently active default data network
      */
     @SuppressLint("MissingPermission")
-    public static NetworkInfo getNetworkInfo(Context context) {
+    private static NetworkInfo getNetworkInfo(Context context) {
         ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         return cm.getActiveNetworkInfo();
     }
 
     /**
-     * Method {@link com.app.framework.utilities.NetworkUtils#isAirplaneModeOn(Context)}
-     * is used to get the state of Airplane Mode
-     *
-     * @param context Interface to global information about an application environment
-     * @return True if airplane mode is enabled, otherwise false
-     */
-    public static boolean isAirplaneModeOn(Context context) {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN_MR1) {
-            return Settings.System.getInt(context.getContentResolver(), Settings.System.AIRPLANE_MODE_ON, 0) == 1;
-        } else {
-            return (Settings.Global.getInt(context.getContentResolver(), Settings.Global.AIRPLANE_MODE_ON, 0) != 0);
-        }
-    }
-
-    /**
-     * Check {@link com.app.framework.utilities.NetworkUtils#isConnected(Context)}
+     * Check {@see com.app.framework.utilities.NetworkUtils#isConnected(Context)}
      * if there is any connectivity
      *
      * @param context Interface to global information about an application environment
@@ -104,7 +58,7 @@ public class NetworkUtils {
     }
 
     /**
-     * Check {@link com.app.framework.utilities.NetworkUtils#isConnectedWifi(Context)}
+     * Check {@see com.app.framework.utilities.NetworkUtils#isConnectedWifi(Context)}
      * if there is any connectivity to a WIFI network
      *
      * @param context Interface to global information about an application environment
@@ -116,7 +70,7 @@ public class NetworkUtils {
     }
 
     /**
-     * Check {@link com.app.framework.utilities.NetworkUtils#isConnectedMobile(Context)}
+     * Check {@see com.app.framework.utilities.NetworkUtils#isConnectedMobile(Context)}
      * if there is any connectivity to a mobile network
      *
      * @param context Interface to global information about an application environment
@@ -128,7 +82,7 @@ public class NetworkUtils {
     }
 
     /**
-     * Check {@link com.app.framework.utilities.NetworkUtils#isConnectedFast(Context)}
+     * Check {@see com.app.framework.utilities.NetworkUtils#isConnectedFast(Context)}
      * if there is fast connectivity
      *
      * @param context Interface to global information about an application environment
@@ -140,7 +94,7 @@ public class NetworkUtils {
     }
 
     /**
-     * Check {@link com.app.framework.utilities.NetworkUtils#isConnectionFast(int, int)}
+     * Check {@see com.app.framework.utilities.NetworkUtils#isConnectionFast(int, int)}
      * if there is fast connectivity. Used for {@see com.udi.app.framework.utilities.NetworkUtils#isConnectedFast(Context)}
      *
      * @param type    Mobile data type
@@ -185,8 +139,8 @@ public class NetworkUtils {
                     return true; // ~ 400-7000 kbps
                 /*
                  * Above API level 7, make sure to set android:targetSdkVersion
-			     * to appropriate level to use these
-			     */
+                 * to appropriate level to use these
+                 */
                 case TelephonyManager.NETWORK_TYPE_EHRPD: // API level 11
                     Log.v(TAG, "STRONG: ~ 1-2 Mbps");
                     return true; // ~ 1-2 Mbps

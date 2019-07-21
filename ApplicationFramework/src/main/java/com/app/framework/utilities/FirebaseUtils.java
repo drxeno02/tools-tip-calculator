@@ -18,10 +18,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
-/**
- * Created by LJTat on 6/3/2017.
- */
-
 public class FirebaseUtils {
     private static Context mContext;
     private static DatabaseReference mWriteDbReference;
@@ -54,7 +50,7 @@ public class FirebaseUtils {
      *
      * @param data Data to store to Firebase
      */
-    public static void addValueReplace(Object data) {
+    public static void addValueReplace(@NonNull Object data) {
         if (!FrameworkUtils.checkIfNull(mContext) && !FrameworkUtils.checkIfNull(mWriteDbReference)) {
             // set value
             mWriteDbReference.child(FrameworkUtils.getAndroidId(mContext)).setValue(data);
@@ -83,7 +79,7 @@ public class FirebaseUtils {
      *
      * @param data Data to store to Firebase
      */
-    public static void addValueContinuous(final Object data) {
+    public static void addValueContinuous(@NonNull final Object data) {
         if (!FrameworkUtils.checkIfNull(mQueryDbReference)) {
             mQueryDbReference.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
@@ -118,7 +114,9 @@ public class FirebaseUtils {
      * @param maxItems Maximum number of items allowed to store to Firebase DB
      * @param minDate  The latest date to allow history of data to store to Firebase DB
      */
-    public static void addValueContinuousWithFilter(final Object data, @Nullable final Integer maxItems, @Nullable final Date minDate) {
+    public static void addValueContinuousWithFilter(@NonNull final Object data,
+                                                    @Nullable final Integer maxItems,
+                                                    @Nullable final Date minDate) {
         if (!FrameworkUtils.checkIfNull(mQueryDbReference)) {
             mQueryDbReference.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
@@ -237,7 +235,9 @@ public class FirebaseUtils {
      * @param minDate      The latest date to allow history of data to store to Firebase DB
      * @return Hashmap of filtered data
      */
-    private static HashMap<String, HistoryModel> filterData(@NonNull DataSnapshot dataSnapshot, @Nullable final Integer maxItems, @Nullable final Date minDate) {
+    private static HashMap<String, HistoryModel> filterData(@NonNull DataSnapshot dataSnapshot,
+                                                            @Nullable final Integer maxItems,
+                                                            @Nullable final Date minDate) {
         HashMap<String, HistoryModel> map = new HashMap<>();
         for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
             HistoryModel historyModel = snapshot.getValue(HistoryModel.class);

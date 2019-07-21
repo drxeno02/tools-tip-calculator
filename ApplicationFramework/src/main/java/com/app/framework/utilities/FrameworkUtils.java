@@ -1,7 +1,3 @@
-/*
- * Copyright (c) 2014-present, ZTRIP. All rights reserved.
- */
-
 package com.app.framework.utilities;
 
 import android.annotation.SuppressLint;
@@ -30,12 +26,6 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.Random;
 
-/**
- * Created by leonard on 11/13/2015.
- * Utility class that provides many utility functions used in the codebase. Provides functions for
- * checking if an object as null, as well as if a string is empty. Also provides functions for formatting
- * strings and setting margins for different screens.
- */
 public class FrameworkUtils {
     private static final String DATE_FORMAT = "MM/dd/yyyy hh:mm:ss a";
 
