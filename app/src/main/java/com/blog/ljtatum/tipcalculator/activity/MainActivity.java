@@ -58,7 +58,7 @@ import com.app.framework.utilities.FirebaseUtils;
 import com.app.framework.utilities.FrameworkUtils;
 import com.app.framework.utilities.NetworkReceiver;
 import com.app.framework.utilities.NetworkUtils;
-import com.app.framework.utilities.map.GoogleServiceUtility;
+import com.app.framework.utilities.GoogleServiceUtility;
 import com.blog.ljtatum.tipcalculator.R;
 import com.blog.ljtatum.tipcalculator.constants.Constants;
 import com.blog.ljtatum.tipcalculator.constants.Durations;
