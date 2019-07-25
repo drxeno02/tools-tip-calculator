@@ -12,16 +12,11 @@ gen/
 build/
 /*/build/
 
-# Windows thumbnail db
-Thumbs.db
-
 # OSX files
 .DS_Store
 **/.DS_Store
 
 # Android Studio
-zTrip.iml
-*/zTrip.iml
 .idea/
 *.iml
 
