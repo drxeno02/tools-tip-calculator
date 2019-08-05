@@ -15,10 +15,11 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.support.annotation.DrawableRes;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+
+import androidx.annotation.DrawableRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.android.volley.toolbox.NetworkImageView;
 import com.app.framework.utilities.FrameworkUtils;
@@ -288,9 +289,9 @@ public class CircleImageView extends NetworkImageView {
         if (FrameworkUtils.checkIfNull(getDrawable())) {
             return;
         }
-        canvas.drawCircle(getWidth() / 2, getHeight() / 2, mDrawableRadius, mBitmapPaint);
+        canvas.drawCircle(getWidth() / 2f, getHeight() / 2f, mDrawableRadius, mBitmapPaint);
         if (mBorderWidth != 0) {
-            canvas.drawCircle(getWidth() / 2, getHeight() / 2, mBorderRadius, mBorderPaint);
+            canvas.drawCircle(getWidth() / 2f, getHeight() / 2f, mBorderRadius, mBorderPaint);
         }
     }
 

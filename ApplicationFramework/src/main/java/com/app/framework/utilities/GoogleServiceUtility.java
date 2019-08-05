@@ -13,13 +13,11 @@ public class GoogleServiceUtility {
      * Method is used to check Google Play Services
      *
      * @param activity An activity is a single, focused thing that the user can do
-     * @return True of Google Play Service is available, otherwise false
      */
-    public static boolean checkGooglePlaySevices(final Activity activity) {
+    public static void checkGooglePlaySevices(final Activity activity) {
         final int googlePlayServicesCheck = GooglePlayServicesUtil.isGooglePlayServicesAvailable(activity);
         switch (googlePlayServicesCheck) {
             case ConnectionResult.SUCCESS:
-                return true;
             case ConnectionResult.SERVICE_DISABLED:
             case ConnectionResult.SERVICE_INVALID:
             case ConnectionResult.SERVICE_MISSING:
@@ -34,7 +32,6 @@ public class GoogleServiceUtility {
                 });
                 dialog.show();
         }
-        return false;
     }
 
 }

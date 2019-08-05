@@ -7,10 +7,12 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.SystemClock;
 import android.provider.Settings;
-import android.support.annotation.NonNull;
-import android.support.v4.content.ContextCompat;
+
 import android.telephony.TelephonyManager;
 import android.view.View;
+
+import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 
 import com.app.framework.constants.Constants;
 import com.app.framework.sharedpref.SharedPref;

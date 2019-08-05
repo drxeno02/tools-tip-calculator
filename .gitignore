@@ -9,8 +9,8 @@ bin/
 gen/
 
 # Gradle files
+.gradle/
 build/
-/*/build/
 
 # OSX files
 .DS_Store

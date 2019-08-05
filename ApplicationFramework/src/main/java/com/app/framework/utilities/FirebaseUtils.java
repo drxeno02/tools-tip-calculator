@@ -2,8 +2,8 @@ package com.app.framework.utilities;
 
 
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.app.framework.listeners.OnFirebaseValueListener;
 import com.app.framework.model.HistoryModel;

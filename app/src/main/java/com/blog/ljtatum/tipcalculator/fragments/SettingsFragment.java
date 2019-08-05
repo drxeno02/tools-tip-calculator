@@ -6,8 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.Settings;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +17,9 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.app.framework.sharedpref.SharedPref;
 import com.app.framework.utilities.DeviceUtils;
@@ -165,7 +166,7 @@ public class SettingsFragment extends BaseFragment implements View.OnClickListen
                         showLocationServiceDisabledDialog();
                     } else {
                         // update default save location settings
-                        mSharedPref.setPref(Constants.KEY_DEFAULT_SAVE_LOCATION, b);
+                        mSharedPref.setPref(Constants.KEY_DEFAULT_SAVE_LOCATION, true);
                         tvSaveLocation.setText(getResources().getString(R.string.settings_save_location, "Enabled"));
                         // show banner
                         Crouton.showText(mActivity, "Saved!", Style.CONFIRM);
@@ -176,7 +177,7 @@ public class SettingsFragment extends BaseFragment implements View.OnClickListen
                         isLocationServicePending = false; // reset
                     } else {
                         // update default save location settings
-                        mSharedPref.setPref(Constants.KEY_DEFAULT_SAVE_LOCATION, b);
+                        mSharedPref.setPref(Constants.KEY_DEFAULT_SAVE_LOCATION, false);
                         tvSaveLocation.setText(getResources().getString(R.string.settings_save_location, "Disabled"));
                         // show banner
                         Crouton.showText(mActivity, "Saved!", Style.CONFIRM);

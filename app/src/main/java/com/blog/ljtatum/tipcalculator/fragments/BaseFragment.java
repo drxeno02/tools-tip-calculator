@@ -2,8 +2,9 @@ package com.blog.ljtatum.tipcalculator.fragments;
 
 import android.app.Activity;
 import android.content.Context;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.app.framework.utilities.FrameworkUtils;
 import com.blog.ljtatum.tipcalculator.R;
@@ -15,12 +16,13 @@ import com.blog.ljtatum.tipcalculator.listeners.OnFragmentRemoved;
 
 public class BaseFragment extends Fragment {
 
-    protected Activity mActivity;
-    protected Context mContext;
-    protected static OnFragmentRemoved mOnFragmentRemovedListener;
+    Activity mActivity;
+    Context mContext;
+    static OnFragmentRemoved mOnFragmentRemovedListener;
 
     /**
      * Method is used to set callback for when fragment(s) are removed
+     *
      * @param listener Callback for when fragment(s) are removed
      */
     public static void onFragmentRemoved(OnFragmentRemoved listener) {
@@ -33,7 +35,7 @@ public class BaseFragment extends Fragment {
      * request to pop, but the action will not be performed until the application
      * returns to its event loop.
      */
-    public void popBackStack() {
+    void popBackStack() {
         if (!FrameworkUtils.checkIfNull(getActivity())) {
             try {
                 getActivity().getSupportFragmentManager().popBackStack();

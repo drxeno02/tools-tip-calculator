@@ -2,15 +2,16 @@ package com.blog.ljtatum.tipcalculator.fragments;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.app.framework.listeners.OnFirebaseValueListener;
 import com.app.framework.model.HistoryModel;
@@ -44,7 +45,6 @@ public class HistoryFragment extends BaseFragment implements View.OnClickListene
     private HistoryAdapter mHistoryAdapter;
     private ArrayList<HistoryModel> alTipHistory;
 
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -77,7 +77,7 @@ public class HistoryFragment extends BaseFragment implements View.OnClickListene
 
         // instantiate adapter
         LinearLayoutManager layoutManager = new LinearLayoutManager(mContext);
-        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        layoutManager.setOrientation(RecyclerView.VERTICAL);
         rvHistory.setLayoutManager(layoutManager);
         mHistoryAdapter = new HistoryAdapter(mContext, new ArrayList<HistoryModel>());
         rvHistory.setAdapter(mHistoryAdapter);

@@ -1,3 +1,4 @@
+apply plugin: 'com.google.gms.google-services'
 apply plugin: 'com.android.application'
 apply plugin: 'io.fabric'
 
@@ -26,6 +27,7 @@ ext {
 
 android {
     compileSdkVersion 28
+    buildToolsVersion '28.0.3'
 
     // construct version name
     def versionMajor = 2
@@ -74,6 +76,7 @@ android {
     }
     lintOptions {
         // if true, stop the gradle build if errors are found
+        checkReleaseBuilds false
         abortOnError false
     }
 }
@@ -84,6 +87,3 @@ dependencies {
         transitive = true;
     }
 }
-
-// THIS IS REQUIRED FOR FIREBASE (KEEP HERE)
-apply plugin: 'com.google.gms.google-services'

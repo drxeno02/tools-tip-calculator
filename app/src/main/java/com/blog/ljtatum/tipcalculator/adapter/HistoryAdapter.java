@@ -2,13 +2,14 @@ package com.blog.ljtatum.tipcalculator.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.app.framework.model.HistoryModel;
 import com.app.framework.utilities.FrameworkUtils;
@@ -37,14 +38,15 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
         alTipHistory = historyModel;
     }
 
+    @NonNull
     @Override
-    public HistoryAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public HistoryAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new HistoryAdapter.ViewHolder(LayoutInflater.from(mContext).inflate(R.layout.item_history, parent, false));
     }
 
     @SuppressLint("StringFormatInvalid")
     @Override
-    public void onBindViewHolder(HistoryAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull HistoryAdapter.ViewHolder holder, int position) {
         // set background color
         if (position % 2 == 0) {
             holder.llWrapper.setBackgroundColor(FrameworkUtils.getColor(mContext, R.color.material_light_blue_200_color_code));
@@ -85,7 +87,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
      *                     {@link com.app.framework.model}
      */
     public void updateData(@NonNull ArrayList<HistoryModel> historyModel) {
-        if (historyModel.size() > 0 && !historyModel.isEmpty()) {
+        if (historyModel.size() > 0) {
             alTipHistory = historyModel;
             notifyDataSetChanged();
         }
@@ -95,22 +97,22 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
      * View holder class
      * <p>A ViewHolder describes an item view and metadata about its place within the RecyclerView</p>
      */
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    class ViewHolder extends RecyclerView.ViewHolder {
 
         private LinearLayout llWrapper;
         private TextView tvItemDayDate, tvItemQuality, tvItemTipAmount, tvItemTipPercentage,
                 tvItemLocation, tvItemBillAmount;
 
-        public ViewHolder(View itemView) {
+        ViewHolder(View itemView) {
             super(itemView);
 
-            llWrapper = (LinearLayout) itemView.findViewById(R.id.ll_wrapper);
-            tvItemDayDate = (TextView) itemView.findViewById(R.id.tv_item_day_date);
-            tvItemQuality = (TextView) itemView.findViewById(R.id.tv_item_quality);
-            tvItemTipAmount = (TextView) itemView.findViewById(R.id.tv_item_tip_amount);
-            tvItemTipPercentage = (TextView) itemView.findViewById(R.id.tv_item_tip_percentage);
-            tvItemLocation = (TextView) itemView.findViewById(R.id.tv_item_location);
-            tvItemBillAmount = (TextView) itemView.findViewById(R.id.tv_item_bill_amount);
+            llWrapper = itemView.findViewById(R.id.ll_wrapper);
+            tvItemDayDate = itemView.findViewById(R.id.tv_item_day_date);
+            tvItemQuality = itemView.findViewById(R.id.tv_item_quality);
+            tvItemTipAmount = itemView.findViewById(R.id.tv_item_tip_amount);
+            tvItemTipPercentage = itemView.findViewById(R.id.tv_item_tip_percentage);
+            tvItemLocation = itemView.findViewById(R.id.tv_item_location);
+            tvItemBillAmount = itemView.findViewById(R.id.tv_item_bill_amount);
         }
     }
 
