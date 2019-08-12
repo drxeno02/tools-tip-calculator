@@ -14,7 +14,6 @@ import com.blog.ljtatum.tipcalculator.utils.Utils;
  */
 public class SplashActivity extends BaseActivity {
     private static final String TAG = SplashActivity.class.getSimpleName();
-    private final int SPLASH_TIMER = 2000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +23,7 @@ public class SplashActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
+        int SPLASH_TIMER = 2000;
         new Handler().postDelayed(new Runnable() {
 
             @Override

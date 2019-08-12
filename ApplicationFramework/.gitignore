@@ -1,15 +1,8 @@
 # gitignore - Leonard Tatum
 ###########################
 
-# built application files
-*.apk
-*.ap_
-
 # files for the dex VM
 *.dex
-
-# Java class files
-*.class
 
 # general folders
 bin/
@@ -18,24 +11,20 @@ gen/
 # Gradle files
 .gradle/
 build/
-/*/build/
-
-# Windows thumbnail db
-Thumbs.db
 
 # OSX files
 .DS_Store
 **/.DS_Store
 
 # Android Studio
-genetech.iml
-*/genetech.iml
 .idea/
 *.iml
 
 # Properties
 .apt_generated/
 project.properties
+version.properties
+*/version.properties
 
 # Local configuration file (sdk path, etc)
 local.properties

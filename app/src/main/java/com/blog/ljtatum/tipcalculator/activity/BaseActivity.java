@@ -1,27 +1,23 @@
-/*
- * Copyright (c) 2014-present, ZTRIP. All rights reserved.
- */
-
 package com.blog.ljtatum.tipcalculator.activity;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import com.app.framework.utilities.FrameworkUtils;
 import com.blog.ljtatum.tipcalculator.R;
-
 
 /**
  * Created by leonard on 9/28/2015.
  * BaseActivity is extended by all Activities. It provides useful functions such as
  * adding and removing fragments, as well as showing and hiding network and deprecation dialogs.
  */
+@SuppressLint("RestrictedApi")
 public abstract class BaseActivity extends AppCompatActivity {
     private FragmentManager mFragmentManager;
 
@@ -51,60 +47,10 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     /**
-     * Method is used to pop the top state off the back stack.
-     * Returns true if there was one to pop, else false.
-     */
-    private void popBackStack() {
-        mFragmentManager.popBackStack();
-    }
-
-    /**
-     * Method is used to pop the top state off the back stack.
-     * Returns true if there was one to pop, else false.
-     */
-    public void popBackStack(String name) {
-        mFragmentManager.popBackStack(name, FragmentManager.POP_BACK_STACK_INCLUSIVE);
-    }
-
-    /**
-     * Method is used to remove a fragment
-     *
-     * @param fragment The fragment to be removed
-     */
-    void removeFragment(Fragment fragment) {
-        try {
-            FragmentTransaction ft = mFragmentManager.beginTransaction();
-            ft.remove(fragment).commitAllowingStateLoss();
-            popBackStack();
-        } catch (IllegalStateException e) {
-            e.printStackTrace();
-        }
-    }
-
-    /**
-     * Method is used to remove all fragments
-     */
-    @SuppressLint("RestrictedApi")
-    public void removeAllFragments() {
-        try {
-            for (Fragment fragment : mFragmentManager.getFragments()) {
-                if (!FrameworkUtils.checkIfNull(fragment)) {
-                    FragmentTransaction ft = mFragmentManager.beginTransaction();
-                    ft.remove(fragment).commit();
-                    popBackStack(fragment.getTag());
-                }
-            }
-        } catch (IllegalStateException e) {
-            e.printStackTrace();
-        }
-    }
-
-    /**
      * Method is used to retrieve the current fragment the user is on
      *
      * @return Returns the TopFragment if there is one, otherwise returns null
      */
-    @SuppressLint("RestrictedApi")
     @Nullable
     public Fragment getTopFragment() {
         if (mFragmentManager.getBackStackEntryCount() > 0) {

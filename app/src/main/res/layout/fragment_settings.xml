@@ -6,7 +6,7 @@
     android:background="@color/material_grey_300_color_code"
     android:clickable="true"
     android:orientation="vertical"
-    tools:ignore="KeyboardInaccessibleWidget">
+    tools:ignore="KeyboardInaccessibleWidget, Autofill,RtlHardcoded">
 
     <!-- header -->
     <include
@@ -20,8 +20,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="10dp"
         android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
         android:text="@string/customize_preferences"
         android:textColor="@color/black"
         android:textSize="@dimen/font_size_24" />
@@ -39,8 +39,8 @@
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
             android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
             android:layout_weight="0.6"
             android:text="@string/settings_set_default_tip"
             android:textColor="@color/black"
@@ -52,7 +52,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="0.4"
-            android:gravity="right|end"
+            android:gravity="end"
             android:hint="@string/txt_hint_integer"
             android:imeOptions="actionDone"
             android:inputType="number"
@@ -60,8 +60,7 @@
             android:maxLines="1"
             android:textColor="@color/black"
             android:textColorHint="@color/black"
-            android:textSize="@dimen/font_size_18"
-            tools:ignore="RtlHardcoded">
+            android:textSize="@dimen/font_size_18">
 
             <requestFocus />
         </EditText>
@@ -80,8 +79,8 @@
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
             android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
             android:layout_weight="0.6"
             android:text="@string/settings_set_default_shared_by"
             android:textColor="@color/black"
@@ -93,7 +92,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="0.4"
-            android:gravity="right|end"
+            android:gravity="end"
             android:hint="@string/txt_hint_integer"
             android:imeOptions="actionDone"
             android:inputType="number"
@@ -111,8 +110,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
         android:layout_marginTop="15dp"
+        android:layout_marginRight="10dp"
         android:orientation="horizontal"
         android:weightSum="1">
 
@@ -126,8 +125,8 @@
                 android:id="@+id/tv_save_history"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
                 android:layout_marginStart="5dp"
+                android:layout_marginLeft="5dp"
                 android:text="@string/settings_save_history"
                 android:textColor="@color/black"
                 android:textSize="@dimen/font_size_18" />
@@ -137,8 +136,8 @@
                 android:layout_width="26dp"
                 android:layout_height="26dp"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="10dp"
                 android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
                 android:layout_toEndOf="@+id/tv_save_history"
                 android:layout_toRightOf="@+id/tv_save_history"
                 android:src="@drawable/question_mark_a"
@@ -152,8 +151,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="end|right"
-            android:layout_marginLeft="5dp"
             android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
             android:layout_weight="0.15"
             android:checked="true"
             android:gravity="end|right" />
@@ -165,8 +164,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
         android:layout_marginTop="15dp"
+        android:layout_marginRight="10dp"
         android:orientation="horizontal"
         android:weightSum="1">
 
@@ -180,8 +179,8 @@
                 android:id="@+id/tv_save_location"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
                 android:layout_marginStart="5dp"
+                android:layout_marginLeft="5dp"
                 android:text="@string/settings_save_location"
                 android:textColor="@color/black"
                 android:textSize="@dimen/font_size_18" />
@@ -191,8 +190,8 @@
                 android:layout_width="26dp"
                 android:layout_height="26dp"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="10dp"
                 android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
                 android:layout_toEndOf="@+id/tv_save_location"
                 android:layout_toRightOf="@+id/tv_save_location"
                 android:src="@drawable/question_mark_a"
@@ -206,8 +205,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="end|right"
-            android:layout_marginLeft="5dp"
             android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
             android:layout_weight="0.15"
             android:checked="true"
             android:gravity="end|right" />
@@ -219,8 +218,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
         android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
         android:orientation="horizontal"
         android:weightSum="1">
 
@@ -229,8 +228,8 @@
             android:id="@+id/tv_shake_reset"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
             android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
             android:layout_weight="0.85"
             android:text="@string/settings_shake"
             android:textColor="@color/black"
@@ -242,8 +241,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="end|right"
-            android:layout_marginLeft="5dp"
             android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
             android:layout_weight="0.15"
             android:checked="true"
             android:gravity="end|right" />
@@ -255,8 +254,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
         android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
         android:orientation="horizontal"
         android:weightSum="1">
 
@@ -265,8 +264,8 @@
             android:id="@+id/tv_round_off"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
             android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
             android:layout_weight="0.85"
             android:text="@string/settings_round_off"
             android:textColor="@color/black"
@@ -278,12 +277,28 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="end|right"
-            android:layout_marginLeft="5dp"
             android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
             android:layout_weight="0.15"
             android:checked="true"
             android:gravity="end|right" />
 
     </LinearLayout>
+
+    <!-- save settings -->
+    <Button
+        android:id="@+id/btn_save"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/custom_button"
+        android:text="@string/btn_save"
+        android:textColor="@color/black"
+        android:textSize="@dimen/font_size_18"
+        android:textStyle="bold" />
 
 </LinearLayout>

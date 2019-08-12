@@ -6,10 +6,6 @@ import com.google.firebase.database.DatabaseError;
 
 import java.util.HashMap;
 
-/**
- * Created by LJTat on 6/3/2017.
- */
-
 public interface OnFirebaseValueListener {
 
     /**

@@ -1,14 +1,16 @@
+apply plugin: 'com.google.gms.google-services'
+apply plugin: 'com.android.application'
+apply plugin: 'io.fabric'
+
 buildscript {
     repositories {
         maven { url 'https://maven.fabric.io/public' }
     }
 
     dependencies {
-        classpath 'io.fabric.tools:gradle:1.+'
+        classpath 'io.fabric.tools:gradle:1.30.0'
     }
 }
-apply plugin: 'com.android.application'
-apply plugin: 'io.fabric'
 
 repositories {
     maven { url 'https://maven.fabric.io/public' }
@@ -24,7 +26,8 @@ ext {
 }
 
 android {
-    compileSdkVersion 26
+    compileSdkVersion 28
+    buildToolsVersion '28.0.3'
 
     // construct version name
     def versionMajor = 2
@@ -36,9 +39,11 @@ android {
         applicationId "com.blog.ljtatum.tipcalculator"
         versionName "${versionMajor}.${versionMinor}.${versionPatch}"
         minSdkVersion 16
-        targetSdkVersion 26
+        targetSdkVersion 28
         versionCode code
 
+        // multidex
+        multiDexEnabled true
         //noinspection GroovyAssignabilityCheck
         signingConfig signingConfigs.debug
     }
@@ -73,6 +78,7 @@ android {
     }
     lintOptions {
         // if true, stop the gradle build if errors are found
+        checkReleaseBuilds false
         abortOnError false
     }
 }
@@ -83,6 +89,3 @@ dependencies {
         transitive = true;
     }
 }
-
-// THIS IS REQUIRED FOR FIREBASE (KEEP HERE)
-apply plugin: 'com.google.gms.google-services'

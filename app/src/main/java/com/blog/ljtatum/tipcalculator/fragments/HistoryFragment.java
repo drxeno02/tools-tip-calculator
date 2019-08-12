@@ -1,16 +1,17 @@
 package com.blog.ljtatum.tipcalculator.fragments;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.app.framework.listeners.OnFirebaseValueListener;
 import com.app.framework.model.HistoryModel;
@@ -32,23 +33,20 @@ import java.util.concurrent.TimeUnit;
 /**
  * Created by LJTat on 2/27/2017.
  */
-
 public class HistoryFragment extends BaseFragment implements View.OnClickListener {
 
     private static final int NUM_HISTORY_RESULTS = 50;
     private static final int NUM_DAYS_TIP_HISTORY = 30; // last 30 days
-    private Context mContext;
+
     private View mRootView;
     private TextView tvFragmentHeader, tvTipWeek, tvAvgPercWeek, tvAvgPercOverall, tvNoHistory;
     private LinearLayout llWrapper;
-    private RecyclerView rvHistory;
     private HistoryAdapter mHistoryAdapter;
     private ArrayList<HistoryModel> alTipHistory;
 
-
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mRootView = inflater.inflate(R.layout.fragment_history, container, false);
 
         // instantiate views
@@ -65,21 +63,20 @@ public class HistoryFragment extends BaseFragment implements View.OnClickListene
      * Method is used to instantiate views
      */
     private void initializeViews() {
-        mContext = getActivity();
         alTipHistory = new ArrayList<>();
 
         // instantiate views
-        llWrapper = (LinearLayout) mRootView.findViewById(R.id.ll_wrapper);
-        rvHistory = (RecyclerView) mRootView.findViewById(R.id.rv_history);
-        tvFragmentHeader = (TextView) mRootView.findViewById(R.id.tv_fragment_header);
-        tvTipWeek = (TextView) mRootView.findViewById(R.id.tv_total_tip_week);
-        tvAvgPercWeek = (TextView) mRootView.findViewById(R.id.tv_avg_tip_percentage_week);
-        tvAvgPercOverall = (TextView) mRootView.findViewById(R.id.tv_avg_tip_percentage_overall);
-        tvNoHistory = (TextView) mRootView.findViewById(R.id.tv_no_history);
+        llWrapper = mRootView.findViewById(R.id.ll_wrapper);
+        RecyclerView rvHistory = mRootView.findViewById(R.id.rv_history);
+        tvFragmentHeader = mRootView.findViewById(R.id.tv_fragment_header);
+        tvTipWeek = mRootView.findViewById(R.id.tv_total_tip_week);
+        tvAvgPercWeek = mRootView.findViewById(R.id.tv_avg_tip_percentage_week);
+        tvAvgPercOverall = mRootView.findViewById(R.id.tv_avg_tip_percentage_overall);
+        tvNoHistory = mRootView.findViewById(R.id.tv_no_history);
 
         // instantiate adapter
         LinearLayoutManager layoutManager = new LinearLayoutManager(mContext);
-        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        layoutManager.setOrientation(RecyclerView.VERTICAL);
         rvHistory.setLayoutManager(layoutManager);
         mHistoryAdapter = new HistoryAdapter(mContext, new ArrayList<HistoryModel>());
         rvHistory.setAdapter(mHistoryAdapter);
@@ -115,7 +112,7 @@ public class HistoryFragment extends BaseFragment implements View.OnClickListene
             public void onRetrieveDataChangeWithFilter(HashMap<String, HistoryModel> map) {
                 // dismiss progress dialog
                 DialogUtils.dismissProgressDialog();
-                if (map.size() > 0 && !map.isEmpty()) {
+                if (!map.isEmpty()) {
                     FrameworkUtils.setViewVisible(llWrapper);
                     FrameworkUtils.setViewGone(tvNoHistory);
                 } else {
@@ -124,7 +121,7 @@ public class HistoryFragment extends BaseFragment implements View.OnClickListene
                 }
 
                 // update adapter
-                alTipHistory = new ArrayList<>(map.size() > 0 && !map.isEmpty() ? map.values() :
+                alTipHistory = new ArrayList<>(!map.isEmpty() ? map.values() :
                         new HashMap<String, HistoryModel>().values());
                 mHistoryAdapter.updateData(alTipHistory);
 
@@ -145,7 +142,7 @@ public class HistoryFragment extends BaseFragment implements View.OnClickListene
                 tvTipWeek.setText(tipAmountWeek == 0 ? getResources().getString(R.string.tip_amount_week,
                         getResources().getString(R.string.not_applicable)) :
                         getResources().getString(R.string.tip_amount_week,
-                                String.valueOf(FrameworkUtils.convertToDollarFormat(tipAmountWeek))));
+                                FrameworkUtils.convertToDollarFormat(tipAmountWeek)));
                 // average tip percent for week
                 tvAvgPercWeek.setText(tipPercWeek == 0 ? getResources().getString(R.string.tip_amount_week,
                         getResources().getString(R.string.not_applicable)) :
@@ -210,13 +207,13 @@ public class HistoryFragment extends BaseFragment implements View.OnClickListene
 
     @Override
     public void onDetach() {
-        super.onDetach();
         if (!FrameworkUtils.checkIfNull(mOnFragmentRemovedListener)) {
             // set listener
             mOnFragmentRemovedListener.onFragmentRemoved();
         }
         // enable drawer
         ((MainActivity) mContext).toggleDrawerState(true);
+        super.onDetach();
     }
 
 }

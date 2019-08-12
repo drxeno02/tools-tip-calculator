@@ -2,12 +2,14 @@ package com.blog.ljtatum.tipcalculator.utils;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
-import android.support.annotation.NonNull;
 import android.telephony.TelephonyManager;
 import android.util.DisplayMetrics;
+
+import androidx.annotation.NonNull;
 
 import com.app.framework.utilities.FrameworkUtils;
 import com.blog.ljtatum.tipcalculator.BuildConfig;
@@ -35,7 +37,7 @@ public class Utils {
      *
      * @param name Fragment or class simple name
      */
-    @SuppressWarnings({"ConstantConditions", "PointlessBooleanExpression"})
+    @SuppressWarnings("ConstantConditions")
     public static void printMemory(@NonNull String name) {
         if (Constants.DEBUG && Constants.DEBUG_VERBOSE) {
             long totalMemory = Runtime.getRuntime().totalMemory();
@@ -68,59 +70,57 @@ public class Utils {
      * @param context  Interface to global information about an application environment
      * @param activity An activity is a single, focused thing that the user can do
      */
-    @SuppressWarnings("PointlessBooleanExpression")
     public static void printInfo(@NonNull Context context, @NonNull Activity activity) {
         if (Constants.DEBUG && Constants.DEBUG_VERBOSE) {
             // detect internet connection
-            String connectionType = "";
-            final ConnectivityManager connMgr = (ConnectivityManager)
-                    context.getSystemService(Context.CONNECTIVITY_SERVICE);
+            String connectionType = NO_CONNECTION;
+            ConnectivityManager connMgr = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+            TelephonyManager telephoneMgr = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
 
-            NetworkInfo activeNetwork = connMgr.getActiveNetworkInfo();
-            if (!FrameworkUtils.checkIfNull(activeNetwork)) {
-                // connected to the internet
-                if (activeNetwork.getType() == ConnectivityManager.TYPE_WIFI) {
-                    // connected to wifi
-                    connectionType = CONNECTION_TYPE_WIFI;
-                } else if (activeNetwork.getType() == ConnectivityManager.TYPE_MOBILE) {
-                    // connected to the mobile provider's data plan
-                    connectionType = CONNECTION_TYPE_DATA;
+            if (!FrameworkUtils.checkIfNull(connMgr) && !FrameworkUtils.checkIfNull(telephoneMgr)) {
+                // carrier name
+                String carrierName = telephoneMgr.getNetworkOperatorName();
+
+                // get display metrics
+                DisplayMetrics displaymetrics = new DisplayMetrics();
+                activity.getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
+
+                // connection type
+                NetworkInfo activeNetwork = connMgr.getActiveNetworkInfo();
+                if (!FrameworkUtils.checkIfNull(activeNetwork)) {
+                    // connected to the internet
+                    if (activeNetwork.getType() == ConnectivityManager.TYPE_WIFI) {
+                        // connected to wifi
+                        connectionType = CONNECTION_TYPE_WIFI;
+                    } else if (activeNetwork.getType() == ConnectivityManager.TYPE_MOBILE) {
+                        // connected to the mobile provider's data plan
+                        connectionType = CONNECTION_TYPE_DATA;
+                    }
                 }
-            } else {
-                // not connected to the internet
-                connectionType = NO_CONNECTION;
-            }
 
-            // determine phone carrier
-            TelephonyManager manager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
-            String carrierName = manager.getNetworkOperatorName();
-
-            // get display metrics
-            DisplayMetrics displaymetrics = new DisplayMetrics();
-            activity.getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
-
-            try {
-                Logger.i(TAG_INFO, "===== DEVICE INFORMATION =====" +
-                        "\nManufacturer: " + Build.MANUFACTURER +
-                        "\nRegistrationModel: " + Build.MODEL +
-                        "\nDevice/Product Id: " + Build.PRODUCT +
-                        "\nCarrier: " + carrierName +
-                        "\nOS Version: " + System.getProperty(OS_VERSION) +
-                        "\nAPI Level: " + String.valueOf(Build.VERSION.SDK_INT) +
-                        "\nScreen size (width/height): " +
-                        displaymetrics.widthPixels + "/" +
-                        displaymetrics.heightPixels +
-                        "\n===== APP INFORMATION =====" +
-                        "\nApp Version: " + BuildConfig.VERSION_NAME +
-                        "\nBuild Type: " + BuildConfig.BUILD_TYPE +
-                        "\nVersion Code: " + BuildConfig.VERSION_CODE +
-                        "\nPackage Name: " + context.getPackageName() +
-                        "\nFlavor: " + BuildConfig.FLAVOR +
-                        "\nGoogle Map API Version: " + context.getPackageManager()
-                        .getPackageInfo("com.google.android.apps.maps", 0).versionName +
-                        "\nInternet Connection: " + connectionType);
-            } catch (Exception e) {
-                e.printStackTrace();
+                try {
+                    Logger.i(TAG_INFO, "===== DEVICE INFORMATION =====" +
+                            "\nManufacturer: " + Build.MANUFACTURER +
+                            "\nRegistrationModel: " + Build.MODEL +
+                            "\nDevice/Product Id: " + Build.PRODUCT +
+                            "\nCarrier: " + carrierName +
+                            "\nOS Version: " + System.getProperty(OS_VERSION) +
+                            "\nAPI Level: " + String.valueOf(Build.VERSION.SDK_INT) +
+                            "\nScreen size (width/height): " +
+                            displaymetrics.widthPixels + "/" +
+                            displaymetrics.heightPixels +
+                            "\n===== APP INFORMATION =====" +
+                            "\nApp Version: " + BuildConfig.VERSION_NAME +
+                            "\nBuild Type: " + BuildConfig.BUILD_TYPE +
+                            "\nVersion Code: " + BuildConfig.VERSION_CODE +
+                            "\nPackage Name: " + context.getPackageName() +
+                            "\nFlavor: " + BuildConfig.FLAVOR +
+                            "\nGoogle Map API Version: " + context.getPackageManager()
+                            .getPackageInfo("com.google.android.apps.maps", 0).versionName +
+                            "\nInternet Connection: " + connectionType);
+                } catch (PackageManager.NameNotFoundException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }

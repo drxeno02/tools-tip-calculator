@@ -12,13 +12,12 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+
 import com.app.framework.R;
 import com.app.framework.constants.Constants;
 import com.app.framework.sharedpref.SharedPref;
 
-/**
- * Created by LJTat on 2/23/2017.
- */
 public class AppRaterUtil {
 
     private static final int DAYS_UNTIL_PROMPT = 4;
@@ -33,7 +32,7 @@ public class AppRaterUtil {
      * @param context     Interface to global information about an application environment
      * @param packageName Namespace because Intents are used globally in the system
      */
-    public AppRaterUtil(Context context, String packageName) {
+    public AppRaterUtil(@NonNull Context context, @NonNull String packageName) {
         mContext = context;
         mPackageName = packageName;
         recordAppLaunchDate();
@@ -50,11 +49,11 @@ public class AppRaterUtil {
         }
 
         // increment launch counter
-        Long launchCount = mSharedPref.getLongPref(Constants.KEY_APP_LAUNCH_COUNT, 0L) + 1;
+        long launchCount = mSharedPref.getLongPref(Constants.KEY_APP_LAUNCH_COUNT, 0L) + 1;
         mSharedPref.setPref(Constants.KEY_APP_LAUNCH_COUNT, launchCount);
 
         // get date of first launch
-        Long dateFirstLaunch = mSharedPref.getLongPref(Constants.KEY_APP_LAUNCH_DATE, 0L);
+        long dateFirstLaunch = mSharedPref.getLongPref(Constants.KEY_APP_LAUNCH_DATE, 0L);
         if (dateFirstLaunch == 0) {
             dateFirstLaunch = System.currentTimeMillis();
             mSharedPref.setPref(Constants.KEY_APP_LAUNCH_DATE, dateFirstLaunch);
@@ -80,11 +79,14 @@ public class AppRaterUtil {
         dialogBuilder.setCancelable(false);
         // instantiate alert dialog
         final AlertDialog alertDialog = dialogBuilder.create();
-        alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
-        TextView tvRateApp = (TextView) v.findViewById(R.id.tv_rate_app);
-        TextView tvRemindLater = (TextView) v.findViewById(R.id.tv_remind_later);
-        TextView tvNoThanks = (TextView) v.findViewById(R.id.tv_no_thanks);
+        if (!FrameworkUtils.checkIfNull(alertDialog.getWindow())) {
+            alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        }
+
+        TextView tvRateApp = v.findViewById(R.id.tv_rate_app);
+        TextView tvRemindLater = v.findViewById(R.id.tv_remind_later);
+        TextView tvNoThanks = v.findViewById(R.id.tv_no_thanks);
 
         // set listeners
         tvRateApp.setOnClickListener(new OnClickListener() {

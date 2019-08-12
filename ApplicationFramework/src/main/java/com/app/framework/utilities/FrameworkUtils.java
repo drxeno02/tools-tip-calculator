@@ -1,33 +1,22 @@
-/*
- * Copyright (c) 2014-present, ZTRIP. All rights reserved.
- */
-
 package com.app.framework.utilities;
 
 import android.annotation.SuppressLint;
-import android.app.ActivityManager;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
-import android.os.Handler;
 import android.os.SystemClock;
 import android.provider.Settings;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.content.ContextCompat;
 import android.telephony.TelephonyManager;
 import android.view.View;
+
+import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 
 import com.app.framework.constants.Constants;
 import com.app.framework.sharedpref.SharedPref;
 import com.google.android.gms.maps.model.LatLng;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.text.DecimalFormat;
@@ -35,22 +24,17 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 import java.util.Locale;
 import java.util.Random;
 
-/**
- * Created by leonard on 11/13/2015.
- * Utility class that provides many utility functions used in the codebase. Provides functions for
- * checking if an object as null, as well as if a string is empty. Also provides functions for formatting
- * strings and setting margins for different screens.
- */
 public class FrameworkUtils {
+    private static final String DATE_FORMAT = "MM/dd/yyyy hh:mm:ss a";
+
     private static final String EMPTY = "";
     private static final String NULL = "null";
 
     // click control threshold
-    private static final int CLICK_THRESHOLD = 300;
+    private static final int CLICK_THRESHOLD = 250;
     private static long mLastClickTime;
 
     /**
@@ -108,7 +92,7 @@ public class FrameworkUtils {
     /**
      * Method is used to parse formatted date
      *
-     * @param calendar   Calendar object {@link java.util.Calendar} with given date and time
+     * @param calendar   Calendar object {@see java.util.Calendar} with given date and time
      * @param dateFormat Method is used to parse formatted date
      * @return Formatted date and time
      */
@@ -133,7 +117,7 @@ public class FrameworkUtils {
     /**
      * Method is used to parse day of the week
      *
-     * @param calendar Calendar object {@link java.util.Calendar} with given date and time
+     * @param calendar Calendar object {@see java.util.Calendar} with given date and time
      * @return Day of the week
      */
     public static String parseDayOfTheWeek(Calendar calendar) {
@@ -156,7 +140,7 @@ public class FrameworkUtils {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        return formatter.format(dateObj);
+        return !FrameworkUtils.checkIfNull(dateObj) ? formatter.format(dateObj) : "";
     }
 
     /**
@@ -172,20 +156,6 @@ public class FrameworkUtils {
     }
 
     /**
-     * Method is used to check if two calendar objects have the same day of year
-     * <p>To be true, the year, day of month and day of the year must all be the same</p>
-     *
-     * @param calendarA Calendar object {@link java.util.Calendar} with given date and time
-     * @param calendarB Calendar object {@link java.util.Calendar} with given date and time
-     * @return True if calendar objects have the same day of year
-     */
-    public static boolean isSameDay(Calendar calendarA, Calendar calendarB) {
-        return calendarA.get(Calendar.YEAR) == calendarB.get(Calendar.YEAR) &&
-                calendarA.get(Calendar.DAY_OF_MONTH) == calendarB.get(Calendar.DAY_OF_MONTH) &&
-                calendarA.get(Calendar.DAY_OF_YEAR) == calendarB.get(Calendar.DAY_OF_YEAR);
-    }
-
-    /**
      * Method is used to compare any date passed in as paramater to current date to see
      * which date-time combination is sooner or later
      *
@@ -195,10 +165,10 @@ public class FrameworkUtils {
      * @return True if input date is after the current date
      */
     public static boolean isDateAfterCurrentDate(@NonNull Date minDate, @NonNull String dateTime, String dateFormat) {
-        SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss a", Locale.ENGLISH);
+        SimpleDateFormat formatter = new SimpleDateFormat(DATE_FORMAT, Locale.ENGLISH);
         formatter.format(minDate.getTime());
         try {
-            Date parsedDate = parseDateTime(dateTime, "MM/dd/yyyy hh:mm:ss a");
+            Date parsedDate = parseDateTime(dateTime, DATE_FORMAT);
             return parsedDate.after(minDate);
         } catch (ParseException e) {
             e.printStackTrace();
@@ -260,189 +230,13 @@ public class FrameworkUtils {
     }
 
     /**
-     * Method checks if the application is in the background (i.e behind another application's Activity).
-     *
-     * @param context Interface to global information about an application environment
-     * @return True if application is running in the background, otherwise false
-     */
-    @SuppressWarnings("deprecation")
-    public static boolean isApplicationSentToBackground(final Context context) {
-        if (!checkIfNull(context)) {
-            ActivityManager am = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
-            List<ActivityManager.RunningTaskInfo> tasks = am.getRunningTasks(1);
-            if (!tasks.isEmpty()) {
-                ComponentName topActivity = tasks.get(0).topActivity;
-                if (!topActivity.getPackageName().equals(context.getPackageName())) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
-    /**
-     * Method checks if an Activity is currently running
-     *
-     * @param context Interface to global information about an application environment
-     * @return True if there are running tasks, otherwise false
-     */
-    public static boolean isActivityRunning(final Context context) {
-        ActivityManager am = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
-        List<ActivityManager.RunningTaskInfo> tasks = am.getRunningTasks(Integer.MAX_VALUE);
-        for (ActivityManager.RunningTaskInfo task : tasks) {
-            if (context.getPackageName().equalsIgnoreCase(task.baseActivity.getPackageName())) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    /**
-     * Method is used to confirm that string parameter is in valid area code format
-     *
-     * @param areaCode Area code to confirm
-     * @return True if area code has valid format, otherwise false
-     */
-    public static boolean isAreaCode(String areaCode) {
-        return !isStringEmpty(areaCode) && (areaCode.length() >= 3 &&
-                !areaCode.equalsIgnoreCase("000") && areaCode.matches("-?\\d+(\\.\\d+)?"));
-    }
-
-    /**
-     * Method is used to confirm that string parameter is in valid zip code format
-     *
-     * @param zipCode Zip code to confirm
-     * @return True if zip code has valid format, otherwise false
-     */
-    public static boolean isZipCode(String zipCode) {
-        String zipCodePattern = "^\\d{5}(-\\d{4})?$";
-        return zipCode.matches(zipCodePattern);
-    }
-
-    /**
-     * Method is used to determine if the provided String has a numeric value
-     *
-     * @param value String value to check
-     * @return True if String value contains any numeric values, otherwise false
-     */
-    public static boolean containsNumericValue(String value) {
-        return value.matches(".*\\d+.*"); // regex to check if String has numeric value
-    }
-
-    /**
-     * Method is used to convert meters into longitude values
-     *
-     * @param meterToEast The distance (meters) to convert to longitude values
-     * @param latitude    The angular distance of a place north or south of the earth's equator,
-     *                    or of a celestial object north or south of the celestial equator,
-     *                    usually expressed in degrees and minutes
-     * @return The angle measured in radians to an approximately equivalent angle
-     * measured in degrees
-     */
-    public static double meterToLongitude(double meterToEast, double latitude) {
-        double latArc = Math.toRadians(latitude);
-        double radius = Math.cos(latArc) * Constants.EARTH_RADIUS;
-        double rad = meterToEast / radius;
-        return Math.toDegrees(rad);
-    }
-
-    /**
-     * Method is used to convert meters into latitude values
-     *
-     * @param meterToNorth The distance (meters) to convert to latitude values
-     * @return The angle measured in radians to an approximately equivalent angle
-     * measured in degrees
-     */
-    public static double meterToLatitude(double meterToNorth) {
-        double rad = meterToNorth / Constants.EARTH_RADIUS;
-        return Math.toDegrees(rad);
-    }
-
-    /**
-     * Method is used to convert meters to miles
-     *
-     * @param meters The distance (meters) to convert to miles
-     * @return The converted miles
-     */
-    public static double meterToMile(double meters) {
-        double miles = meters / (1609.344);
-        DecimalFormat formatter = new DecimalFormat("##");
-        try {
-            return Double.parseDouble(formatter.format(miles));
-        } catch (NumberFormatException e) {
-            e.printStackTrace();
-            return 0.0d;
-        }
-    }
-
-    /**
-     * Method is used to convert input stream into a String
-     *
-     * @param in The input stream from which to read characters
-     * @return String value converted from input stream
-     * @throws IOException Signals a general, I/O-related error
-     */
-    public static String convertStreamToString(InputStream in) throws IOException {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(in));
-        StringBuilder out = new StringBuilder();
-        String newLine = System.getProperty("line.separator");
-        String line;
-        while (!checkIfNull((line = reader.readLine()))) {
-            out.append(line);
-            out.append(newLine);
-        }
-        return out.toString();
-    }
-
-    /**
-     * Method is used to capitalize the first letter of any given string
-     *
-     * @param input String value to upper case first letter
-     * @return The upper case equivalent for the specified character if the character
-     * is a lower case letter
-     */
-    public static String toTitleCase(String input) {
-        if (!isStringEmpty(input)) {
-            String[] words = input.split(" ");
-            StringBuilder sb = new StringBuilder();
-            for (String w : words) {
-                sb.append(Character.toUpperCase(w.charAt(0)))
-                        .append(w.substring(1).toLowerCase()).append(" ");
-            }
-            return sb.toString().trim();
-        }
-        return input;
-    }
-
-    /**
-     * Method is used to delay focus set on EditText view
-     *
-     * @param delay The delay (in milliseconds) until the Runnable will be executed
-     * @param view  Views to request focus for
-     *              <p>This class represents the basic building block for user interface components</p>
-     */
-    public static void setFocusWithDelay(int delay, View... view) {
-        for (final View v : view) {
-            if (!FrameworkUtils.checkIfNull(v)) {
-                final Handler handler = new Handler();
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        v.requestFocus();
-                    }
-                }, delay);
-            }
-        }
-    }
-
-    /**
      * Method is used to get color by id
      *
      * @param context Interface to global information about an application environment
      * @param id      The desired resource identifier, as generated by the aapt tool
      * @return A color integer associated with a particular resource ID
      */
-    public static final int getColor(Context context, int id) {
+    public static int getColor(@NonNull Context context, int id) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             return ContextCompat.getColor(context, id);
         } else {
@@ -457,7 +251,7 @@ public class FrameworkUtils {
      * @param id      The desired resource identifier, as generated by the aapt tool
      * @return A drawable object associated with a particular resource ID
      */
-    public static final Drawable getDrawable(Context context, int id) {
+    public static Drawable getDrawable(@NonNull Context context, int id) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             return ContextCompat.getDrawable(context, id);
         } else {
@@ -494,7 +288,7 @@ public class FrameworkUtils {
          * your onClick() executes, simultaneous clicks will still occur. Therefore solutions
          * such as disabling button clicks via flags or conditions statements will not work.
          * The best solution is to timestamp the click processes and return back clicks
-         * that occur within a designated window (currently 300 ms) --LT
+         * that occur within a designated window (currently 250 ms) --LT
          */
         long mCurrClickTimestamp = SystemClock.uptimeMillis();
         long mElapsedTimestamp = mCurrClickTimestamp - mLastClickTime;
@@ -529,29 +323,37 @@ public class FrameworkUtils {
      * @return Unique identifier
      */
     @SuppressLint({"MissingPermission", "HardwareIds"})
-    @Nullable
     public static String getAndroidId(@NonNull Context context) {
         SharedPref sharedPref = new SharedPref(context, Constants.PREF_FILE_NAME);
+        // 'android' + random value 1-1000
+        Random rand = new Random();
+        String randValue = String.valueOf(rand.nextInt(1000) + 1);
+
         if (isStringEmpty(sharedPref.getStringPref(Constants.KEY_ANDROID_ID, ""))) {
-            // check if android id is null
-            if (isStringEmpty(Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID))) {
-                // android id is null, try telephony device id
-                // @note this does not work for phones without data plan
-                if (isStringEmpty(((TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE)).getDeviceId())) {
-                    // return 'android' + random value 1-1000
-                    Random rand = new Random();
-                    String randValue = String.valueOf(rand.nextInt(1000) + 1);
-                    sharedPref.setPref(Constants.KEY_ANDROID_ID, Constants.ANDROID.concat("_").concat(randValue));
-                    return Constants.ANDROID.concat("_").concat(randValue);
+            try {
+                // check if android id is null
+                if (isStringEmpty(Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID))) {
+                    // android id is null, try telephony device id
+                    // @note this does not work for phones without data plan
+                    if (isStringEmpty(((TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE)).getDeviceId())) {
+                        // return 'android' + random value 1-1000
+                        sharedPref.setPref(Constants.KEY_ANDROID_ID, Constants.ANDROID.concat("_").concat(randValue));
+                        return Constants.ANDROID.concat("_").concat(randValue);
+                    } else {
+                        // return telephony device id
+                        sharedPref.setPref(Constants.KEY_ANDROID_ID, ((TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE)).getDeviceId());
+                        return ((TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE)).getDeviceId();
+                    }
                 } else {
-                    // return telephony device id
-                    sharedPref.setPref(Constants.KEY_ANDROID_ID, ((TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE)).getDeviceId());
-                    return ((TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE)).getDeviceId();
+                    // return android id (ideal scenario)
+                    sharedPref.setPref(Constants.KEY_ANDROID_ID, Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID));
+                    return Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
                 }
-            } else {
-                // return android id
-                sharedPref.setPref(Constants.KEY_ANDROID_ID, Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID));
-                return Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
+            } catch (NullPointerException e) {
+                e.printStackTrace();
+                // return 'android' + random value 1-1000
+                sharedPref.setPref(Constants.KEY_ANDROID_ID, Constants.ANDROID.concat("_").concat(randValue));
+                return Constants.ANDROID.concat("_").concat(randValue);
             }
         }
         // return shared id stored in shared prefs

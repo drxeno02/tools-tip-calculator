@@ -1,13 +1,14 @@
 package com.blog.ljtatum.tipcalculator.fragments;
 
-import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.app.framework.enums.Enum;
 import com.app.framework.utilities.FrameworkUtils;
@@ -18,17 +19,15 @@ import com.blog.ljtatum.tipcalculator.activity.MainActivity;
 /**
  * Created by LJTat on 2/27/2017.
  */
-
 public class ShareFragment extends BaseFragment implements View.OnClickListener {
 
-    private Context mContext;
     private View mRootView;
     private TextView tvFragmentHeader;
     private ImageView ivFb, ivTwitter, ivLinkedin;
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mRootView = inflater.inflate(R.layout.fragment_share, container, false);
 
         // instantiate views
@@ -42,11 +41,10 @@ public class ShareFragment extends BaseFragment implements View.OnClickListener 
      * Method is used to instantiate views
      */
     private void initializeViews() {
-        mContext = getActivity();
-        tvFragmentHeader = (TextView) mRootView.findViewById(R.id.tv_fragment_header);
-        ivFb = (ImageView) mRootView.findViewById(R.id.iv_fb);
-        ivTwitter = (ImageView) mRootView.findViewById(R.id.iv_twitter);
-        ivLinkedin = (ImageView) mRootView.findViewById(R.id.iv_linkedin);
+        tvFragmentHeader = mRootView.findViewById(R.id.tv_fragment_header);
+        ivFb = mRootView.findViewById(R.id.iv_fb);
+        ivTwitter = mRootView.findViewById(R.id.iv_twitter);
+        ivLinkedin = mRootView.findViewById(R.id.iv_linkedin);
 
         // set fragment header
         tvFragmentHeader.setText(getResources().getString(R.string.share));
@@ -96,12 +94,12 @@ public class ShareFragment extends BaseFragment implements View.OnClickListener 
 
     @Override
     public void onDetach() {
-        super.onDetach();
         if (!FrameworkUtils.checkIfNull(mOnFragmentRemovedListener)) {
             // set listener
             mOnFragmentRemovedListener.onFragmentRemoved();
         }
         // enable drawer
         ((MainActivity) mContext).toggleDrawerState(true);
+        super.onDetach();
     }
 }

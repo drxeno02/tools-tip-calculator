@@ -1,8 +1,6 @@
 package com.blog.ljtatum.tipcalculator.fragments;
 
-import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.text.SpannableString;
 import android.text.method.LinkMovementMethod;
 import android.text.util.Linkify;
@@ -11,6 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.app.framework.enums.Enum;
 import com.app.framework.utilities.FrameworkUtils;
@@ -24,17 +25,15 @@ import java.util.Calendar;
 /**
  * Created by LJTat on 2/27/2017.
  */
-
 public class AboutFragment extends BaseFragment implements View.OnClickListener {
 
-    private Context mContext;
     private View mRootView;
-    private TextView tvAppVersion, tvCopyright, tvFragmentHeader, tvFeedbackEmail;
+    private TextView tvFragmentHeader;
     private ImageView ivFb, ivTwitter, ivLinkedin;
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mRootView = inflater.inflate(R.layout.fragment_about, container, false);
 
         // instantiate views
@@ -48,25 +47,24 @@ public class AboutFragment extends BaseFragment implements View.OnClickListener 
      * Method is used to instantiate views
      */
     private void initializeViews() {
-        mContext = getActivity();
-        tvAppVersion = (TextView) mRootView.findViewById(R.id.tv_app_version);
-        tvCopyright = (TextView) mRootView.findViewById(R.id.tv_copyright);
-        tvFragmentHeader = (TextView) mRootView.findViewById(R.id.tv_fragment_header);
-        tvFeedbackEmail = (TextView) mRootView.findViewById(R.id.tv_feedback_email);
-        ivFb = (ImageView) mRootView.findViewById(R.id.iv_fb);
-        ivTwitter = (ImageView) mRootView.findViewById(R.id.iv_twitter);
-        ivLinkedin = (ImageView) mRootView.findViewById(R.id.iv_linkedin);
+        TextView tvAppVersion = mRootView.findViewById(R.id.tv_app_version);
+        TextView tvCopyright = mRootView.findViewById(R.id.tv_copyright);
+        TextView tvFeedbackEmail = mRootView.findViewById(R.id.tv_feedback_email);
+        tvFragmentHeader = mRootView.findViewById(R.id.tv_fragment_header);
+        ivFb = mRootView.findViewById(R.id.iv_fb);
+        ivTwitter = mRootView.findViewById(R.id.iv_twitter);
+        ivLinkedin = mRootView.findViewById(R.id.iv_linkedin);
 
         // set fragment header
         tvFragmentHeader.setText(getResources().getString(R.string.about));
         // set app version
         tvAppVersion.setText(BuildConfig.VERSION_NAME);
         // set copyright year
-        tvCopyright.setText(getActivity().getResources().getString(R.string.copyright_year,
+        tvCopyright.setText(getResources().getString(R.string.copyright_year,
                 String.valueOf(Calendar.getInstance().get(Calendar.YEAR))));
         // set email link
         final SpannableString email = new SpannableString(
-                getActivity().getResources().getString(R.string.feedback_email));
+                getResources().getString(R.string.feedback_email));
         Linkify.addLinks(email, Linkify.EMAIL_ADDRESSES);
         tvFeedbackEmail.setText(email);
         tvFeedbackEmail.setMovementMethod(LinkMovementMethod.getInstance());
@@ -116,12 +114,12 @@ public class AboutFragment extends BaseFragment implements View.OnClickListener 
 
     @Override
     public void onDetach() {
-        super.onDetach();
         if (!FrameworkUtils.checkIfNull(mOnFragmentRemovedListener)) {
             // set listener
             mOnFragmentRemovedListener.onFragmentRemoved();
         }
         // enable drawer
         ((MainActivity) mContext).toggleDrawerState(true);
+        super.onDetach();
     }
 }

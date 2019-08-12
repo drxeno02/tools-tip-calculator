@@ -1,13 +1,15 @@
 package com.blog.ljtatum.tipcalculator.fragments;
 
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
+import android.app.Activity;
+import android.content.Context;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.app.framework.utilities.FrameworkUtils;
 import com.blog.ljtatum.tipcalculator.R;
 import com.blog.ljtatum.tipcalculator.listeners.OnFragmentRemoved;
-import com.blog.ljtatum.tipcalculator.listeners.ShakeEventListener;
-import com.blog.ljtatum.tipcalculator.logger.Logger;
 
 /**
  * Created by LJTat on 3/3/2017.
@@ -15,10 +17,13 @@ import com.blog.ljtatum.tipcalculator.logger.Logger;
 
 public class BaseFragment extends Fragment {
 
-    protected static OnFragmentRemoved mOnFragmentRemovedListener;
+    static OnFragmentRemoved mOnFragmentRemovedListener;
+    Activity mActivity;
+    Context mContext;
 
     /**
      * Method is used to set callback for when fragment(s) are removed
+     *
      * @param listener Callback for when fragment(s) are removed
      */
     public static void onFragmentRemoved(OnFragmentRemoved listener) {
@@ -31,7 +36,7 @@ public class BaseFragment extends Fragment {
      * request to pop, but the action will not be performed until the application
      * returns to its event loop.
      */
-    public void popBackStack() {
+    void popBackStack() {
         if (!FrameworkUtils.checkIfNull(getActivity())) {
             try {
                 getActivity().getSupportFragmentManager().popBackStack();
@@ -50,5 +55,22 @@ public class BaseFragment extends Fragment {
             ft.setCustomAnimations(R.anim.ui_slide_in_from_bottom_frag, R.anim.ui_slide_out_to_bottom_frag);
             ft.remove(this).commitAllowingStateLoss();
         }
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        mContext = context;
+
+        if (context instanceof Activity) {
+            mActivity = (Activity) mContext;
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mContext = null;
+        mActivity = null;
     }
 }

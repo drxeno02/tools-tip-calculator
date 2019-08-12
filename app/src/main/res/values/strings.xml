@@ -26,11 +26,20 @@
     <string name="txt_round_on">Round On:</string>
     <string name="txt_round_off">Round Off:</string>
     <string name="txt_spinner_default">Select Tip Percent</string>
+    <string name="txt_dollar_placeholder">$%s</string>
+    <string name="txt_shake">Shake to reset feature currently disabled. To enable, go to Settings</string>
+    <string name="txt_fields_reset">All fields reset</string>
+    <string name="txt_poor_tip_service">Poor tip service percent</string>
+    <string name="txt_fair_tip_service">Fair tip service percent</string>
+    <string name="txt_good_tip_service">Good tip service percent</string>
+    <string name="txt_great_tip_service">Great tip service percent</string>
+    <string name="txt_royal_tip_service">Royal tip service percent</string>
+    <string name="txt_proper_dollar_format">Please maintain proper dollar format ex- \'xxx.xx\')</string>
     <string name="btn_clear">Clear</string>
     <string name="btn_guide">Tip Guide</string>
     <string name="btn_inc">+</string>
     <string name="btn_dec">-</string>
-    <string name="txt_shake">Shake to reset feature currently disabled. To enable, go to Settings</string>
+    <string name="btn_save">Save</string>
 
     <!-- location services -->
     <string name="settings">Settings</string>
@@ -90,7 +99,7 @@
 		spot, you can tip 10&#37;-15&#37;.</string>
     <string name="guide_bahamas">Tipping is expected in these islands, and you should tip
 		according to the quality of service.\n\nBellboys and porters usually receive $1-$2 per bag,
-		while most other servers, e.g. waiters, taxis, ect receive 15&#37;.</string>
+		while most other servers, e.g. waiters, taxis, etc receive 15&#37;.</string>
     <string name="guide_canada">Gratuities are seldom included in Canadian restaurants, so it is
 		up to you to provide the tip.\n\nIt\'s customary to tip approximately 15-20&#37; on the total
 		bill before tax, less for poor service, more for truly exceptional service.\n\nMany restaurants,

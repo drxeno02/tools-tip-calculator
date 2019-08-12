@@ -1,12 +1,12 @@
 package com.app.framework.sharedpref;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-/**
- * Created by LJTat on 2/23/2017.
- */
+import androidx.annotation.NonNull;
+
 public class SharedPref {
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor prefsEditor;
@@ -15,7 +15,8 @@ public class SharedPref {
      * @param context  Interface to global information about an application environment
      * @param prefName : Name of Preference
      */
-    public SharedPref(Context context, String prefName) {
+    @SuppressLint("CommitPrefEdits")
+    public SharedPref(@NonNull Context context, @NonNull String prefName) {
         this.sharedPreferences = context.getSharedPreferences(prefName, Activity.MODE_PRIVATE);
         this.prefsEditor = sharedPreferences.edit();
     }
@@ -33,7 +34,7 @@ public class SharedPref {
      *
      * @param key Key for value retrieval
      */
-    public void removePreference(String key) {
+    public void removePreference(@NonNull String key) {
         prefsEditor.remove(key);
         prefsEditor.commit();
     }
@@ -42,7 +43,7 @@ public class SharedPref {
      * @param key   Key for value retrieval
      * @param value : String Value
      */
-    public void setPref(String key, String value) {
+    public void setPref(@NonNull String key, @NonNull String value) {
         prefsEditor.putString(key, value);
         prefsEditor.commit();
     }
@@ -51,7 +52,7 @@ public class SharedPref {
      * @param key   Key for value retrieval
      * @param value : int Value
      */
-    public void setPref(String key, int value) {
+    public void setPref(@NonNull String key, int value) {
         prefsEditor.putInt(key, value);
         prefsEditor.commit();
     }
@@ -60,7 +61,7 @@ public class SharedPref {
      * @param key   Key for value retrieval
      * @param value : long value
      */
-    public void setPref(String key, long value) {
+    public void setPref(@NonNull String key, long value) {
         prefsEditor.putLong(key, value);
         prefsEditor.commit();
     }
@@ -69,7 +70,7 @@ public class SharedPref {
      * @param key   Key for value retrieval
      * @param value : boolean value
      */
-    public void setPref(String key, boolean value) {
+    public void setPref(@NonNull String key, boolean value) {
         prefsEditor.putBoolean(key, value);
         prefsEditor.commit();
     }
@@ -79,7 +80,7 @@ public class SharedPref {
      * @param defValue The default value
      * @return String Type
      */
-    public String getStringPref(String key, String defValue) {
+    public String getStringPref(@NonNull String key, @NonNull String defValue) {
         return sharedPreferences.getString(key, defValue);
     }
 
@@ -88,7 +89,7 @@ public class SharedPref {
      * @param defValue The default value
      * @return int Type
      */
-    public int getIntPref(String key, int defValue) {
+    public int getIntPref(@NonNull String key, int defValue) {
         return sharedPreferences.getInt(key, defValue);
     }
 
@@ -96,7 +97,7 @@ public class SharedPref {
      * @param key Key for value retrieval
      * @return boolean type
      */
-    public boolean getBooleanPref(String key, boolean defValue) {
+    public boolean getBooleanPref(@NonNull String key, boolean defValue) {
         return sharedPreferences.getBoolean(key, defValue);
     }
 
@@ -105,7 +106,7 @@ public class SharedPref {
      * @param defValue The default value
      * @return long Type
      */
-    public long getLongPref(String key, long defValue) {
+    public long getLongPref(@NonNull String key, long defValue) {
         return sharedPreferences.getLong(key, defValue);
     }
 }
