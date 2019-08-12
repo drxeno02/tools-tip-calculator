@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.app.framework.model.HistoryModel;
 import com.app.framework.utilities.FrameworkUtils;
 import com.blog.ljtatum.tipcalculator.R;
-import com.blog.ljtatum.tipcalculator.activity.MainActivity;
 import com.blog.ljtatum.tipcalculator.utils.Utils;
 
 import java.util.ArrayList;

@@ -7,7 +7,6 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.SystemClock;
 import android.provider.Settings;
-
 import android.telephony.TelephonyManager;
 import android.view.View;
 
