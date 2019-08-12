@@ -1,7 +1,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@color/material_teal_200_color_code"
+    android:background="@color/white"
     android:orientation="vertical">
 
     <!-- splash screen visual -->
@@ -23,6 +23,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="5dp"
         android:text="@string/txt_title"
+        android:textColor="@color/black"
         android:textSize="@dimen/font_size_26" />
 
     <!-- creator of app -->
@@ -34,6 +35,7 @@
         android:layout_centerHorizontal="true"
         android:gravity="center"
         android:text="@string/txt_creators"
+        android:textColor="@color/black"
         android:textSize="@dimen/font_size_20" />
 
     <!-- progress bar -->

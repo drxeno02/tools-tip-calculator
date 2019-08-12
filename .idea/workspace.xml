@@ -12,35 +12,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="884e0b4b-c85f-46fe-878c-ccedd3fd2ec8" name="Default" comment="minor updates and code cleanup">
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/values/ad_id.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ApplicationFramework/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/ApplicationFramework/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ApplicationFramework/src/main/java/com/app/framework/enums/Enum.java" beforeDir="false" afterPath="$PROJECT_DIR$/ApplicationFramework/src/main/java/com/app/framework/enums/Enum.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ApplicationFramework/src/main/java/com/app/framework/listeners/ErrorListener.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ApplicationFramework/src/main/java/com/app/framework/model/HistoryModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/ApplicationFramework/src/main/java/com/app/framework/model/HistoryModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ApplicationFramework/src/main/java/com/app/framework/utilities/AppRaterUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/ApplicationFramework/src/main/java/com/app/framework/utilities/AppRaterUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ApplicationFramework/src/main/java/com/app/framework/utilities/DeviceUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/ApplicationFramework/src/main/java/com/app/framework/utilities/DeviceUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ApplicationFramework/src/main/java/com/app/framework/utilities/FrameworkUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/ApplicationFramework/src/main/java/com/app/framework/utilities/FrameworkUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ApplicationFramework/src/main/java/com/app/framework/utilities/NetworkUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/ApplicationFramework/src/main/java/com/app/framework/utilities/NetworkUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ApplicationFramework/src/main/java/com/app/framework/utilities/ShareUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/ApplicationFramework/src/main/java/com/app/framework/utilities/ShareUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/blog/ljtatum/tipcalculator/activity/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/blog/ljtatum/tipcalculator/activity/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/blog/ljtatum/tipcalculator/adapter/GuideAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/blog/ljtatum/tipcalculator/adapter/GuideAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/blog/ljtatum/tipcalculator/adapter/HistoryAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/blog/ljtatum/tipcalculator/adapter/HistoryAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/blog/ljtatum/tipcalculator/fragments/AboutFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/blog/ljtatum/tipcalculator/fragments/AboutFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/blog/ljtatum/tipcalculator/fragments/BaseFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/blog/ljtatum/tipcalculator/fragments/BaseFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/blog/ljtatum/tipcalculator/fragments/GuideFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/blog/ljtatum/tipcalculator/fragments/GuideFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/blog/ljtatum/tipcalculator/fragments/HistoryFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/blog/ljtatum/tipcalculator/fragments/HistoryFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/blog/ljtatum/tipcalculator/fragments/PrivacyFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/blog/ljtatum/tipcalculator/fragments/PrivacyFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/blog/ljtatum/tipcalculator/fragments/SettingsFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/blog/ljtatum/tipcalculator/fragments/SettingsFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/blog/ljtatum/tipcalculator/fragments/ShareFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/blog/ljtatum/tipcalculator/fragments/ShareFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/drawer.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/drawer.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_guide.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_guide.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_history.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_history.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/item_guide.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_guide.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
     </list>
     <list id="39076ec2-3b2c-44f6-b2b2-57d850757c0a" name="New changelist" comment="" />
     <ignored path="tools-tip-calculator.iws" />
@@ -108,12 +80,12 @@
     <favorites_list name="tools-tip-calculator" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/blog/ljtatum/tipcalculator/activity/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="783">
-              <caret line="1090" column="61" lean-forward="true" selection-start-line="1090" selection-start-column="61" selection-end-line="1090" selection-end-column="61" />
+            <state relative-caret-position="-567">
+              <caret line="372" column="84" selection-start-line="372" selection-start-column="84" selection-end-line="372" selection-end-column="84" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -137,7 +109,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>onPause</find>
       <find>check</find>
       <find>checkIfNull</find>
       <find>@param context</find>
@@ -161,12 +132,13 @@
       <find>androidx.core.widget.DrawerLayout</find>
       <find>android.widget.Switch</find>
       <find>EditText</find>
-      <find>switch</find>
       <find>onDetac</find>
       <find>onFragmentRemoved</find>
       <find>mOnFragmentRemovedListener</find>
       <find>onClick</find>
       <find>mNetworkReceiver</find>
+      <find>switch</find>
+      <find>switchRoundOff</find>
     </findStrings>
     <replaceStrings>
       <replace>tip</replace>
@@ -181,7 +153,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="development" />
       </map>
     </option>
   </component>
@@ -256,8 +228,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
+      <pane id="AndroidView" />
       <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -455,7 +428,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -877,6 +849,8 @@
         <item itemvalue="Gradle.tools-tip-calculator:app [androidDependencies]" />
         <item itemvalue="Gradle.tools-tip-calculator:UDIApplicationFramework [signingReport]" />
         <item itemvalue="Gradle.tools-tip-calculator:app [signingReport]" />
+        <item itemvalue="Gradle.tools-tip-calculator:app [androidDependencies]" />
+        <item itemvalue="Gradle.tools-tip-calculator:UDIApplicationFramework [signingReport]" />
       </list>
     </recent_temporary>
   </component>
@@ -1109,7 +1083,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Project" order="0" sideWeight="0.46699268" visible="true" weight="0.17537314" />
       <window_info id="Structure" order="1" weight="0.25" />
@@ -1135,7 +1108,7 @@
       <window_info anchor="bottom" id="Terminal" order="11" weight="0.3295325" />
       <window_info anchor="bottom" id="Messages" order="12" weight="0.344098" />
       <window_info anchor="bottom" id="Gradle Console" order="13" side_tool="true" />
-      <window_info anchor="bottom" id="Version Control" order="14" weight="0.42" />
+      <window_info active="true" anchor="bottom" id="Version Control" order="14" visible="true" weight="0.4188889" />
       <window_info anchor="bottom" id="Build" order="15" weight="0.30666667" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -1656,8 +1629,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/blog/ljtatum/tipcalculator/activity/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="783">
-          <caret line="1090" column="61" lean-forward="true" selection-start-line="1090" selection-start-column="61" selection-end-line="1090" selection-end-column="61" />
+        <state relative-caret-position="-567">
+          <caret line="372" column="84" selection-start-line="372" selection-start-column="84" selection-end-line="372" selection-end-column="84" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
