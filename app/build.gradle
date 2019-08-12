@@ -42,6 +42,8 @@ android {
         targetSdkVersion 28
         versionCode code
 
+        // multidex
+        multiDexEnabled true
         //noinspection GroovyAssignabilityCheck
         signingConfig signingConfigs.debug
     }

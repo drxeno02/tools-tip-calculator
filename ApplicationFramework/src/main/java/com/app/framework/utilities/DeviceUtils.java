@@ -1,7 +1,3 @@
-/*
- * Copyright (c) 2014-present, ZTRIP. All rights reserved.
- */
-
 package com.app.framework.utilities;
 
 import android.content.Context;
@@ -12,6 +8,8 @@ import android.provider.Settings;
 import android.util.DisplayMetrics;
 import android.view.inputmethod.InputMethodManager;
 
+import androidx.annotation.NonNull;
+
 public class DeviceUtils {
 
     /**
@@ -19,7 +17,7 @@ public class DeviceUtils {
      *
      * @param context Interface to global information about an application environment
      */
-    public static void showKeyboard(Context context) {
+    public static void showKeyboard(@NonNull Context context) {
         InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
     }
@@ -32,7 +30,7 @@ public class DeviceUtils {
      *                procedure call mechanism designed for high performance when performing
      *                in-process and cross-process calls
      */
-    public static void hideKeyboard(Context context, IBinder binder) {
+    public static void hideKeyboard(@NonNull Context context, @NonNull IBinder binder) {
         InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(binder, 0);
     }
@@ -44,7 +42,7 @@ public class DeviceUtils {
      * @return True if location services enable
      */
     @SuppressWarnings("BooleanMethodIsAlwaysInverted")
-    public static boolean isLocationServiceEnabled(Context context) {
+    public static boolean isLocationServiceEnabled(@NonNull Context context) {
         int locationMode;
         String locationProviders;
 
@@ -60,30 +58,6 @@ public class DeviceUtils {
             locationProviders = Settings.Secure.getString(context.getContentResolver(), Settings.Secure.LOCATION_PROVIDERS_ALLOWED);
             return !FrameworkUtils.isStringEmpty(locationProviders);
         }
-    }
-
-    /**
-     * Method is used to convert dp to px
-     *
-     * @param px      The pixel value to convert to dp
-     * @param context Interface to global information about an application environment
-     * @return Converted dp value
-     */
-    public static float convertPixelToDp(Context context, final float px) {
-        return !FrameworkUtils.checkIfNull(px / context.getResources().getDisplayMetrics().density) ?
-                (px / context.getResources().getDisplayMetrics().density) : 0f;
-    }
-
-    /**
-     * Method is used to convert pixels to dp
-     *
-     * @param dp      The dp value to convert to pixel
-     * @param context Interface to global information about an application environment
-     * @return Converted pixel value
-     */
-    public static float convertDpToPixels(Context context, final float dp) {
-        return !FrameworkUtils.checkIfNull(dp * context.getResources().getDisplayMetrics().density) ?
-                (dp * context.getResources().getDisplayMetrics().density) : 0f;
     }
 
     /**

@@ -35,7 +35,7 @@ public class FrameworkUtils {
     private static final String NULL = "null";
 
     // click control threshold
-    private static final int CLICK_THRESHOLD = 300;
+    private static final int CLICK_THRESHOLD = 250;
     private static long mLastClickTime;
 
     /**
@@ -289,7 +289,7 @@ public class FrameworkUtils {
          * your onClick() executes, simultaneous clicks will still occur. Therefore solutions
          * such as disabling button clicks via flags or conditions statements will not work.
          * The best solution is to timestamp the click processes and return back clicks
-         * that occur within a designated window (currently 300 ms) --LT
+         * that occur within a designated window (currently 250 ms) --LT
          */
         long mCurrClickTimestamp = SystemClock.uptimeMillis();
         long mElapsedTimestamp = mCurrClickTimestamp - mLastClickTime;

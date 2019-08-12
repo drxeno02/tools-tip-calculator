@@ -35,7 +35,6 @@ import de.keyboardsurfer.android.widget.crouton.Style;
 /**
  * Created by LJTat on 2/27/2017.
  */
-
 public class SettingsFragment extends BaseFragment implements View.OnClickListener {
     // permission code
     private static final int PERMISSION_REQUEST_CODE_LOCATION = 100;
@@ -446,15 +445,13 @@ public class SettingsFragment extends BaseFragment implements View.OnClickListen
 
     @Override
     public void onDetach() {
-        super.onDetach();
         if (!FrameworkUtils.checkIfNull(mOnFragmentRemovedListener)) {
             // set listener
             mOnFragmentRemovedListener.onFragmentRemoved();
         }
-        // hide keyboard
-        DeviceUtils.hideKeyboard(mContext, mActivity.getWindow().getDecorView().getWindowToken());
         // enable drawer
         ((MainActivity) mContext).toggleDrawerState(true);
+        super.onDetach();
     }
 
 }

@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.app.framework.model.HistoryModel;
 import com.app.framework.utilities.FrameworkUtils;
 import com.blog.ljtatum.tipcalculator.R;
+import com.blog.ljtatum.tipcalculator.activity.MainActivity;
 import com.blog.ljtatum.tipcalculator.utils.Utils;
 
 import java.util.ArrayList;
@@ -21,7 +22,6 @@ import java.util.ArrayList;
 /**
  * Created by LJTat on 6/11/2017.
  */
-
 public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHolder> {
 
     private Context mContext;
@@ -33,7 +33,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
      * @param context      Interface to global information about an application environment
      * @param historyModel List of GuideModels {@link com.app.framework.model.HistoryModel}
      */
-    public HistoryAdapter(Context context, ArrayList<HistoryModel> historyModel) {
+    public HistoryAdapter(@NonNull Context context, @NonNull ArrayList<HistoryModel> historyModel) {
         mContext = context;
         alTipHistory = historyModel;
     }

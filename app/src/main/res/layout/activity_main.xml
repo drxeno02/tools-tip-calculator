@@ -14,7 +14,7 @@
         android:orientation="vertical">
 
         <!-- top toolbar -->
-        <android.support.v7.widget.Toolbar
+        <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -34,11 +34,11 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
         android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
         android:layout_marginTop="60dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
         android:orientation="vertical">
 
         <!-- row 1; service percent -->
@@ -65,8 +65,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="3dp"
                 android:layout_marginStart="3dp"
+                android:layout_marginLeft="3dp"
                 android:layout_toEndOf="@+id/tv_meta_percent"
                 android:layout_toRightOf="@id/tv_meta_percent"
                 android:text="@string/txt_service"
@@ -78,8 +78,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="5dp"
                 android:layout_marginStart="5dp"
+                android:layout_marginLeft="5dp"
                 android:layout_toEndOf="@+id/tv_service"
                 android:layout_toRightOf="@id/tv_service"
                 android:text="@string/txt_good"
@@ -123,6 +123,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.5"
+                android:autofillHints="@string/txt_hint_dollar"
                 android:gravity="end"
                 android:hint="@string/txt_hint_dollar"
                 android:imeOptions="actionDone"
@@ -160,12 +161,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="5dp"
                 android:layout_marginStart="5dp"
-                android:layout_toEndOf="@+id/tv_tip"
-                android:layout_toLeftOf="@+id/tv_round"
-                android:layout_toRightOf="@id/tv_tip"
+                android:layout_marginLeft="5dp"
                 android:layout_toStartOf="@+id/tv_round"
+                android:layout_toLeftOf="@+id/tv_round"
+                android:layout_toEndOf="@+id/tv_tip"
+                android:layout_toRightOf="@id/tv_tip"
                 android:maxLines="1"
                 android:text="@string/txt_hint_dollar"
                 android:textColor="@color/black"
@@ -177,10 +178,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="5dp"
                 android:layout_marginStart="5dp"
-                android:layout_toLeftOf="@+id/switch_round_off"
+                android:layout_marginLeft="5dp"
                 android:layout_toStartOf="@+id/switch_round_off"
+                android:layout_toLeftOf="@+id/switch_round_off"
                 android:text="@string/txt_round_off"
                 android:textColor="@color/black"
                 android:textSize="@dimen/font_size_18" />
@@ -192,8 +193,8 @@
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="5dp"
-                android:layout_marginStart="5dp" />
+                android:layout_marginStart="5dp"
+                android:layout_marginLeft="5dp" />
 
         </RelativeLayout>
 
@@ -219,12 +220,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="5dp"
                 android:layout_marginStart="5dp"
-                android:layout_toEndOf="@+id/tv_shared"
-                android:layout_toRightOf="@id/tv_shared"
+                android:layout_marginLeft="5dp"
                 android:layout_toStartOf="@+id/btn_inc"
                 android:layout_toLeftOf="@+id/btn_inc"
+                android:layout_toEndOf="@+id/tv_shared"
+                android:layout_toRightOf="@id/tv_shared"
                 android:maxLines="1"
                 android:minEms="2"
                 android:text="@string/txt_num"
@@ -239,8 +240,8 @@
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:layout_centerInParent="true"
-                android:layout_marginLeft="10dp"
                 android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
                 android:background="@drawable/custom_button"
                 android:text="@string/btn_dec"
                 android:textColor="@color/black"
@@ -252,8 +253,8 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_centerInParent="true"
-                android:layout_toLeftOf="@id/btn_dec"
                 android:layout_toStartOf="@+id/btn_dec"
+                android:layout_toLeftOf="@id/btn_dec"
                 android:background="@drawable/custom_button"
                 android:text="@string/btn_inc"
                 android:textColor="@color/black"
@@ -347,12 +348,12 @@
     <!-- ad banner -->
     <com.google.android.gms.ads.AdView
         android:id="@+id/ad_view"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_gravity="center_horizontal"
+        android:layout_centerHorizontal="true"
         android:orientation="vertical"
         ads:adSize="BANNER"
-        ads:adUnitId="ca-app-pub-8397256122648968/7826518012" />
+        ads:adUnitId="@string/ad_banner_id_sdk" />
 
 </RelativeLayout>

@@ -6,6 +6,7 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.app.framework.R;
@@ -42,7 +43,9 @@ public class ShareUtils {
      *
      * @param socialMedia Social media type
      */
-    public static void openSocialMediaViaIntent(Context context, Enum.SocialMedia socialMedia, boolean isPersonalSocialMedia) {
+    public static void openSocialMediaViaIntent(@NonNull Context context,
+                                                @NonNull Enum.SocialMedia socialMedia,
+                                                boolean isPersonalSocialMedia) {
         // create intent object
         Intent intent = null;
         // create packageManager object

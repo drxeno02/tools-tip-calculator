@@ -19,7 +19,6 @@ import java.util.ArrayList;
 /**
  * Created by LJTat on 4/1/2017.
  */
-
 public class GuideAdapter extends RecyclerView.Adapter<GuideAdapter.ViewHolder> {
 
     private Context mContext;
@@ -31,7 +30,7 @@ public class GuideAdapter extends RecyclerView.Adapter<GuideAdapter.ViewHolder> 
      * @param context    Interface to global information about an application environment
      * @param guideModel List of GuideModels {@link com.blog.ljtatum.tipcalculator.model.GuideModel}
      */
-    public GuideAdapter(Context context, ArrayList<GuideModel> guideModel) {
+    public GuideAdapter(@NonNull Context context, @NonNull ArrayList<GuideModel> guideModel) {
         mContext = context;
         alGuide = guideModel;
     }

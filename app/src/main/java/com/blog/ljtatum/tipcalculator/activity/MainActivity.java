@@ -24,7 +24,6 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
@@ -37,7 +36,6 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
-import android.widget.TextView.OnEditorActionListener;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -104,7 +102,7 @@ import de.keyboardsurfer.android.widget.crouton.Style;
  * Created by LJTat on 2/23/2017.
  */
 @SuppressLint("MissingPermission")
-public class MainActivity extends BaseActivity implements OnClickListener,
+public class MainActivity extends BaseActivity implements View.OnClickListener,
         NavigationView.OnNavigationItemSelectedListener, GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener, NetworkReceiver.NetworkStatusObserver {
 
@@ -261,6 +259,12 @@ public class MainActivity extends BaseActivity implements OnClickListener,
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         mSensorListener = new ShakeEventListener();
 
+        // navigation drawer
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+        navigationView.setItemIconTintList(null);
+        setupDrawerIcons(navigationView);
+
         // ad banner
         adView = findViewById(R.id.ad_view);
         try {
@@ -300,12 +304,6 @@ public class MainActivity extends BaseActivity implements OnClickListener,
         ivStar3.setOnClickListener(this);
         ivStar4.setOnClickListener(this);
         ivStar5.setOnClickListener(this);
-
-        // navigation drawer
-        NavigationView navigationView = findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
-        navigationView.setItemIconTintList(null);
-        setupDrawerIcons(navigationView);
     }
 
     /**
@@ -327,7 +325,7 @@ public class MainActivity extends BaseActivity implements OnClickListener,
         });
 
         // OnEditorActionListener
-        edtBill.setOnEditorActionListener(new OnEditorActionListener() {
+        edtBill.setOnEditorActionListener(new TextView.OnEditorActionListener() {
 
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
@@ -933,8 +931,6 @@ public class MainActivity extends BaseActivity implements OnClickListener,
 
         switch (view.getId()) {
             case R.id.btn_inc:
-                // hide keyboard
-                DeviceUtils.hideKeyboard(MainActivity.this, getWindow().getDecorView().getWindowToken());
                 // maximum shared by is 99
                 if (sharedNum < 99) {
                     sharedNum++; // increment # of shared values
@@ -943,8 +939,6 @@ public class MainActivity extends BaseActivity implements OnClickListener,
                 }
                 break;
             case R.id.btn_dec:
-                // hide keyboard
-                DeviceUtils.hideKeyboard(MainActivity.this, getWindow().getDecorView().getWindowToken());
                 // least shared by is 1
                 if (sharedNum > 1) {
                     sharedNum--; // decrement # of shared values
@@ -1092,7 +1086,8 @@ public class MainActivity extends BaseActivity implements OnClickListener,
             mFusedLocationClient.removeLocationUpdates(mLocationCallback);
         }
         // unregister network receiver
-        if (mNetworkReceiver.getObserverSize() > 0 && mNetworkReceiver.contains(this)) {
+        if (!FrameworkUtils.checkIfNull(mNetworkReceiver) &&
+                mNetworkReceiver.getObserverSize() > 0 && mNetworkReceiver.contains(this)) {
             try {
                 // unregister network receiver
                 unregisterReceiver(mNetworkReceiver);

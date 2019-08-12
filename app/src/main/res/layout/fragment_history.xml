@@ -57,7 +57,7 @@
             android:textColor="@color/black"
             android:textSize="@dimen/font_size_16" />
 
-        <android.support.v7.widget.RecyclerView
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_history"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

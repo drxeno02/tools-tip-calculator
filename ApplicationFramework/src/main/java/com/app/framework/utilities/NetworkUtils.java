@@ -7,6 +7,8 @@ import android.net.NetworkInfo;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+
 public class NetworkUtils {
     private static String TAG = NetworkUtils.class.getSimpleName();
 
@@ -18,7 +20,7 @@ public class NetworkUtils {
      * @return True if network is available otherwise false
      */
     @SuppressLint("MissingPermission")
-    public static boolean isNetworkAvailable(Context context) {
+    public static boolean isNetworkAvailable(@NonNull Context context) {
         //check general connectivity
         ConnectivityManager conMgr = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         if (!FrameworkUtils.checkIfNull(conMgr) &&
@@ -40,9 +42,12 @@ public class NetworkUtils {
      * @return Details about the currently active default data network
      */
     @SuppressLint("MissingPermission")
-    private static NetworkInfo getNetworkInfo(Context context) {
-        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        return cm.getActiveNetworkInfo();
+    private static NetworkInfo getNetworkInfo(@NonNull Context context) {
+        ConnectivityManager conMgr = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (!FrameworkUtils.checkIfNull(conMgr)) {
+            conMgr.getActiveNetworkInfo();
+        }
+        return null;
     }
 
     /**
@@ -52,7 +57,7 @@ public class NetworkUtils {
      * @param context Interface to global information about an application environment
      * @return True if network is active otherwise false
      */
-    public static boolean isConnected(Context context) {
+    public static boolean isConnected(@NonNull Context context) {
         NetworkInfo info = NetworkUtils.getNetworkInfo(context);
         return (info != null && info.isConnectedOrConnecting());
     }
@@ -64,7 +69,7 @@ public class NetworkUtils {
      * @param context Interface to global information about an application environment
      * @return True if network is active otherwise false
      */
-    public static boolean isConnectedWifi(Context context) {
+    public static boolean isConnectedWifi(@NonNull Context context) {
         NetworkInfo info = NetworkUtils.getNetworkInfo(context);
         return (info != null && info.isConnectedOrConnecting() && info.getType() == ConnectivityManager.TYPE_WIFI);
     }
@@ -76,7 +81,7 @@ public class NetworkUtils {
      * @param context Interface to global information about an application environment
      * @return True if network is active otherwise false
      */
-    public static boolean isConnectedMobile(Context context) {
+    public static boolean isConnectedMobile(@NonNull Context context) {
         NetworkInfo info = NetworkUtils.getNetworkInfo(context);
         return (info != null && info.isConnectedOrConnecting() && info.getType() == ConnectivityManager.TYPE_MOBILE);
     }
@@ -88,7 +93,7 @@ public class NetworkUtils {
      * @param context Interface to global information about an application environment
      * @return True if network is active otherwise false
      */
-    public static boolean isConnectedFast(Context context) {
+    public static boolean isConnectedFast(@NonNull Context context) {
         NetworkInfo info = NetworkUtils.getNetworkInfo(context);
         return (info != null && info.isConnectedOrConnecting() && NetworkUtils.isConnectionFast(info.getType(), info.getSubtype()));
     }

@@ -12,6 +12,8 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+
 import com.app.framework.R;
 import com.app.framework.constants.Constants;
 import com.app.framework.sharedpref.SharedPref;
@@ -30,7 +32,7 @@ public class AppRaterUtil {
      * @param context     Interface to global information about an application environment
      * @param packageName Namespace because Intents are used globally in the system
      */
-    public AppRaterUtil(Context context, String packageName) {
+    public AppRaterUtil(@NonNull Context context, @NonNull String packageName) {
         mContext = context;
         mPackageName = packageName;
         recordAppLaunchDate();

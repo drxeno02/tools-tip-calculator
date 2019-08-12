@@ -25,7 +25,6 @@ import java.util.Calendar;
 /**
  * Created by LJTat on 2/27/2017.
  */
-
 public class AboutFragment extends BaseFragment implements View.OnClickListener {
 
     private View mRootView;
@@ -115,12 +114,12 @@ public class AboutFragment extends BaseFragment implements View.OnClickListener 
 
     @Override
     public void onDetach() {
-        super.onDetach();
         if (!FrameworkUtils.checkIfNull(mOnFragmentRemovedListener)) {
             // set listener
             mOnFragmentRemovedListener.onFragmentRemoved();
         }
         // enable drawer
         ((MainActivity) mContext).toggleDrawerState(true);
+        super.onDetach();
     }
 }

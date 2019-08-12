@@ -33,7 +33,6 @@ import java.util.concurrent.TimeUnit;
 /**
  * Created by LJTat on 2/27/2017.
  */
-
 public class HistoryFragment extends BaseFragment implements View.OnClickListener {
 
     private static final int NUM_HISTORY_RESULTS = 50;
@@ -208,13 +207,13 @@ public class HistoryFragment extends BaseFragment implements View.OnClickListene
 
     @Override
     public void onDetach() {
-        super.onDetach();
         if (!FrameworkUtils.checkIfNull(mOnFragmentRemovedListener)) {
             // set listener
             mOnFragmentRemovedListener.onFragmentRemoved();
         }
         // enable drawer
         ((MainActivity) mContext).toggleDrawerState(true);
+        super.onDetach();
     }
 
 }
