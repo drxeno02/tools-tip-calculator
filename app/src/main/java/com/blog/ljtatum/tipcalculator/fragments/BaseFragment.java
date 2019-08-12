@@ -17,9 +17,9 @@ import com.blog.ljtatum.tipcalculator.listeners.OnFragmentRemoved;
 
 public class BaseFragment extends Fragment {
 
+    static OnFragmentRemoved mOnFragmentRemovedListener;
     Activity mActivity;
     Context mContext;
-    static OnFragmentRemoved mOnFragmentRemovedListener;
 
     /**
      * Method is used to set callback for when fragment(s) are removed

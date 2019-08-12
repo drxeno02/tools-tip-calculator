@@ -11,11 +11,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        android:layout_marginLeft="10dp"
         android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:drawableStart="@drawable/arrow_black"
         android:drawableLeft="@drawable/arrow_black"
         android:drawablePadding="10dp"
-        android:drawableStart="@drawable/arrow_black"
         android:textColor="@color/black"
         android:textSize="@dimen/font_size_20" />
 

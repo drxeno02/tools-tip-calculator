@@ -37,9 +37,9 @@ public class ShareUtils {
 
     /**
      * Method is used to open social media via intents
-     *
+     * <p>
      * Facebook/Twitter profile id: drxeno02
-     * Linkedin profile id: leonard-tatum-768850105
+     * Linkedin profile id: leonard-tatum-768850105</p>
      *
      * @param socialMedia Social media type
      */
@@ -88,7 +88,7 @@ public class ShareUtils {
                     for (ResolveInfo resolveInfo : matches) {
                         if (isResolveInfoValid(resolveInfo) &&
                                 (resolveInfo.activityInfo.packageName.toLowerCase().startsWith(TWITTER_PACKAGE) ||
-                                resolveInfo.activityInfo.packageName.toLowerCase().startsWith(TWITTER_PACKAGE_ANDROID))) {
+                                        resolveInfo.activityInfo.packageName.toLowerCase().startsWith(TWITTER_PACKAGE_ANDROID))) {
                             intent.setClassName(resolveInfo.activityInfo.packageName,
                                     resolveInfo.activityInfo.name);
                             resolved = true;
@@ -116,7 +116,7 @@ public class ShareUtils {
                     for (ResolveInfo resolveInfo : matches) {
                         if (isResolveInfoValid(resolveInfo) &&
                                 (resolveInfo.activityInfo.packageName.toLowerCase().startsWith(LINKEDIN_PACKAGE) ||
-                                resolveInfo.activityInfo.packageName.toLowerCase().startsWith(LINKEDIN_PACKAGE_ANDROID))) {
+                                        resolveInfo.activityInfo.packageName.toLowerCase().startsWith(LINKEDIN_PACKAGE_ANDROID))) {
                             intent.setPackage(resolveInfo.activityInfo.packageName);
                             break;
                         }
@@ -158,7 +158,7 @@ public class ShareUtils {
                     for (ResolveInfo resolveInfo : matches) {
                         if (isResolveInfoValid(resolveInfo) &&
                                 (resolveInfo.activityInfo.packageName.toLowerCase().startsWith(TWITTER_PACKAGE) ||
-                                resolveInfo.activityInfo.packageName.toLowerCase().startsWith(TWITTER_PACKAGE_ANDROID))) {
+                                        resolveInfo.activityInfo.packageName.toLowerCase().startsWith(TWITTER_PACKAGE_ANDROID))) {
                             intent.setClassName(resolveInfo.activityInfo.packageName,
                                     resolveInfo.activityInfo.name);
                             resolved = true;
@@ -185,7 +185,7 @@ public class ShareUtils {
                     for (ResolveInfo resolveInfo : matches) {
                         if (isResolveInfoValid(resolveInfo) &&
                                 (resolveInfo.activityInfo.packageName.toLowerCase().startsWith(LINKEDIN_PACKAGE) ||
-                                resolveInfo.activityInfo.packageName.toLowerCase().startsWith(LINKEDIN_PACKAGE_ANDROID))) {
+                                        resolveInfo.activityInfo.packageName.toLowerCase().startsWith(LINKEDIN_PACKAGE_ANDROID))) {
                             intent.setPackage(resolveInfo.activityInfo.packageName);
                             break;
                         }
@@ -206,6 +206,7 @@ public class ShareUtils {
     /**
      * Method is used to check if information that is returned from resolving an intent
      * against an IntentFilter is retrievable e.g. not null or empty
+     *
      * @return True if Resolveinfo content is not null or empty, otherwise false
      */
     private static boolean isResolveInfoValid(@Nullable ResolveInfo resolveInfo) {

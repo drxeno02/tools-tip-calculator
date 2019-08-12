@@ -28,21 +28,21 @@ public class FirebaseUtils {
     private static OnFirebaseValueListener mFirebaseValueListener;
 
     /**
-     * Method is used to set callback to listen to value changes in Firebase DB
-     *
-     * @param listener Callback to listen to value changes in Firebase DB
-     */
-    public static void onFirebaseValueListener(OnFirebaseValueListener listener) {
-        mFirebaseValueListener = listener;
-    }
-
-    /**
      * Constructor
      */
     public FirebaseUtils(@NonNull Context context) {
         mContext = context.getApplicationContext();
         mWriteDbReference = FirebaseDatabase.getInstance().getReference();
         mQueryDbReference = FirebaseDatabase.getInstance().getReference(FrameworkUtils.getAndroidId(mContext));
+    }
+
+    /**
+     * Method is used to set callback to listen to value changes in Firebase DB
+     *
+     * @param listener Callback to listen to value changes in Firebase DB
+     */
+    public static void onFirebaseValueListener(OnFirebaseValueListener listener) {
+        mFirebaseValueListener = listener;
     }
 
     /**
