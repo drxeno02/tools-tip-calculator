@@ -371,8 +371,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,
         switchRoundOff.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                // hide keyboard
-                DeviceUtils.hideKeyboard(MainActivity.this, getWindow().getDecorView().getWindowToken());
                 calculate();
             }
         });
