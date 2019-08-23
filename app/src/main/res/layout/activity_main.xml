@@ -354,6 +354,6 @@
         android:layout_centerHorizontal="true"
         android:orientation="vertical"
         ads:adSize="BANNER"
-        ads:adUnitId="@string/ad_banner_id_sdk" />
+        ads:adUnitId="@string/ad_banner_id_app" />
 
 </RelativeLayout>

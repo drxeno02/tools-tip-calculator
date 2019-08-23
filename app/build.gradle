@@ -32,8 +32,8 @@ android {
     // construct version name
     def versionMajor = 2
     def versionMinor = 0
-    def versionPatch = 11
-    def code = 12;
+    def versionPatch = 12
+    def code = 13;
 
     defaultConfig {
         applicationId "com.blog.ljtatum.tipcalculator"
