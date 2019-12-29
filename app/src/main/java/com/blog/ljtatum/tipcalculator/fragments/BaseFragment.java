@@ -68,6 +68,8 @@ public class BaseFragment extends Fragment {
 
     @Override
     public void onDetach() {
+        super.onDetach();
+        // null values
         mContext = null;
         mActivity = null;
 
@@ -75,6 +77,5 @@ public class BaseFragment extends Fragment {
             mOnFragmentRemovedListener.onFragmentRemoved();
             mOnFragmentRemovedListener = null;
         }
-        super.onDetach();
     }
 }
