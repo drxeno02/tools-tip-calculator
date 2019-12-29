@@ -46,13 +46,7 @@ individuals by just downloading and sharing the app.
 <a name="screenshots"></a>
 ## Screenshots
 
-![](https://github.com/drxeno02/tools-tip-calculator/blob/master/app/screenshots/Screenshot_20191229-040016_Tip%20Calculator.jpg)
-
-![](https://github.com/drxeno02/tools-tip-calculator/blob/master/app/screenshots/Screenshot_20191229-040025_Tip%20Calculator.jpg)
-
-![](https://github.com/drxeno02/tools-tip-calculator/blob/master/app/screenshots/Screenshot_20191229-040031_Tip%20Calculator.jpg)
-
-![](https://github.com/drxeno02/tools-tip-calculator/blob/master/app/screenshots/Screenshot_20191229-040047_Tip%20Calculator.jpg)
+![](https://github.com/drxeno02/tools-tip-calculator/blob/master/app/screenshots/screenshot.png)
 
 <a name="documentation"></a>
 ## Documentation
