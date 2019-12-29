@@ -52,8 +52,7 @@ individuals by just downloading and sharing the app.
 ## Documentation
 
 The codebase for all projects created in the mentoring program is open and available for you to see.
-Hopefully, there are some things you can learn no matter what development level you are at.
-
+Hopefully, there are some things you can learn no matter what development level you are at. 
 [Click Here](https://github.com/drxeno02/tools-tip-calculator/tree/master/app/docs)
 
 <a name="social-media"></a>
