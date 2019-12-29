@@ -22,7 +22,6 @@ import java.util.ArrayList;
 /**
  * Created by LJTat on 2/27/2017.
  */
-
 public class GuideFragment extends BaseFragment implements View.OnClickListener {
 
     // array of flag icons
@@ -114,7 +113,7 @@ public class GuideFragment extends BaseFragment implements View.OnClickListener 
             guideModel.countryFlagIcon = ARRY_COUNTRY_FLAG_ICONS[i];
             guideModel.countryName = getResources().getString(ARRY_COUNTRY_NAMES[i]);
             guideModel.countryReq = getResources().getString(ARRY_COUNTRY_TIP_REQUIREMENTS[i]);
-            guideModel.ccountryDesc = getResources().getString(ARRY_COUNTRY_DESCRIPTIONS[i]);
+            guideModel.countryDesc = getResources().getString(ARRY_COUNTRY_DESCRIPTIONS[i]);
             alGuideModel.add(guideModel);
         }
 

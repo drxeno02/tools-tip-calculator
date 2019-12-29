@@ -47,7 +47,6 @@
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
             android:orientation="vertical">
 
             <TextView
@@ -66,9 +65,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginStart="3dp"
-                android:layout_marginLeft="3dp"
                 android:layout_toEndOf="@+id/tv_meta_percent"
-                android:layout_toRightOf="@id/tv_meta_percent"
                 android:text="@string/txt_service"
                 android:textColor="@color/black"
                 android:textSize="@dimen/font_size_18" />
@@ -79,9 +76,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginStart="5dp"
-                android:layout_marginLeft="5dp"
                 android:layout_toEndOf="@+id/tv_service"
-                android:layout_toRightOf="@id/tv_service"
                 android:text="@string/txt_good"
                 android:textColor="@color/white"
                 android:textSize="@dimen/font_size_22"
@@ -102,7 +97,7 @@
         <LinearLayout
             android:id="@+id/row_c"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="52dp"
             android:layout_below="@+id/row_b"
             android:layout_marginTop="7dp"
             android:orientation="horizontal"
@@ -162,11 +157,8 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginStart="5dp"
-                android:layout_marginLeft="5dp"
                 android:layout_toStartOf="@+id/tv_round"
-                android:layout_toLeftOf="@+id/tv_round"
                 android:layout_toEndOf="@+id/tv_tip"
-                android:layout_toRightOf="@id/tv_tip"
                 android:maxLines="1"
                 android:text="@string/txt_hint_dollar"
                 android:textColor="@color/black"
@@ -179,9 +171,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginStart="5dp"
-                android:layout_marginLeft="5dp"
                 android:layout_toStartOf="@+id/switch_round_off"
-                android:layout_toLeftOf="@+id/switch_round_off"
                 android:text="@string/txt_round_off"
                 android:textColor="@color/black"
                 android:textSize="@dimen/font_size_18" />
@@ -191,10 +181,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:layout_marginStart="5dp"
-                android:layout_marginLeft="5dp" />
+                android:layout_marginStart="5dp"/>
 
         </RelativeLayout>
 
@@ -221,11 +209,8 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginStart="5dp"
-                android:layout_marginLeft="5dp"
                 android:layout_toStartOf="@+id/btn_inc"
-                android:layout_toLeftOf="@+id/btn_inc"
                 android:layout_toEndOf="@+id/tv_shared"
-                android:layout_toRightOf="@id/tv_shared"
                 android:maxLines="1"
                 android:minEms="2"
                 android:text="@string/txt_num"
@@ -238,10 +223,8 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
                 android:layout_centerInParent="true"
                 android:layout_marginStart="10dp"
-                android:layout_marginLeft="10dp"
                 android:background="@drawable/custom_button"
                 android:text="@string/btn_dec"
                 android:textColor="@color/black"
@@ -254,7 +237,6 @@
                 android:layout_height="40dp"
                 android:layout_centerInParent="true"
                 android:layout_toStartOf="@+id/btn_dec"
-                android:layout_toLeftOf="@id/btn_dec"
                 android:background="@drawable/custom_button"
                 android:text="@string/btn_inc"
                 android:textColor="@color/black"
@@ -267,7 +249,7 @@
         <LinearLayout
             android:id="@+id/row_f"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="44dp"
             android:layout_below="@+id/row_e"
             android:layout_marginTop="7dp"
             android:gravity="center_vertical"
@@ -300,7 +282,7 @@
         <LinearLayout
             android:id="@+id/row_g"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="44dp"
             android:layout_below="@+id/row_f"
             android:layout_marginTop="7dp"
             android:gravity="center_vertical"
