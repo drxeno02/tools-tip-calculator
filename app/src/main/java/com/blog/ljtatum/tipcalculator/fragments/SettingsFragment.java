@@ -408,7 +408,6 @@ public class SettingsFragment extends BaseFragment implements View.OnClickListen
         super.onResume();
 
         if (isLocationServicePending) {
-//            isLocationServicePending = false; // reset
             if (!DeviceUtils.isLocationServiceEnabled(mContext)) {
                 // update default save location settings
                 mSharedPref.setPref(Constants.KEY_DEFAULT_SAVE_LOCATION, false);
@@ -425,7 +424,7 @@ public class SettingsFragment extends BaseFragment implements View.OnClickListen
                 // only track location if save location setting is true
                 ((MainActivity) mContext).connectGoogleClient();
             }
-
+            // update settings
             updateSettings();
         }
 
