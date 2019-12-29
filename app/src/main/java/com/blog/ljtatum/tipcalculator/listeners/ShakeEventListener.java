@@ -22,7 +22,7 @@ public class ShakeEventListener implements SensorEventListener {
     /**
      * Maximum pause between movements
      */
-    private static final int MAX_PAUSE_BETHWEEN_DIRECTION_CHANGE = 200;
+    private static final int MAX_PAUSE_BETWEEN_DIRECTION_CHANGE = 200;
 
     /**
      * Maximum allowed time for shake gesture
@@ -96,7 +96,7 @@ public class ShakeEventListener implements SensorEventListener {
 
             // check if the last movement was not long ago
             long lastChangeWasAgo = now - mLastDirectionChangeTime;
-            if (lastChangeWasAgo < MAX_PAUSE_BETHWEEN_DIRECTION_CHANGE) {
+            if (lastChangeWasAgo < MAX_PAUSE_BETWEEN_DIRECTION_CHANGE) {
 
                 // store movement data
                 mLastDirectionChangeTime = now;

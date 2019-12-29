@@ -20,7 +20,6 @@ import com.blog.ljtatum.tipcalculator.logger.Logger;
 /**
  * Created by LJTat on 9/13/2017.
  */
-
 public class Utils {
     private static final String TAG_MEMORY = "debug-memory";
     private static final String TAG_INFO = "debug-info";

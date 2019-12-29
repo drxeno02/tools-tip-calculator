@@ -14,7 +14,6 @@ import com.blog.ljtatum.tipcalculator.listeners.OnFragmentRemoved;
 /**
  * Created by LJTat on 3/3/2017.
  */
-
 public class BaseFragment extends Fragment {
 
     static OnFragmentRemoved mOnFragmentRemovedListener;
@@ -69,7 +68,6 @@ public class BaseFragment extends Fragment {
 
     @Override
     public void onDetach() {
-        super.onDetach();
         mContext = null;
         mActivity = null;
 
@@ -77,5 +75,6 @@ public class BaseFragment extends Fragment {
             mOnFragmentRemovedListener.onFragmentRemoved();
             mOnFragmentRemovedListener = null;
         }
+        super.onDetach();
     }
 }
