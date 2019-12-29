@@ -46,7 +46,7 @@ individuals by just downloading and sharing the app.
 <a name="screenshots"></a>
 ## Screenshots
 
-![](https://github.com/drxeno02/tools-tip-calculator/blob/master/app/screenshots/screenshot.png)
+![](https://github.com/drxeno02/tools-tip-calculator/blob/master/app/screenshots/screenshot.webp)
 
 <a name="documentation"></a>
 ## Documentation
