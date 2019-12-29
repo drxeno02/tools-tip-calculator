@@ -31,8 +31,8 @@ android {
     // construct version name
     def versionMajor = 2
     def versionMinor = 0
-    def versionPatch = 12
-    def code = 13;
+    def versionPatch = 13
+    def code = 14;
 
     defaultConfig {
         applicationId "com.blog.ljtatum.tipcalculator"
@@ -64,6 +64,7 @@ android {
             manifestPlaceholders = [build_version: "${versionMajor}.${versionMinor}.${versionPatch}"]
 
             minifyEnabled true
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             proguardFile 'proguard-rules.pro'
         }
