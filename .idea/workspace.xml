@@ -15,10 +15,10 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="884e0b4b-c85f-46fe-878c-ccedd3fd2ec8" name="Default" comment="code optimization">
+    <list default="true" id="884e0b4b-c85f-46fe-878c-ccedd3fd2ec8" name="Default" comment="update dependencies">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ApplicationFramework/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/ApplicationFramework/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ApplicationFramework/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/ApplicationFramework/build.gradle" afterDir="false" />
     </list>
     <list id="39076ec2-3b2c-44f6-b2b2-57d850757c0a" name="New changelist" comment="" />
     <ignored path="tools-tip-calculator.iws" />
@@ -90,21 +90,21 @@
     <favorites_list name="tools-tip-calculator" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file pinned="false" current-in-tab="false">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/build.gradle">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
+            <state relative-caret-position="186">
               <caret line="48" selection-start-line="48" selection-end-line="50" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/build.gradle">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/google-services.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="11" column="56" selection-start-line="11" selection-start-column="56" selection-end-line="11" selection-end-column="56" />
+            <state relative-caret-position="170">
+              <caret line="10" column="52" selection-start-line="10" selection-start-column="52" selection-end-line="10" selection-end-column="52" />
             </state>
           </provider>
         </entry>
@@ -178,7 +178,6 @@
       <list>
         <option value="$PROJECT_DIR$/ApplicationFramework/src/main/java/com/app/framework/utilities/ErrorUtils.java" />
         <option value="$PROJECT_DIR$/app/.gitignore" />
-        <option value="$PROJECT_DIR$/ApplicationFramework/.gitignore" />
         <option value="$PROJECT_DIR$/ApplicationFramework/src/main/java/com/app/framework/utilities/GoogleServiceUtility.java" />
         <option value="$PROJECT_DIR$/ApplicationFramework/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/gradle.properties" />
@@ -208,7 +207,6 @@
         <option value="$PROJECT_DIR$/ApplicationFramework/src/main/java/com/app/framework/utilities/ShareUtils.java" />
         <option value="$PROJECT_DIR$/ApplicationFramework/src/main/java/com/app/framework/utilities/NetworkUtils.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/blog/ljtatum/tipcalculator/activity/MainActivity.java" />
-        <option value="$PROJECT_DIR$/ApplicationFramework/build.gradle" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/ad_id.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_settings.xml" />
@@ -227,14 +225,16 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/blog/ljtatum/tipcalculator/constants/Durations.java" />
         <option value="$PROJECT_DIR$/app/build.gradle" />
         <option value="$PROJECT_DIR$/build.gradle" />
+        <option value="$PROJECT_DIR$/ApplicationFramework/.gitignore" />
+        <option value="$PROJECT_DIR$/ApplicationFramework/build.gradle" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="10" />
-    <option name="y" value="13" />
-    <option name="width" value="849" />
-    <option name="height" value="1023" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="260" />
+    <option name="y" value="20" />
+    <option name="width" value="1400" />
+    <option name="height" value="1000" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -388,6 +388,17 @@
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="tipcalculator" type="462c0819:PsiDirectoryNode" />
               <item name="utils" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="tools-tip-calculator" type="b2602c69:ProjectViewProjectNode" />
+              <item name="tools-tip-calculator" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="ApplicationFramework" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+            </path>
+            <path>
+              <item name="tools-tip-calculator" type="b2602c69:ProjectViewProjectNode" />
+              <item name="tools-tip-calculator" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="ApplicationFramework" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -1145,14 +1156,14 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="10" y="13" width="849" height="1023" extended-state="0" />
+    <frame x="10" y="13" width="896" height="1023" extended-state="1" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" order="0" sideWeight="0.46474358" weight="0.3537859" />
+      <window_info id="Project" order="0" sideWeight="0.46404496" weight="0.37440193" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Captures" order="2" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="3" />
-      <window_info id="Build Variants" order="4" sideWeight="0.5352564" side_tool="true" weight="0.15671642" />
+      <window_info id="Build Variants" order="4" sideWeight="0.5359551" side_tool="true" weight="0.37440193" />
       <window_info id="Image Layers" order="5" />
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info id="Capture Tool" order="7" />
@@ -1165,15 +1176,15 @@
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32839224" />
-      <window_info anchor="bottom" id="Android Profiler" order="7" show_stripe_button="false" weight="0.32962137" />
+      <window_info anchor="bottom" id="Android Profiler" order="7" weight="0.32962137" />
       <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
       <window_info anchor="bottom" id="Logcat" order="9" weight="0.32777777" />
       <window_info anchor="bottom" id="Android Monitor" order="10" weight="0.32182628" />
       <window_info anchor="bottom" id="Terminal" order="11" weight="0.3295325" />
       <window_info anchor="bottom" id="Messages" order="12" weight="0.344098" />
       <window_info anchor="bottom" id="Gradle Console" order="13" side_tool="true" />
-      <window_info anchor="bottom" id="Version Control" order="14" weight="0.48202246" />
-      <window_info anchor="bottom" id="Build" order="15" visible="true" weight="0.30337077" />
+      <window_info anchor="bottom" id="Version Control" order="14" weight="0.27078652" />
+      <window_info anchor="bottom" id="Build" order="15" weight="0.30337077" />
       <window_info anchor="bottom" id="Analyze App Size" order="16" weight="0.31744313" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -1314,33 +1325,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/ApplicationFramework/src/main/AndroidManifest.xml">
-      <provider editor-type-id="android-manifest" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="74" selection-start-line="6" selection-start-column="74" selection-end-line="6" selection-end-column="74" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/78ac1821355fec00c30618662bf755c4/res/values/values.xml" />
-    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-      <provider editor-type-id="android-manifest" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="328">
-          <caret line="50" column="41" lean-forward="true" selection-start-line="50" selection-start-column="41" selection-end-line="50" selection-end-column="41" />
-          <folding>
-            <element signature="e#2213#2252#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/ad_id.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="49" selection-start-line="2" selection-start-column="49" selection-end-line="2" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/values/dimens.xml">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -1652,6 +1636,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="284">
+          <caret line="45" column="26" lean-forward="true" selection-start-line="45" selection-start-column="26" selection-end-line="45" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="561">
@@ -1659,17 +1650,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
+    <entry file="file://$PROJECT_DIR$/app/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="335">
-          <caret line="48" column="96" selection-start-line="48" selection-start-column="96" selection-end-line="48" selection-end-column="96" />
+        <state relative-caret-position="263">
+          <caret line="29" column="16" selection-start-line="29" selection-start-column="16" selection-end-line="29" selection-end-column="16" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/build.gradle">
+    <entry file="file://$PROJECT_DIR$/ApplicationFramework/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="48" selection-start-line="48" selection-end-line="50" />
+        <state relative-caret-position="178">
+          <caret line="12" column="1" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="1" />
         </state>
       </provider>
     </entry>
@@ -1677,6 +1668,27 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
           <caret line="11" column="56" selection-start-line="11" selection-start-column="56" selection-end-line="11" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ApplicationFramework/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="37" column="5" lean-forward="true" selection-start-line="37" selection-start-column="5" selection-end-line="37" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/google-services.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="52" selection-start-line="10" selection-start-column="52" selection-end-line="10" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="186">
+          <caret line="48" selection-start-line="48" selection-end-line="50" />
         </state>
       </provider>
     </entry>

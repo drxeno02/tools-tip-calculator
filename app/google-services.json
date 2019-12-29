@@ -26,9 +26,6 @@
       "api_key": [
         {
           "current_key": "AIzaSyAS7w5JALMPGsP5L4PiSLKqCGiOtfvaK6Y"
-        },
-        {
-          "current_key": "AIzaSyCq4lgS2oibxAe3QUT3v5qz_G8LIIucGDg"
         }
       ],
       "services": {
@@ -53,9 +50,6 @@
       "api_key": [
         {
           "current_key": "AIzaSyAS7w5JALMPGsP5L4PiSLKqCGiOtfvaK6Y"
-        },
-        {
-          "current_key": "AIzaSyCq4lgS2oibxAe3QUT3v5qz_G8LIIucGDg"
         }
       ],
       "services": {
@@ -89,45 +83,6 @@
       "api_key": [
         {
           "current_key": "AIzaSyAS7w5JALMPGsP5L4PiSLKqCGiOtfvaK6Y"
-        },
-        {
-          "current_key": "AIzaSyCq4lgS2oibxAe3QUT3v5qz_G8LIIucGDg"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "934940700266-4n34vcs2jksd3d23epp9nb11nh5820nh.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:934940700266:android:e51f8963374176d8",
-        "android_client_info": {
-          "package_name": "com.blog.ljtatum.tipcalculator.prod"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "934940700266-mjvm3nb6nhh89tvbld50pebf7u2makue.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.blog.ljtatum.tipcalculator.prod",
-            "certificate_hash": "86d9e66eec13e347b814701f6d241e93c6ad48d2"
-          }
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyAS7w5JALMPGsP5L4PiSLKqCGiOtfvaK6Y"
-        },
-        {
-          "current_key": "AIzaSyCq4lgS2oibxAe3QUT3v5qz_G8LIIucGDg"
         }
       ],
       "services": {

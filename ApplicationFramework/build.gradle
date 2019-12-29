@@ -6,17 +6,14 @@ ext {
 }
 
 android {
-    compileSdkVersion 28
-    buildToolsVersion '28.0.3'
-
+    compileSdkVersion 29
     // construct version name
     def versionMajor = 1
     def versionMinor = 0
     def versionPatch = 0
-
     defaultConfig {
         minSdkVersion 16
-        targetSdkVersion 28
+        targetSdkVersion 29
         versionName "${versionMajor}.${versionMinor}.${versionPatch}"
         versionCode 1
     }
@@ -59,16 +56,14 @@ android {
         api 'com.facebook.android:facebook-android-sdk:4.31.0'
 
         // android support libraries
-        api "com.google.android.material:material:1.1.0-alpha09"
-        api "androidx.appcompat:appcompat:1.0.2"
+        api "com.google.android.material:material:1.2.0-alpha03"
+        api "androidx.appcompat:appcompat:1.1.0"
 
         // firebase
-        api 'com.google.firebase:firebase-database:18.0.1'
-        api 'com.google.firebase:firebase-ads:18.1.1'
+        api 'com.google.firebase:firebase-database:19.2.0'
+        api 'com.google.firebase:firebase-ads:18.3.0'
 
         // commons
         api 'commons-codec:commons-codec:1.12'
-
-
     }
 }
