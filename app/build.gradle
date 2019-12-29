@@ -26,20 +26,19 @@ ext {
 }
 
 android {
-    compileSdkVersion 28
-    buildToolsVersion '28.0.3'
+    compileSdkVersion 29
 
     // construct version name
     def versionMajor = 2
     def versionMinor = 0
-    def versionPatch = 11
-    def code = 12;
+    def versionPatch = 12
+    def code = 13;
 
     defaultConfig {
         applicationId "com.blog.ljtatum.tipcalculator"
         versionName "${versionMajor}.${versionMinor}.${versionPatch}"
-        minSdkVersion 16
-        targetSdkVersion 28
+        minSdkVersion 19
+        targetSdkVersion 29
         versionCode code
 
         // multidex

@@ -1,0 +1,16 @@
+com.app.framework.constants
+com.app.framework.enums
+com.app.framework.listeners
+com.app.framework.model
+com.app.framework.sharedpref
+com.app.framework.utilities
+com.blog.ljtatum.tipcalculator.activity
+com.blog.ljtatum.tipcalculator.adapter
+com.blog.ljtatum.tipcalculator.application
+com.blog.ljtatum.tipcalculator.constants
+com.blog.ljtatum.tipcalculator.fragments
+com.blog.ljtatum.tipcalculator.gui
+com.blog.ljtatum.tipcalculator.listeners
+com.blog.ljtatum.tipcalculator.logger
+com.blog.ljtatum.tipcalculator.model
+com.blog.ljtatum.tipcalculator.utils

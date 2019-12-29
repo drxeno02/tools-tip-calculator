@@ -37,7 +37,6 @@ public class Utils {
      *
      * @param name Fragment or class simple name
      */
-    @SuppressWarnings("ConstantConditions")
     public static void printMemory(@NonNull String name) {
         if (Constants.DEBUG && Constants.DEBUG_VERBOSE) {
             long totalMemory = Runtime.getRuntime().totalMemory();
@@ -105,7 +104,7 @@ public class Utils {
                             "\nDevice/Product Id: " + Build.PRODUCT +
                             "\nCarrier: " + carrierName +
                             "\nOS Version: " + System.getProperty(OS_VERSION) +
-                            "\nAPI Level: " + String.valueOf(Build.VERSION.SDK_INT) +
+                            "\nAPI Level: " + Build.VERSION.SDK_INT +
                             "\nScreen size (width/height): " +
                             displaymetrics.widthPixels + "/" +
                             displaymetrics.heightPixels +

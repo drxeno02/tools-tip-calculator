@@ -53,7 +53,7 @@ public class GuideAdapter extends RecyclerView.Adapter<GuideAdapter.ViewHolder> 
         }
         holder.tvCountryName.setText(alGuide.get(position).countryName);
         holder.tvCountryReq.setText(alGuide.get(position).countryReq);
-        holder.tvCountryDesc.setText(alGuide.get(position).ccountryDesc);
+        holder.tvCountryDesc.setText(alGuide.get(position).countryDesc);
     }
 
     @Override

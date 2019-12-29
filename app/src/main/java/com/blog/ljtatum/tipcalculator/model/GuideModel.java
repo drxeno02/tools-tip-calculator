@@ -7,6 +7,6 @@ package com.blog.ljtatum.tipcalculator.model;
 public class GuideModel {
 
     public int countryFlagIcon;
-    public String countryName, ccountryDesc, countryReq;
+    public String countryName, countryDesc, countryReq;
 
 }

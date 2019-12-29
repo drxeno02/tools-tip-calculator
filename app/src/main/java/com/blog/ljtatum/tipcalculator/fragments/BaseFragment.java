@@ -72,5 +72,10 @@ public class BaseFragment extends Fragment {
         super.onDetach();
         mContext = null;
         mActivity = null;
+
+        if (!FrameworkUtils.checkIfNull(mOnFragmentRemovedListener)) {
+            mOnFragmentRemovedListener.onFragmentRemoved();
+            mOnFragmentRemovedListener = null;
+        }
     }
 }
