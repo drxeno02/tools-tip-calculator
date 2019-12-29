@@ -41,7 +41,7 @@ program often times are looking for a new career; a fresh start at life. This is
 to build up a development portfolio. Often times, the requirement to get through the doors of a tech
 company as an entry level developer is a minimum of three published apps. Projects like this help
 build the necessary coding requirements to start a new career. You can help support these
-individuals by just downloading and sharing the app.
+individuals by just downloading, sharing the app and giving it a 5 star rating!
 
 <a name="screenshots"></a>
 ## Screenshots
