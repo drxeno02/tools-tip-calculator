@@ -15,9 +15,8 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="884e0b4b-c85f-46fe-878c-ccedd3fd2ec8" name="Default" comment="update google play services">
+    <list default="true" id="884e0b4b-c85f-46fe-878c-ccedd3fd2ec8" name="Default" comment="updated README">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/blog/ljtatum/tipcalculator/fragments/BaseFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/blog/ljtatum/tipcalculator/fragments/BaseFragment.java" afterDir="false" />
     </list>
     <list id="39076ec2-3b2c-44f6-b2b2-57d850757c0a" name="New changelist" comment="" />
     <ignored path="tools-tip-calculator.iws" />
@@ -35,7 +34,6 @@
   <component name="DefaultGradleProjectSettings">
     <option name="isMigrated" value="true" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="ce0717177cdd983a017e" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -90,14 +88,32 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="731">
+              <caret line="43" column="79" selection-start-line="43" selection-start-column="79" selection-end-line="43" selection-end-column="79" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/blog/ljtatum/tipcalculator/fragments/BaseFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="423">
-              <caret line="78" column="9" selection-start-line="78" selection-start-column="9" selection-end-line="78" selection-end-column="9" />
+            <state relative-caret-position="1088">
+              <caret line="64" column="19" selection-start-line="64" selection-start-column="19" selection-end-line="64" selection-end-column="19" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="85">
+              <caret line="5" column="5" selection-start-line="5" selection-start-column="5" selection-end-line="5" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -207,8 +223,6 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/rating_bar.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/blog/ljtatum/tipcalculator/fragments/GuideFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/blog/ljtatum/tipcalculator/utils/DialogUtils.java" />
-        <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/blog/ljtatum/tipcalculator/fragments/SettingsFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/blog/ljtatum/tipcalculator/utils/Utils.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/blog/ljtatum/tipcalculator/model/GuideModel.java" />
@@ -220,6 +234,8 @@
         <option value="$PROJECT_DIR$/ApplicationFramework/.gitignore" />
         <option value="$PROJECT_DIR$/ApplicationFramework/build.gradle" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/blog/ljtatum/tipcalculator/fragments/BaseFragment.java" />
+        <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -251,82 +267,6 @@
               <item name="tools-tip-calculator" type="b2602c69:ProjectViewProjectNode" />
               <item name="tools-tip-calculator" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-            </path>
-            <path>
-              <item name="tools-tip-calculator" type="b2602c69:ProjectViewProjectNode" />
-              <item name="tools-tip-calculator" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="tools-tip-calculator" type="b2602c69:ProjectViewProjectNode" />
-              <item name="tools-tip-calculator" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="tools-tip-calculator" type="b2602c69:ProjectViewProjectNode" />
-              <item name="tools-tip-calculator" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="tools-tip-calculator" type="b2602c69:ProjectViewProjectNode" />
-              <item name="tools-tip-calculator" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="tipcalculator" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="tools-tip-calculator" type="b2602c69:ProjectViewProjectNode" />
-              <item name="tools-tip-calculator" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="tipcalculator" type="462c0819:PsiDirectoryNode" />
-              <item name="activity" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="tools-tip-calculator" type="b2602c69:ProjectViewProjectNode" />
-              <item name="tools-tip-calculator" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="tipcalculator" type="462c0819:PsiDirectoryNode" />
-              <item name="fragments" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="tools-tip-calculator" type="b2602c69:ProjectViewProjectNode" />
-              <item name="tools-tip-calculator" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="res" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="tools-tip-calculator" type="b2602c69:ProjectViewProjectNode" />
-              <item name="tools-tip-calculator" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="res" type="462c0819:PsiDirectoryNode" />
-              <item name="layout" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="tools-tip-calculator" type="b2602c69:ProjectViewProjectNode" />
-              <item name="tools-tip-calculator" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="res" type="462c0819:PsiDirectoryNode" />
-              <item name="values" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="tools-tip-calculator" type="b2602c69:ProjectViewProjectNode" />
@@ -363,13 +303,13 @@
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
+    <key name="android.template.packageName">
+      <recent name="com.blog.ljtatum.tipcalculator.activity" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\AndroidStudio\Publish Workspace\tools-tip-calculator\app\src\main\res\drawable-xhdpi" />
       <recent name="C:\AndroidStudio\Publish Workspace\tools-tip-calculator\ApplicationFramework\src\main\res\drawable" />
       <recent name="C:\AndroidStudio\Publish Workspace\TipCalculator\app" />
-    </key>
-    <key name="android.template.packageName">
-      <recent name="com.blog.ljtatum.tipcalculator.activity" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="com.app.framework" />
@@ -1083,7 +1023,28 @@
       <option name="project" value="LOCAL" />
       <updated>1577654287696</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="resolved potential null pointer exception">
+      <created>1577656851345</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1577656851345</updated>
+    </task>
+    <task id="LOCAL-00046" summary="updated README">
+      <created>1577657054475</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1577657054475</updated>
+    </task>
+    <task id="LOCAL-00047" summary="updated gitignore">
+      <created>1577658036023</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1577658036023</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1096,9 +1057,9 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-15" y="4" width="1071" height="1023" extended-state="0" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
     <layout>
-      <window_info id="Project" order="0" sideWeight="0.46404496" weight="0.30959445" />
+      <window_info id="Project" order="0" sideWeight="0.46404496" weight="0.16684435" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Captures" order="2" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="3" />
@@ -1122,7 +1083,7 @@
       <window_info anchor="bottom" id="Terminal" order="11" weight="0.3295325" />
       <window_info anchor="bottom" id="Messages" order="12" weight="0.344098" />
       <window_info anchor="bottom" id="Gradle Console" order="13" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Version Control" order="14" visible="true" weight="0.2797753" />
+      <window_info active="true" anchor="bottom" id="Version Control" order="14" visible="true" weight="0.26977247" />
       <window_info anchor="bottom" id="Build" order="15" weight="0.30337077" />
       <window_info anchor="bottom" id="Analyze App Size" order="16" weight="0.31744313" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -1220,8 +1181,6 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <confirmRemoveEmptyChangelist value="1" />
-    <MESSAGE value="setting drawer icons part 2 of 2" />
-    <MESSAGE value="tip guide updated part 1 of 2" />
     <MESSAGE value="updated gradle" />
     <MESSAGE value="Merge branches 'development' and 'development-leonard' of https://github.com/drxeno02/tools-tip-calculator into development&#10;&#10;# Conflicts:&#10;#&#9;.idea/misc.xml&#10;#&#9;.idea/workspace.xml&#10;#&#9;app/build/intermediates/blame/res/crashlyticsTest/debug/single/color.json&#10;#&#9;app/build/intermediates/blame/res/crashlyticsTest/debug/single/drawable-hdpi-v4.json&#10;#&#9;app/build/intermediates/blame/res/crashlyticsTest/debug/single/drawable-mdpi-v4.json&#10;#&#9;app/build/intermediates/blame/res/crashlyticsTest/debug/single/drawable-xhdpi-v4.json&#10;#&#9;app/build/intermediates/blame/res/crashlyticsTest/debug/single/drawable-xhdpi.json&#10;#&#9;app/build/intermediates/blame/res/crashlyticsTest/debug/single/drawable-xxhdpi-v4.json&#10;#&#9;app/build/intermediates/blame/res/crashlyticsTest/debug/single/drawable-xxxhdpi-v4.json&#10;#&#9;app/build/intermediates/blame/res/crashlyticsTest/debug/single/drawable.json&#10;#&#9;app/build/intermediates/incremental/mergeCrashlyticsTestDebugAndroidTestResources/compile-file-map.properties&#10;#&#9;app/build/intermediates/incremental/mergeCrashlyticsTestDebugResources/compile-file-map.properties&#10;#&#9;app/build/intermediates/incremental/mergeCrashlyticsTestDebugResources/merger.xml&#10;#&#9;app/build/intermediates/res/resources-crashlyticsTest-debug.ap_&#10;" />
     <MESSAGE value="completed ShareUtils for twitter, facebook and linkedin sharing" />
@@ -1236,7 +1195,6 @@
     <MESSAGE value="Optimized AboutFragment" />
     <MESSAGE value="updated configuration" />
     <MESSAGE value="optimize GuideFragment" />
-    <MESSAGE value="updated gitignore" />
     <MESSAGE value="update google-services json" />
     <MESSAGE value="minor updates and code cleanup" />
     <MESSAGE value="generated javadocs" />
@@ -1245,7 +1203,10 @@
     <MESSAGE value="update reference to .webp" />
     <MESSAGE value="code optimization" />
     <MESSAGE value="update google play services" />
-    <option name="LAST_COMMIT_MESSAGE" value="update google play services" />
+    <MESSAGE value="resolved potential null pointer exception" />
+    <MESSAGE value="updated README" />
+    <MESSAGE value="updated gitignore" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated gitignore" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
@@ -1531,20 +1492,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="284">
-          <caret line="45" column="26" selection-start-line="45" selection-start-column="26" selection-end-line="45" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="33" column="6" selection-start-line="33" selection-start-column="6" selection-end-line="33" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="263">
@@ -1556,13 +1503,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="178">
           <caret line="12" column="1" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-column="46" />
         </state>
       </provider>
     </entry>
@@ -1627,13 +1567,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="918">
+          <caret line="54" column="52" selection-start-line="54" selection-start-column="52" selection-end-line="54" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="731">
+          <caret line="43" column="79" selection-start-line="43" selection-start-column="79" selection-end-line="43" selection-end-column="79" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/blog/ljtatum/tipcalculator/fragments/BaseFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="423">
-          <caret line="78" column="9" selection-start-line="78" selection-start-column="9" selection-end-line="78" selection-end-column="9" />
+        <state relative-caret-position="1088">
+          <caret line="64" column="19" selection-start-line="64" selection-start-column="19" selection-end-line="64" selection-end-column="19" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="5" selection-start-line="5" selection-start-column="5" selection-end-line="5" selection-end-column="5" />
         </state>
       </provider>
     </entry>
