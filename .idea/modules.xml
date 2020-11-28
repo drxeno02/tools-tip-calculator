@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/ApplicationFramework/ApplicationFramework.iml" filepath="$PROJECT_DIR$/ApplicationFramework/ApplicationFramework.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/tools-tip-calculator.iml" filepath="$PROJECT_DIR$/tools-tip-calculator.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/tools-tip-calculator.iml" filepath="$PROJECT_DIR$/.idea/modules/tools-tip-calculator.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ApplicationFramework/tools-tip-calculator.ApplicationFramework.iml" filepath="$PROJECT_DIR$/.idea/modules/ApplicationFramework/tools-tip-calculator.ApplicationFramework.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/tools-tip-calculator.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/tools-tip-calculator.app.iml" />
     </modules>
   </component>
 </project>

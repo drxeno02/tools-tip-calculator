@@ -1,6 +1,5 @@
 apply plugin: 'com.google.gms.google-services'
 apply plugin: 'com.android.application'
-apply plugin: 'io.fabric'
 
 buildscript {
     repositories {
@@ -84,8 +83,6 @@ android {
 }
 
 dependencies {
+    // application framework
     api project(path: ':ApplicationFramework')
-    api('com.crashlytics.sdk.android:crashlytics:2.6.7@aar') {
-        transitive = true;
-    }
 }
